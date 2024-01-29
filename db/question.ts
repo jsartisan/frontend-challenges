@@ -1,0 +1,104 @@
+import path from "path";
+import fg from "fast-glob";
+
+import { cleanUpReadme } from "@/utils";
+import { parseMetaInfo } from "@/utils/questions";
+import { Question, QuestionMetaInfo } from "@/types";
+import { getLocaleVariations } from "@/utils/locales";
+import { DEFAULT_LOCALE, QUESTION_ROOT } from "@/constants";
+
+import { getAnswersOfQuestion } from "./answers";
+import { getCodeFilesByTemplate } from "./template";
+import { bundleMarkdown } from "@/utils/markdown";
+
+/**
+ * get all questions
+ *
+ * @returns
+ */
+export async function getQuestions(): Promise<Question[]> {
+  const folders = await fg("{0..9}*-*", {
+    onlyDirectories: true,
+    cwd: QUESTION_ROOT,
+  });
+
+  const quizes = await Promise.all(folders.map(async (path: string) => getQuestionByPath(path)));
+
+  return quizes;
+}
+
+/**
+ * get question by path
+ *
+ * @param path
+ * @returns
+ */
+export async function getQuestionByPath(dir: string): Promise<Question> {
+  const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
+  const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
+  const info = await getLocaleVariations(path.join(QUESTION_ROOT, dir, "info.yml"), [parseMetaInfo]);
+  const readme = await getLocaleVariations(path.join(QUESTION_ROOT, dir, "README.md"), [cleanUpReadme]);
+  const templateFiles = await getCodeFilesByTemplate(path.join(QUESTION_ROOT, dir, "template.md"));
+  const answers = await getAnswersOfQuestion(no, templateFiles);
+
+  for (const locale of Object.keys(readme)) {
+    readme[locale] = await bundleMarkdown(readme[locale]);
+  }
+
+  return {
+    no,
+    difficulty,
+    path: dir,
+    info,
+    readme,
+    templateFiles,
+    answers,
+  };
+}
+
+export function getQuestionInfoByLocale(quiz: Question, locale: string = DEFAULT_LOCALE) {
+  const info = Object.assign({}, quiz.info[DEFAULT_LOCALE], quiz.info[locale]);
+  info.tags = quiz.info[locale]?.tags || quiz.info[DEFAULT_LOCALE]?.tags || [];
+  info.related = quiz.info[locale]?.related || quiz.info[DEFAULT_LOCALE]?.related || [];
+
+  if (typeof info.tags === "string")
+    info.tags = info.tags
+      // @ts-expect-error type mismatch
+      .split(",")
+      .map((i: string) => i.trim())
+      .filter(Boolean);
+
+  return info as QuestionMetaInfo;
+}
+
+/**
+ * get quizes grouped by tag
+ *
+ * @param quizes
+ * @param locale
+ * @param tag
+ * @returns
+ */
+export function getQuizesByTag(quizes: Question[], locale: string, tag: string) {
+  return quizes.filter((quiz) => {
+    const info = getQuestionInfoByLocale(quiz, locale);
+
+    return !!info.tags?.includes(tag);
+  });
+}
+
+/**
+ * get all tags from questions
+ *
+ * @param quizes
+ * @param locale
+ * @returns
+ */
+export function getAllTags(quizes: Question[], locale: string) {
+  const set = new Set<string>();
+  for (const quiz of quizes) {
+    const info = getQuestionInfoByLocale(quiz, locale);
+    for (const tag of info?.tags || []) set.add(tag as string);
+  }
+  return Array.from(set).sort();
+}

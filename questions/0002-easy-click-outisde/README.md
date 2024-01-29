@@ -1,0 +1,13 @@
+<!--info-header-start--><h1>useClickOutside <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23react-999" alt="#react"/> <img src="https://img.shields.io/badge/-%23event%20listeners-999" alt="#event listeners"/> <img src="https://img.shields.io/badge/-%23hooks-999" alt="#hooks"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://localhost:8080/2/play" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-3178c6?logo=typescript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
+
+Implement a custom hook useClickOutside to handle the click outside of the passed ref element. The hook takes a callback function which will be invoked when the user clicks outside of the passed ref element.
+
+```js
+const ref = useRef(null);
+
+useClickOutside(ref, () => {
+  console.log("clicked outside");
+});
+```
+
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://localhost:8080/2/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://localhost:8080/2/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
