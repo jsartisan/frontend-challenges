@@ -7,6 +7,8 @@ on:
 
 jobs:
   start:
+    env:
+      NODE_ENV: production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
