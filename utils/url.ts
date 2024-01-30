@@ -1,78 +1,127 @@
-import lzs from "lz-string";
+import { SandpackState } from "@codesandbox/sandpack-react";
 
-import { CodeFile, Question } from "@/types";
+import { TEMPLATES } from "@/templates";
 import { DEFAULT_LOCALE, DOMAIN, REPO } from "@/constants";
-import { getQuestionInfoByLocale } from "@/db/question";
+import { Question, SupportedLocale, SupportedTemplates } from "@/types";
 
 export const PLAYGROUND = `${DOMAIN}/play`;
 
-export function toPlaygroundUrl(code: string, config: object = {}, site = PLAYGROUND) {
-  return `${site}?${Object.entries(config)
-    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
-    .join("&")}#code/${lzs.compressToEncodedURIComponent(code)}`;
-}
-
-export function toSolutionsFull(no: number) {
-  return `${REPO}/issues?q=label%3A${no}+label%3Aanswer+sort%3Areactions-%2B1-desc`;
-}
-
-export function toQuizREADME(quiz: Question, locale?: string, absolute = false) {
+/**
+ * get question 's readme url (repo)
+ * @param quiz
+ * @param locale
+ * @param absolute
+ * @returns
+ */
+export function getQuestionREADME(quiz: Question, locale?: string, absolute = false) {
   const prefix = absolute ? `${REPO}/blob/main` : ".";
   return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale]
     ? `${prefix}/questions/${quiz.path}/README.${locale}.md`
     : `${prefix}/questions/${quiz.path}/README.md`;
 }
 
-export function toRawREADME(quiz: Question, locale?: string) {
-  const provider = "https://cdn.jsdelivr.net/gh/type-challenges/type-challenges";
-  // const provider = 'https://raw.githubusercontent.com/type-challenges/type-challenges/main'
-  return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale]
-    ? `${provider}/questions/${quiz.path}/README.${locale}.md`
-    : `${provider}/questions/${quiz.path}/README.md`;
-}
-
-export function toQuestionsRawREADME(locale?: string) {
-  const provider = "https://cdn.jsdelivr.net/gh/type-challenges/type-challenges";
-  return locale && locale !== DEFAULT_LOCALE ? `${provider}/README.${locale}.md` : `${provider}/README.md`;
-}
-
 export function toNearborREADME(quiz: Question, locale?: string) {
   return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale] ? `./README.${locale}.md` : "./README.md";
 }
-
-export function toShareAnswerFull(quiz: Question, locale: string = DEFAULT_LOCALE, files: Record<string, CodeFile>) {
-  const info = getQuestionInfoByLocale(quiz, locale);
-
-  const readme = "";
-
-  if (locale === DEFAULT_LOCALE)
-    return `${REPO}/issues/new?labels=answer,${encodeURIComponent(
-      locale,
-    )}&template=0-answer.md&title=${encodeURIComponent(`${quiz.no} - ${info.title}`)}`;
-  else
-    return `${REPO}/issues/new?labels=answer,${encodeURIComponent(
-      locale,
-    )}&template=1-answer.${locale}.md&title=${encodeURIComponent(`${quiz.no} - ${info.title}`)}`;
-}
-
-// Short
 
 export function toReadmeShort(no: number, locale?: string) {
   return locale !== DEFAULT_LOCALE ? `${DOMAIN}/${no}/${locale}` : `${DOMAIN}/${no}`;
 }
 
-export function toSolutionsShort(no: number) {
-  return `${DOMAIN}/${no}/solutions`;
+/**
+ * get questions url (site)
+ *
+ * @param path
+ * @returns
+ */
+export function getQuestionURL(path: string) {
+  return `${DOMAIN}/${path}`;
 }
 
-export function toPlayShort(path: string) {
-  return `${DOMAIN}/questions/${path}`;
+/**
+ * get question's solution url (repo)
+ *
+ * @param no
+ * @returns
+ */
+export function getSolutionsURL(no: number) {
+  return `${REPO}/issues?q=label%3A${no}+label%3Aanswer+sort%3Areactions-%2B1-desc`;
 }
 
-export function toAnswerShort(no: number, locale?: string) {
-  return locale !== DEFAULT_LOCALE ? `${DOMAIN}/${no}/answer/${locale}` : `${DOMAIN}/${no}/answer`;
-}
+/**
+ * returns the url for submitting a new question (repo)
+ * which is a github issue
+ *
+ * @param props
+ * @returns
+ */
+export const getShareAnswerURL = (props: {
+  question: Question;
+  locale?: SupportedLocale;
+  files?: SandpackState["files"];
+  template?: SupportedTemplates;
+}) => {
+  const { question, files, template, locale = "en" } = props;
 
-export function toHomepageShort(locale?: string) {
-  return locale !== DEFAULT_LOCALE ? `${DOMAIN}/${locale}` : `${DOMAIN}`;
-}
+  let readme = ``;
+
+  files &&
+    template &&
+    Object.keys(files).map((filename) => {
+      const file = files[filename];
+
+      // adding explicit check for package.json because of special characters like /n
+      if (filename === "/package.json") {
+        const templatePackageJSON = JSON.stringify(JSON.parse(file.code), null, 2);
+        const questionPackageJSON = JSON.stringify(
+          JSON.parse(
+            {
+              ...TEMPLATES[template].files,
+              ...question?.templateFiles[template],
+            }[filename]?.code,
+          ),
+          null,
+          2,
+        );
+
+        if (templatePackageJSON !== questionPackageJSON) {
+          readme += `${filename.replace("/", "")}\n`;
+          readme += "```";
+          readme += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
+          readme += file.code;
+          readme += "\n```\n\n";
+        }
+
+        return;
+      }
+
+      const isFileChanged =
+        file.code !==
+        {
+          ...TEMPLATES[template].files,
+          ...question?.templateFiles[template],
+        }[filename]?.code;
+
+      if (isFileChanged) {
+        readme += `${filename.replace("/", "")}\n`;
+        readme += "```";
+        readme += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
+        readme += file.code;
+        readme += "\n```\n\n";
+      }
+    });
+
+  if (locale && locale !== DEFAULT_LOCALE) {
+    return `${REPO}/issues/new?labels=answer,${question.no},${encodeURIComponent(
+      locale,
+    )},${template}&title=${encodeURIComponent(
+      `${question?.no} - ${question?.info.en?.title}`,
+    )}&body=${encodeURIComponent(readme)}`;
+  }
+
+  const URL = `${REPO}/issues/new?labels=answer,${question.no},${template}&title=${encodeURIComponent(
+    `${question?.no} - ${question?.info.en?.title}`,
+  )}&body=${encodeURIComponent(readme)}`;
+
+  return URL;
+};

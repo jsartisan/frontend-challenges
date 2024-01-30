@@ -2,7 +2,7 @@
 
 import { Question, SupportedTemplates } from "@/types";
 import { Button } from "@/components/ui";
-import { getShareSolutionURL } from "@/utils/questions";
+import { getShareAnswerURL } from "@/utils/url";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
 type ShareSolutionProps = {
@@ -16,7 +16,7 @@ function ShareSolutionButton(props: ShareSolutionProps) {
   const { files } = sandpack;
 
   const onClick = () => {
-    const URL = getShareSolutionURL({
+    const URL = getShareAnswerURL({
       question,
       template,
       files,

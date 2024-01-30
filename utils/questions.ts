@@ -33,67 +33,6 @@ export function parseMetaInfo(s: string): Partial<QuestionMetaInfo> | undefined 
   return object;
 }
 
-export const getShareSolutionURL = (props: {
-  question;
-  files: SandpackState["files"];
-  template: SupportedTemplates;
-}) => {
-  const { question, files, template } = props;
-
-  let readme = ``;
-
-  files &&
-    Object.keys(files).map((filename) => {
-      const file = files[filename];
-
-      // adding explicit check for package.json because of special characters like /n
-      if (filename === "/package.json") {
-        const templatePackageJSON = JSON.stringify(JSON.parse(file.code), null, 2);
-        const questionPackageJSON = JSON.stringify(
-          JSON.parse(
-            {
-              ...TEMPLATES[template].files,
-              ...question?.templateFiles[template],
-            }[filename]?.code,
-          ),
-          null,
-          2,
-        );
-
-        if (templatePackageJSON !== questionPackageJSON) {
-          readme += `${filename.replace("/", "")}\n`;
-          readme += "```";
-          readme += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
-          readme += file.code;
-          readme += "\n```\n\n";
-        }
-
-        return;
-      }
-
-      const isFileChanged =
-        file.code !==
-        {
-          ...TEMPLATES[template].files,
-          ...question?.templateFiles[template],
-        }[filename]?.code;
-
-      if (isFileChanged) {
-        readme += `${filename.replace("/", "")}\n`;
-        readme += "```";
-        readme += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
-        readme += file.code;
-        readme += "\n```\n\n";
-      }
-    });
-
-  const URL = `${REPO}/issues/new?labels=answer,${question.no},${template}&title=${encodeURIComponent(
-    `${question?.no} - ${question?.info.en?.title}`,
-  )}&body=${encodeURIComponent(readme)}`;
-
-  return URL;
-};
-
 export const getSubmitChallengeURL = (values: FormValues) => {
   let body = ``;
   const { files, template, difficulty, tags, readme: readme, title } = values;

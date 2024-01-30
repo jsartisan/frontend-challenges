@@ -1,11 +1,11 @@
 import fs from "fs-extra";
 
-import { Difficulty, Question, QuestionMetaInfo, SupportedLocale } from "@/types";
-import { getQuestionInfoByLocale } from "@/db/question";
-import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
 import { escapeHtml } from "./helpers";
-import { toAnswerShort, toNearborREADME, toPlayShort, toQuizREADME, toSolutionsShort } from ".";
 import { getFileNameByLocale, translate } from "./locales";
+import { getQuestionInfoByLocale } from "@/db/question";
+import { Difficulty, Question, QuestionMetaInfo, SupportedLocale } from "@/types";
+import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
+import { toNearborREADME, getQuestionURL, getQuestionREADME, getShareAnswerURL, getSolutionsURL } from ".";
 
 /**
  * removes the meta info from the readme file
@@ -52,11 +52,11 @@ export async function insertInfoReadme(filepath: string, quiz: Question, locale:
         `<blockquote><p>${toAuthorInfo(info.author)}</p></blockquote>` +
         "<p>" +
         toBadgeLink(
-          toPlayShort(quiz.path),
+          getQuestionURL(quiz.path),
           "",
           translate(locale, "badge.take-the-challenge"),
-          "3178c6",
-          "?logo=typescript&logoColor=white",
+          "0d99ff",
+          "?logo=javascript&logoColor=white",
         ) +
         (availableLocales.length
           ? "&nbsp;&nbsp;&nbsp;" +
@@ -76,9 +76,14 @@ export async function insertInfoReadme(filepath: string, quiz: Question, locale:
           translate(locale, "badge.back"),
           "grey",
         ) +
-        toBadgeLink(toAnswerShort(quiz.no, locale), "", translate(locale, "badge.share-your-solutions"), "teal") +
         toBadgeLink(
-          toSolutionsShort(quiz.no),
+          getShareAnswerURL({ question: quiz, locale }),
+          "",
+          translate(locale, "badge.share-your-solutions"),
+          "teal",
+        ) +
+        toBadgeLink(
+          getSolutionsURL(quiz.no),
           "",
           translate(locale, "badge.checkout-solutions"),
           "de5a77",
@@ -139,7 +144,7 @@ export function toDifficultyPlainText(difficulty: string, locale: SupportedLocal
 export function quizToBadge(quiz: Question, locale: string, absolute = false, badge = true) {
   const fn = badge ? toBadgeLink : toPlanTextLink;
   return fn(
-    toQuizREADME(quiz, locale, absolute),
+    getQuestionREADME(quiz, locale, absolute),
     "",
     `${quiz.no}・${quiz.info[locale]?.title || quiz.info[DEFAULT_LOCALE]?.title}`,
     DIFFICULTY_COLORS[quiz.difficulty],

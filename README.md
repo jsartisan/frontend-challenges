@@ -9,7 +9,7 @@
     <img src='https://img.shields.io/badge/-Discord-yellowgreen?logo=discord&logoColor=white&color=7289da'/>
   </a>
   <a href='https://frontend-challenges.com/play'>
-    <img src='https://img.shields.io/badge/Playground-143?logo=javascript&color=3178C6&logoColor=fff' />
+    <img src='https://img.shields.io/badge/Playground-143?logo=javascript&color=0d99ff&logoColor=fff' />
   </a>
 </p>
 

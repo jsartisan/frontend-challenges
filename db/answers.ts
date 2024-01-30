@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { unified } from "unified";
 import { Octokit } from "octokit";
 import remarkParse from "remark-parse";
@@ -9,9 +8,6 @@ import { CodeFile, Question, SupportedTemplates } from "@/types";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_PAT,
-  request: {
-    fetch,
-  },
 });
 
 /**
