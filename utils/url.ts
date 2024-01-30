@@ -35,7 +35,7 @@ export function toReadmeShort(no: number, locale?: string) {
  * @returns
  */
 export function getQuestionURL(path: string) {
-  return `${DOMAIN}/${path}`;
+  return `${DOMAIN}/questions/${path}`;
 }
 
 /**
