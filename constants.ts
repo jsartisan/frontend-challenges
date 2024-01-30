@@ -7,7 +7,7 @@ export const QUESTION_ROOT = path.join(ROOT_PATH, "./questions");
 export const CONTENT_PATH = path.join(ROOT_PATH, "./content");
 
 export const REPO = "https://github.com/jsartisan/frontend-challenges";
-export const DOMAIN = process.env.NEXT_BASE_URL || "https://localhost:8080";
+export const DOMAIN = process.env.NEXT_BASE_URL || "https://frontend-challenges.com";
 export const DISCORD = "https://discord.gg/utqqFmhQmT";
 
 export const DEFAULT_TEMPLATE = "vanilla";
