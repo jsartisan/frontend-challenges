@@ -93,7 +93,7 @@
     "@ahooksjs/use-url-state": "^3.5.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/fs-extra": "^11.0.4",
-    "types/js-yaml": "^4.0.9",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20",
     "@types/prompts": "^2.4.9",
     "@types/react": "^18",
