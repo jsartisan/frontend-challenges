@@ -8,7 +8,7 @@ on:
 jobs:
   start:
     env:
-      NODE_ENV: CI
+      NODE_ENV: ${{ secrets.NODE_ENV }}
       NEXT_BASE_URL: ${{ secrets.NEXT_BASE_URL }}
     runs-on: ubuntu-latest
     steps:
