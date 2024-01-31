@@ -58,7 +58,7 @@ npm install
 npm run dev
 ```
 Now you should be able to open `http://localhost:5173` in your browser and it will show the list of questions. 
-One important thing is since the playground is made with vite, it supports hot module reloading. So, any change made in questions files will reflected on browser automatically.
+One important thing is since the playground is made with vite, it supports hot module reloading. So, any change made in questions files will be reflected on browser automatically.
 
 ### Inspired by
 
