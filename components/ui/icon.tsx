@@ -38,7 +38,9 @@ export type IconProps = {
     | "vanilla-color"
     | "svelte-color"
     | "external-link"
-    | "javascript-color";
+    | "javascript-color"
+    | "github"
+    | "play";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -60,6 +62,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
   let icon;
 
   switch (name) {
+    case "play":
+      icon = RadixIcon.PlayIcon;
+      break;
     case "home":
       icon = RadixIcon.HomeIcon;
       break;
@@ -125,6 +130,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       break;
     case "vanilla-color":
       icon = VanillaColorIcon;
+      break;
+    case "github":
+      icon = RadixIcon.GitHubLogoIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

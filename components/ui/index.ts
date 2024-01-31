@@ -20,3 +20,4 @@ export * from "./resizable";
 export * from "./command";
 export * from "./icon-button";
 export * from "./tooltip";
+export * from "./sheet";

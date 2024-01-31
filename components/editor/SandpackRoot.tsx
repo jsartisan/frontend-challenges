@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function SandpackRoot(props: Props) {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const { children, className, files } = props;
 
   return (
@@ -21,7 +21,7 @@ export default function SandpackRoot(props: Props) {
       files={files}
       customSetup={{}}
       key={Object.keys(files).join("-")}
-      theme={theme === "dark" ? "dark" : "light"}
+      theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
         classes: {
           "sp-code-editor": "!bg-[var(--color-bg)] h-full",

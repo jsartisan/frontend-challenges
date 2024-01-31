@@ -1,15 +1,23 @@
 "use client";
 
-import { Question } from "@/types";
 import Link from "next/link";
-import { GitHubLogoIcon, PlayIcon } from "@radix-ui/react-icons";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Question } from "@/types";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  Icon,
+  IconButton,
+} from "@/components/ui";
 
-import { Button } from "@/components/ui";
 import Preview from "../editor/Preview";
+import { TEMPLATES } from "@/templates";
+import { Button } from "@/components/ui";
 import SandpackRoot from "../editor/SandpackRoot";
 import { CodeEditor } from "../editor/CodeEditor";
-import { TEMPLATES } from "@/templates";
 
 type QuestionListProps = {
   question: Question;
@@ -46,9 +54,9 @@ export function AnswerList(props: QuestionListProps) {
       <div className="ml-auto">
         <Sheet>
           <SheetTrigger>
-            <Button size="icon" variant="secondary">
-              <PlayIcon />
-            </Button>
+            <IconButton variant="secondary">
+              <Icon name="play" />
+            </IconButton>
           </SheetTrigger>
           <SheetContent>
             <SandpackRoot
@@ -75,7 +83,7 @@ export function AnswerList(props: QuestionListProps) {
                   <div className="ml-auto">
                     <Button asChild variant="tertiary" className="flex gap-2">
                       <a href={answer.url} target="_blank" rel="noreferrer">
-                        View on <GitHubLogoIcon /> Github
+                        View on <Icon name="github" /> GitHub
                       </a>
                     </Button>
                   </div>

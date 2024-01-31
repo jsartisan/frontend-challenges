@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { REPO } from "@/constants";
 import Link from "next/link";
+import { Icon } from "../ui";
 
 export function Hero() {
   return (
@@ -28,7 +29,7 @@ export function Hero() {
         </Button>
         <Button asChild variant="secondary" className="flex gap-2">
           <a href={REPO} target="_blank" rel="noreferrer">
-            <GitHubLogoIcon /> Github
+            <Icon name="github" /> Github
           </a>
         </Button>
       </div>

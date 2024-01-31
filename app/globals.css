@@ -13,46 +13,44 @@
   }
 
   :root {
-    --color-bg: white;
-    --color-bg-hover: color-mix(in srgb, var(--color-bg) 100%, black 5%);
-    --color-bg-active: color-mix(in srgb, var(--color-bg) 100%, black 6%);
-    --color-bg-selected: color-mix(in srgb, var(--color-bg) 100%, black 8%);
+    --color-bg: var(--ramp-white-1000);
+    --color-bg-hover: color-mix(in srgb, var(--color-bg), black 5%);
+    --color-bg-active: color-mix(in srgb, var(--color-bg), black 6%);
+    --color-bg-selected: color-mix(in srgb, var(--color-bg), black 8%);
     --color-bg-secondary: var(--ramp-grey-50);
     --color-bg-accent: var(--ramp-blue-500);
-    --color-bg-accent-hover: color-mix(in srgb, var(--color-bg-accent) 100%, white 10%);
-    --color-bg-accent-active: color-mix(in srgb, var(--color-bg-accent) 100%, black 10%);
+    --color-bg-accent-hover: color-mix(in srgb, var(--color-bg-accent), white 10%);
+    --color-bg-accent-active: color-mix(in srgb, var(--color-bg-accent), black 10%);
     --color-bg-neutral: var(--ramp-grey-100);
-    --color-bg-neutral-hover: color-mix(in srgb, var(--color-bg-neutral) 100%, black 5%);
-    --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral-subtle) 100%, white 5%);
-    --color-bg-neutral-subtle-hover: color-mix(in srgb, var(--color-bg-neutral-subtle) 100%, white 10%);
-    --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle) 100%, black 5%);
-    --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral) 100%, black 10%);
+    --color-bg-neutral-hover: color-mix(in srgb, var(--color-bg-neutral), black 5%);
+    --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral), white 5%);
+    --color-bg-neutral-subtle-hover: color-mix(in srgb, var(--color-bg-neutral-subtle), white 10%);
+    --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%);
+    --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 10%);
     --color-bg-assistive: var(--ramp-grey-900);
     --color-bg-negative: var(--ramp-red-500);
     --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
+    --color-bg-easy: var(--ramp-green-100);
+    --color-bg-medium: var(--ramp-orange-100);
+    --color-bg-hard: var(--ramp-red-100);
 
     --color-fg: var(--ramp-grey-900);
     --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, white 20%);
     --color-fg-onaccent: var(--ramp-white-1000);
     --color-fg-accent: var(--ramp-blue-500);
-    --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent) 100%, black 20%);
+    --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent) black 20%);
     --color-fg-neutral: var(--ramp-grey-900);
-    --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral) 60%, white 40%);
+    --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), white 40%);
     --color-fg-on-assistive: var(--ramp-white-1000);
     --color-fg-negative: var(--ramp-red-500);
+    --color-fg-easy: var(--ramp-green-900);
+    --color-fg-medium: var(--ramp-orange-900);
+    --color-fg-hard: var(--ramp-red-900);
 
     --color-border: var(--ramp-grey-300);
     --color-border-hover: color-mix(in srgb, var(--color-border) 80%, black 20%);
     --color-border-accent: var(--ramp-blue-500);
     --color-border-accent-subtle: color-mix(in srgb, var(--color-border-accent) 50%, transparent 20%);
-
-    /* tags */
-    --color-bg-easy: var(--ramp-green-100);
-    --color-fg-easy: var(--ramp-green-900);
-    --color-bg-medium: var(--ramp-orange-100);
-    --color-fg-medium: var(--ramp-orange-900);
-    --color-bg-hard: var(--ramp-red-100);
-    --color-fg-hard: var(--ramp-red-900);
   }
 
   .dark {
@@ -62,14 +60,23 @@
     --color-bg-selected: color-mix(in srgb, var(--color-bg) 100%, white 12%);
     --color-bg-secondary: var(--ramp-grey-1000);
     --color-bg-accent: var(--ramp-blue-500);
+    --color-bg-neutral: color-mix(in srgb, var(--ramp-grey-100), 80% black);
     --color-bg-neutral-subtle: var(--ramp-grey-700);
 
     --color-fg: var(--ramp-white-1000);
     --color-fg-onaccent: var(--ramp-white-1000);
+    --color-fg-neutral: color-mix(in srgb, var(--ramp-grey-900), white 80%);
 
     --color-border: color-mix(in srgb, var(--ramp-grey-600), 60% transparent);
 
     --sp-colors-surface1: var(--color-bg) !important;
+
+    --color-bg-easy: color-mix(in srgb, var(--ramp-green-100), 80% black);
+    --color-fg-easy: color-mix(in srgb, var(--ramp-green-900), 50% white);
+    --color-bg-medium: color-mix(in srgb, var(--ramp-orange-100), 80% black);
+    --color-fg-medium: color-mix(in srgb, var(--ramp-orange-900), 50% white);
+    --color-bg-hard: color-mix(in srgb, var(--ramp-red-100), 80% black);
+    --color-fg-hard: color-mix(in srgb, var(--ramp-red-900), 50% white);
   }
 }
 

@@ -6,6 +6,10 @@ import { Question, SupportedLocale, SupportedTemplates } from "@/types";
 
 export const PLAYGROUND = `${DOMAIN}/play`;
 
+export function getRepoREADMEUrl(locale?: string) {
+  return locale && locale !== DEFAULT_LOCALE ? `${REPO}/blob/main/README.${locale}.md` : `${REPO}/blob/main/README.md`;
+}
+
 /**
  * get question 's readme url (repo)
  * @param quiz

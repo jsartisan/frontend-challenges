@@ -6,7 +6,9 @@ import { createFileMap } from "@/utils";
 import { SUPPORTED_TEMPLATES } from "@/constants";
 import { CodeFile, Question, SupportedTemplates } from "@/types";
 
-const octokit = new Octokit();
+const octokit = new Octokit({
+  auth: process.env.GITHUB_PAT,
+});
 
 /**
  * get answers of question

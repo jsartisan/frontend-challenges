@@ -29,7 +29,7 @@ Click the following badges to see details of the challenges.
 
 ## Play Locally
 
-You can try the challenges and play locally using your preferred IDE or text editor.
+You can try the challenges locally using your preferred IDE or text editor.
 
 To do that, you will need the latest version of [Node.js](https://nodejs.org/) installed on your machine.
 
@@ -46,6 +46,15 @@ npm generate
 ```
 
 It will prompt you to select the desired language, then you can find the generated challenges in the `./playground` folder.
+
+Playground is made with vite, so you will need to install dependecies and run the dev server:
+
+```bash
+cd ./playground
+npm install
+npm run dev
+```
+Now just open `http://localhost:5173` in your browser. You will see the link to each of questions. Since the playgorund is made with vite, it supports hot module reload. So, any change made on in questions files will reflected on browser automatically.
 
 ### Inspired by
 

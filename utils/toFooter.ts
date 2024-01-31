@@ -1,13 +1,13 @@
-import type { SupportedLocale } from "../utils/locales";
-import { translate } from "../utils/locales";
-import { toAnswerShort, toHomepageShort, toSolutionsShort } from "./url";
 import { Question } from "@/types";
+import { translate } from "../utils/locales";
+import type { SupportedLocale } from "../utils/locales";
+import { getShareAnswerURL, getSolutionsURL, getRepoREADMEUrl } from "./url";
 
 export const toFooter = function (quiz: Question, locale: SupportedLocale) {
   return (
     "\n\n" +
-    `> ${translate(locale, "link.share-solutions")}${toAnswerShort(quiz.no, locale)}\n` +
-    `> ${translate(locale, "link.checkout-solutions")}${toSolutionsShort(quiz.no)}\n` +
-    `> ${translate(locale, "link.more-challenges")}${toHomepageShort(locale)}\n`
+    `> ${translate(locale, "link.share-solutions")}${getShareAnswerURL({ question: quiz, locale })}\n` +
+    `> ${translate(locale, "link.checkout-solutions")}${getSolutionsURL(quiz.no)}\n` +
+    `> ${translate(locale, "link.more-challenges")}${getRepoREADMEUrl(locale)}\n`
   );
 };
