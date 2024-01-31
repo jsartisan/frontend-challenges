@@ -50,11 +50,15 @@ It will prompt you to select the desired language, then you can find the generat
 Playground is made with vite, so you will need to install dependecies and run the dev server:
 
 ```bash
+# go into playground folder
 cd ./playground
+# install dependencies
 npm install
+# run vite dev server
 npm run dev
 ```
-Now just open `http://localhost:5173` in your browser. You will see the link to each of questions. Since the playgorund is made with vite, it supports hot module reload. So, any change made on in questions files will reflected on browser automatically.
+Now you should be able to open `http://localhost:5173` in your browser and it will show the list of questions. 
+One important thing is since the playground is made with vite, it supports hot module reloading. So, any change made in questions files will reflected on browser automatically.
 
 ### Inspired by
 
