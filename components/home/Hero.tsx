@@ -1,4 +1,3 @@
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { REPO } from "@/constants";
