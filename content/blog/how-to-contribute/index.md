@@ -4,7 +4,6 @@ excerpt: Getting involved in the development of FrontendChallenges, an open sour
 published_at: 01/19/2023
 emoji: 🫵
 ---
-
 Contributing to FrontendChallenges is a great way to get involved in the open source community, but it can be very daunting. This guide will help you get started with contributing to FrontendChallenges.
 
 ## Found a Bug?

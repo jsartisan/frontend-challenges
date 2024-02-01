@@ -3,13 +3,12 @@ import path from "path";
 import glob from "fast-glob";
 import { Blog } from "@/types";
 import matter from "gray-matter";
-import { bundleMDX } from "mdx-bundler";
 import { CONTENT_PATH } from "@/constants";
-import { visit } from "unist-util-visit";
+import { bundleMarkdown } from "@/utils/markdown";
 
 export const getAllBlogs = (): Blog[] => {
   const PATH = path.join(CONTENT_PATH, "blog");
-  const paths = glob.sync(`${PATH}/**/*.mdx`);
+  const paths = glob.sync(`${PATH}/**/*.md`);
 
   return paths
     .map((filePath) => {
@@ -18,8 +17,8 @@ export const getAllBlogs = (): Blog[] => {
 
       return {
         ...data,
-        slug: filePath.replace(`${PATH}/`, "").replace("/index.mdx", ""),
-        path: filePath.replace(`${CONTENT_PATH}/`, "").replace("/index.mdx", ""),
+        slug: filePath.replace(`${PATH}/`, "").replace("/index.md", ""),
+        path: filePath.replace(`${CONTENT_PATH}/`, "").replace("/index.md", ""),
       };
     })
 
@@ -27,29 +26,9 @@ export const getAllBlogs = (): Blog[] => {
 };
 
 export const getBlogBySlug = async (slug: string) => {
-  const source = fs.readFileSync(path.join(CONTENT_PATH, "blog", `${slug}/index.mdx`), "utf8");
-  const { code, frontmatter } = await bundleMDX({
-    source: source,
-    cwd: path.join(CONTENT_PATH, "blog", slug),
-    mdxOptions(options) {
-      options.remarkPlugins = [...(options.remarkPlugins ?? [])];
-      options.rehypePlugins = [
-        ...(options.rehypePlugins ?? [
-          function rehypeMetaAsAttributes() {
-            return (tree) => {
-              visit(tree, "element", (node) => {
-                if (node.tagName === "code" && node.data && node.data.meta) {
-                  node.properties.meta = node.data.meta;
-                }
-              });
-            };
-          },
-        ]),
-      ];
+  const source = fs.readFileSync(path.join(CONTENT_PATH, "blog", `${slug}/index.md`), "utf8");
 
-      return options;
-    },
-  });
+  const { code, frontmatter } = await bundleMarkdown(source);
 
   return {
     ...frontmatter,

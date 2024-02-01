@@ -42,7 +42,7 @@ export async function getQuestionByPath(dir: string): Promise<Question> {
   const answers = await getAnswersOfQuestion(no, templateFiles);
 
   for (const locale of Object.keys(readme)) {
-    readme[locale] = await bundleMarkdown(readme[locale]);
+    readme[locale] = (await bundleMarkdown(readme[locale])).code;
   }
 
   return {

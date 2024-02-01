@@ -45,8 +45,6 @@ export default function Client(props: { question: Question }) {
   const searchParams = useSearchParams();
   const [template, setTemplate] = useState(() => getTempalteFromURL(searchParams, question));
 
-  console.log({ question });
-
   return (
     <>
       <SandpackRoot

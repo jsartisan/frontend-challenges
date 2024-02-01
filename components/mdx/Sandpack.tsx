@@ -74,8 +74,6 @@ function Sandpack(props: SandpackProps) {
     ...files,
   };
 
-  console.log({ files, allFiles });
-
   return (
     <div className="not-prose">
       <SandpackRoot files={allFiles}>
