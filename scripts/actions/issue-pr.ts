@@ -112,6 +112,7 @@ const action: Action = async (github, context, core) => {
 
     const quiz: Question = {
       no,
+      type: "question",
       difficulty: info.difficulty,
       path: "",
       info: {
