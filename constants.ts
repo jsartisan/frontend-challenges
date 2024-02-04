@@ -4,6 +4,7 @@ import { TEMPLATES } from "./templates";
 
 export const ROOT_PATH = path.join(process.cwd());
 export const QUESTION_ROOT = path.join(ROOT_PATH, "./questions");
+export const QUIZ_ROOT = path.join(ROOT_PATH, "./quizzes");
 export const CONTENT_PATH = path.join(ROOT_PATH, "./content");
 
 export const REPO = "https://github.com/jsartisan/frontend-challenges";

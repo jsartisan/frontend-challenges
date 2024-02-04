@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Question } from "@/types";
+import { Challenge } from "@/types";
 import {
   Sheet,
   SheetContent,
@@ -20,13 +20,13 @@ import SandpackRoot from "../editor/SandpackRoot";
 import { CodeEditor } from "../editor/CodeEditor";
 
 type QuestionListProps = {
-  question: Question;
+  challenge: Challenge;
 };
 
 export function AnswerList(props: QuestionListProps) {
-  const { question } = props;
+  const { challenge } = props;
 
-  if ((question.answers || []).length === 0) {
+  if ((challenge.answers || []).length === 0) {
     return (
       <div className="flex h-full flex-col justify-center gap-2 text-center">
         <p className="text-3xl">📋</p>
@@ -36,7 +36,7 @@ export function AnswerList(props: QuestionListProps) {
     );
   }
 
-  return (question.answers || []).map((answer, index) => (
+  return (challenge.answers || []).map((answer, index) => (
     <div className="flex items-center" key={index}>
       <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full">
         <img className="aspect-square h-full w-full" alt="Avatar" src={answer.author_avatar_url} />

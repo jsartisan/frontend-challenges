@@ -1,23 +1,23 @@
 "use client";
 
-import { Question, SupportedTemplates } from "@/types";
+import { Challenge, SupportedTemplates } from "@/types";
 import { Button } from "@/components/ui";
 import { getShareAnswerURL } from "@/utils/url";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
 type ShareSolutionProps = {
-  question: Question;
-  template: SupportedTemplates;
+  challenge: Challenge;
+  template?: SupportedTemplates;
 };
 
 function ShareSolutionButton(props: ShareSolutionProps) {
-  const { question, template } = props;
+  const { challenge, template } = props;
   const { sandpack } = useSandpack();
   const { files } = sandpack;
 
   const onClick = () => {
     const URL = getShareAnswerURL({
-      question,
+      challenge,
       template,
       files,
     });

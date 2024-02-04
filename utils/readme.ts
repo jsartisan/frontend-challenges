@@ -25,10 +25,10 @@ export function cleanUpReadme(text: string) {
  * @param filepath
  * @param quiz
  * @param locale
- * @param quizes
+ * @param quizzes
  * @returns
  */
-export async function insertInfoReadme(filepath: string, quiz: Question, locale: SupportedLocale, quizes: Question[]) {
+export async function insertInfoReadme(filepath: string, quiz: Question, locale: SupportedLocale, quizzes: Question[]) {
   if (!fs.existsSync(filepath)) return;
   let text = await fs.readFile(filepath, "utf-8");
   /* eslint-disable prefer-template */
@@ -77,7 +77,7 @@ export async function insertInfoReadme(filepath: string, quiz: Question, locale:
           "grey",
         ) +
         toBadgeLink(
-          getShareAnswerURL({ question: quiz, locale }),
+          getShareAnswerURL({ challenge: quiz, locale }),
           "",
           translate(locale, "badge.share-your-solutions"),
           "teal",
@@ -92,7 +92,7 @@ export async function insertInfoReadme(filepath: string, quiz: Question, locale:
         (Array.isArray(info.related) && info.related.length
           ? `<hr><h3>${translate(locale, "readme.related-challenges")}</h3>${quizNoToBadges(
               info.related,
-              quizes,
+              quizzes,
               locale,
               true,
             )}`
@@ -123,7 +123,7 @@ export function toBadgeLink(url: string, label: string, text: string, color: str
   return `<a href="${url}" target="_blank">${toBadge(label, text, color, args)}</a> `;
 }
 
-export function toPlanTextLink(url: string, _label: string, text: string, _color: string, _args = "") {
+export function toPlanTextLink(url: string, _label: string, text: string) {
   return `<a href="${url}" target="_blank">${text}</a> `;
 }
 
@@ -151,9 +151,9 @@ export function quizToBadge(quiz: Question, locale: string, absolute = false, ba
   );
 }
 
-export function quizNoToBadges(ids: (string | number)[], quizes: Question[], locale: string, absolute = false) {
+export function quizNoToBadges(ids: (string | number)[], quizzes: Question[], locale: string, absolute = false) {
   return ids
-    .map((i) => quizes.find((q) => q.no === Number(i)))
+    .map((i) => quizzes.find((q) => q.no === Number(i)))
     .filter(Boolean)
     .map((i) => quizToBadge(i!, locale, absolute))
     .join(" ");

@@ -21,24 +21,26 @@ function MDXComponent(props: any) {
           const filename = meta?.split(" ")[0];
 
           return (
-            <SandpackProvider
-              className="not-prose"
-              options={{
-                classes: {
-                  "sp-code-editor": "!border !border-[var(--color-border)] !rounded",
-                },
-              }}
-              theme={resolvedTheme === "dark" ? "dark" : "light"}
-              template="vanilla"
-              files={{
-                [filename]: {
-                  code: code.trim(),
-                  active: true,
-                },
-              }}
-            >
-              <SandpackCodeViewer />
-            </SandpackProvider>
+            <div className="max-w-[80ch]">
+              <SandpackProvider
+                className="not-prose"
+                options={{
+                  classes: {
+                    "sp-code-editor": "!border !border-[var(--color-border)] !rounded",
+                  },
+                }}
+                theme={resolvedTheme === "dark" ? "dark" : "light"}
+                template="vanilla"
+                files={{
+                  [filename]: {
+                    code: code.trim(),
+                    active: true,
+                  },
+                }}
+              >
+                <SandpackCodeViewer />
+              </SandpackProvider>
+            </div>
           );
         },
         p: (props: any) => <p className="not-prose mb-2 leading-snug" {...props} />,

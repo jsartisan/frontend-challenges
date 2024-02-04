@@ -16,9 +16,9 @@ import { getAllTags, getQuestions, getQuizesByTag } from "@/db/question";
 /**
  * update the root readme
  *
- * @param quizes
+ * @param quizzes
  */
-async function updateIndexREADME(quizes: Question[]) {
+async function updateIndexREADME(quizzes: Question[]) {
   // update index README
   for (const locale of SUPPORTED_LOCALES) {
     const filepath = path.resolve(__dirname, "..", getFileNameByLocale("README", locale, "md"));
@@ -27,7 +27,7 @@ async function updateIndexREADME(quizes: Question[]) {
     let prev = "";
 
     // difficulty
-    const quizesByDifficulty = [...quizes].sort(
+    const quizesByDifficulty = [...quizzes].sort(
       (a, b) => DIFFICULTY_RANK.indexOf(a.difficulty) - DIFFICULTY_RANK.indexOf(b.difficulty),
     );
 
@@ -46,7 +46,7 @@ async function updateIndexREADME(quizes: Question[]) {
 
     // by tags
     challengesREADME += "<br><details><summary>By Tags</summary><br><table><tbody>";
-    const tags = getAllTags(quizes, locale);
+    const tags = getAllTags(quizzes, locale);
     for (const tag of tags) {
       challengesREADME += `<tr><td>${toBadge("", `#${tag}`, "999")}</td><td>`;
       getQuizesByTag(quizesByDifficulty, locale, tag).forEach((quiz) => {
@@ -86,38 +86,38 @@ async function updateIndexREADME(quizes: Question[]) {
 /**
  * update question readme
  *
- * @param quizes
+ * @param quizzes
  */
-async function updateQuestionsREADME(quizes: Question[]) {
+async function updateQuestionsREADME(quizzes: Question[]) {
   const questionsDir = path.join(ROOT_PATH, "questions");
 
   // update each questions' readme
-  for (const quiz of quizes) {
+  for (const quiz of quizzes) {
     for (const locale of SUPPORTED_LOCALES) {
       await insertInfoReadme(
         path.join(questionsDir, quiz.path, getFileNameByLocale("README", locale, "md")),
         quiz,
         locale,
-        quizes,
+        quizzes,
       );
     }
   }
 }
 
 export async function updateREADMEs(type?: "quiz" | "index") {
-  const quizes = await getQuestions();
+  const quizzes = await getQuestions();
 
-  quizes.sort((a, b) => a.no - b.no);
+  quizzes.sort((a, b) => a.no - b.no);
 
   if (type === "quiz") {
-    return await updateQuestionsREADME(quizes);
+    return await updateQuestionsREADME(quizzes);
   }
 
   if (type === "index") {
-    return await updateIndexREADME(quizes);
+    return await updateIndexREADME(quizzes);
   }
 
-  await Promise.all([updateIndexREADME(quizes), updateQuestionsREADME(quizes)]);
+  await Promise.all([updateIndexREADME(quizzes), updateQuestionsREADME(quizzes)]);
 }
 
 updateREADMEs(process.argv.slice(2)[0] as any);

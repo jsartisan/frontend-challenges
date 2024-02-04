@@ -22,9 +22,9 @@ export async function getQuestions(): Promise<Question[]> {
     cwd: QUESTION_ROOT,
   });
 
-  const quizes = await Promise.all(folders.map(async (path: string) => getQuestionByPath(path)));
+  const quizzes = await Promise.all(folders.map(async (path: string) => getQuestionByPath(path)));
 
-  return quizes;
+  return quizzes;
 }
 
 /**
@@ -53,6 +53,7 @@ export async function getQuestionByPath(dir: string): Promise<Question> {
     readme,
     templateFiles,
     answers,
+    type: "question",
   };
 }
 
@@ -72,15 +73,15 @@ export function getQuestionInfoByLocale(quiz: Question, locale: string = DEFAULT
 }
 
 /**
- * get quizes grouped by tag
+ * get quizzes grouped by tag
  *
- * @param quizes
+ * @param quizzes
  * @param locale
  * @param tag
  * @returns
  */
-export function getQuizesByTag(quizes: Question[], locale: string, tag: string) {
-  return quizes.filter((quiz) => {
+export function getQuizesByTag(quizzes: Question[], locale: string, tag: string) {
+  return quizzes.filter((quiz) => {
     const info = getQuestionInfoByLocale(quiz, locale);
 
     return !!info.tags?.includes(tag);
@@ -90,13 +91,13 @@ export function getQuizesByTag(quizes: Question[], locale: string, tag: string) 
 /**
  * get all tags from questions
  *
- * @param quizes
+ * @param quizzes
  * @param locale
  * @returns
  */
-export function getAllTags(quizes: Question[], locale: string) {
+export function getAllTags(quizzes: Question[], locale: string) {
   const set = new Set<string>();
-  for (const quiz of quizes) {
+  for (const quiz of quizzes) {
     const info = getQuestionInfoByLocale(quiz, locale);
     for (const tag of info?.tags || []) set.add(tag as string);
   }

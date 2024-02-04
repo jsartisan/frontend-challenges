@@ -20,7 +20,7 @@ export function CodeEditor(props: Props) {
   const { className, onChange, showTabs = true } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
-  const { setActiveFile, activeFile, files: sandpackFiles } = sandpack;
+  const { setActiveFile, activeFile, files } = sandpack;
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,10 +29,10 @@ export function CodeEditor(props: Props) {
   }, []);
 
   useEffect(() => {
-    if (sandpackFiles && onChange !== undefined) {
-      onChange(sandpackFiles);
+    if (files && onChange !== undefined) {
+      onChange(files);
     }
-  }, [sandpackFiles]);
+  }, [files]);
 
   return (
     <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
@@ -47,8 +47,8 @@ export function CodeEditor(props: Props) {
         >
           <TabsList className="flex items-center">
             <div className="flex flex-grow gap-2">
-              {Object.keys(sandpackFiles)
-                .filter((file) => !sandpackFiles[file].hidden)
+              {Object.keys(files)
+                .filter((file) => !files[file].hidden)
                 .map((file) => {
                   return (
                     <TabsTrigger key={file} value={file}>

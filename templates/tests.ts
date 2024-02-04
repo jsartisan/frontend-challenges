@@ -16,6 +16,7 @@ describe('add', () => {
       code: JSON.stringify({
         dependencies: {},
         main: "/index.js",
+        devDependencies: {},
       }),
     },
   },

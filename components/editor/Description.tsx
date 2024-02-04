@@ -1,24 +1,24 @@
-import { Question } from "@/types";
+import { Challenge } from "@/types";
 
 import { Badge, BadgeProps } from "../ui/badge";
 import { MDXComponent } from "../common/MDXComponent";
 
 type DescriptionProps = {
-  question: Question;
+  challenge: Challenge;
 };
 
 export default function Description(props: DescriptionProps) {
-  const { question } = props;
-  const { readme } = question;
+  const { challenge } = props;
+  const { readme } = challenge;
 
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold">
-        {question.no} - {question.info["en"]?.title}
+        {challenge.no} - {challenge.info["en"]?.title}
       </h1>
       <div className="flex gap-2">
-        <Badge variant={question.difficulty as BadgeProps["variant"]}>{question.difficulty}</Badge>
-        {question.info["en"]?.tags?.map((tag) => (
+        <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
+        {challenge.info["en"]?.tags?.map((tag) => (
           <Badge variant="secondary" key={tag}>
             {tag}
           </Badge>

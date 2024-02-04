@@ -33,6 +33,8 @@
     --color-bg-easy: var(--ramp-green-100);
     --color-bg-medium: var(--ramp-orange-100);
     --color-bg-hard: var(--ramp-red-100);
+    --color-bg-question: var(--ramp-purple-100);
+    --color-bg-quiz: var(--ramp-orange-100);
 
     --color-fg: var(--ramp-grey-900);
     --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, white 20%);
@@ -46,6 +48,8 @@
     --color-fg-easy: var(--ramp-green-900);
     --color-fg-medium: var(--ramp-orange-900);
     --color-fg-hard: var(--ramp-red-900);
+    --color-fg-question: var(--ramp-purple-900);
+    --color-fg-quiz: var(--ramp-orange-900);
 
     --color-border: var(--ramp-grey-300);
     --color-border-hover: color-mix(in srgb, var(--color-border) 80%, black 20%);
@@ -62,21 +66,24 @@
     --color-bg-accent: var(--ramp-blue-500);
     --color-bg-neutral: color-mix(in srgb, var(--ramp-grey-100), 80% black);
     --color-bg-neutral-subtle: var(--ramp-grey-700);
+    --color-bg-easy: color-mix(in srgb, var(--ramp-green-100), 80% black);
+    --color-bg-medium: color-mix(in srgb, var(--ramp-orange-100), 80% black);
+    --color-bg-hard: color-mix(in srgb, var(--ramp-red-100), 80% black);
+    --color-bg-question: color-mix(in srgb, var(--ramp-purple-100), 80% black);
+    --color-bg-quiz: color-mix(in srgb, var(--ramp-orange-100), 80% black);
 
     --color-fg: var(--ramp-white-1000);
     --color-fg-onaccent: var(--ramp-white-1000);
     --color-fg-neutral: color-mix(in srgb, var(--ramp-grey-900), white 80%);
+    --color-fg-easy: color-mix(in srgb, var(--ramp-green-900), 50% white);
+    --color-fg-medium: color-mix(in srgb, var(--ramp-orange-900), 50% white);
+    --color-fg-hard: color-mix(in srgb, var(--ramp-red-900), 50% white);
+    --color-fg-question: color-mix(in srgb, var(--ramp-purple-900), 50% white);
+    --color-fg-quiz: color-mix(in srgb, var(--ramp-orange-900), 50% white);
 
     --color-border: color-mix(in srgb, var(--ramp-grey-600), 60% transparent);
 
     --sp-colors-surface1: var(--color-bg) !important;
-
-    --color-bg-easy: color-mix(in srgb, var(--ramp-green-100), 80% black);
-    --color-fg-easy: color-mix(in srgb, var(--ramp-green-900), 50% white);
-    --color-bg-medium: color-mix(in srgb, var(--ramp-orange-100), 80% black);
-    --color-fg-medium: color-mix(in srgb, var(--ramp-orange-900), 50% white);
-    --color-bg-hard: color-mix(in srgb, var(--ramp-red-100), 80% black);
-    --color-fg-hard: color-mix(in srgb, var(--ramp-red-900), 50% white);
   }
 }
 

@@ -2,7 +2,7 @@ import { SandpackState } from "@codesandbox/sandpack-react";
 
 import { TEMPLATES } from "@/templates";
 import { DEFAULT_LOCALE, DOMAIN, REPO } from "@/constants";
-import { Question, SupportedLocale, SupportedTemplates } from "@/types";
+import { Challenge, Question, SupportedLocale, SupportedTemplates } from "@/types";
 
 export const PLAYGROUND = `${DOMAIN}/play`;
 
@@ -60,12 +60,17 @@ export function getSolutionsURL(no: number) {
  * @returns
  */
 export const getShareAnswerURL = (props: {
-  question: Question;
+  challenge: Challenge;
   locale?: SupportedLocale;
   files?: SandpackState["files"];
   template?: SupportedTemplates;
 }) => {
-  const { question, files, template, locale = "en" } = props;
+  const { challenge, files, template, locale = "en" } = props;
+  const BASE_URL = `${REPO}/issues/new?labels=answer,${challenge.no}`;
+
+  if (challenge.type === "quiz") {
+    return `${BASE_URL}&title=${encodeURIComponent(`${challenge.no} - ${challenge.info[locale]?.title}`)}`;
+  }
 
   let readme = ``;
 
@@ -81,7 +86,7 @@ export const getShareAnswerURL = (props: {
           JSON.parse(
             {
               ...TEMPLATES[template].files,
-              ...question?.templateFiles[template],
+              ...challenge?.templateFiles[template],
             }[filename]?.code,
           ),
           null,
@@ -103,7 +108,7 @@ export const getShareAnswerURL = (props: {
         file.code !==
         {
           ...TEMPLATES[template].files,
-          ...question?.templateFiles[template],
+          ...challenge?.templateFiles[template],
         }[filename]?.code;
 
       if (isFileChanged) {
@@ -116,15 +121,13 @@ export const getShareAnswerURL = (props: {
     });
 
   if (locale && locale !== DEFAULT_LOCALE) {
-    return `${REPO}/issues/new?labels=answer,${question.no},${encodeURIComponent(
-      locale,
-    )},${template}&title=${encodeURIComponent(
-      `${question?.no} - ${question?.info.en?.title}`,
+    return `${BASE_URL},${encodeURIComponent(locale)},${template}&title=${encodeURIComponent(
+      `${challenge?.no} - ${challenge?.info.en?.title}`,
     )}&body=${encodeURIComponent(readme)}`;
   }
 
-  const URL = `${REPO}/issues/new?labels=answer,${question.no},${template}&title=${encodeURIComponent(
-    `${question?.no} - ${question?.info.en?.title}`,
+  const URL = `${BASE_URL},${template}&title=${encodeURIComponent(
+    `${challenge?.no} - ${challenge?.info.en?.title}`,
   )}&body=${encodeURIComponent(readme)}`;
 
   return URL;

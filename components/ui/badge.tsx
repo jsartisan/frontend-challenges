@@ -15,6 +15,8 @@ const badgeVariants = cva(
         easy: "border-transparent bg-[var(--color-bg-easy)] text-[var(--color-fg-easy)]",
         medium: "border-transparent bg-[var(--color-bg-medium)] text-[var(--color-fg-medium)]",
         hard: "border-transparent bg-[var(--color-bg-hard)] text-[var(--color-fg-hard)]",
+        question: "border-transparent bg-[var(--color-bg-question)] text-[var(--color-fg-question)]",
+        quiz: "border-transparent bg-[var(--color-bg-quiz)] text-[var(--color-fg-quiz)]",
       },
     },
     defaultVariants: {

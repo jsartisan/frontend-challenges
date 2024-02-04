@@ -5,6 +5,9 @@ import type { context, getOctokit } from "@actions/github";
 import { SUPPORTED_LOCALES, SUPPORTED_TEMPLATES } from "@/constants";
 
 export type Difficulty = "warm" | "easy" | "medium" | "hard" | "extreme" | "pending";
+export type Importance = "hight" | "medium" | "low";
+
+export type Challenge = Question | Quiz;
 
 export interface Question {
   no: number;
@@ -13,6 +16,7 @@ export interface Question {
   readme: Record<string, string>;
   templateFiles: Record<SupportedTemplates, Record<string, CodeFile>>;
   info: Record<string, DeepPartial<QuestionMetaInfo> | undefined>;
+  type: "question";
   answers?: {
     files?: Record<string, CodeFile>;
     title: string;
@@ -22,6 +26,24 @@ export interface Question {
     url: string;
     no: number;
     template: SupportedTemplates;
+  }[];
+}
+
+export interface Quiz {
+  no: number;
+  difficulty: Difficulty;
+  path: string;
+  readme: Record<string, string>;
+  type: "quiz";
+  info: Record<string, DeepPartial<Omit<QuestionMetaInfo, "template">> | undefined>;
+  answers: {
+    title: string;
+    author: string;
+    author_url: string;
+    author_avatar_url: string;
+    url: string;
+    no: number;
+    body: string;
   }[];
 }
 

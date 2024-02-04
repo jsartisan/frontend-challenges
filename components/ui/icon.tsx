@@ -40,7 +40,9 @@ export type IconProps = {
     | "external-link"
     | "javascript-color"
     | "github"
-    | "play";
+    | "play"
+    | "code"
+    | "file-text";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -48,8 +50,8 @@ const iconVariants = cva("", {
   variants: {
     size: {
       default: "h-6 w-6",
-      xs: "h-4 w-4",
-      sm: "h-5 w-5",
+      xs: "h-3 w-3",
+      sm: "h-4 w-4",
       lg: "h-11 w-11",
     },
   },
@@ -133,6 +135,12 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       break;
     case "github":
       icon = RadixIcon.GitHubLogoIcon;
+      break;
+    case "code":
+      icon = RadixIcon.CodeIcon;
+      break;
+    case "file-text":
+      icon = RadixIcon.FileTextIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

@@ -93,7 +93,7 @@ export default function Client(props: { question: Question }) {
                   })}
                 </ToggleGroup>
               )}
-              <ShareSolutionButton template={template} question={question} />
+              <ShareSolutionButton template={template} challenge={question} />
             </div>
           </div>
           <div className="min-h-0 w-full flex-grow">
@@ -105,10 +105,10 @@ export default function Client(props: { question: Question }) {
                     <TabsTrigger value="solutions">Submissions</TabsTrigger>
                   </TabsList>
                   <TabsContent value="description" className="overflow-y-auto">
-                    <Description question={question} />
+                    <Description challenge={question} />
                   </TabsContent>
                   <TabsContent value="solutions">
-                    <AnswerList question={question} />
+                    <AnswerList challenge={question} />
                   </TabsContent>
                 </Tabs>
               </Card>

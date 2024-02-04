@@ -7,20 +7,20 @@
 // });
 
 // export async function build(type?: "answers" | "redirects") {
-//   const quizes = await getQuestions();
+//   const quizzes = await getQuestions();
 
 //   // if build command is called with answers argument, then load answers
 //   if (type === "answers") {
-//     await loadAnswers(quizes);
+//     await loadAnswers(quizzes);
 
 //     return;
 //   }
 
-//   await setupRedirects(quizes);
+//   await setupRedirects(quizzes);
 // }
 
-// async function loadAnswers(quizes: Awaited<ReturnType<typeof loadQuizes>>) {
-//   for (const quiz of quizes) {
+// async function loadAnswers(quizzes: Awaited<ReturnType<typeof loadQuizes>>) {
+//   for (const quiz of quizzes) {
 //     const answersFolderPath = path.join(ROOT_PATH, "questions", quiz.path, "answers");
 
 //     const answers = await fetchAnswers(quiz.no);
@@ -73,9 +73,9 @@
 // /**
 //  * rewrite next.js config to add redirects for each quiz
 //  *
-//  * @param quizes
+//  * @param quizzes
 //  */
-// async function setupRedirects(quizes: Awaited<ReturnType<typeof loadQuizes>>) {
+// async function setupRedirects(quizzes: Awaited<ReturnType<typeof loadQuizes>>) {
 //   const redirects: any[] = [];
 
 //   // TODO: redirect homepage to github repo
@@ -83,7 +83,7 @@
 //     redirects.push([`/${locale}`, `${REPO}/blob/main/README.${locale}.md`, 302]);
 //   });
 
-//   for (const quiz of quizes) {
+//   for (const quiz of quizzes) {
 //     redirects.push({
 //       source: `/${quiz.no}/solutions`,
 //       destination: toSolutionsFull(quiz.no),

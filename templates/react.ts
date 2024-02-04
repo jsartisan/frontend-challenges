@@ -39,6 +39,7 @@ root.render(
 </html>`,
     },
     "/package.json": {
+      hidden: true,
       code: JSON.stringify({
         dependencies: {
           react: "^18.0.0",
@@ -46,6 +47,7 @@ root.render(
           "react-scripts": "^5.0.0",
         },
         main: "/index.jsx",
+        devDependencies: {},
       }),
     },
   },
