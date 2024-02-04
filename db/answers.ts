@@ -1,10 +1,14 @@
-import axios from "axios";
 import { unified } from "unified";
+import { Octokit } from "octokit";
 import remarkParse from "remark-parse";
 
 import { createFileMap } from "@/utils";
 import { SUPPORTED_TEMPLATES } from "@/constants";
 import { CodeFile, Question, SupportedTemplates } from "@/types";
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_PAT,
+});
 
 /**
  * get answers of question
@@ -19,9 +23,12 @@ export async function getAnswersOfQuestion(
 ) {
   const answers: Question["answers"] = [];
 
-  const { data } = await axios.get(
-    `https://api.github.com/repos/jsartisan/frontend-challenges/issues?labels=answer,${no}`,
-  );
+  const { data } = await octokit.request("GET /repos/{owner}/{repo}/issues", {
+    owner: "jsartisan",
+    repo: "frontend-challenges",
+    labels: `answer,${no}`,
+    state: "all",
+  });
 
   for (const datum of data) {
     if (datum.body) {
