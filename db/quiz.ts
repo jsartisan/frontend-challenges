@@ -46,5 +46,6 @@ export async function getQuizByPath(dir: string): Promise<Quiz> {
     info,
     readme,
     type: "quiz",
+    answers: [],
   };
 }
