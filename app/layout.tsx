@@ -8,6 +8,7 @@ import { TooltipProvider } from "@/components/ui";
 import { Header } from "@/components/layout/Header";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { LayoutProvider } from "@/providers/LayoutProvider";
+import { QueryClientProvider } from "@/providers/QueryClientProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,10 +28,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cn("bg-[var(--color-bg-secondary)] font-sans text-sm antialiased", fontSans.variable)}>
         <LayoutProvider>
           <TooltipProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-              <Header />
-              {children}
-            </ThemeProvider>
+            <QueryClientProvider>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                <Header />
+                {children}
+              </ThemeProvider>
+            </QueryClientProvider>
           </TooltipProvider>
         </LayoutProvider>
       </body>

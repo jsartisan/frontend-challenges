@@ -50,6 +50,8 @@
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@savvywombat/tailwindcss-grid-areas": "^3.1.0",
+    "@tanstack/react-query": "^5.18.1",
+    "@tanstack/react-query-devtools": "^5.18.1",
     "@type-challenges/octokit-create-pull-request": "^0.1.9",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",

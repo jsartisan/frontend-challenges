@@ -4,6 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { DEFAULT_LOCALE } from "@/constants";
 import { ChallengeList } from "@/components/challenges/ChallengeList";
 import { getChallenges } from "@/db/challenges";
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/queryClient";
 
 export default async function Page() {
   const challenges = await getChallenges();
@@ -15,8 +17,10 @@ export default async function Page() {
     return bDate.getTime() - aDate.getTime();
   });
 
+  const queryClient = getQueryClient();
+
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <main className="h-full grow px-4 pb-16 sm:px-6 md:order-1">
         <div className="mx-auto max-w-screen-xl">
           <Hero />
@@ -34,6 +38,6 @@ export default async function Page() {
       </main>
       <Community />
       <Footer />
-    </>
+    </HydrationBoundary>
   );
 }

@@ -1,14 +1,9 @@
 import { unified } from "unified";
-import { Octokit } from "octokit";
 import remarkParse from "remark-parse";
 
-import { createFileMap } from "@/utils";
+import { createFileMap } from "@/utils/templates";
 import { SUPPORTED_TEMPLATES } from "@/constants";
 import { CodeFile, Question, SupportedTemplates } from "@/types";
-
-const octokit = new Octokit({
-  auth: process.env.GITHUB_PAT,
-});
 
 /**
  * get answers of question
@@ -17,18 +12,8 @@ const octokit = new Octokit({
  * @param quiz
  * @returns
  */
-export async function getAnswersOfQuestion(
-  no: number,
-  templateFiles: Record<SupportedTemplates, Record<string, CodeFile>>,
-) {
+export function parseAnswersOfQuestion(data: any, templateFiles: Record<SupportedTemplates, Record<string, CodeFile>>) {
   const answers: Question["answers"] = [];
-
-  const { data } = await octokit.request("GET /repos/{owner}/{repo}/issues", {
-    owner: "jsartisan",
-    repo: "frontend-challenges",
-    labels: `answer,${no}`,
-    state: "all",
-  });
 
   for (const datum of data) {
     if (datum.body) {
@@ -51,11 +36,11 @@ export async function getAnswersOfQuestion(
             .find((label) => SUPPORTED_TEMPLATES.includes(label)) || "react",
       };
 
-      const parsedRemark = await unified().use(remarkParse).parse(datum.body);
+      const parsedRemark = unified().use(remarkParse).parse(datum.body);
 
       const files = {
         ...templateFiles[meta.template],
-        ...(await createFileMap(parsedRemark)),
+        ...createFileMap(parsedRemark),
       };
 
       answers.push({

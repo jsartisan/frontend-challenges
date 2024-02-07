@@ -39,7 +39,6 @@ export async function getQuestionByPath(dir: string): Promise<Question> {
   const info = await getLocaleVariations(path.join(QUESTION_ROOT, dir, "info.yml"), [parseMetaInfo]);
   const readme = await getLocaleVariations(path.join(QUESTION_ROOT, dir, "README.md"), [cleanUpReadme]);
   const templateFiles = await getCodeFilesByTemplate(path.join(QUESTION_ROOT, dir, "template.md"));
-  const answers = await getAnswersOfQuestion(no, templateFiles);
 
   for (const locale of Object.keys(readme)) {
     readme[locale] = (await bundleMarkdown(readme[locale])).code;
@@ -52,7 +51,6 @@ export async function getQuestionByPath(dir: string): Promise<Question> {
     info,
     readme,
     templateFiles,
-    answers,
     type: "question",
   };
 }

@@ -18,6 +18,8 @@ import { TEMPLATES } from "@/templates";
 import { Button } from "@/components/ui";
 import SandpackRoot from "../editor/SandpackRoot";
 import { CodeEditor } from "../editor/CodeEditor";
+import { useQuery } from "@tanstack/react-query";
+import { parseAnswersOfQuestion } from "@/db/answers";
 
 type QuestionListProps = {
   challenge: Challenge;
@@ -26,7 +28,24 @@ type QuestionListProps = {
 export function AnswerList(props: QuestionListProps) {
   const { challenge } = props;
 
-  if ((challenge.answers || []).length === 0) {
+  const { isPending, error, data } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: () =>
+      fetch(`https://api.github.com/repos/jsartisan/frontend-challenges/issues?labels=answer,${challenge.no}`).then(
+        (res) => {
+          const answers = res.json();
+          console.log(answers);
+
+          return answers;
+        },
+      ),
+  });
+
+  if (isPending) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
+  if ((data || []).length === 0) {
     return (
       <div className="flex h-full flex-col justify-center gap-2 text-center">
         <p className="text-3xl">📋</p>
@@ -36,7 +55,7 @@ export function AnswerList(props: QuestionListProps) {
     );
   }
 
-  return (challenge.answers || []).map((answer, index) => (
+  return (data || []).map((answer, index) => (
     <div className="flex items-center" key={index}>
       <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full">
         <img className="aspect-square h-full w-full" alt="Avatar" src={answer.author_avatar_url} />
