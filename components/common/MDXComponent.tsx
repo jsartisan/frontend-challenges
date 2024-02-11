@@ -47,7 +47,7 @@ function MDXComponent(props: any) {
         ul: (props: any) => <ul className="my-2" {...props} />,
         code: (props: any) => (
           <code
-            className="not-prose rounded-[var(--radius)] bg-[var(--color-bg-negative-subtle)] px-1 py-0.5 text-[var(--color-fg-negative)]"
+            className="not-prose rounded-[var(--radius)] bg-[var(--color-bg-neutral-subtle)] px-1 py-0.5 text-[var(--color-fg-neutral)]"
             {...props}
           />
         ),

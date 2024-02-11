@@ -79,7 +79,7 @@ export function AnswerList(props: QuestionListProps) {
                 </div>
               </SheetDescription>
             </SheetHeader>
-            <div className="grid h-[calc(100%-theme(spacing.20))] flex-grow grid-cols-1 grid-rows-2 gap-3">
+            <div className="h-[calc(100%-theme(spacing.20))] flex-grow">
               <MDXComponent code={answer.body} />
             </div>
           </SheetContent>
