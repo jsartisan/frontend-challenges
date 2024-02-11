@@ -6,6 +6,7 @@ import { QUIZ_ROOT } from "@/constants";
 import { cleanUpReadme, getLocaleVariations } from "@/utils";
 import { parseMetaInfo } from "@/utils/questions";
 import { bundleMarkdown } from "@/utils/markdown";
+import { getAnswersOfQuiz } from "./answers";
 
 /**
  * get all questions
@@ -34,6 +35,7 @@ export async function getQuizByPath(dir: string): Promise<Quiz> {
   const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
   const info = await getLocaleVariations(path.join(QUIZ_ROOT, dir, "info.yml"), [parseMetaInfo]);
   const readme = await getLocaleVariations(path.join(QUIZ_ROOT, dir, "README.md"), [cleanUpReadme]);
+  const answers = await getAnswersOfQuiz(no);
 
   for (const locale of Object.keys(readme)) {
     readme[locale] = (await bundleMarkdown(readme[locale])).code;
@@ -46,6 +48,6 @@ export async function getQuizByPath(dir: string): Promise<Quiz> {
     info,
     readme,
     type: "quiz",
-    answers: [],
+    answers,
   };
 }
