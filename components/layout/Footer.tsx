@@ -14,7 +14,7 @@ export default function Footer() {
         <Link className="" href="/play">
           Playground
         </Link>
-        <Link className="" href="/submit">
+        <Link className="" href="/submit/question">
           Submit
         </Link>
         <Link className="" href="/blog">

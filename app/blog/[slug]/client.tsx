@@ -3,6 +3,7 @@
 import * as React from "react";
 import { MDXComponent } from "@/components/common/MDXComponent";
 import Footer from "@/components/layout/Footer";
+import { Card } from "@/components/ui";
 
 export default function Client(props: any) {
   const { blog } = props;
@@ -16,9 +17,11 @@ export default function Client(props: any) {
           <h1 className="text-3xl font-bold">{rest.title}</h1>
           <p>{rest.published_at}</p>
         </div>
-        <div className="prose my-6 dark:prose-invert">
-          <MDXComponent code={code} />
-        </div>
+        <Card className="max-w-screen-lg p-4">
+          <div className="prose dark:prose-invert">
+            <MDXComponent code={code} />
+          </div>
+        </Card>
       </main>
       <Footer />
     </>

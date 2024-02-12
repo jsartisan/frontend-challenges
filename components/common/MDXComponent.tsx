@@ -26,7 +26,8 @@ function MDXComponent(props: any) {
                 className="not-prose"
                 options={{
                   classes: {
-                    "sp-code-editor": "!border !border-[var(--color-border)] !rounded",
+                    "sp-code-editor": "!border !border-[var(--color-border)] !bg-[var(--color-bg-neutral)] !rounded",
+                    "sp-editor-viewer": "!bg-[var(--color-bg-neutral)] !rounded",
                   },
                 }}
                 theme={resolvedTheme === "dark" ? "dark" : "light"}

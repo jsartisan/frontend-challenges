@@ -72,20 +72,15 @@ const action: Action = async (github, context, core) => {
     core.info("-----Playload-----");
     core.info(JSON.stringify(context.payload, null, 2));
 
-    // invalid issue
-    if (!question || !template || !templateFiles || !info) {
-      const culprit = !question ? "question" : "info";
-      const valueOfCulprit = !question ? question : info;
+    // check if if there is something missing in the issue
+    if (!question || !info) {
+      let culprit = !question ? "question" : "info";
+      let valueOfCulprit = !question ? question : info;
 
-      core.info("-----Invalid Issue-----");
-      core.info(JSON.stringify({ culprit, valueOfCulprit }));
-      await updateComment(github, context, Messages[locale].issue_invalid_reply);
-      return;
-    }
-
-    if (type === "question" || !template || !templateFiles || !info) {
-      const culprit = !template ? "template" : "templateFiles";
-      const valueOfCulprit = !!template ? template : templateFiles;
+      if (type === "question" || !template || !templateFiles) {
+        culprit = !template ? "template" : !templateFiles ? "templateFiles" : culprit;
+        valueOfCulprit = !!template ? template : !templateFiles ? templateFiles : valueOfCulprit;
+      }
 
       core.info("-----Invalid Issue-----");
       core.info(JSON.stringify({ culprit, valueOfCulprit }));
@@ -110,21 +105,24 @@ const action: Action = async (github, context, core) => {
     core.info(`user: ${JSON.stringify(user)}`);
     core.info(`info: ${JSON.stringify(info)}`);
 
-    const quiz: Question = {
+    const quiz = {
       no,
-      type: "question",
+      type,
       difficulty: info.difficulty,
       path: "",
       info: {
         [locale]: info,
       },
-      templateFiles: {
-        [template]: templateFiles,
-      } as Question["templateFiles"],
       readme: {
         [locale]: question,
       },
     };
+
+    if (type === "question") {
+      quiz["templateFiles"] = {
+        [template]: templateFiles,
+      } as Question["templateFiles"];
+    }
 
     core.info("-----Parsed-----");
     core.info(JSON.stringify(quiz, null, 2));
@@ -143,8 +141,11 @@ const action: Action = async (github, context, core) => {
     const files: Record<string, string> = {
       [resolveFilePath(dir, "info", "yml", locale)]: `${YAML.dump(info)}\n`,
       [resolveFilePath(dir, "README", "md", locale)]: `${question}\n`,
-      [resolveFilePath(dir, `template.${template}`, "md", "en")]: `${getTemplateFileConent(templateFiles)}\n`,
     };
+
+    if (type === "question" && templateFiles) {
+      files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileConent(templateFiles)}\n`;
+    }
 
     await PushCommit(github as any, {
       owner: context.repo.owner,

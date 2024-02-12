@@ -42,7 +42,8 @@ export type IconProps = {
     | "github"
     | "play"
     | "code"
-    | "file-text";
+    | "file-text"
+    | "caret-down";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -141,6 +142,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       break;
     case "file-text":
       icon = RadixIcon.FileTextIcon;
+      break;
+    case "caret-down":
+      icon = RadixIcon.CaretDownIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

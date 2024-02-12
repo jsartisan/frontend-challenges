@@ -11,16 +11,13 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { Separator } from "../ui/separator";
 import { Icon } from "../ui/icon";
-import { IconButton } from "../ui";
+import { Badge, IconButton } from "../ui";
 import { Logo } from "../common/Logo";
+import { useRouter } from "next/navigation";
 
-type HeaderProps = {
-  include?: ("layout-changer" | "share-solution")[];
-};
-
-export function Header(props: HeaderProps) {
-  const { include = [] } = props;
+export function Header() {
   const { setTheme } = useTheme();
+  const router = useRouter();
 
   return (
     <div className="sticky top-0 z-30 w-full border-b border-[var(--color-border)] bg-[var(--color-bg)] bg-opacity-5 backdrop-blur-md transition-[background-color]">
@@ -29,12 +26,41 @@ export function Header(props: HeaderProps) {
           <div className="flex items-center justify-start">
             <Logo />
           </div>
-          <div className="ml-auto flex items-center gap-2">
-            {include.includes("share-solution") && (
-              <>
-                <Separator orientation="vertical" className="mx-2" />
-              </>
-            )}
+          <div className="ml-auto flex h-full items-center gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <IconButton variant="tertiary" className="gap-2">
+                  <Icon name="plus" />
+                </IconButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => router.push("/submit/question")}>
+                  <div className="flex gap-2">
+                    <Badge variant="quiz">
+                      <Icon name="code" size="sm" />
+                    </Badge>
+                    <div className="flex flex-col gap-1">
+                      <div>Question</div>
+                      <p className="text-xs text-[var(--color-fg-neutral-subtle)]">
+                        Challenges that tests codig skills
+                      </p>
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push("/submit/quiz")}>
+                  <div className="flex gap-2">
+                    <Badge variant="question">
+                      <Icon name="file-text" size="sm" />
+                    </Badge>
+                    <div className="flex flex-col gap-1">
+                      <div>Quiz</div>
+                      <p className="text-xs text-[var(--color-fg-neutral-subtle)]">Challenges that tests concepts</p>
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Separator orientation="vertical" className="mx-2" />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <IconButton variant="tertiary">
