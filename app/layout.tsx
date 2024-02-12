@@ -17,7 +17,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Frontend Challenges",
   description:
-    "FrontendEasy is a collection of frontend interview questions and answers. It is designed to help you prepare for frontend interviews. It's free and open source.",
+    "Frontend Challenges is a collection of frontend interview questions and answers. It is designed to help you prepare for frontend interviews. It's free and open source.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

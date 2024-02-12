@@ -24,7 +24,7 @@ export default function Footer() {
           Contribute
         </a>
       </p>
-      <p className="text-gray-400">&copy; 2023 FrontendEasy. All rights reserved </p>
+      <p className="text-gray-400">&copy; 2024 FrontendChallenges. All rights reserved </p>
     </div>
   );
 }
