@@ -1,24 +1,15 @@
 "use client";
 
 import * as z from "zod";
-import { Difficulty } from "@/types";
 import { useForm } from "react-hook-form";
-import { DIFFICULTY_RANK } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui";
+import { getSubmitChallengeURL } from "@/utils/questions";
 
 import { Description } from "../question/Description";
 import { Step1Fields } from "../question/Step1Fields";
 import { Step1Header } from "./Step1Header";
-
-const formSchema = z.object({
-  title: z.string().min(2).max(50),
-  readme: z.string(),
-  tags: z.string(),
-  difficulty: z.enum(DIFFICULTY_RANK as [Difficulty]),
-});
-
-export type FormValues = z.infer<typeof formSchema>;
+import { formSchema } from "../question/client";
 
 const DEFAULT_README = `Describe the question here. Markdown is supported.
 
@@ -37,11 +28,13 @@ export default function Client() {
       tags: "css, html, javascript",
       readme: DEFAULT_README,
       difficulty: "easy",
+      type: "quiz",
     },
   });
 
-  function onSubmit() {
-    // window.open(getSubmitChallengeURL(values), "_blank")?.focus();
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log({ values });
+    window.open(getSubmitChallengeURL(values), "_blank")?.focus();
   }
 
   form.watch(["title", "readme", "difficulty"]);

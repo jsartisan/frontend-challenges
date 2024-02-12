@@ -1,10 +1,8 @@
 import YAML from "js-yaml";
-import { SandpackState } from "@codesandbox/sandpack-react";
 
 import { REPO } from "@/constants";
-import { TEMPLATES } from "@/templates";
-import { FormValues } from "@/app/submit/client";
-import { QuestionMetaInfo, SupportedTemplates } from "@/types";
+import { FormValues } from "@/app/submit/question/client";
+import { QuestionMetaInfo } from "@/types";
 
 /**
  * parses meta info from the yaml file
@@ -35,15 +33,19 @@ export function parseMetaInfo(s: string): Partial<QuestionMetaInfo> | undefined 
 
 export const getSubmitChallengeURL = (values: FormValues) => {
   let body = ``;
-  const { files, template, difficulty, tags, readme: readme, title } = values;
+  const { files, template, difficulty, tags, type, readme: readme, title } = values;
 
   body += `## Info\n\n`;
 
   body += `\`\`\`yaml
 difficulty: ${difficulty}
-title: ${title}
-template: ${template}
-tags: ${tags}
+title: ${title}`;
+
+  if (type === "question") {
+    body += `template: ${template}\n`;
+  }
+
+  body += `tags: ${tags}
 \`\`\`\n\n`;
 
   body += `<!--question-start-->\n\n`;
@@ -54,7 +56,7 @@ tags: ${tags}
 
   body += `\n\n<!--question-end-->\n\n`;
 
-  if (files && Object.keys(files).length > 0) {
+  if (type === "question" && files && Object.keys(files).length > 0) {
     body += `<!--template-start-->\n\n`;
 
     body += `## Template\n\n`;
@@ -71,7 +73,7 @@ tags: ${tags}
 
     body += `\n\n<!--template-end-->\n\n`;
   }
-  const URL = `${REPO}/issues/new?labels=new-challenge,${template}&title=${encodeURIComponent(
+  const URL = `${REPO}/issues/new?labels=new-challenge,${type},${template}&title=${encodeURIComponent(
     `${title}`,
   )}&body=${encodeURIComponent(body)}`;
 

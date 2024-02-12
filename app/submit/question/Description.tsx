@@ -1,11 +1,16 @@
 import { Badge, BadgeProps, Card } from "@/components/ui";
 
+import React from "react";
+import { components } from "../../../components/mdx";
+import Markdown from "react-markdown";
+
 type DescriptionProps = {
   form: any;
 };
 
 function Description(props: DescriptionProps) {
   const { form } = props;
+
   return (
     <Card className="p-3">
       <div className="flex flex-col gap-2">
@@ -13,9 +18,9 @@ function Description(props: DescriptionProps) {
         <div className="flex gap-2">
           <Badge variant={form.getValues("difficulty") as BadgeProps["variant"]}>{form.getValues("difficulty")}</Badge>
         </div>
-        {/* <Markdown components={components} rehypePlugins={[rehypeHighlight]} className="pt-2">
+        <Markdown components={components} className="pt-2">
           {form.getValues("readme")}
-        </Markdown> */}
+        </Markdown>
       </div>
     </Card>
   );

@@ -17,12 +17,13 @@ import { Step2Fields } from "./Step2Fields";
 import { Step1Header } from "./Step1Header";
 import { Step2Header } from "./Step2Header";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   title: z.string().min(2).max(50),
-  template: z.string(),
+  template: z.string().optional(),
   readme: z.string(),
   tags: z.string(),
-  files: z.any(),
+  files: z.any().optional(),
+  type: z.enum(["question", "quiz"]),
   difficulty: z.enum(DIFFICULTY_RANK as [Difficulty]),
 });
 
@@ -48,6 +49,7 @@ export default function Client() {
       tags: "css, html, javascript",
       readme: DEFAULT_README,
       difficulty: "easy",
+      type: "question",
       files: TEMPLATES["vanilla"].files,
     },
   });

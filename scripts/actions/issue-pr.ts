@@ -77,7 +77,7 @@ const action: Action = async (github, context, core) => {
       let culprit = !question ? "question" : "info";
       let valueOfCulprit = !question ? question : info;
 
-      if (type === "question" || !template || !templateFiles) {
+      if (type === "question" && (!template || !templateFiles)) {
         culprit = !template ? "template" : !templateFiles ? "templateFiles" : culprit;
         valueOfCulprit = !!template ? template : !templateFiles ? templateFiles : valueOfCulprit;
       }
