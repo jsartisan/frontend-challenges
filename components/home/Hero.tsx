@@ -19,7 +19,7 @@ export function Hero() {
       </a>
       <div className="text-3xl font-bold sm:text-5xl">Level up your frontend</div>
       <div className="w-3/4 leading-relaxed text-gray-500">
-        FrontendEasy is a collection of frontend interview questions and answers. It is designed to help you prepare for
+        FrontendChallenges is a collection of frontend interview questions and answers. It is designed to help you prepare for
         frontend interviews. It&apos;s free and open source.
       </div>
       <div className="mt-2 flex gap-3">
