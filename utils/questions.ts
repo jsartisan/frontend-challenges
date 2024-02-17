@@ -48,18 +48,17 @@ title: ${title}\n`;
   body += `tags: ${tags}
 \`\`\`\n\n`;
 
-  body += `<!--question-start-->\n\n`;
-
   body += `## Question\n\n`;
+  body += `<!--question-start-->\n\n`;
 
   body += readme;
 
   body += `\n\n<!--question-end-->\n\n`;
 
   if (type === "question" && files && Object.keys(files).length > 0) {
-    body += `<!--template-start-->\n\n`;
-
     body += `## Template\n\n`;
+
+    body += `<!--template-start-->\n\n`;
 
     Object.keys(files).map((filename) => {
       const file = files[filename];
@@ -75,9 +74,9 @@ title: ${title}\n`;
   }
 
   if (type === "quiz") {
-    body += `<!--solution-start-->\n\n`;
-
     body += `## Solution\n\n`;
+
+    body += `<!--solution-start-->\n\n`;
 
     body += answer;
 
