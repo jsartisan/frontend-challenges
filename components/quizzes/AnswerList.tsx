@@ -51,7 +51,7 @@ export function AnswerList(props: QuestionListProps) {
       <div className="ml-auto">
         <Sheet>
           <SheetTrigger>
-            <IconButton variant="secondary">
+            <IconButton variant="secondary" type="button">
               <Icon name="play" />
             </IconButton>
           </SheetTrigger>

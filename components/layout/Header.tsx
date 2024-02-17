@@ -27,14 +27,14 @@ export function Header() {
             <Logo />
           </div>
           <div className="ml-auto flex h-full items-center gap-2">
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <IconButton variant="tertiary" className="gap-2">
                   <Icon name="plus" />
                 </IconButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => router.push("/submit/question")}>
+                <DropdownMenuItem onSelect={() => router.push("/submit/question")}>
                   <div className="flex gap-2">
                     <Badge variant="quiz">
                       <Icon name="code" size="sm" />
@@ -47,7 +47,7 @@ export function Header() {
                     </div>
                   </div>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => router.push("/submit/quiz")}>
+                <DropdownMenuItem onSelect={() => router.push("/submit/quiz")}>
                   <div className="flex gap-2">
                     <Badge variant="question">
                       <Icon name="file-text" size="sm" />
@@ -61,7 +61,7 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
             <Separator orientation="vertical" className="mx-2" />
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <IconButton variant="tertiary">
                   <Icon name="sun" className="block dark:hidden" />

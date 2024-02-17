@@ -11,10 +11,15 @@ function Step1Header(props: Step1HeaderProps) {
   return (
     <div className="relative flex w-full items-end justify-between gap-3">
       <div className="flex flex-col gap-3">
-        <div className="gap-3i flex items-center gap-3">
-          <h1 className="text-2xl font-semibold">Submit Question</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-semibold">Submit {form.getValues().type === "quiz" ? "Quiz" : "Question"}</h1>
         </div>
-        <p>Enter the title, description, and tags for your question. You will be seeing a preview on your right.</p>
+        <p className="text-sm">
+          {form.getValues().type === "quiz" &&
+            "Enter the title, description, and tags for your quiz. You will be seeing a preview on your right."}
+          {form.getValues().type === "question" &&
+            "Enter the title, description, and tags for your question. You will be seeing a preview on your right."}
+        </p>
       </div>
       <div className="flex items-center gap-3">
         <Button
@@ -31,7 +36,6 @@ function Step1Header(props: Step1HeaderProps) {
         >
           Next Step
         </Button>
-        {form.getValues().type === "quiz" && <Button type="submit">Submit Challenge</Button>}
       </div>
     </div>
   );

@@ -36,9 +36,14 @@ export async function getQuizByPath(dir: string): Promise<Quiz> {
   const info = await getLocaleVariations(path.join(QUIZ_ROOT, dir, "info.yml"), [parseMetaInfo]);
   const readme = await getLocaleVariations(path.join(QUIZ_ROOT, dir, "README.md"), [cleanUpReadme]);
   const answers = await getAnswersOfQuiz(no);
+  const solution = await getLocaleVariations(path.join(QUIZ_ROOT, dir, "solution.md"), [cleanUpReadme]);
 
   for (const locale of Object.keys(readme)) {
     readme[locale] = (await bundleMarkdown(readme[locale])).code;
+  }
+
+  for (const locale of Object.keys(solution)) {
+    solution[locale] = (await bundleMarkdown(solution[locale])).code;
   }
 
   return {
@@ -49,5 +54,6 @@ export async function getQuizByPath(dir: string): Promise<Quiz> {
     readme,
     type: "quiz",
     answers,
+    solution,
   };
 }

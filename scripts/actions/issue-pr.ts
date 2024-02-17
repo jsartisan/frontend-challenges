@@ -60,6 +60,7 @@ const action: Action = async (github, context, core) => {
     const infoRaw = getCodeBlock(body, Messages[locale].info, "yaml");
     const templateFiles = await getTemplateFiles(body);
     const question = getCommentRange(body, "question");
+    const solution = getCommentRange(body, "solution");
 
     let info: any;
 
@@ -80,6 +81,11 @@ const action: Action = async (github, context, core) => {
       if (type === "question" && (!template || !templateFiles)) {
         culprit = !template ? "template" : !templateFiles ? "templateFiles" : culprit;
         valueOfCulprit = !!template ? template : !templateFiles ? templateFiles : valueOfCulprit;
+      }
+
+      if (type === "quiz" && !solution) {
+        culprit = !solution ? "solution" : culprit;
+        valueOfCulprit = !solution ? solution : valueOfCulprit;
       }
 
       core.info("-----Invalid Issue-----");
@@ -145,6 +151,10 @@ const action: Action = async (github, context, core) => {
 
     if (type === "question" && templateFiles) {
       files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileConent(templateFiles)}\n`;
+    }
+
+    if (type === "quiz" && solution) {
+      files[resolveFilePath(dir, "solution", "md", locale)] = `${solution}\n`;
     }
 
     await PushCommit(github as any, {

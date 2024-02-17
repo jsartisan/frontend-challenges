@@ -36,6 +36,7 @@ export interface Quiz {
   readme: Record<string, string>;
   type: "quiz";
   info: Record<string, DeepPartial<Omit<QuestionMetaInfo, "template">> | undefined>;
+  solution: Record<string, string>;
   answers: {
     title: string;
     author: string;

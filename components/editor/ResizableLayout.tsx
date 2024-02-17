@@ -7,6 +7,7 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 
 type ResizableLayoutProps = {
   children: React.ReactNode;
+  onLayoutChange?: (layout: string) => void;
 };
 
 export const ResizableLayout = (props: ResizableLayoutProps) => {

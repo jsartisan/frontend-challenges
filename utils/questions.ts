@@ -33,7 +33,7 @@ export function parseMetaInfo(s: string): Partial<QuestionMetaInfo> | undefined 
 
 export const getSubmitChallengeURL = (values: FormValues) => {
   let body = ``;
-  const { files, template, difficulty, tags, type, readme: readme, title } = values;
+  const { files, template, difficulty, tags, type, readme: readme, title, answer } = values;
 
   body += `## Info\n\n`;
 
@@ -73,6 +73,17 @@ title: ${title}\n`;
 
     body += `\n\n<!--template-end-->\n\n`;
   }
+
+  if (type === "quiz") {
+    body += `<!--solution-start-->\n\n`;
+
+    body += `## Solution\n\n`;
+
+    body += answer;
+
+    body += `\n\n<!--solution-end-->\n\n`;
+  }
+
   const URL = `${REPO}/issues/new?labels=new-challenge,${type},${template}&title=${encodeURIComponent(
     `${title}`,
   )}&body=${encodeURIComponent(body)}`;

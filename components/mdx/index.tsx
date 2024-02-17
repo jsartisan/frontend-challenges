@@ -24,7 +24,7 @@ export const components = {
           template="vanilla"
           files={{
             [filename]: {
-              code: code.trim(),
+              code: code ? code.trim() : "",
               active: true,
             },
           }}

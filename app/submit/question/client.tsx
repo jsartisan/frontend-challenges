@@ -24,6 +24,7 @@ export const formSchema = z.object({
   tags: z.string(),
   files: z.any().optional(),
   type: z.enum(["question", "quiz"]),
+  answer: z.string().optional(),
   difficulty: z.enum(DIFFICULTY_RANK as [Difficulty]),
 });
 
@@ -37,6 +38,10 @@ You can use code blocks as well:
 console.log("Hello World!");
 \`\`\`
 `;
+
+function onSubmit(values: z.infer<typeof formSchema>) {
+  window.open(getSubmitChallengeURL(values), "_blank")?.focus();
+}
 
 export default function Client() {
   const [tab, setActiveTab] = useQueryState("tab");
@@ -53,10 +58,6 @@ export default function Client() {
       files: TEMPLATES["vanilla"].files,
     },
   });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    window.open(getSubmitChallengeURL(values), "_blank")?.focus();
-  }
 
   form.watch(["template", "title", "readme", "difficulty"]);
 
