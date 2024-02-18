@@ -78,7 +78,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
 
   return (
     <>
-      <ResizablePanelGroup direction="horizontal" className="!hidden gap-1 sm:!flex">
+      <ResizablePanelGroup direction="horizontal" className="gap-1">
         {renderChildren()}
       </ResizablePanelGroup>
     </>

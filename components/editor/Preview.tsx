@@ -6,6 +6,7 @@ import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
 import { SupportedTemplates } from "@/types";
 import { TEMPLATES } from "@/templates";
+import { memo } from "react";
 
 type PreviewProps = {
   className?: string;
@@ -13,7 +14,7 @@ type PreviewProps = {
   template: SupportedTemplates;
 };
 
-export default function Preview(props: PreviewProps) {
+function Preview(props: PreviewProps) {
   const { className, template = "vanilla" } = props;
   const [loading, setLoading] = useState(true);
   const { sandpack } = useSandpack();
@@ -56,3 +57,7 @@ export default function Preview(props: PreviewProps) {
     </Card>
   );
 }
+
+const MemoizedPreview = memo(Preview);
+
+export default MemoizedPreview;

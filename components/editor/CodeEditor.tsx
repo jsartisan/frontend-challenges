@@ -2,6 +2,7 @@
 
 import { SandpackCodeEditor, SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 import { Card } from "../ui/card";
+import { memo } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CodeFile, Question } from "@/types";
 import { cn } from "@/utils/helpers";
@@ -74,3 +75,7 @@ export function CodeEditor(props: Props) {
     </Card>
   );
 }
+
+const MemoizedCodeEditor = memo(CodeEditor);
+
+export default MemoizedCodeEditor;

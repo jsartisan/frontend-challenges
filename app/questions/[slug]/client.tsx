@@ -14,7 +14,7 @@ import {
   IconProps,
   ToggleGroupItem,
 } from "@/components/ui";
-import { CodeEditor } from "@/components/editor/CodeEditor";
+import CodeEditor from "@/components/editor/CodeEditor";
 import SandpackRoot from "@/components/editor/SandpackRoot";
 import Preview from "@/components/editor/Preview";
 import Description from "@/components/editor/Description";
