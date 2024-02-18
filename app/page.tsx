@@ -28,9 +28,7 @@ export default async function Page() {
               <h3 className="text-xl font-bold">Recently Added</h3>
               <p className="text-fg-subtle">The newest challenges added by the community</p>
             </div>
-            <div className="max-w-screen-lg">
-              <ChallengeList showTypeIcon challenges={sortedChallenges} />
-            </div>
+            <ChallengeList showTypeIcon challenges={sortedChallenges} />
           </div>
         </div>
       </main>

@@ -11,27 +11,25 @@ export const components = {
     const filename = meta?.split(" ")[0];
 
     return (
-      <div className="max-w-[80ch]">
-        <SandpackProvider
-          className="not-prose"
-          options={{
-            classes: {
-              "sp-code-editor": "!border !border-[var(--color-border)] !bg-[var(--color-bg-neutral)] !rounded",
-              "sp-editor-viewer": "!bg-[var(--color-bg-neutral)] !rounded",
-            },
-          }}
-          theme={resolvedTheme === "dark" ? "dark" : "light"}
-          template="vanilla"
-          files={{
-            [filename]: {
-              code: code ? code.trim() : "",
-              active: true,
-            },
-          }}
-        >
-          <SandpackCodeViewer />
-        </SandpackProvider>
-      </div>
+      <SandpackProvider
+        className="not-prose"
+        options={{
+          classes: {
+            "sp-code-editor": "!border !border-[var(--color-border)] !bg-[var(--color-bg-neutral)] !rounded",
+            "sp-editor-viewer": "!bg-[var(--color-bg-neutral)] !rounded",
+          },
+        }}
+        theme={resolvedTheme === "dark" ? "dark" : "light"}
+        template="vanilla"
+        files={{
+          [filename]: {
+            code: code ? code.trim() : "",
+            active: true,
+          },
+        }}
+      >
+        <SandpackCodeViewer />
+      </SandpackProvider>
     );
   },
   h2: (props: any) => <h2 className="not-prose mb-3 mt-8 text-2xl font-bold" {...props} />,

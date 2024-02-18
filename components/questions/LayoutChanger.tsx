@@ -15,7 +15,7 @@ export const LayoutChanger = (props: LayoutChangerProps) => {
   const { layout, setLayout } = useLayout();
 
   return (
-    <div className={cn("flex items-center justify-center", className)}>
+    <div className={cn("hidden items-center justify-center sm:flex", className)}>
       <ToggleGroup variant="outline" size="icon" type="single" value={layout} onValueChange={setLayout}>
         <ToggleGroupItem value="layout-1">
           <Icon name="layout-1" />

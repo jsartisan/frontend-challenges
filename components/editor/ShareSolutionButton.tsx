@@ -28,7 +28,7 @@ function ShareSolutionButton(props: ShareSolutionProps) {
   };
 
   return (
-    <Button variant="secondary" onClick={onClick}>
+    <Button variant="secondary" onClick={onClick} className="hidden sm:flex">
       Share Solution
     </Button>
   );

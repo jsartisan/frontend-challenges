@@ -7,7 +7,7 @@ function QuestionListItem(props: { question: Question; showTypeIcon?: boolean })
   const { question, showTypeIcon } = props;
 
   return (
-    <Card key={question.no} className="flex items-center space-x-6 px-4 py-4 md:px-6" role="listitem">
+    <Card key={question.no} className="flex px-4 py-4 md:px-6" role="listitem">
       <div className="flex grow flex-col gap-2">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
@@ -29,7 +29,7 @@ function QuestionListItem(props: { question: Question; showTypeIcon?: boolean })
           <div className="flex items-center gap-2">
             <Badge variant={question.difficulty as BadgeProps["variant"]}>{question.difficulty}</Badge>
             {question.info.en?.tags?.map((tag, index) => (
-              <Badge key={index} variant="secondary">
+              <Badge key={index} variant="secondary" className="w-max">
                 {tag}
               </Badge>
             ))}
@@ -37,7 +37,7 @@ function QuestionListItem(props: { question: Question; showTypeIcon?: boolean })
         </div>
         {/* <p className="text-sm text-[var(--color-fg-neutral-subtle)]">{question.info.en?.excerpt}</p> */}
       </div>
-      <div>
+      <div className="hidden items-center sm:flex">
         <div className="flex items-center gap-1">
           {Object.keys(question.templateFiles).map((framework) => {
             return (
