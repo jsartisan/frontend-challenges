@@ -9,9 +9,10 @@ import {
   toDifficultyPlainText,
   toDifficultyBadgeInverted,
 } from "@/utils";
-import { Question } from "@/types";
+import { Challenge, Question } from "@/types";
 import { DIFFICULTY_RANK, ROOT_PATH, SUPPORTED_LOCALES } from "@/constants";
-import { getAllTags, getQuestions, getQuizesByTag } from "@/db/question";
+import { getAllTags, getQuizesByTag } from "@/db/question";
+import { getChallenges } from "@/db/challenges";
 
 /**
  * update the root readme
@@ -88,14 +89,19 @@ async function updateIndexREADME(quizzes: Question[]) {
  *
  * @param quizzes
  */
-async function updateQuestionsREADME(quizzes: Question[]) {
+async function updateQuestionsREADME(quizzes: Challenge[]) {
   const questionsDir = path.join(ROOT_PATH, "questions");
+  const quizzesDir = path.join(ROOT_PATH, "quizzes");
 
   // update each questions' readme
   for (const quiz of quizzes) {
     for (const locale of SUPPORTED_LOCALES) {
       await insertInfoReadme(
-        path.join(questionsDir, quiz.path, getFileNameByLocale("README", locale, "md")),
+        path.join(
+          quiz.type === "question" ? questionsDir : quizzesDir,
+          quiz.path,
+          getFileNameByLocale("README", locale, "md"),
+        ),
         quiz,
         locale,
         quizzes,
@@ -105,7 +111,7 @@ async function updateQuestionsREADME(quizzes: Question[]) {
 }
 
 export async function updateREADMEs(type?: "quiz" | "index") {
-  const quizzes = await getQuestions();
+  const quizzes = await getChallenges();
 
   quizzes.sort((a, b) => a.no - b.no);
 

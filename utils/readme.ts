@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import { escapeHtml } from "./helpers";
 import { getFileNameByLocale, translate } from "./locales";
 import { getQuestionInfoByLocale } from "@/db/question";
-import { Difficulty, Question, QuestionMetaInfo, SupportedLocale } from "@/types";
+import { Challenge, Difficulty, QuestionMetaInfo, SupportedLocale } from "@/types";
 import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
 import { toNearborREADME, getQuestionURL, getQuestionREADME, getShareAnswerURL, getSolutionsURL } from ".";
 
@@ -28,7 +28,12 @@ export function cleanUpReadme(text: string) {
  * @param quizzes
  * @returns
  */
-export async function insertInfoReadme(filepath: string, quiz: Question, locale: SupportedLocale, quizzes: Question[]) {
+export async function insertInfoReadme(
+  filepath: string,
+  quiz: Challenge,
+  locale: SupportedLocale,
+  quizzes: Challenge[],
+) {
   if (!fs.existsSync(filepath)) return;
   let text = await fs.readFile(filepath, "utf-8");
   /* eslint-disable prefer-template */
@@ -141,7 +146,7 @@ export function toDifficultyPlainText(difficulty: string, locale: SupportedLocal
   return `${translate(locale, `difficulty.${difficulty}`)} (${count.toString()})`;
 }
 
-export function quizToBadge(quiz: Question, locale: string, absolute = false, badge = true) {
+export function quizToBadge(quiz: Challenge, locale: string, absolute = false, badge = true) {
   const fn = badge ? toBadgeLink : toPlanTextLink;
   return fn(
     getQuestionREADME(quiz, locale, absolute),
@@ -151,7 +156,7 @@ export function quizToBadge(quiz: Question, locale: string, absolute = false, ba
   );
 }
 
-export function quizNoToBadges(ids: (string | number)[], quizzes: Question[], locale: string, absolute = false) {
+export function quizNoToBadges(ids: (string | number)[], quizzes: Challenge[], locale: string, absolute = false) {
   return ids
     .map((i) => quizzes.find((q) => q.no === Number(i)))
     .filter(Boolean)

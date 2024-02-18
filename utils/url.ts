@@ -2,7 +2,7 @@ import { SandpackState } from "@codesandbox/sandpack-react";
 
 import { TEMPLATES } from "@/templates";
 import { DEFAULT_LOCALE, DOMAIN, REPO } from "@/constants";
-import { Challenge, Question, SupportedLocale, SupportedTemplates } from "@/types";
+import { Challenge, SupportedLocale, SupportedTemplates } from "@/types";
 
 export const PLAYGROUND = `${DOMAIN}/play`;
 
@@ -17,14 +17,14 @@ export function getRepoREADMEUrl(locale?: string) {
  * @param absolute
  * @returns
  */
-export function getQuestionREADME(quiz: Question, locale?: string, absolute = false) {
+export function getQuestionREADME(quiz: Challenge, locale?: string, absolute = false) {
   const prefix = absolute ? `${REPO}/blob/main` : ".";
   return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale]
     ? `${prefix}/questions/${quiz.path}/README.${locale}.md`
     : `${prefix}/questions/${quiz.path}/README.md`;
 }
 
-export function toNearborREADME(quiz: Question, locale?: string) {
+export function toNearborREADME(quiz: Challenge, locale?: string) {
   return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale] ? `./README.${locale}.md` : "./README.md";
 }
 

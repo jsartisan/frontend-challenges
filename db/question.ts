@@ -3,7 +3,7 @@ import fg from "fast-glob";
 
 import { cleanUpReadme } from "@/utils";
 import { parseMetaInfo } from "@/utils/questions";
-import { Question, QuestionMetaInfo } from "@/types";
+import { Challenge, Question, QuestionMetaInfo } from "@/types";
 import { getLocaleVariations } from "@/utils/locales";
 import { DEFAULT_LOCALE, QUESTION_ROOT } from "@/constants";
 
@@ -57,7 +57,7 @@ export async function getQuestionByPath(dir: string): Promise<Question> {
   };
 }
 
-export function getQuestionInfoByLocale(quiz: Question, locale: string = DEFAULT_LOCALE) {
+export function getQuestionInfoByLocale(quiz: Challenge, locale: string = DEFAULT_LOCALE) {
   const info = Object.assign({}, quiz.info[DEFAULT_LOCALE], quiz.info[locale]);
   info.tags = quiz.info[locale]?.tags || quiz.info[DEFAULT_LOCALE]?.tags || [];
   info.related = quiz.info[locale]?.related || quiz.info[DEFAULT_LOCALE]?.related || [];
