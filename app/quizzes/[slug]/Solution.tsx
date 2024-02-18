@@ -15,7 +15,7 @@ function Solution(props: SolutionProps) {
     <Card className="h-full overflow-hidden p-4">
       {!showSolution && (
         <button
-          className="absolute inset-0 cursor-pointer bg-white/10 backdrop-blur-xl"
+          className="absolute inset-0 cursor-pointer bg-[var(--color-bg)]"
           onClick={() => {
             setShowSolution(true);
           }}
