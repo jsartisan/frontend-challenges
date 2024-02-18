@@ -9,7 +9,7 @@ import {
   toDifficultyPlainText,
   toDifficultyBadgeInverted,
 } from "@/utils";
-import { Challenge, Question } from "@/types";
+import { Challenge } from "@/types";
 import { DIFFICULTY_RANK, ROOT_PATH, SUPPORTED_LOCALES } from "@/constants";
 import { getAllTags, getQuizesByTag } from "@/db/question";
 import { getChallenges } from "@/db/challenges";
@@ -19,7 +19,7 @@ import { getChallenges } from "@/db/challenges";
  *
  * @param quizzes
  */
-async function updateIndexREADME(quizzes: Question[]) {
+async function updateIndexREADME(quizzes: Challenge[]) {
   // update index README
   for (const locale of SUPPORTED_LOCALES) {
     const filepath = path.resolve(__dirname, "..", getFileNameByLocale("README", locale, "md"));

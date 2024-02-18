@@ -80,7 +80,7 @@ export function getQuestionInfoByLocale(quiz: Challenge, locale: string = DEFAUL
  * @param tag
  * @returns
  */
-export function getQuizesByTag(quizzes: Question[], locale: string, tag: string) {
+export function getQuizesByTag(quizzes: Challenge[], locale: string, tag: string) {
   return quizzes.filter((quiz) => {
     const info = getQuestionInfoByLocale(quiz, locale);
 
@@ -95,7 +95,7 @@ export function getQuizesByTag(quizzes: Question[], locale: string, tag: string)
  * @param locale
  * @returns
  */
-export function getAllTags(quizzes: Question[], locale: string) {
+export function getAllTags(quizzes: Challenge[], locale: string) {
   const set = new Set<string>();
   for (const quiz of quizzes) {
     const info = getQuestionInfoByLocale(quiz, locale);
