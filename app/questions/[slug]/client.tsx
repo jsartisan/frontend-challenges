@@ -98,7 +98,7 @@ export default function Client(props: { question: Question }) {
           </div>
           <div className="min-h-0 w-full flex-grow">
             <ResizableLayout>
-              <Card className="h-full">
+              <Card className="h-full min-h-0">
                 <Tabs defaultValue="description" className="h-full">
                   <TabsList>
                     <TabsTrigger value="description">Description</TabsTrigger>
@@ -112,8 +112,8 @@ export default function Client(props: { question: Question }) {
                   </TabsContent>
                 </Tabs>
               </Card>
-              <CodeEditor question={question} />
-              <Preview template={template} />
+              <CodeEditor className="min-h-0" question={question} />
+              <Preview className="min-h-0" template={template} />
             </ResizableLayout>
           </div>
         </div>

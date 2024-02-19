@@ -1,12 +1,12 @@
 "use client";
 
-import { SandpackCodeEditor, SandpackState, useSandpack } from "@codesandbox/sandpack-react";
-import { Card } from "../ui/card";
 import { memo } from "react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CodeFile, Question } from "@/types";
+import { Card } from "../ui/card";
 import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
+import { CodeFile, Question } from "@/types";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SandpackCodeEditor, SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 
 type Props = {
   files?: Record<string, CodeFile>;
