@@ -105,6 +105,11 @@ const action: Action = async (github, context, core) => {
       if (user) info.author.name = user.name;
     }
 
+    // add type to the info
+    if (type === "quiz") {
+      info.type = "quiz";
+    }
+
     // add published_date to the info
     if (!info.published_date) info.published_date = new Date().toISOString().split("T")[0];
 
