@@ -19,7 +19,7 @@ export function Community() {
           </a>
           and is created by the community for the community.
         </p>
-        <div className="mb-1.5 flex flex-col justify-start gap-2 sm:mb-0 sm:flex-row sm:justify-center sm:gap-3">
+        <div className="mb-1.5 flex flex-col justify-start gap-3 sm:mb-0 sm:flex-row sm:justify-center">
           <Button asChild variant="secondary">
             <a href={REPO} target="_blank" rel="noreferrer">
               <GitHubLogoIcon />

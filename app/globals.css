@@ -43,6 +43,7 @@
     --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent) black 20%);
     --color-fg-neutral: var(--ramp-grey-900);
     --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), white 40%);
+    --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral), black 30%);
     --color-fg-on-assistive: var(--ramp-white-1000);
     --color-fg-negative: var(--ramp-red-500);
     --color-fg-easy: var(--ramp-green-900);

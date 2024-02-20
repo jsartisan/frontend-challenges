@@ -13,7 +13,7 @@ function QuestionListItem(props: { question: Question; showTypeIcon?: boolean })
           <div className="flex items-center space-x-2">
             <Link
               className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
-              href={`questions/${question.path}`}
+              href={`/challenges/${question.path}`}
             >
               {question.info.en?.title}
             </Link>

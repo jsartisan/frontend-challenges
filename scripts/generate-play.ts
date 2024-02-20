@@ -4,7 +4,7 @@ import c from "picocolors";
 import prompts from "prompts";
 import { fileURLToPath } from "node:url";
 import { ROOT_PATH, SUPPORTED_LOCALES } from "@/constants";
-import { getQuestions } from "@/db/question";
+import { getChallenges } from "@/db/challenge";
 import { copy, createDir, writeFile } from "@/utils";
 import { Question, SupportedTemplates } from "@/types";
 
@@ -40,7 +40,8 @@ async function generatePlayground() {
   copyViteSetup();
 
   // for each question, generate the folder and copy and override the files from questions template
-  const questions = await getQuestions();
+  const challenges = await getChallenges();
+  const questions = challenges.filter((challenge) => challenge?.info?.en?.type !== "quiz") as Question[];
 
   for (const question of questions) {
     for (const quizTemplate of Object.keys(question.templateFiles)) {

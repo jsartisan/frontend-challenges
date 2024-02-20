@@ -60,6 +60,7 @@ export interface QuestionMetaInfo {
   related?: string[];
   excerpt: string;
   published_date: string;
+  type: "question" | "quiz";
 }
 
 export type SupportedTemplates = (typeof SUPPORTED_TEMPLATES)[number];

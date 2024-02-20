@@ -141,11 +141,7 @@ const action: Action = async (github, context, core) => {
 
     const existing_pull = pulls.find((i) => i.user?.login === "github-actions[bot]" && i.title.startsWith(`#${no} `));
 
-    const dir = `${type === "question" ? "questions" : "quizzes"}/${getQuestionFullName(
-      no,
-      info.difficulty,
-      info.title,
-    )}`;
+    const dir = `challenges/${getQuestionFullName(no, info.difficulty, info.title)}`;
     const userEmail = `${user.id}+${user.login}@users.noreply.github.com`;
 
     const files: Record<string, string> = {

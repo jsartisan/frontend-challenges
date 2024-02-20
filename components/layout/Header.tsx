@@ -26,14 +26,14 @@ export function Header() {
           <div className="flex items-center justify-start">
             <Logo />
           </div>
-          <div className="ml-auto flex h-full items-center gap-2">
+          <div className="ms-auto flex h-full items-center gap-2">
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <IconButton variant="tertiary" className="gap-2">
                   <Icon name="plus" />
                 </IconButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent>
                 <DropdownMenuItem onSelect={() => router.push("/submit/question")}>
                   <div className="flex gap-2">
                     <Badge variant="quiz">
@@ -69,7 +69,7 @@ export function Header() {
                   <span className="sr-only">Toggle theme</span>
                 </IconButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent>
                 <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>

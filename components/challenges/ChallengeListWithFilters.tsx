@@ -1,14 +1,14 @@
 "use client";
 
-import { Quiz } from "@/types";
-import { QuizList } from "./QuizList";
+import { Challenge } from "@/types";
 import { Input } from "../ui/input";
 import { useReducer } from "react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
 import { DIFFICULTY_RANK } from "@/constants";
+import { ChallengeList } from "./ChallengeList";
 
-type QuizListWithFiltersProps = {
-  quizzes: Quiz[];
+type ChallengeListWithFiltersProps = {
+  challenges: Challenge[];
 };
 
 interface Action {
@@ -19,8 +19,8 @@ interface Action {
 
 interface State {
   search: string;
-  quizzes: Quiz[];
-  filtered: Quiz[];
+  challenges: Challenge[];
+  filtered: Challenge[];
 }
 
 const reducer = (state: State, action: Action) => {
@@ -29,20 +29,20 @@ const reducer = (state: State, action: Action) => {
       return {
         ...state,
         search: action.payload,
-        filtered: state.quizzes.filter((question) => {
+        filtered: state.challenges.filter((question) => {
           return question.info?.en?.title?.toLowerCase().includes(action.payload.toLowerCase());
         }),
       };
     case "filter-by-difficulty":
-      return { ...state, filtered: state.quizzes.filter((question) => question.difficulty === action.payload) };
+      return { ...state, filtered: state.challenges.filter((question) => question.difficulty === action.payload) };
     default:
       return state;
   }
 };
 
-export const QuizListWithFilters = (props: QuizListWithFiltersProps) => {
-  const { quizzes } = props;
-  const [state, dispatch] = useReducer(reducer, { search: "", quizzes: quizzes, filtered: quizzes });
+export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) => {
+  const { challenges } = props;
+  const [state, dispatch] = useReducer(reducer, { search: "", challenges: challenges, filtered: challenges });
 
   return (
     <div className="flex flex-col gap-3">
@@ -78,7 +78,7 @@ export const QuizListWithFilters = (props: QuizListWithFiltersProps) => {
           </Select>
         </div>
       </div>
-      <QuizList quizzes={state.filtered} />
+      <ChallengeList challenges={state.filtered} />
     </div>
   );
 };

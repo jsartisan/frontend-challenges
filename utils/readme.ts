@@ -2,7 +2,7 @@ import fs from "fs-extra";
 
 import { escapeHtml } from "./helpers";
 import { getFileNameByLocale, translate } from "./locales";
-import { getQuestionInfoByLocale } from "@/db/question";
+import { getChallengeInfoByLocale } from "@/db/challenge";
 import { Challenge, Difficulty, QuestionMetaInfo, SupportedLocale } from "@/types";
 import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
 import { toNearborREADME, getQuestionURL, getQuestionREADME, getShareAnswerURL, getSolutionsURL } from ".";
@@ -43,7 +43,7 @@ export async function insertInfoReadme(
   if (!text.match(/<!--info-footer-start-->[\s\S]*<!--info-footer-end-->/))
     text = `${text}\n\n<!--info-footer-start--><!--info-footer-end-->`;
 
-  const info = getQuestionInfoByLocale(quiz, locale);
+  const info = getChallengeInfoByLocale(quiz, locale);
 
   const availableLocales = SUPPORTED_LOCALES.filter((l) => l !== locale).filter((l) => !!quiz.readme[l]);
 

@@ -24,7 +24,7 @@ export function Hero() {
       </div>
       <div className="mt-2 flex gap-3">
         <Button asChild variant="primary">
-          <Link href="/questions">Get Started</Link>
+          <Link href="/challenges">Get Started</Link>
         </Button>
         <Button asChild variant="secondary" className="flex gap-2">
           <a href={REPO} target="_blank" rel="noreferrer">

@@ -3,7 +3,7 @@ import { Community } from "@/components/home/Community";
 import Footer from "@/components/layout/Footer";
 import { DEFAULT_LOCALE } from "@/constants";
 import { ChallengeList } from "@/components/challenges/ChallengeList";
-import { getChallenges } from "@/db/challenges";
+import { getChallenges } from "@/db/challenge";
 
 export default async function Page() {
   const challenges = await getChallenges();

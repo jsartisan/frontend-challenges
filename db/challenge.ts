@@ -3,11 +3,11 @@ import fg from "fast-glob";
 
 import { cleanUpReadme } from "@/utils";
 import { parseMetaInfo } from "@/utils/questions";
-import { Challenge, Question, QuestionMetaInfo } from "@/types";
+import { Challenge, QuestionMetaInfo } from "@/types";
 import { getLocaleVariations } from "@/utils/locales";
-import { DEFAULT_LOCALE, QUESTION_ROOT } from "@/constants";
+import { CHALLENGES_ROOT, DEFAULT_LOCALE } from "@/constants";
 
-import { getAnswersOfQuestion } from "./answers";
+import { getAnswersOfQuestion, getAnswersOfQuiz } from "./answers";
 import { getCodeFilesByTemplate } from "./template";
 import { bundleMarkdown } from "@/utils/markdown";
 
@@ -16,15 +16,15 @@ import { bundleMarkdown } from "@/utils/markdown";
  *
  * @returns
  */
-export async function getQuestions(): Promise<Question[]> {
+export async function getChallenges(): Promise<Challenge[]> {
   const folders = await fg("{0..9}*-*", {
     onlyDirectories: true,
-    cwd: QUESTION_ROOT,
+    cwd: CHALLENGES_ROOT,
   });
 
-  const quizzes = await Promise.all(folders.map(async (path: string) => getQuestionByPath(path)));
+  const challenges = await Promise.all(folders.map(async (path: string) => getChallengeByPath(path)));
 
-  return quizzes;
+  return challenges;
 }
 
 /**
@@ -33,12 +33,37 @@ export async function getQuestions(): Promise<Question[]> {
  * @param path
  * @returns
  */
-export async function getQuestionByPath(dir: string): Promise<Question> {
+export async function getChallengeByPath(dir: string): Promise<Challenge> {
   const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
   const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
-  const info = await getLocaleVariations(path.join(QUESTION_ROOT, dir, "info.yml"), [parseMetaInfo]);
-  const readme = await getLocaleVariations(path.join(QUESTION_ROOT, dir, "README.md"), [cleanUpReadme]);
-  const templateFiles = await getCodeFilesByTemplate(path.join(QUESTION_ROOT, dir, "template.md"));
+  const info = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "info.yml"), [parseMetaInfo]);
+  const readme = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), [cleanUpReadme]);
+
+  if (info?.en?.type === "quiz") {
+    const answers = await getAnswersOfQuiz(no);
+    const solution = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "solution.md"), [cleanUpReadme]);
+
+    for (const locale of Object.keys(readme)) {
+      readme[locale] = (await bundleMarkdown(readme[locale])).code;
+    }
+
+    for (const locale of Object.keys(solution)) {
+      solution[locale] = (await bundleMarkdown(solution[locale])).code;
+    }
+
+    return {
+      no,
+      difficulty,
+      path: dir,
+      info,
+      readme,
+      type: "quiz",
+      answers,
+      solution,
+    };
+  }
+
+  const templateFiles = await getCodeFilesByTemplate(path.join(CHALLENGES_ROOT, dir, "template.md"));
   const answers = await getAnswersOfQuestion(no, templateFiles);
 
   for (const locale of Object.keys(readme)) {
@@ -53,11 +78,11 @@ export async function getQuestionByPath(dir: string): Promise<Question> {
     readme,
     templateFiles,
     answers,
-    type: "question",
+    type: info?.en?.type || "question",
   };
 }
 
-export function getQuestionInfoByLocale(quiz: Challenge, locale: string = DEFAULT_LOCALE) {
+export function getChallengeInfoByLocale(quiz: Challenge, locale: string = DEFAULT_LOCALE) {
   const info = Object.assign({}, quiz.info[DEFAULT_LOCALE], quiz.info[locale]);
   info.tags = quiz.info[locale]?.tags || quiz.info[DEFAULT_LOCALE]?.tags || [];
   info.related = quiz.info[locale]?.related || quiz.info[DEFAULT_LOCALE]?.related || [];
@@ -82,7 +107,7 @@ export function getQuestionInfoByLocale(quiz: Challenge, locale: string = DEFAUL
  */
 export function getQuizesByTag(quizzes: Challenge[], locale: string, tag: string) {
   return quizzes.filter((quiz) => {
-    const info = getQuestionInfoByLocale(quiz, locale);
+    const info = getChallengeInfoByLocale(quiz, locale);
 
     return !!info.tags?.includes(tag);
   });
@@ -98,7 +123,7 @@ export function getQuizesByTag(quizzes: Challenge[], locale: string, tag: string
 export function getAllTags(quizzes: Challenge[], locale: string) {
   const set = new Set<string>();
   for (const quiz of quizzes) {
-    const info = getQuestionInfoByLocale(quiz, locale);
+    const info = getChallengeInfoByLocale(quiz, locale);
     for (const tag of info?.tags || []) set.add(tag as string);
   }
   return Array.from(set).sort();

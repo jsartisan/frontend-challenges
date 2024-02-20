@@ -1,9 +1,9 @@
 import Client from "./client";
 import type { Metadata } from "next";
-import { getQuizByPath, getQuizes } from "@/db/quiz";
+import { getChallengeByPath, getChallenges } from "@/db/challenge";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
-  const question = await getQuizByPath(props.params.slug);
+  const question = await getChallengeByPath(props.params.slug);
 
   return {
     title: question.info.en?.title,
@@ -11,7 +11,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const challenges = await getQuizes();
+  const challenges = await getChallenges();
 
   return challenges.map((challenge) => ({
     slug: challenge.path,
@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Page(props: any) {
-  const quiz = await getQuizByPath(props.params.slug);
+  const challenge = await getChallengeByPath(props.params.slug);
 
-  return <Client quiz={quiz} />;
+  return <Client challenge={challenge} />;
 }

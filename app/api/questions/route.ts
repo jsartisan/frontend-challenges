@@ -1,7 +1,7 @@
-import { getQuestions } from "@/db/question";
+import { getChallenges } from "@/db/challenge";
 
 export async function GET() {
-  const data = await getQuestions();
+  const data = await getChallenges();
 
   return Response.json({ data });
 }

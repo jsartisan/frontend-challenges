@@ -15,7 +15,7 @@ function Solution(props: SolutionProps) {
     <Card className="h-full overflow-hidden p-4">
       {!showSolution && (
         <button
-          className="absolute inset-0 cursor-pointer bg-[var(--color-bg)]"
+          className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-2 bg-[var(--color-bg)] hover:bg-[var(--color-bg-hover)]"
           onClick={() => {
             setShowSolution(true);
           }}
