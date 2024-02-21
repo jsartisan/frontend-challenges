@@ -5,10 +5,7 @@ export const classNames = (...args) => {
 ```
 
 ```js index.test.js
-// classNames.test.js
-
-// Import the classNames implementation
-const classNames = require('./');
+import { classNames } from './';
 
 describe('classNames utility function', () => {
   it('should concatenate strings and numbers', () => {
@@ -23,7 +20,7 @@ describe('classNames utility function', () => {
     const obj = new Map();
     obj.cool = '!';
 
-    expect(classNames({ class1: [], class2: true, class3: 3 }, obj)).toBe('class2 class3 cool');
+    expect(classNames({ class1: [], class2: true, class3: 3 }, obj)).toBe('class1 class2 class3 cool');
   });
 
   it('should flatten arrays and concatenate classNames', () => {
