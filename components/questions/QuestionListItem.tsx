@@ -44,7 +44,7 @@ function QuestionListItem(props: { question: Question; showTypeIcon?: boolean })
               <Tooltip key={framework}>
                 <TooltipTrigger>
                   <IconButton size="lg" key={framework} asChild variant="tertiary">
-                    <Link href={`questions/${question.path}?template=${framework}`}>
+                    <Link href={`challenges/${question.path}?template=${framework}`}>
                       <Icon name={`${framework}-color` as IconProps["name"]} />
                     </Link>
                   </IconButton>

@@ -90,7 +90,7 @@ export function AnswerList(props: QuestionListProps) {
                 </SheetDescription>
               </SheetHeader>
               <div className="grid h-[calc(100%-theme(spacing.20))] flex-grow grid-cols-1 grid-rows-2 gap-3">
-                <CodeEditor className="flex-grow" files={answer.files || {}} />
+                <CodeEditor exclude={["/package.json"]} className="flex-grow" files={answer.files || {}} />
                 <Preview template={answer.template} className="" />
               </div>
             </SandpackRoot>

@@ -17,11 +17,12 @@ export function getRepoREADMEUrl(locale?: string) {
  * @param absolute
  * @returns
  */
-export function getQuestionREADME(quiz: Challenge, locale?: string, absolute = false) {
+export function getChallengeReadmeURL(quiz: Challenge, locale?: string, absolute = false) {
   const prefix = absolute ? `${REPO}/blob/main` : ".";
+
   return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale]
-    ? `${prefix}/questions/${quiz.path}/README.${locale}.md`
-    : `${prefix}/questions/${quiz.path}/README.md`;
+    ? `${prefix}/challenges/${quiz.path}/README.${locale}.md`
+    : `${prefix}/challenges/${quiz.path}/README.md`;
 }
 
 export function toNearborREADME(quiz: Challenge, locale?: string) {

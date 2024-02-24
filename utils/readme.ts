@@ -5,7 +5,7 @@ import { getFileNameByLocale, translate } from "./locales";
 import { getChallengeInfoByLocale } from "@/db/challenge";
 import { Challenge, Difficulty, QuestionMetaInfo, SupportedLocale } from "@/types";
 import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
-import { toNearborREADME, getQuestionURL, getQuestionREADME, getShareAnswerURL, getSolutionsURL } from ".";
+import { toNearborREADME, getQuestionURL, getChallengeReadmeURL, getShareAnswerURL, getSolutionsURL } from ".";
 
 /**
  * removes the meta info from the readme file
@@ -146,10 +146,11 @@ export function toDifficultyPlainText(difficulty: string, locale: SupportedLocal
   return `${translate(locale, `difficulty.${difficulty}`)} (${count.toString()})`;
 }
 
-export function quizToBadge(quiz: Challenge, locale: string, absolute = false, badge = true) {
+export function getChallengeBadge(quiz: Challenge, locale: string, absolute = false, badge = true) {
   const fn = badge ? toBadgeLink : toPlanTextLink;
+
   return fn(
-    getQuestionREADME(quiz, locale, absolute),
+    getChallengeReadmeURL(quiz, locale, absolute),
     "",
     `${quiz.no}・${quiz.info[locale]?.title || quiz.info[DEFAULT_LOCALE]?.title}`,
     DIFFICULTY_COLORS[quiz.difficulty],
@@ -160,6 +161,6 @@ export function quizNoToBadges(ids: (string | number)[], quizzes: Challenge[], l
   return ids
     .map((i) => quizzes.find((q) => q.no === Number(i)))
     .filter(Boolean)
-    .map((i) => quizToBadge(i!, locale, absolute))
+    .map((i) => getChallengeBadge(i!, locale, absolute))
     .join(" ");
 }

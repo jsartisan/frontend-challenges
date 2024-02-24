@@ -19,8 +19,8 @@ export default async function Page() {
 
   return (
     <>
-      <main className="h-full grow px-4 pb-16 sm:px-6 md:order-1">
-        <div className="mx-auto max-w-screen-xl">
+      <main className="h-full grow pb-16 md:order-1">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
           <Hero />
           <div className="py-8" />
           <div className="flex flex-col gap-3">

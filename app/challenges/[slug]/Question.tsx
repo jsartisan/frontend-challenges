@@ -70,7 +70,7 @@ export function Question(props: QuestionProps) {
                   </TabsContent>
                 </Tabs>
               </Card>
-              <CodeEditor className="min-h-0" question={question} />
+              <CodeEditor exclude={["/package.json"]} className="min-h-0" question={question} />
               <Preview className="min-h-0" template={template} />
             </ResizableLayout>
           </div>

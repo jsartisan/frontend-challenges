@@ -1,4 +1,4 @@
-```css styles.css
+```css styles.css hidden
 html, body, #root {
   height: 100%;
 }
@@ -36,7 +36,7 @@ main {
 }
 ```
 
-```jsx App.jsx
+```jsx App.jsx active
 import Counter from './Counter';
 
 import React from 'react';
@@ -47,7 +47,7 @@ export default function App() {
 
 ```
 
-```jsx index.jsx
+```jsx index.jsx hidden
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -60,20 +60,6 @@ root.render(
     <App />
   </StrictMode>
 );
-```
-
-```html public/index.html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
 ```
 
 ```jsx Counter.jsx

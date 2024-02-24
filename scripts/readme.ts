@@ -3,14 +3,14 @@ import fs from "fs-extra";
 
 import {
   toBadge,
-  quizToBadge,
+  getChallengeBadge,
   insertInfoReadme,
   getFileNameByLocale,
   toDifficultyPlainText,
   toDifficultyBadgeInverted,
 } from "@/utils";
 import { Challenge } from "@/types";
-import { DIFFICULTY_RANK, ROOT_PATH, SUPPORTED_LOCALES } from "@/constants";
+import { DIFFICULTY_RANK, SUPPORTED_LOCALES } from "@/constants";
 import { getAllTags, getQuizesByTag, getChallenges } from "@/db/challenge";
 
 /**
@@ -18,7 +18,7 @@ import { getAllTags, getQuizesByTag, getChallenges } from "@/db/challenge";
  *
  * @param quizzes
  */
-async function updateIndexREADME(quizzes: Challenge[]) {
+async function updateIndexREADME(challenges: Challenge[]) {
   // update index README
   for (const locale of SUPPORTED_LOCALES) {
     const filepath = path.resolve(__dirname, "..", getFileNameByLocale("README", locale, "md"));
@@ -26,31 +26,31 @@ async function updateIndexREADME(quizzes: Challenge[]) {
     let challengesREADME = "";
     let prev = "";
 
-    // difficulty
-    const quizesByDifficulty = [...quizzes].sort(
+    // sort by difficulty
+    const quizesByDifficulty = [...challenges].sort(
       (a, b) => DIFFICULTY_RANK.indexOf(a.difficulty) - DIFFICULTY_RANK.indexOf(b.difficulty),
     );
 
-    for (const quiz of quizesByDifficulty) {
-      if (prev !== quiz.difficulty)
+    for (const challenge of quizesByDifficulty) {
+      if (prev !== challenge.difficulty)
         challengesREADME += `${prev ? "<br><br>" : ""}${toDifficultyBadgeInverted(
-          quiz.difficulty,
+          challenge.difficulty,
           locale,
-          quizesByDifficulty.filter((q) => q.difficulty === quiz.difficulty).length,
+          quizesByDifficulty.filter((q) => q.difficulty === challenge.difficulty).length,
         )}<br>`;
 
-      challengesREADME += quizToBadge(quiz, locale);
+      challengesREADME += getChallengeBadge(challenge, locale);
 
-      prev = quiz.difficulty;
+      prev = challenge.difficulty;
     }
 
     // by tags
     challengesREADME += "<br><details><summary>By Tags</summary><br><table><tbody>";
-    const tags = getAllTags(quizzes, locale);
+    const tags = getAllTags(challenges, locale);
     for (const tag of tags) {
       challengesREADME += `<tr><td>${toBadge("", `#${tag}`, "999")}</td><td>`;
       getQuizesByTag(quizesByDifficulty, locale, tag).forEach((quiz) => {
-        challengesREADME += quizToBadge(quiz, locale);
+        challengesREADME += getChallengeBadge(quiz, locale);
       });
       challengesREADME += "</td></tr>";
     }
@@ -68,7 +68,7 @@ async function updateIndexREADME(quizzes: Challenge[]) {
           locale,
           quizesByDifficulty.filter((q) => q.difficulty === quiz.difficulty).length,
         )}</h3><ul>`;
-      challengesREADME += `<li>${quizToBadge(quiz, locale, false, false)}</li>`;
+      challengesREADME += `<li>${getChallengeBadge(quiz, locale, false, false)}</li>`;
       prev = quiz.difficulty;
     }
     challengesREADME += "</ul></details><br>";
@@ -89,18 +89,11 @@ async function updateIndexREADME(quizzes: Challenge[]) {
  * @param quizzes
  */
 async function updateQuestionsREADME(quizzes: Challenge[]) {
-  const questionsDir = path.join(ROOT_PATH, "questions");
-  const quizzesDir = path.join(ROOT_PATH, "quizzes");
-
   // update each questions' readme
   for (const quiz of quizzes) {
     for (const locale of SUPPORTED_LOCALES) {
       await insertInfoReadme(
-        path.join(
-          quiz.type === "question" ? questionsDir : quizzesDir,
-          quiz.path,
-          getFileNameByLocale("README", locale, "md"),
-        ),
+        path.join("challenges", quiz.path, getFileNameByLocale("README", locale, "md")),
         quiz,
         locale,
         quizzes,

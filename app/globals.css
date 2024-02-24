@@ -28,6 +28,7 @@
     --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%);
     --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 10%);
     --color-bg-assistive: var(--ramp-grey-900);
+    --color-bg-assistive-transparent: color-mix(in srgb, var(--color-bg-assistive), transparent);
     --color-bg-negative: var(--ramp-red-500);
     --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
     --color-bg-easy: var(--ramp-green-100);

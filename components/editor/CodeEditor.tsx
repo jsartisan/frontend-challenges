@@ -15,10 +15,11 @@ type Props = {
   className?: string;
   onChange?: (files: SandpackState["files"]) => void;
   showTabs?: boolean;
+  exclude?: string[];
 };
 
 export function CodeEditor(props: Props) {
-  const { className, onChange, showTabs = true } = props;
+  const { className, onChange, showTabs = true, exclude } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -49,7 +50,13 @@ export function CodeEditor(props: Props) {
           <TabsList className="flex items-center">
             <div className="flex flex-grow gap-2">
               {Object.keys(files)
-                .filter((file) => !files[file].hidden)
+                .filter((file) => {
+                  const isHidden = files[file].hidden;
+                  const excluded = exclude?.includes(file);
+                  const or = isHidden || excluded;
+
+                  return !or;
+                })
                 .map((file) => {
                   return (
                     <TabsTrigger key={file} value={file}>
