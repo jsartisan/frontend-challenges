@@ -40,7 +40,7 @@ export function toReadmeShort(no: number, locale?: string) {
  * @returns
  */
 export function getQuestionURL(path: string) {
-  return `${DOMAIN}/questions/${path}`;
+  return `${DOMAIN}/challenges/${path}`;
 }
 
 /**

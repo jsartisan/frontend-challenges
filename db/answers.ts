@@ -27,7 +27,7 @@ export async function getAnswersOfQuestion(
   const { data } = await octokit.request("GET /repos/{owner}/{repo}/issues", {
     owner: "jsartisan",
     repo: "frontend-challenges",
-    labels: `answer,${no}`,
+    labels: `${no},answer`,
     state: "all",
   });
 
