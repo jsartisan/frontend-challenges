@@ -2,6 +2,8 @@ import Client from "./client";
 import type { Metadata } from "next";
 import { getChallengeByPath, getChallenges } from "@/db/challenge";
 
+export const revalidate = 3600;
+
 export async function generateMetadata(props: any): Promise<Metadata> {
   const question = await getChallengeByPath(props.params.slug);
 
