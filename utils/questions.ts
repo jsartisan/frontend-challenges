@@ -83,7 +83,7 @@ title: ${title}\n`;
     body += `\n\n<!--solution-end-->\n\n`;
   }
 
-  const URL = `${REPO}/issues/new?labels=new-challenge,${type},${template}&title=${encodeURIComponent(
+  const URL = `${REPO}/issues/new?template=new.md&labels=new-challenge,${type},${template}&title=${encodeURIComponent(
     `${title}`,
   )}&body=${encodeURIComponent(body)}`;
 
