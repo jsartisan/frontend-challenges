@@ -22,6 +22,7 @@ export function cleanUpReadme(text: string) {
 
 /**
  * inserts the meta info into the readme file
+ *
  * @param filepath
  * @param quiz
  * @param locale
@@ -51,12 +52,12 @@ export async function insertInfoReadme(
     .replace(
       /<!--info-header-start-->[\s\S]*<!--info-header-end-->/,
       "<!--info-header-start-->" +
-        `<h1>${escapeHtml(info.title || "")} ${toDifficultyBadge(quiz.difficulty, locale)} ${(info.tags || [])
-          .map((i) => toBadge("", `#${i}`, "999"))
+        `<h1>${escapeHtml(info.title || "")} ${getDifficultyBadge(quiz.difficulty, locale)} ${(info.tags || [])
+          .map((i) => getBadge("", `#${i}`, "999"))
           .join(" ")}</h1>` +
         `<blockquote><p>${toAuthorInfo(info.author)}</p></blockquote>` +
         "<p>" +
-        toBadgeLink(
+        getBadgeLink(
           getQuestionURL(quiz.path),
           "",
           translate(locale, "badge.take-the-challenge"),
@@ -66,7 +67,7 @@ export async function insertInfoReadme(
         (availableLocales.length
           ? "&nbsp;&nbsp;&nbsp;" +
             availableLocales
-              .map((l) => toBadgeLink(toNearborREADME(quiz, l), "", translate(l, "display"), "gray"))
+              .map((l) => getBadgeLink(toNearborREADME(quiz, l), "", translate(l, "display"), "gray"))
               .join(" ")
           : "") +
         "</p>" +
@@ -75,19 +76,19 @@ export async function insertInfoReadme(
     .replace(
       /<!--info-footer-start-->[\s\S]*<!--info-footer-end-->/,
       "<!--info-footer-start--><br>" +
-        toBadgeLink(
+        getBadgeLink(
           `../../${getFileNameByLocale("README", locale, "md")}`,
           "",
           translate(locale, "badge.back"),
           "grey",
         ) +
-        toBadgeLink(
+        getBadgeLink(
           getShareAnswerURL({ challenge: quiz, locale }),
           "",
           translate(locale, "badge.share-your-solutions"),
           "teal",
         ) +
-        toBadgeLink(
+        getBadgeLink(
           getSolutionsURL(quiz.no),
           "",
           translate(locale, "badge.checkout-solutions"),
@@ -110,25 +111,50 @@ export async function insertInfoReadme(
   await fs.writeFile(filepath, text, "utf-8");
 }
 
-export function toDifficultyBadge(difficulty: Difficulty, locale: SupportedLocale) {
-  return toBadge("", translate(locale, `difficulty.${difficulty}`), DIFFICULTY_COLORS[difficulty]);
+/**
+ * returns badge for a difficulty
+ *
+ * @returns
+ */
+export function getDifficultyBadge(difficulty: Difficulty, locale: SupportedLocale) {
+  return getBadge("", translate(locale, `difficulty.${difficulty}`), DIFFICULTY_COLORS[difficulty]);
 }
 
-export function toBadge(label: string, text: string, color: string, args = "") {
-  return `<img src="${toBadgeURL(label, text, color, args)}" alt="${text}"/>`;
+/**
+ * returns badge based on label, text and color
+ *
+ * @returns
+ */
+export function getBadge(label: string, text: string, color: string, args = "") {
+  return `<img src="${getBadgeURL(label, text, color, args)}" alt="${text}"/>`;
 }
 
-export function toBadgeURL(label: string, text: string, color: string, args = "") {
+/**
+ * returns badge url based on color, label and text
+ *
+ * @returns
+ */
+export function getBadgeURL(label: string, text: string, color: string, args = "") {
   return `https://img.shields.io/badge/${encodeURIComponent(label.replace(/-/g, "--"))}-${encodeURIComponent(
     text.replace(/-/g, "--"),
   )}-${color}${args}`;
 }
 
-export function toBadgeLink(url: string, label: string, text: string, color: string, args = "") {
-  return `<a href="${url}" target="_blank">${toBadge(label, text, color, args)}</a> `;
+/**
+ * returns link with badge
+ *
+ * @returns
+ */
+export function getBadgeLink(url: string, label: string, text: string, color: string, args = "") {
+  return `<a href="${url}" target="_blank">${getBadge(label, text, color, args)}</a> `;
 }
 
-export function toPlanTextLink(url: string, _label: string, text: string) {
+/**
+ * returns link with plain text
+ *
+ * @returns
+ */
+export function getPlainTextLink(url: string, _label: string, text: string) {
   return `<a href="${url}" target="_blank">${text}</a> `;
 }
 
@@ -138,16 +164,32 @@ export function toAuthorInfo(author: Partial<QuestionMetaInfo["author"]> = {}) {
   }`;
 }
 
-export function toDifficultyBadgeInverted(difficulty: Difficulty, locale: SupportedLocale, count: number) {
-  return toBadge(translate(locale, `difficulty.${difficulty}`), count.toString(), DIFFICULTY_COLORS[difficulty]);
+/**
+ * returns difficulty badge with count
+ *
+ * @returns
+ */
+export function getDifficultyBadgeInverted(difficulty: Difficulty, locale: SupportedLocale, count: number) {
+  return getBadge(translate(locale, `difficulty.${difficulty}`), count.toString(), DIFFICULTY_COLORS[difficulty]);
 }
 
-export function toDifficultyPlainText(difficulty: string, locale: SupportedLocale, count: number) {
+/**
+ * returns plain text with difficulty and count
+ *
+ * @returns
+ */
+export function getDifficultyPlainText(difficulty: string, locale: SupportedLocale, count: number) {
   return `${translate(locale, `difficulty.${difficulty}`)} (${count.toString()})`;
 }
 
+/**
+ * returns badge for a challenge.
+ * It can be plain text or image based on the `badge` parameter
+ *
+ * @returns
+ */
 export function getChallengeBadge(quiz: Challenge, locale: string, absolute = false, badge = true) {
-  const fn = badge ? toBadgeLink : toPlanTextLink;
+  const fn = badge ? getBadgeLink : getPlainTextLink;
 
   return fn(
     getChallengeReadmeURL(quiz, locale, absolute),

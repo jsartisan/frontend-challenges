@@ -2,12 +2,12 @@ import path from "path";
 import fs from "fs-extra";
 
 import {
-  toBadge,
+  getBadge,
   getChallengeBadge,
   insertInfoReadme,
   getFileNameByLocale,
-  toDifficultyPlainText,
-  toDifficultyBadgeInverted,
+  getDifficultyPlainText,
+  getDifficultyBadgeInverted,
 } from "@/utils";
 import { Challenge } from "@/types";
 import { DIFFICULTY_RANK, SUPPORTED_LOCALES } from "@/constants";
@@ -27,16 +27,16 @@ async function updateIndexREADME(challenges: Challenge[]) {
     let prev = "";
 
     // sort by difficulty
-    const quizesByDifficulty = [...challenges].sort(
+    const challengesByDifficulty = [...challenges].sort(
       (a, b) => DIFFICULTY_RANK.indexOf(a.difficulty) - DIFFICULTY_RANK.indexOf(b.difficulty),
     );
 
-    for (const challenge of quizesByDifficulty) {
+    for (const challenge of challengesByDifficulty) {
       if (prev !== challenge.difficulty)
-        challengesREADME += `${prev ? "<br><br>" : ""}${toDifficultyBadgeInverted(
+        challengesREADME += `${prev ? "<br><br>" : ""}${getDifficultyBadgeInverted(
           challenge.difficulty,
           locale,
-          quizesByDifficulty.filter((q) => q.difficulty === challenge.difficulty).length,
+          challengesByDifficulty.filter((q) => q.difficulty === challenge.difficulty).length,
         )}<br>`;
 
       challengesREADME += getChallengeBadge(challenge, locale);
@@ -48,8 +48,8 @@ async function updateIndexREADME(challenges: Challenge[]) {
     challengesREADME += "<br><details><summary>By Tags</summary><br><table><tbody>";
     const tags = getAllTags(challenges, locale);
     for (const tag of tags) {
-      challengesREADME += `<tr><td>${toBadge("", `#${tag}`, "999")}</td><td>`;
-      getQuizesByTag(quizesByDifficulty, locale, tag).forEach((quiz) => {
+      challengesREADME += `<tr><td>${getBadge("", `#${tag}`, "999")}</td><td>`;
+      getQuizesByTag(challengesByDifficulty, locale, tag).forEach((quiz) => {
         challengesREADME += getChallengeBadge(quiz, locale);
       });
       challengesREADME += "</td></tr>";
@@ -61,12 +61,12 @@ async function updateIndexREADME(challenges: Challenge[]) {
     // by plain text
     prev = "";
     challengesREADME += "<br><details><summary>By Plain Text</summary><br>";
-    for (const quiz of quizesByDifficulty) {
+    for (const quiz of challengesByDifficulty) {
       if (prev !== quiz.difficulty)
-        challengesREADME += `${prev ? "</ul>" : ""}<h3>${toDifficultyPlainText(
+        challengesREADME += `${prev ? "</ul>" : ""}<h3>${getDifficultyPlainText(
           quiz.difficulty,
           locale,
-          quizesByDifficulty.filter((q) => q.difficulty === quiz.difficulty).length,
+          challengesByDifficulty.filter((q) => q.difficulty === quiz.difficulty).length,
         )}</h3><ul>`;
       challengesREADME += `<li>${getChallengeBadge(quiz, locale, false, false)}</li>`;
       prev = quiz.difficulty;
@@ -102,20 +102,20 @@ async function updateQuestionsREADME(quizzes: Challenge[]) {
   }
 }
 
-export async function updateREADMEs(type?: "quiz" | "index") {
-  const quizzes = await getChallenges();
+export async function updateREADMEs(type?: "challenge" | "index") {
+  const challenges = await getChallenges();
 
-  quizzes.sort((a, b) => a.no - b.no);
+  challenges.sort((a, b) => a.no - b.no);
 
-  if (type === "quiz") {
-    return await updateQuestionsREADME(quizzes);
+  if (type === "challenge") {
+    return await updateQuestionsREADME(challenges);
   }
 
   if (type === "index") {
-    return await updateIndexREADME(quizzes);
+    return await updateIndexREADME(challenges);
   }
 
-  await Promise.all([updateIndexREADME(quizzes), updateQuestionsREADME(quizzes)]);
+  await Promise.all([updateIndexREADME(challenges), updateQuestionsREADME(challenges)]);
 }
 
 updateREADMEs(process.argv.slice(2)[0] as any);

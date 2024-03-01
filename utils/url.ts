@@ -67,7 +67,7 @@ export const getShareAnswerURL = (props: {
   template?: SupportedTemplates;
 }) => {
   const { challenge, files, template, locale = "en" } = props;
-  const BASE_URL = `${REPO}/issues/new?labels=answer,${challenge.no}`;
+  const BASE_URL = `${REPO}/issues/new?template=answer.md&labels=answer,${challenge.no}`;
 
   if (challenge.type === "quiz") {
     return `${BASE_URL},quiz&title=${encodeURIComponent(`${challenge.no} - ${challenge.info[locale]?.title}`)}`;
