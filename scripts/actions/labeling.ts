@@ -6,6 +6,11 @@ const action: Action = async (github, context, core) => {
 
   if (!issue) return;
 
+  core.info("-----payload-----");
+  core.info(JSON.stringify(payload, null, 2));
+  core.info("-----issue-----");
+  core.info(JSON.stringify(issue, null, 2));
+
   const labels: string[] = (issue.labels || []).map((i: any) => i && i.name).filter(Boolean);
 
   if (labels.includes("answer")) {
