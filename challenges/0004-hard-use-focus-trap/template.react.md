@@ -14,7 +14,7 @@ function App() {
 export default App;
 ```
 
-```js useFocusTrap.js
+```js useFocusTrap.js active
 export function useFocusTrap() {
 
 }

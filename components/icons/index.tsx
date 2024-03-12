@@ -7,3 +7,4 @@ export { VueColorIcon } from "./VueColorIcon";
 export { VanillaColorIcon } from "./VanillaColorIcon";
 export { SvelteColorIcon } from "./SvelteColorIcon";
 export { JavascriptColorIcon } from "./JavascriptColorIcon";
+export { CssColorIcon } from "./CssColorIcon";

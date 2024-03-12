@@ -12,6 +12,7 @@ import {
   VanillaColorIcon,
   VueColorIcon,
   JavascriptColorIcon,
+  CssColorIcon,
 } from "../icons";
 import { VariantProps, cva } from "class-variance-authority";
 
@@ -43,7 +44,8 @@ export type IconProps = {
     | "play"
     | "code"
     | "file-text"
-    | "caret-down";
+    | "caret-down"
+    | "css-color";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -145,6 +147,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       break;
     case "caret-down":
       icon = RadixIcon.CaretDownIcon;
+      break;
+    case "css-color":
+      icon = CssColorIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;
