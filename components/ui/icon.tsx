@@ -47,7 +47,8 @@ export type IconProps = {
     | "file-text"
     | "caret-down"
     | "css-color"
-    | "tidy";
+    | "tidy"
+    | "plus-circled";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -152,6 +153,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       break;
     case "css-color":
       icon = CssColorIcon;
+      break;
+    case "plus-circled":
+      icon = RadixIcon.PlusCircledIcon;
       break;
     case "tidy":
       icon = TidyIcon;

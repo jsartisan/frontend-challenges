@@ -24,6 +24,6 @@ export const DIFFICULTY_COLORS = {
   extreme: "b11b8d",
 } as Record<Difficulty, string>;
 
-export const CATEGORIES = ["javascript", "react", "css"];
+export const CATEGORIES = ["javascript", "react", "css"] as const;
 
 export const DIFFICULTY_RANK = Object.keys(DIFFICULTY_COLORS) as (keyof typeof DIFFICULTY_COLORS)[];

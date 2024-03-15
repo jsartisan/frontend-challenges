@@ -2,7 +2,7 @@ import type IO from "@actions/io";
 import type Core from "@actions/core";
 import { DeepPartial } from "utility-types";
 import type { context, getOctokit } from "@actions/github";
-import { SUPPORTED_LOCALES, SUPPORTED_TEMPLATES } from "@/constants";
+import { CATEGORIES, SUPPORTED_LOCALES, SUPPORTED_TEMPLATES } from "@/constants";
 
 export type Difficulty = "warm" | "easy" | "medium" | "hard" | "extreme" | "pending";
 export type Importance = "hight" | "medium" | "low";
@@ -27,6 +27,7 @@ export interface Question {
     no: number;
     template: SupportedTemplates;
   }[];
+  category: Category;
 }
 
 export interface Quiz {
@@ -46,6 +47,7 @@ export interface Quiz {
     no: number;
     body: string;
   }[];
+  category: Category;
 }
 
 export interface QuestionMetaInfo {
@@ -87,3 +89,5 @@ export type Blog = {
   code: string;
   emoji: string;
 };
+
+export type Category = (typeof CATEGORIES)[number];

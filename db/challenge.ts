@@ -3,9 +3,9 @@ import fg from "fast-glob";
 
 import { cleanUpReadme } from "@/utils";
 import { parseMetaInfo } from "@/utils/questions";
-import { Challenge, QuestionMetaInfo } from "@/types";
+import { Category, Challenge, QuestionMetaInfo } from "@/types";
 import { getLocaleVariations } from "@/utils/locales";
-import { CHALLENGES_ROOT, DEFAULT_LOCALE } from "@/constants";
+import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE } from "@/constants";
 
 import { getAnswersOfQuestion, getAnswersOfQuiz } from "./answers";
 import { getCodeFilesByTemplate } from "./template";
@@ -38,6 +38,11 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
   const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
   const info = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "info.yml"), [parseMetaInfo]);
   const readme = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), [cleanUpReadme]);
+  const category = (() => {
+    return CATEGORIES.find((category) => {
+      return info?.en?.tags?.includes(category) || info?.en?.related?.includes(category);
+    });
+  })() as Category;
 
   if (info?.en?.type === "quiz") {
     const answers = await getAnswersOfQuiz(no);
@@ -60,6 +65,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
       type: "quiz",
       answers,
       solution,
+      category,
     };
   }
 
@@ -78,6 +84,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
     readme,
     templateFiles,
     answers,
+    category,
     type: info?.en?.type || "question",
   };
 }

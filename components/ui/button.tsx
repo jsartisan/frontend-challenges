@@ -19,7 +19,7 @@ const buttonVariants = cva(
         discord: "bg-social-discord text-white shadow-sm hover:bg-discord/90",
       },
       size: {
-        default: "h-9 px-4 py-2 [&>svg]:h-5 [&>svg]:w-5",
+        default: "h-9 px-4 py-2 [&>svg]:h-5 [&>svg]:w-5 gap-2",
         sm: "h-7 py-1 rounded-[var(--radius-sm)] px-3 text-xs [&>svg]:h-4 [&>svg]:w-4 gap-1",
         lg: "h-10 rounded-md px-8 [&>svg]:h-7 [&>svg]:w-7",
       },
