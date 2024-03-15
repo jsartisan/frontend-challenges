@@ -15,6 +15,7 @@ import {
   CssColorIcon,
 } from "../icons";
 import { VariantProps, cva } from "class-variance-authority";
+import { TidyIcon } from "../icons/TidyIcon";
 
 export type IconProps = {
   name:
@@ -45,7 +46,8 @@ export type IconProps = {
     | "code"
     | "file-text"
     | "caret-down"
-    | "css-color";
+    | "css-color"
+    | "tidy";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -150,6 +152,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       break;
     case "css-color":
       icon = CssColorIcon;
+      break;
+    case "tidy":
+      icon = TidyIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

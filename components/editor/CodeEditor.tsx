@@ -1,12 +1,19 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useRef } from "react";
 import { Card } from "../ui/card";
 import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
 import { CodeFile, Question } from "@/types";
+import prettier from "prettier/standalone";
+import postcss from "prettier/plugins/postcss";
+import estree from "prettier/plugins/estree";
+import babel from "prettier/plugins/babel";
+import html from "prettier/plugins/html";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SandpackCodeEditor, SandpackState, useSandpack } from "@codesandbox/sandpack-react";
+
+import { Button, Icon } from "../ui";
 
 type Props = {
   files?: Record<string, CodeFile>;
@@ -19,6 +26,7 @@ type Props = {
 };
 
 export function CodeEditor(props: Props) {
+  const codemirrorInstance = useRef<any>(null);
   const { className, onChange, showTabs = true, exclude } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
@@ -35,6 +43,57 @@ export function CodeEditor(props: Props) {
       onChange(files);
     }
   }, [files]);
+
+  const onPrettify = () => {
+    // if there is an error, we don't want to prettify the code
+    console.log({ error: sandpack });
+
+    const activeFile = sandpack.activeFile;
+    const code = sandpack.files[activeFile].code;
+    const ext = activeFile.split(".").pop();
+    let plugins = [] as any[];
+    let parser = "babel";
+
+    if (ext === "js" || ext === "jsx") {
+      plugins = [babel, estree];
+    }
+
+    if (ext === "html") {
+      plugins = [html];
+      parser = "html";
+    }
+
+    if (ext === "css") {
+      parser = "css";
+      plugins = [postcss];
+    }
+
+    prettier
+      .format(code, {
+        parser: parser,
+        plugins: plugins,
+      })
+      .then((formatted) => {
+        if (formatted) {
+          const cmInstance = codemirrorInstance.current.getCodemirror();
+
+          if (cmInstance) {
+            const trans = cmInstance.state.update({
+              changes: {
+                from: 0,
+                to: cmInstance.state.doc.length,
+                insert: formatted,
+              },
+            });
+
+            cmInstance.update([trans]);
+          }
+
+          sandpack.updateFile(activeFile, formatted);
+        }
+      })
+      .catch(console.log);
+  };
 
   return (
     <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
@@ -65,6 +124,12 @@ export function CodeEditor(props: Props) {
                   );
                 })}
             </div>
+            <div className="mx-1">
+              <Button variant="tertiary" size="sm" onClick={onPrettify}>
+                <Icon name="tidy" />
+                Tidy
+              </Button>
+            </div>
           </TabsList>
         </Tabs>
       )}
@@ -76,7 +141,13 @@ export function CodeEditor(props: Props) {
             <p className="text-sm text-muted-foreground">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <SandpackCodeEditor showRunButton={false} showLineNumbers showTabs={false} className="h-full" />
+          <SandpackCodeEditor
+            ref={codemirrorInstance}
+            showRunButton={false}
+            showLineNumbers
+            showTabs={false}
+            className="h-full"
+          />
         )}
       </div>
     </Card>

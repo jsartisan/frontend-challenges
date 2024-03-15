@@ -22,7 +22,7 @@ export default async function Page() {
       <main className="h-full grow pb-16 md:order-1">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
           <Hero />
-          <div className="mt-8 flex flex-col gap-3">
+          <div className="mt-16 flex flex-col gap-3">
             <div className="flex flex-col gap-1">
               <h3 className="text-xl font-bold">Recently Added</h3>
               <p className="text-fg-subtle">The newest challenges added by the community</p>
