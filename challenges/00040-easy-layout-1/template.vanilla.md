@@ -1,4 +1,4 @@
-```css styles.css
+```css styles.css active
 .container {
  
 }
@@ -9,7 +9,7 @@
 }
 ```
 
-```js index.js
+```js index.js hidden
 import "./styles.css";
 
 ```

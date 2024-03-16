@@ -29,6 +29,7 @@ export default function SandpackRoot(props: Props) {
           "sp-layout": cn("!bg-inherit !border-none h-full", className),
           "sp-navigator": "!h-10 !border-b-[var(--color-border)]",
           "sp-input": "!h-6 !rounded-[var(--radius)]",
+          "sp-test-header": "!hidden",
         },
       }}
     >

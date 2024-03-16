@@ -76,6 +76,7 @@
     --color-bg-quiz: color-mix(in srgb, var(--ramp-orange-100), 80% black);
 
     --color-fg: var(--ramp-white-1000);
+    --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, black 30%);
     --color-fg-onaccent: var(--ramp-white-1000);
     --color-fg-neutral: color-mix(in srgb, var(--ramp-grey-900), white 80%);
     --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), white 60%);
@@ -85,7 +86,7 @@
     --color-fg-question: color-mix(in srgb, var(--ramp-purple-900), 50% white);
     --color-fg-quiz: color-mix(in srgb, var(--ramp-orange-900), 50% white);
 
-    --color-border: color-mix(in srgb, var(--ramp-grey-600), 60% transparent);
+    --color-border: color-mix(in oklch, var(--ramp-grey-600), 50% transparent);
 
     --sp-colors-surface1: var(--color-bg) !important;
   }
