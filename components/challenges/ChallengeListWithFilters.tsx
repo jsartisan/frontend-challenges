@@ -3,7 +3,7 @@
 import { Category, Challenge, Difficulty } from "@/types";
 import { Input } from "../ui/input";
 import { useReducer } from "react";
-import { ToggleGroupItem } from "@/components/ui";
+import { Button, Icon, ToggleGroupItem } from "@/components/ui";
 import { CATEGORIES, DIFFICULTY_RANK } from "@/constants";
 import { ChallengeList } from "./ChallengeList";
 import { ChallengeListFilter } from "./ChallengeListFilter";
@@ -134,6 +134,24 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
           <ToggleGroupItem value="question">Question</ToggleGroupItem>
           <ToggleGroupItem value="quiz">Quiz</ToggleGroupItem>
         </ToggleGroup>
+        {(state.filters.category.length > 0 || state.filters.difficulty.length > 0 || state.filters.type !== "all") && (
+          <Button
+            variant="tertiary"
+            onClick={() => {
+              dispatch({
+                type: "filter",
+                payload: {
+                  category: [],
+                  difficulty: [],
+                  type: "all",
+                },
+              });
+            }}
+          >
+            Reset
+            <Icon name="cross" className="!h-4 !w-4" />
+          </Button>
+        )}
       </div>
       <ChallengeList challenges={state.filtered} />
     </div>

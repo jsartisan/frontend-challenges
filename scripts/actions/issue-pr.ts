@@ -47,21 +47,12 @@ const action: Action = async (github, context, core) => {
   if (!issue) return;
 
   const labels: string[] = (issue.labels || []).map((i: any) => i && i.name).filter(Boolean);
-  const template = labels.find((label) => {
-    if (SUPPORTED_TEMPLATES.includes(label as SupportedTemplates)) return true;
-  }) as SupportedTemplates;
-  const type = labels.includes("quiz") ? "quiz" : labels.includes("question") ? "question" : "question";
 
   // create pr for new challenge
   if (labels.includes("new-challenge")) {
     const locale = labels.includes("ja") ? "ja" : labels.includes("zh-CN") ? "zh-CN" : "en";
-
     const body = issue.body || "";
     const infoRaw = getCodeBlock(body, Messages[locale].info, "yaml");
-    const templateFiles = await getTemplateFiles(body);
-    const question = getCommentRange(body, "question");
-    const solution = getCommentRange(body, "solution");
-
     let info: any;
 
     try {
@@ -69,6 +60,14 @@ const action: Action = async (github, context, core) => {
     } catch {
       info = null;
     }
+
+    const templateFiles = await getTemplateFiles(body);
+    const question = getCommentRange(body, "question");
+    const solution = getCommentRange(body, "solution");
+    const template = (info.labels || []).find((label) => {
+      if (SUPPORTED_TEMPLATES.includes(label as SupportedTemplates)) return true;
+    }) as SupportedTemplates;
+    const type = (info.type || []).includes("quiz") ? "quiz" : labels.includes("question") ? "question" : "question";
 
     core.info("-----Playload-----");
     core.info(JSON.stringify(context.payload, null, 2));
