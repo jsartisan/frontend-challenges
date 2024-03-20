@@ -1,6 +1,7 @@
 import Client from "./client";
 import type { Metadata } from "next";
 import { getChallengeByPath, getChallenges } from "@/db/challenge";
+import { Header } from "@/components/layout/Header";
 
 export const revalidate = 3600;
 
@@ -22,7 +23,13 @@ export async function generateStaticParams() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Page(props: any) {
+  const challenges = await getChallenges();
   const challenge = await getChallengeByPath(props.params.slug);
 
-  return <Client challenge={challenge} />;
+  return (
+    <>
+      <Header challenges={challenges} />
+      <Client challenge={challenge} />
+    </>
+  );
 }

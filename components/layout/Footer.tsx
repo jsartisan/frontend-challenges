@@ -4,7 +4,7 @@ import { Logo } from "../common/Logo";
 export default function Footer() {
   return (
     <div className="flex flex-col items-center gap-4 bg-[var(--color-bg-secondary)] py-4 sm:py-6">
-      <Logo />
+      <Logo isTextVisible />
       <p className="flex flex-wrap justify-center gap-2 px-4 font-medium sm:gap-4">
         <Link
           className="text-[var(--color-fg-neutral-subtle)] hover:text-[var(--color-fg-neutral-subtle-hover)]"

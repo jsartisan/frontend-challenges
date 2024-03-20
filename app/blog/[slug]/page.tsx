@@ -2,6 +2,8 @@ import * as React from "react";
 import { getAllBlogs, getBlogBySlug } from "@/db/blogs";
 
 import Client from "./client";
+import { getChallenges } from "@/db/challenge";
+import { Header } from "@/components/layout/Header";
 
 export async function generateStaticParams() {
   const posts = await getAllBlogs();
@@ -15,8 +17,14 @@ export async function generateStaticParams() {
 
 export default async function Page(props: any) {
   const blog = await getBlogBySlug(props.params.slug);
+  const challenges = await getChallenges();
 
-  return <Client blog={blog} />;
+  return (
+    <>
+      <Header challenges={challenges} />
+      <Client blog={blog} />
+    </>
+  );
 }
 
 export async function generateMetadata({ params }: { params: any }) {

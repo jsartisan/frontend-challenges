@@ -39,7 +39,8 @@ export const getSubmitChallengeURL = (values: FormValues) => {
 
   body += `\`\`\`yaml
 difficulty: ${difficulty}
-title: ${title}\n`;
+title: ${title}\n
+type: ${type}\n`;
 
   if (type === "question") {
     body += `template: ${template}\n`;

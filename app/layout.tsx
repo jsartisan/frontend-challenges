@@ -5,7 +5,6 @@ import { cn } from "@/utils/helpers";
 import { Inter as FontSans } from "next/font/google";
 
 import { TooltipProvider } from "@/components/ui";
-import { Header } from "@/components/layout/Header";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { LayoutProvider } from "@/providers/LayoutProvider";
 
@@ -28,7 +27,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LayoutProvider>
           <TooltipProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-              <Header />
               {children}
             </ThemeProvider>
           </TooltipProvider>

@@ -1,12 +1,16 @@
 import { getAllBlogs } from "@/db/blogs";
 import Footer from "@/components/layout/Footer";
 import { BlogList } from "@/components/blog/BlogList";
+import { Header } from "@/components/layout/Header";
+import { getChallenges } from "@/db/challenge";
 
 export default async function Page() {
   const blogs = await getAllBlogs();
+  const challenges = await getChallenges();
 
   return (
     <>
+      <Header challenges={challenges} />
       <main className="h-full grow px-4 sm:px-6 md:order-1">
         <div className="mx-auto max-w-screen-xl">
           <div className="flex flex-col gap-2 space-y-2 pt-12">

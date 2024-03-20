@@ -52,20 +52,20 @@ export default function Client() {
             <div className="flex items-center">
               <h1 className="text-2xl font-semibold">Playground</h1>
             </div>
-            <div className="flex items-center gap-4">
-              <TemplateChanger
-                template={template}
-                setTemplate={(template) => {
-                  setTemplate(template);
-                  setFiles(getFilesFromURL(searchParams.get("code"), template));
-                }}
-              />
-            </div>
           </div>
           <div className="w-full flex-grow">
             <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
               <ResizablePanel defaultSizePercentage={15}>
-                <FileExplorer />
+                <div className="flex flex-col gap-3">
+                  <TemplateChanger
+                    template={template}
+                    setTemplate={(template) => {
+                      setTemplate(template);
+                      setFiles(getFilesFromURL(searchParams.get("code"), template));
+                    }}
+                  />
+                  <FileExplorer />
+                </div>
               </ResizablePanel>
               <ResizableHandle className="w-2" />
               <ResizablePanel defaultSizePercentage={50}>

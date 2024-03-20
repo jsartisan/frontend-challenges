@@ -1,5 +1,14 @@
+import { getChallenges } from "@/db/challenge";
+import { Header } from "@/components/layout/Header";
+
 import Client from "./client";
 
-export default function Page() {
-  return <Client />;
+export default async function Page() {
+  const challenges = await getChallenges();
+  return (
+    <>
+      <Header challenges={challenges} />
+      <Client />
+    </>
+  );
 }

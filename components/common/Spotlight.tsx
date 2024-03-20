@@ -1,0 +1,86 @@
+"use client";
+
+import * as React from "react";
+import { CalendarIcon, FaceIcon, RocketIcon } from "@radix-ui/react-icons";
+
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { Challenge } from "@/types";
+import { useRouter } from "next/navigation";
+import { REPO } from "@/constants";
+
+interface SpotlightProps {
+  challenges: Challenge[];
+}
+
+export function SpotLight(props: SpotlightProps) {
+  const router = useRouter();
+  const { challenges } = props;
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="relative inline-flex h-8 w-full items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-[var(--color-bg-neutral)] hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 sm:pr-12 md:w-20 lg:w-[180px]"
+      >
+        <span className="hidden lg:inline-flex">Search...</span>
+        <span className="inline-flex lg:hidden">Search...</span>
+        <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded-[var(--radius-sm)] border-[var(--color-border)] bg-[var(--color-bg-neutral)] px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+          <span className="text-xs">⌘</span>K
+        </kbd>
+      </button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Links">
+            <CommandItem>
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              <span>Home</span>
+            </CommandItem>
+            <CommandItem onSelect={() => router.push("/challenges")}>
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              <span>Challenges</span>
+            </CommandItem>
+            <CommandItem onSelect={() => router.push("/blog")}>
+              <FaceIcon className="mr-2 h-4 w-4" />
+              <span>Blog</span>
+            </CommandItem>
+            <CommandItem onSelect={() => window.open(REPO, "_blank")?.focus()}>
+              <RocketIcon className="mr-2 h-4 w-4" />
+              <span>Github</span>
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Challenges">
+            {challenges.map((challenge) => (
+              <CommandItem key={challenge.path} onSelect={() => router.push(`/challenges/${challenge.path}`)}>
+                <span>{challenge.info?.en?.title}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </>
+  );
+}

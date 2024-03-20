@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { DEFAULT_LOCALE } from "@/constants";
 import { ChallengeList } from "@/components/challenges/ChallengeList";
 import { getChallenges } from "@/db/challenge";
+import { Header } from "@/components/layout/Header";
 
 export default async function Page() {
   const challenges = await getChallenges();
@@ -19,6 +20,7 @@ export default async function Page() {
 
   return (
     <>
+      <Header challenges={challenges} />
       <main className="h-full grow pb-16 md:order-1">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
           <Hero />
