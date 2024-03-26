@@ -21,7 +21,7 @@ export default async function Page(props: any) {
 
   return (
     <>
-      <Header challenges={challenges} />
+      <Header challenges={challenges.map((challenge) => ({ path: challenge.path, title: challenge.info.en?.title }))} />
       <Client blog={blog} />
     </>
   );

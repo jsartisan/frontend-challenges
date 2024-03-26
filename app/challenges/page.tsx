@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <>
-      <Header challenges={challenges} />
+      <Header challenges={challenges.map((challenge) => ({ path: challenge.path, title: challenge.info.en?.title }))} />
       <main className="mx-auto flex h-full max-w-screen-xl grow flex-col gap-4 px-4 sm:px-6 md:order-1">
         <div className="flex flex-col gap-2 space-y-2 pt-12">
           <div className="text-3xl font-bold">Challenges</div>

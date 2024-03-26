@@ -11,17 +11,17 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Challenge } from "@/types";
-import { useRouter } from "next/navigation";
 import { REPO } from "@/constants";
+import { SearchItem } from "@/types";
+import { useRouter } from "next/navigation";
 
 interface SpotlightProps {
-  challenges: Challenge[];
+  items: SearchItem[];
 }
 
 export function SpotLight(props: SpotlightProps) {
   const router = useRouter();
-  const { challenges } = props;
+  const { items } = props;
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -68,9 +68,9 @@ export function SpotLight(props: SpotlightProps) {
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Challenges">
-            {challenges.map((challenge) => (
-              <CommandItem key={challenge.path} onSelect={() => router.push(`/challenges/${challenge.path}`)}>
-                <span>{challenge.info?.en?.title}</span>
+            {items.map((item) => (
+              <CommandItem key={item.path} onSelect={() => router.push(`/challenges/${item.path}`)}>
+                <span>{item.title}</span>
               </CommandItem>
             ))}
           </CommandGroup>

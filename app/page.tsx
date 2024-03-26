@@ -20,7 +20,7 @@ export default async function Page() {
 
   return (
     <>
-      <Header challenges={challenges} />
+      <Header challenges={challenges.map((challenge) => ({ path: challenge.path, title: challenge.info.en?.title }))} />
       <main className="h-full grow pb-16 md:order-1">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
           <Hero />

@@ -91,3 +91,8 @@ export type Blog = {
 };
 
 export type Category = (typeof CATEGORIES)[number];
+
+export type SearchItem = {
+  title?: string;
+  path?: string;
+};
