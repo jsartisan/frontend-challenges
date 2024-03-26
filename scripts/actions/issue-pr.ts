@@ -5,7 +5,7 @@ import type { Action, Context, Github, Question, SupportedTemplates } from "../.
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { createFileMap } from "../..//utils";
-import { DEFAULT_LOCALE, SUPPORTED_TEMPLATES } from "../../constants";
+import { DEFAULT_LOCALE } from "../../constants";
 
 const Messages = {
   en: {
@@ -64,10 +64,8 @@ const action: Action = async (github, context, core) => {
     const templateFiles = await getTemplateFiles(body);
     const question = getCommentRange(body, "question");
     const solution = getCommentRange(body, "solution");
-    const template = (info.labels || []).find((label) => {
-      if (SUPPORTED_TEMPLATES.includes(label as SupportedTemplates)) return true;
-    }) as SupportedTemplates;
-    const type = (info.type || []).includes("quiz") ? "quiz" : labels.includes("question") ? "question" : "question";
+    const template = info.template as SupportedTemplates;
+    const type = info.type === "quiz " ? "quiz" : "question";
 
     core.info("-----Playload-----");
     core.info(JSON.stringify(context.payload, null, 2));

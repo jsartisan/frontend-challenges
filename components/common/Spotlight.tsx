@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { CalendarIcon, FaceIcon, RocketIcon } from "@radix-ui/react-icons";
 
 import {
   CommandDialog,
@@ -55,19 +54,15 @@ export function SpotLight(props: SpotlightProps) {
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
             <CommandItem>
-              <CalendarIcon className="mr-2 h-4 w-4" />
               <span>Home</span>
             </CommandItem>
             <CommandItem onSelect={() => router.push("/challenges")}>
-              <CalendarIcon className="mr-2 h-4 w-4" />
               <span>Challenges</span>
             </CommandItem>
             <CommandItem onSelect={() => router.push("/blog")}>
-              <FaceIcon className="mr-2 h-4 w-4" />
               <span>Blog</span>
             </CommandItem>
             <CommandItem onSelect={() => window.open(REPO, "_blank")?.focus()}>
-              <RocketIcon className="mr-2 h-4 w-4" />
               <span>Github</span>
             </CommandItem>
           </CommandGroup>
