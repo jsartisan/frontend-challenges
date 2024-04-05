@@ -13,49 +13,56 @@ const action: Action = async (github, context, core) => {
 
   const labels: string[] = (issue.labels || []).map((i: any) => i && i.name).filter(Boolean);
 
-  if (labels.includes("answer")) {
-    const match = issue.title.match(/^(\d+) - /);
-    if (match && match[1]) {
-      const no = Number(match[1]);
-      if (Number.isNaN(no)) return;
+  if (labels.includes("answer") == false) {
+    core.info("No answer label, skipped");
 
-      const name = no.toString();
+    return;
+  }
 
-      if (labels.includes("trigger-bot")) {
-        await github.rest.issues.removeLabel({
-          issue_number: context.issue.number,
-          owner: context.repo.owner,
-          repo: context.repo.repo,
-          name: "trigger-bot",
-        });
-      }
+  const issueNoMatch = issue.title.match(/^(\d+) - /);
+  // the tile is of format "123 - Title - react", where last word is the template
+  const issueTemplateMatch = issue.title.match(/ - (\w+)$/);
 
-      if (labels.includes(name)) return;
+  if (issueNoMatch && issueNoMatch[1] && issueTemplateMatch && issueTemplateMatch[1]) {
+    const no = Number(issueNoMatch[1]);
+    const template = issueTemplateMatch[1] || "vanilla";
 
-      try {
-        await github.rest.issues.getLabel({
-          owner: context.repo.owner,
-          repo: context.repo.repo,
-          name,
-        });
-      } catch {
-        await github.rest.issues.createLabel({
-          owner: context.repo.owner,
-          repo: context.repo.repo,
-          name,
-          color: "ffffff",
-        });
-      }
+    if (Number.isNaN(no)) return;
 
-      await github.rest.issues.addLabels({
+    const name = no.toString();
+
+    if (labels.includes("trigger-bot")) {
+      await github.rest.issues.removeLabel({
         issue_number: context.issue.number,
         owner: context.repo.owner,
         repo: context.repo.repo,
-        labels: [name],
+        name: "trigger-bot",
       });
     }
-  } else {
-    core.info("No matched labels, skipped");
+
+    if (labels.includes(name)) return;
+
+    try {
+      await github.rest.issues.getLabel({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        name,
+      });
+    } catch {
+      await github.rest.issues.createLabel({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        name,
+        color: "ffffff",
+      });
+    }
+
+    await github.rest.issues.addLabels({
+      issue_number: context.issue.number,
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      labels: [name, template],
+    });
   }
 };
 

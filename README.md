@@ -5,7 +5,7 @@
 <p align='center'>Collection of Frontend interview challenges</p>
 
 <p align='center'>
-  <a href='hhttps://discord.gg/utqqFmhQmT'>
+  <a href='https://discord.gg/E9PfpPZ7aU'>
     <img src='https://img.shields.io/badge/-Discord-yellowgreen?logo=discord&logoColor=white&color=7289da'/>
   </a>
   <a href='https://frontend-challenges.com/play'>
@@ -17,7 +17,7 @@
 
 ## Intro
 
-This repository is a collection of frontend interview challenges.It is designed to help you prepare for frontend interviews. It's free and open source.
+FrontendChallenges repository is a collection of frontend interview challenges.It is designed to help you prepare for frontend interviews. It's free and open source.
 
 ### Challenges
 
@@ -33,7 +33,7 @@ You can try the challenges locally using your preferred IDE or text editor.
 
 To do that, you will need the latest version of [Node.js](https://nodejs.org/) installed on your machine.
 
-After cloning the repo, installed the dependencies by:
+After cloning the repo, install the dependencies by:
 
 ```bash
 npm install
@@ -58,7 +58,7 @@ npm install
 npm run dev
 ```
 Now you should be able to open `http://localhost:5173` in your browser and it will show the list of questions. 
-One important thing is since the playground is made with vite, it supports hot module reloading. So, any change made in questions files will be reflected on browser automatically.
+Since the playground is made with vite, it supports hot module reloading. So, any change made in questions files will be reflected on browser automatically.
 
 ### Inspired by
 

@@ -70,7 +70,9 @@ export const getShareAnswerURL = (props: {
   const BASE_URL = `${REPO}/issues/new?template=answer.md&labels=answer,${challenge.no}`;
 
   if (challenge.type === "quiz") {
-    return `${BASE_URL},quiz&title=${encodeURIComponent(`${challenge.no} - ${challenge.info[locale]?.title}`)}`;
+    return `${BASE_URL},quiz&title=${encodeURIComponent(
+      `${challenge.no} - ${challenge.info[locale]?.title} - ${template}`,
+    )}`;
   }
 
   let readme = ``;
