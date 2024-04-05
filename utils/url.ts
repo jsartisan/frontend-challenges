@@ -125,12 +125,12 @@ export const getShareAnswerURL = (props: {
 
   if (locale && locale !== DEFAULT_LOCALE) {
     return `${BASE_URL},${encodeURIComponent(locale)},${template}&title=${encodeURIComponent(
-      `${challenge?.no} - ${challenge?.info.en?.title}`,
+      `${challenge?.no} - ${challenge?.info.en?.title} - ${template}`,
     )}&body=${encodeURIComponent(readme)}`;
   }
 
   const URL = `${BASE_URL},${template}&title=${encodeURIComponent(
-    `${challenge?.no} - ${challenge?.info.en?.title}`,
+    `${challenge?.no} - ${challenge?.info.en?.title} - ${template}`,
   )}&body=${encodeURIComponent(readme)}`;
 
   return URL;
