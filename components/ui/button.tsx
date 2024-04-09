@@ -10,18 +10,18 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] shadow hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
+          "bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
         secondary:
-          "bg-[var(--color-bg)] text-[var(--color-fg)] border border-[var(--color-border)] shadow-sm hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+          "bg-[var(--color-bg)] text-[var(--color-fg)] border border-[var(--color-border)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
-        discord: "bg-social-discord text-white shadow-sm hover:bg-discord/90",
+        discord: "bg-social-discord text-white hover:bg-discord/90",
       },
       size: {
-        default: "h-9 px-4 py-2 [&>svg]:h-5 [&>svg]:w-5 gap-2",
-        sm: "h-7 py-1 rounded-[var(--radius-sm)] px-3 text-xs [&>svg]:h-4 [&>svg]:w-4 gap-1",
-        lg: "h-10 rounded-md px-8 [&>svg]:h-7 [&>svg]:w-7",
+        default: "h-8 px-3 py-2 [&>svg]:h-5 [&>svg]:w-5 [&_img]:h-5 [&_img]:w-5 gap-2",
+        sm: "h-7 rounded-[var(--radius)] px-2 text-xs [&_svg]:h-4 [&_svg]:w-4 gap-1",
+        lg: "h-9 px-4 py-2 [&>svg]:h-5 [&>svg]:w-5 gap-2",
       },
     },
     defaultVariants: {

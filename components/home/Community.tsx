@@ -4,7 +4,7 @@ import { DISCORD, REPO } from "@/constants";
 
 export function Community() {
   return (
-    <div className="border-b border-t border-[var(--color-border)] bg-[var(--color-bg)] py-6 text-left sm:py-16 sm:text-center">
+    <div className="bg-[var(--color-bg-secondary)] py-6 text-left sm:py-16 sm:text-center">
       <div className="container !max-w-[600px]">
         <p className="text-2xl font-bold sm:text-5xl">Community</p>{" "}
         <p className="my-2.5 text-sm leading-relaxed text-gray-600 sm:my-5 sm:text-lg">

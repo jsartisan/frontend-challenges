@@ -10,16 +10,16 @@ const iconButtonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] shadow hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
+          "bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
         secondary:
-          "bg-[var(--color-bg)] text-[var(--color-fg)] border border-[var(--color-border)] shadow-sm hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+          "bg-[var(--color-bg)] text-[var(--color-fg)] border border-[var(--color-border)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       },
       size: {
-        default: "h-9 w-9 [&>svg]:h-5 [&>svg]:w-5",
+        default: "h-8 w-8 [&>svg]:h-5 [&>svg]:w-5",
         xs: "h-4 w-4 [&>svg]:h-3 [&>svg]:w-3",
-        sm: "h-6 w-6 [&>svg]:h-4 [&>svg]:w-4 rounded-[var(--radius-1)]",
+        sm: "h-7 w-7 [&>svg]:h-[18px] [&>svg]:w-[18px] rounded-[var(--radius)]",
         lg: "h-10 w-10 [&>svg]:h-7 [&>svg]:w-7",
       },
     },
