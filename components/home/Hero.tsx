@@ -23,10 +23,10 @@ export function Hero() {
         prepare for frontend interviews. It&apos;s free and open source.
       </div>
       <div className="mt-2 flex gap-3">
-        <Button asChild variant="primary">
+        <Button size="lg" asChild variant="primary">
           <Link href="/challenges">Get Started</Link>
         </Button>
-        <Button asChild variant="secondary" className="flex gap-2">
+        <Button size="lg" asChild variant="secondary" className="flex gap-2">
           <a href={REPO} target="_blank" rel="noreferrer">
             <Icon name="github" /> Github
           </a>

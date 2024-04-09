@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
       <body className={cn("bg-[var(--color-bg-secondary)] font-sans text-sm antialiased", fontSans.variable)}>
         <LayoutProvider>
