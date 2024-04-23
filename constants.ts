@@ -1,10 +1,9 @@
-import path from "path";
 import { Difficulty } from "./types";
 import { TEMPLATES } from "./templates";
 
-export const ROOT_PATH = path.join(process.cwd());
-export const CHALLENGES_ROOT = path.join(ROOT_PATH, "./challenges");
-export const CONTENT_PATH = path.join(ROOT_PATH, "./content");
+export const ROOT_PATH = "./";
+export const CHALLENGES_ROOT = "./challenges";
+export const CONTENT_PATH = "./content";
 
 export const REPO = "https://github.com/jsartisan/frontend-challenges";
 export const DOMAIN = process.env.NEXT_BASE_URL || "https://frontend-challenges.com";
@@ -13,8 +12,11 @@ export const DISCORD = "https://discord.gg/utqqFmhQmT";
 export const DEFAULT_TEMPLATE = "vanilla";
 export const SUPPORTED_TEMPLATES = Object.keys(TEMPLATES) as (keyof typeof TEMPLATES)[];
 
+export const TRANSLATIONS = {
+  en: require("./locales/en.json"),
+} as const;
 export const DEFAULT_LOCALE = "en";
-export const SUPPORTED_LOCALES = ["en"] as const;
+export const SUPPORTED_LOCALES = Object.keys(TRANSLATIONS) as (keyof typeof TRANSLATIONS)[];
 
 export const DIFFICULTY_COLORS = {
   warm: "teal",

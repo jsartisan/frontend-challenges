@@ -9,6 +9,9 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+      data: {
+        loading: "loading",
+      },
     },
     extend: {
       gridTemplateAreas: {
@@ -30,38 +33,51 @@ module.exports = {
         "answer-layout": "auto 1fr 1fr",
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        background: {
+          DEFAULT: "var(--color-bg)",
+          transparent: "var(--color-bg-transparent)",
+          hover: "color-mix(in srgb, var(--color-bg), black 5%)",
+          active: "color-mix(in srgb, var(--color-bg), black 6%)",
+          selected: "color-mix(in srgb, var(--color-bg), black 8%)",
+          secondary: "var(--color-bg-secondary)",
+          accent: "var(--ramp-blue-500)",
+          "accent-hover": "color-mix(in srgb, var(--color-bg-accent), white 10%)",
+          "accent-active": "color-mix(in srgb, var(--color-bg-accent), black 10%)",
+          neutral: "var(--ramp-grey-100)",
+          "neutral-hover": "color-mix(in srgb, var(--color-bg-neutral), black 5%)",
+          "neutral-subtle": "color-mix(in srgb, var(--color-bg-neutral), white 5%)",
+          "neutral-subtle-hover": "color-mix(in srgb, var(--color-bg-neutral-subtle), white 10%)",
+          "neutral-subtle-active": "color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%)",
+          "neutral-strong": "color-mix(in srgb, var(--color-bg-neutral), black 10%)",
+          assistive: "var(--ramp-grey-900)",
+          "assistive-transparent": "color-mix(in srgb, var(--color-bg-assistive), transparent)",
+          negative: "var(--ramp-red-500)",
+          "negative-subtle": "color-mix(in srgb, var(--color-bg-negative) 10%, white 90%)",
+          easy: "var(--ramp-green-100)",
+          medium: "var(--ramp-orange-100)",
+          hard: "var(--ramp-red-100)",
+          question: "var(--ramp-purple-100)",
+          quiz: "var(--ramp-orange-100)",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        foreground: {
+          fg: "var(--ramp-grey-900)",
+          subtle: "color-mix(in srgb, var(--color-fg) 70%, white 20%)",
+          onaccent: "var(--ramp-white-1000)",
+          accent: "var(--ramp-blue-500)",
+          "accent-strong": "color-mix(in srgb, var(--color-fg-accent) black 20%)",
+          neutral: "var(--ramp-grey-900)",
+          "neutral-subtle": "color-mix(in srgb, var(--color-fg-neutral), transparent 30%)",
+          "neutral-subtle-hover": "color-mix(in srgb, var(--color-fg-neutral), transparent 5%)",
+          "on-assistive": "var(--ramp-white-1000)",
+          negative: "var(--ramp-red-500)",
+          easy: "var(--ramp-green-900)",
+          medium: "var(--ramp-orange-900)",
+          hard: "var(--ramp-red-900)",
+          question: "var(--ramp-purple-900)",
+          quiz: "var(--ramp-orange-900)",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        border: {
+          DEFAULT: "var(--color-border)",
         },
         social: {
           github: "#333",
@@ -87,10 +103,20 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "fade-in": {
+          "0%": { transform: "scale(0.95)", opacity: 0 },
+          "100%": { transform: "scale(1)", opacity: 1 },
+        },
+        "fade-out": {
+          "0%": { transform: "scale(1)", opacity: 1 },
+          "100%": { transform: "scale(0.95)", opacity: 0 },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.3s both",
+        "fade-out": "fade-out 0.3s both",
       },
     },
   },

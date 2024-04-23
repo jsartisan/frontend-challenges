@@ -1,12 +1,12 @@
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
-import { REPO } from "@/constants";
 import Link from "next/link";
+import { REPO } from "@/constants";
+import { Button } from "@/components/ui/button";
+import { Separator } from "../ui/separator";
 import { Icon } from "../ui";
 
 export function Hero() {
   return (
-    <div className="flex flex-col gap-4 pt-12">
+    <div className="flex flex-col gap-4  py-12">
       <a href={REPO} target="_blank" rel="noreferrer" className="self-start">
         <div className="inline-flex h-8 items-center rounded-md border border-dashed border-[var(--color-border-accent-subtle)] bg-opacity-20 px-2 py-1 text-sm">
           <span className="font-semibold text-[var(--color-fg-accent-strong)]">We&apos;re Open Source</span>
@@ -17,7 +17,7 @@ export function Hero() {
           Star us on GitHub
         </div>
       </a>
-      <div className="text-3xl font-bold sm:text-5xl">Level up your frontend</div>
+      <div className="text-3xl font-bold sm:text-5xl">Frontend Challenges</div>
       <div className="w-3/4 leading-relaxed text-gray-500">
         FrontendChallenges is a collection of frontend interview questions and answers. It is designed to help you
         prepare for frontend interviews. It&apos;s free and open source.

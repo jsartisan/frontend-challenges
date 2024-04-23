@@ -56,6 +56,7 @@ export interface QuestionMetaInfo {
     name: string;
     email: string;
     github: string;
+    avatar_url: string;
   };
   template: SupportedTemplates;
   tags: string[];
@@ -66,7 +67,7 @@ export interface QuestionMetaInfo {
 }
 
 export type SupportedTemplates = (typeof SUPPORTED_TEMPLATES)[number];
-export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
+export type SupportedLocales = (typeof SUPPORTED_LOCALES)[number];
 
 export type CodeFile = {
   code: string;

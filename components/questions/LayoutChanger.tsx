@@ -16,7 +16,7 @@ export const LayoutChanger = (props: LayoutChangerProps) => {
 
   return (
     <div className={cn("hidden items-center justify-center sm:flex", className)}>
-      <ToggleGroup variant="outline" size="icon" type="single" value={layout} onValueChange={setLayout}>
+      <ToggleGroup size="icon" variant="outline" type="single" value={layout} onValueChange={setLayout}>
         <ToggleGroupItem value="layout-1">
           <Icon name="layout-1" />
         </ToggleGroupItem>

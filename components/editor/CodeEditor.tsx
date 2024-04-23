@@ -46,8 +46,6 @@ export function CodeEditor(props: Props) {
 
   const onPrettify = () => {
     // if there is an error, we don't want to prettify the code
-    console.log({ error: sandpack });
-
     const activeFile = sandpack.activeFile;
     const code = sandpack.files[activeFile].code;
     const ext = activeFile.split(".").pop();
@@ -138,16 +136,10 @@ export function CodeEditor(props: Props) {
           <div className="flex h-full flex-col justify-center gap-2 text-center">
             <p className="animate-spin text-3xl">⚙️</p>
             <p className="text-lg font-semibold">Booting up the editor...</p>
-            <p className="text-sm text-muted-foreground">Please wait while we load the editor.</p>
+            <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <SandpackCodeEditor
-            ref={codemirrorInstance}
-            showRunButton={false}
-            showLineNumbers
-            showTabs={false}
-            className="h-full"
-          />
+          <SandpackCodeEditor ref={codemirrorInstance} showLineNumbers showTabs={false} className="h-full" />
         )}
       </div>
     </Card>

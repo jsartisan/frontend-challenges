@@ -3,7 +3,15 @@
   
 }
 
-/* FOR DEMO PURPOSE  */
+```
+
+```js index.js hidden
+import "./demo.css";
+import "./styles.css";
+
+```
+
+```css demo.css hidden
 body {
   font-family: sans-serif;
 }
@@ -42,11 +50,6 @@ header, footer {
   background-color: var(--coral);
   border: 1px dashed var(--coral--b);
 }
-```
-
-```js index.js
-import "./styles.css";
-
 ```
 
 ```html index.html

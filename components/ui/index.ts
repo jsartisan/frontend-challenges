@@ -21,3 +21,4 @@ export * from "./command";
 export * from "./icon-button";
 export * from "./tooltip";
 export * from "./sheet";
+export * from "./separator";

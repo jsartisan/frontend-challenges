@@ -32,7 +32,7 @@ const getTempalteFromURL = (searchParams: ReadonlyURLSearchParams, question: Que
   return Object.keys(question.templateFiles)[0] as SupportedTemplates;
 };
 
-export function Question(props: QuestionProps) {
+function QuestionChallenge(props: QuestionProps) {
   const { question } = props;
   const searchParams = useSearchParams();
   const [template, setTemplate] = useState(() => getTempalteFromURL(searchParams, question));
@@ -49,7 +49,7 @@ export function Question(props: QuestionProps) {
           <div className="relative flex w-full justify-between">
             <Breadcrumb challenge={question} />
             <LayoutChanger className="absolute -top-[2px] left-[calc(50%-125px)] w-[250px]" />
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <TemplateChanger template={template} setTemplate={setTemplate} question={question} />
               <ShareSolutionButton template={template} challenge={question} />
             </div>
@@ -79,3 +79,5 @@ export function Question(props: QuestionProps) {
     </>
   );
 }
+
+export { QuestionChallenge as Question };
