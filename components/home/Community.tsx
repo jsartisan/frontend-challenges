@@ -1,10 +1,10 @@
-import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import { DISCORD, REPO } from "@/constants";
+import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export function Community() {
   return (
-    <div className="bg-[var(--color-bg-secondary)] py-6 text-left sm:py-16 sm:text-center">
+    <div className="bg-[var(--color-bg-secondary)] py-20 text-left sm:text-center">
       <div className="container !max-w-[600px]">
         <p className="text-2xl font-bold sm:text-5xl">Community</p>{" "}
         <p className="my-2.5 text-sm leading-relaxed text-gray-600 sm:my-5 sm:text-lg">
@@ -23,13 +23,13 @@ export function Community() {
           <Button asChild variant="secondary">
             <a href={REPO} target="_blank" rel="noreferrer">
               <GitHubLogoIcon />
-              <span className="ml-2 hover:block">Give us a star on Github</span>
+              <span>Give us a star on Github</span>
             </a>
           </Button>
           <Button asChild variant="discord">
             <a href={DISCORD} target="_blank" rel="noreferrer">
               <DiscordLogoIcon />
-              <span className="ml-2">Join us on Discord</span>
+              <span>Join us on Discord</span>
             </a>
           </Button>
         </div>

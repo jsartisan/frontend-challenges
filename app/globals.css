@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --radius-xs: 0.125rem;
     --radius-sm: 0.25rem;
     --radius: 0.5rem;
 
@@ -19,10 +20,11 @@
     --color-bg-hover: color-mix(in srgb, var(--color-bg), black 5%);
     --color-bg-active: color-mix(in srgb, var(--color-bg), black 6%);
     --color-bg-selected: color-mix(in srgb, var(--color-bg), black 8%);
-    --color-bg-secondary: var(--ramp-grey-50);
+    --color-bg-secondary: color-mix(in oklch, var(--color-bg), black 2%);
     --color-bg-accent: var(--ramp-blue-500);
     --color-bg-accent-hover: color-mix(in srgb, var(--color-bg-accent), white 10%);
     --color-bg-accent-active: color-mix(in srgb, var(--color-bg-accent), black 10%);
+    --color-bg-accent-subtle: color-mix(in srgb, var(--color-bg-accent), white 80%);
     --color-bg-neutral: var(--ramp-grey-100);
     --color-bg-neutral-hover: color-mix(in srgb, var(--color-bg-neutral), black 5%);
     --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral), white 5%);
@@ -49,6 +51,7 @@
     --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral), transparent 5%);
     --color-fg-on-assistive: var(--ramp-white-1000);
     --color-fg-negative: var(--ramp-red-500);
+    --color-fg-position: var(--ramp-green-600);
     --color-fg-easy: var(--ramp-green-900);
     --color-fg-medium: var(--ramp-orange-900);
     --color-fg-hard: var(--ramp-red-900);
@@ -57,8 +60,10 @@
 
     --color-border: var(--ramp-grey-300);
     --color-border-hover: color-mix(in srgb, var(--color-border) 80%, black 20%);
+    --color-border-strong: color-mix(in srgb, var(--color-border), black 20%);
     --color-border-accent: var(--ramp-blue-500);
     --color-border-accent-subtle: color-mix(in srgb, var(--color-border-accent) 50%, transparent 20%);
+    --color-border-assistive: var(--ramp-grey-900);
   }
 
   .dark {

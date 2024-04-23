@@ -1,21 +1,21 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import React, { useEffect } from "react";
-import { Icon, IconButton, ToggleGroup, ToggleGroupItem } from "../ui";
+import React from "react";
+import { Icon, ToggleGroup, ToggleGroupItem } from "../ui";
 
 export default function ThemeChanger() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const onValueChange = (value: string) => {
-    if (value === "" || value === resolvedTheme) return;
+    if (value === "" || value === theme) return;
 
     setTheme(value);
   };
 
   return (
     <>
-      <ToggleGroup variant="ghost" size="icon" type="single" value={resolvedTheme} onValueChange={onValueChange}>
+      <ToggleGroup size="icon" variant="ghost" type="single" value={theme} onValueChange={onValueChange}>
         <ToggleGroupItem value="light">
           <Icon name="sun" />
         </ToggleGroupItem>
@@ -23,7 +23,7 @@ export default function ThemeChanger() {
           <Icon name="moon" />
         </ToggleGroupItem>
         <ToggleGroupItem value="system">
-          <Icon name="book" />
+          <Icon name="system" />
         </ToggleGroupItem>
       </ToggleGroup>
     </>

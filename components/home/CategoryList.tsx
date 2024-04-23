@@ -14,7 +14,7 @@ export function CategoryList(props: CategoryListProps) {
         return (
           <div
             key={question.no}
-            className="text-gray-90 flex items-center space-x-6 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-4 text-sm font-medium text-gray-600 md:px-6"
+            className="text-gray-90 flex items-center space-x-6 rounded-md border border-[var(--color-border)] bg-background px-4 py-4 text-sm font-medium text-gray-600 md:px-6"
             role="listitem"
           >
             <div className="w-8 shrink-0 text-center text-xl">{question.no}</div>

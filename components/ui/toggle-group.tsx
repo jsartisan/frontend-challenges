@@ -18,11 +18,12 @@ const ToggleGroup = React.forwardRef<
   <ToggleGroupPrimitive.Root
     ref={ref}
     data-variant={variant}
+    data-size={size}
     className={cn(
       cn(
-        "inline-flex h-9 items-center justify-center gap-1 rounded-[var(--radius)] bg-[var(--color-bg)] p-1 shadow-sm",
+        "inline-flex h-8 items-center justify-center gap-1 rounded bg-background p-1 shadow-sm",
         "data-[variant=outline]:border data-[variant=outline]:border-[var(--color-border)]",
-        "data-[variant=ghost]:gap-2 data-[variant=ghost]:shadow-none",
+        "data-[variant=ghost]:gap-2 data-[variant=ghost]:p-0 data-[variant=ghost]:shadow-none [&:is([data-size=icon][data-variant=outline])]:p-[2px]",
       ),
       className,
     )}
@@ -48,9 +49,10 @@ const ToggleGroupItem = React.forwardRef<
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        "text-[var(--color-fg-subtle)] data-[state=active]:text-[var(--color-fg)] [&>svg]:h-5 [&>svg]:w-5",
         className,
       )}
+      data-variant={context.variant || variant}
+      data-size={context.size || size}
       {...props}
     >
       {children}

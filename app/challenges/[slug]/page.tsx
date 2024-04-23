@@ -1,7 +1,7 @@
-import Client from "./client";
 import type { Metadata } from "next";
 import { getChallengeByPath, getChallenges } from "@/db/challenge";
-import { Header } from "@/components/layout/Header";
+
+import Client from "./client";
 
 export const revalidate = 3600;
 
@@ -23,13 +23,7 @@ export async function generateStaticParams() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Page(props: any) {
-  const challenges = await getChallenges();
   const challenge = await getChallengeByPath(props.params.slug);
 
-  return (
-    <>
-      <Header challenges={challenges.map((challenge) => ({ path: challenge.path, title: challenge.info.en?.title }))} />
-      <Client challenge={challenge} />
-    </>
-  );
+  return <Client challenge={challenge} />;
 }

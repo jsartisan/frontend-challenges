@@ -1,7 +1,3 @@
-import * as React from "react";
-
-import * as RadixIcon from "@radix-ui/react-icons";
-import { cn } from "@/utils/helpers";
 import {
   Layout1Icon,
   Layout2Icon,
@@ -13,9 +9,20 @@ import {
   VueColorIcon,
   JavascriptColorIcon,
   CssColorIcon,
+  SystemIcon,
+  UserIcon,
+  MoonIcon,
+  SpinnerIcon,
+  SortIcon,
+  CheckIcon,
 } from "../icons";
-import { VariantProps, cva } from "class-variance-authority";
 import { TidyIcon } from "../icons/TidyIcon";
+import { cn } from "@/utils/helpers";
+import * as RadixIcon from "@radix-ui/react-icons";
+import { VariantProps, cva } from "class-variance-authority";
+import * as React from "react";
+import { ArrowUpIcon } from "../icons/ArrowUpIcon";
+import { ArrowDownIcon } from "../icons/ArrowDownIcon";
 
 export type IconProps = {
   name:
@@ -48,25 +55,32 @@ export type IconProps = {
     | "caret-down"
     | "css-color"
     | "tidy"
-    | "plus-circled";
+    | "plus-circled"
+    | "system"
+    | "user"
+    | "spinner"
+    | "sort"
+    | "arrow-up"
+    | "arrow-down"
+    | "check-circle";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
 const iconVariants = cva("", {
-  variants: {
-    size: {
-      default: "h-6 w-6",
-      xs: "h-3 w-3",
-      sm: "h-4 w-4",
-      lg: "h-11 w-11",
-    },
-  },
   defaultVariants: {
     size: "default",
   },
+  variants: {
+    size: {
+      default: "h-6 w-6",
+      lg: "h-11 w-11",
+      sm: "h-4 w-4",
+      xs: "h-3 w-3",
+    },
+  },
 });
 
-const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name, ...props }, ref) => {
+const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size, ...props }, ref) => {
   let icon;
 
   switch (name) {
@@ -92,7 +106,7 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
       icon = RadixIcon.SunIcon;
       break;
     case "moon":
-      icon = RadixIcon.MoonIcon;
+      icon = MoonIcon;
       break;
     case "layout-1":
       icon = Layout1Icon;
@@ -160,6 +174,27 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
     case "tidy":
       icon = TidyIcon;
       break;
+    case "system":
+      icon = SystemIcon;
+      break;
+    case "user":
+      icon = UserIcon;
+      break;
+    case "spinner":
+      icon = SpinnerIcon;
+      break;
+    case "sort":
+      icon = SortIcon;
+      break;
+    case "arrow-up":
+      icon = ArrowUpIcon;
+      break;
+    case "arrow-down":
+      icon = ArrowDownIcon;
+      break;
+    case "check-circle":
+      icon = CheckIcon;
+      break;
     default:
       icon = RadixIcon.Pencil1Icon;
       break;
@@ -167,8 +202,8 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, size, name
 
   return React.createElement(icon, {
     ...props,
+    className: cn(iconVariants({ className, size })),
     ref,
-    className: cn(iconVariants({ size, className })),
   });
 });
 

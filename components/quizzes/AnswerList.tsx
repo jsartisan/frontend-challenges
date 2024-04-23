@@ -28,7 +28,7 @@ export function AnswerList(props: QuestionListProps) {
       <div className="flex h-full flex-col justify-center gap-2 text-center">
         <p className="text-3xl">📋</p>
         <p className="text-lg font-semibold">No answers yet.</p>
-        <p className="text-sm text-muted-foreground">Be the first to answer this question!</p>
+        <p className="text-muted-foreground text-sm">Be the first to answer this question!</p>
       </div>
     );
   }
@@ -45,7 +45,7 @@ export function AnswerList(props: QuestionListProps) {
           target="_blank"
           className="group flex items-center gap-1 underline decoration-[var(--color-border)] underline-offset-4 hover:decoration-[var(--color-border-hover)]"
         >
-          <p className="text-sm text-muted-foreground">{answer.title}</p>
+          <p className="text-muted-foreground text-sm">{answer.title}</p>
         </Link>
       </div>
       <div className="ml-auto">
@@ -55,7 +55,7 @@ export function AnswerList(props: QuestionListProps) {
               <Icon name="play" />
             </IconButton>
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent className="w-2/3">
             <SheetHeader className="h-20">
               <SheetTitle>{answer.title}</SheetTitle>
               <SheetDescription className="flex items-center">

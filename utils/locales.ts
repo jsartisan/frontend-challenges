@@ -1,15 +1,8 @@
 import path from "path";
 import { loadFile } from "./fs";
 import { pipe } from "./helpers";
-
-export const DEFAULT_LOCALE = "en";
-export const SUPPORTED_LOCALES = ["en"] as const;
-
-export const messages = {
-  en: require("../locales/en.json"),
-};
-
-export type SupportedLocale = keyof typeof messages;
+import { SupportedLocales } from "@/types";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, TRANSLATIONS } from "@/constants";
 
 /**
  * return translated message from locale by key
@@ -18,8 +11,8 @@ export type SupportedLocale = keyof typeof messages;
  * @param key
  * @returns
  */
-export function translate(locale: SupportedLocale, key: string): string {
-  const result = (messages[locale] && messages[locale][key]) || messages[DEFAULT_LOCALE][key];
+export function translate(locale: SupportedLocales, key: string): string {
+  const result = (TRANSLATIONS[locale] && TRANSLATIONS[locale][key]) || TRANSLATIONS[DEFAULT_LOCALE][key];
 
   if (!result) throw new Error(`Missing message for key "${key}"`);
 
