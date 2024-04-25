@@ -4,7 +4,6 @@ import { useState } from "react";
 import { TEMPLATES } from "@/templates";
 import { Breadcrumb } from "./Breadcrumb";
 import { Card } from "@/components/ui/card";
-import { SUPPORTED_TEMPLATES } from "@/constants";
 import Preview from "@/components/editor/Preview";
 import { TemplateChanger } from "./TemplateChanger";
 import { Question, SupportedTemplates } from "@/types";
@@ -16,26 +15,14 @@ import { LayoutChanger } from "@/components/questions/LayoutChanger";
 import { ResizableLayout } from "@/components/editor/ResizableLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
 import { ShareSolutionButton } from "@/components/editor/ShareSolutionButton";
-import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 type QuestionProps = {
   question: Question;
 };
 
-const getTempalteFromURL = (searchParams: ReadonlyURLSearchParams, question: Question): SupportedTemplates => {
-  const template = searchParams.get("template");
-
-  if (template && SUPPORTED_TEMPLATES.includes(template as SupportedTemplates)) {
-    return template as SupportedTemplates;
-  }
-
-  return Object.keys(question.templateFiles)[0] as SupportedTemplates;
-};
-
 function QuestionChallenge(props: QuestionProps) {
   const { question } = props;
-  const searchParams = useSearchParams();
-  const [template, setTemplate] = useState(() => getTempalteFromURL(searchParams, question));
+  const [template, setTemplate] = useState(Object.keys(question.templateFiles)[0] as SupportedTemplates);
 
   return (
     <>

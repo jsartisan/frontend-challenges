@@ -1,6 +1,6 @@
 "use client";
 
-import { Quiz } from "@/types";
+import type { Quiz } from "@/types";
 import { Card } from "@/components/ui/card";
 import { getShareAnswerURL } from "@/utils/url";
 import Description from "@/components/editor/Description";

@@ -8,9 +8,9 @@ import { SUPPORTED_TEMPLATES } from "@/constants";
 import { SupportedTemplates } from "@/types";
 import { useSearchParams, ReadonlyURLSearchParams } from "next/navigation";
 import { FileExplorer } from "@/components/editor/FileExplorer";
-import { useState } from "react";
 import { TEMPLATES } from "@/templates";
 import { TemplateChanger } from "@/components/editor/TemplateChanger";
+import { useState } from "react";
 
 const getTempalteFromURL = (searchParams: ReadonlyURLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -45,40 +45,38 @@ export default function Client() {
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams.get("code"), template));
 
   return (
-    <>
-      <SandpackRoot files={files}>
-        <div className="flex h-full w-full flex-col gap-4 p-4">
-          <div className="relative flex w-full justify-between">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-semibold">Playground</h1>
-            </div>
-          </div>
-          <div className="w-full flex-grow">
-            <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
-              <ResizablePanel defaultSizePercentage={15}>
-                <div className="flex flex-col gap-3">
-                  <TemplateChanger
-                    template={template}
-                    setTemplate={(template) => {
-                      setTemplate(template);
-                      setFiles(getFilesFromURL(searchParams.get("code"), template));
-                    }}
-                  />
-                  <FileExplorer />
-                </div>
-              </ResizablePanel>
-              <ResizableHandle className="w-2" />
-              <ResizablePanel defaultSizePercentage={50}>
-                <CodeEditor />
-              </ResizablePanel>
-              <ResizableHandle className="w-2" />
-              <ResizablePanel defaultSizePercentage={35}>
-                <Preview template={template} />
-              </ResizablePanel>
-            </ResizablePanelGroup>
+    <SandpackRoot files={files}>
+      <div className="flex h-full w-full flex-col gap-4 p-4">
+        <div className="relative flex w-full justify-between">
+          <div className="flex items-center">
+            <h1 className="text-2xl font-semibold">Playground</h1>
           </div>
         </div>
-      </SandpackRoot>
-    </>
+        <div className="w-full flex-grow">
+          <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
+            <ResizablePanel defaultSizePercentage={15}>
+              <div className="flex flex-col gap-3">
+                <TemplateChanger
+                  template={template}
+                  setTemplate={(template) => {
+                    setTemplate(template);
+                    setFiles(getFilesFromURL(searchParams.get("code"), template));
+                  }}
+                />
+                <FileExplorer />
+              </div>
+            </ResizablePanel>
+            <ResizableHandle className="w-2" />
+            <ResizablePanel defaultSizePercentage={50}>
+              <CodeEditor />
+            </ResizablePanel>
+            <ResizableHandle className="w-2" />
+            <ResizablePanel defaultSizePercentage={35}>
+              <Preview template={template} />
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
+      </div>
+    </SandpackRoot>
   );
 }

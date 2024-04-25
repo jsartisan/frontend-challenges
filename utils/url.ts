@@ -2,7 +2,7 @@ import { SandpackState } from "@codesandbox/sandpack-react";
 
 import { TEMPLATES } from "@/templates";
 import { DEFAULT_LOCALE, DOMAIN, REPO } from "@/constants";
-import { Challenge, SupportedLocale, SupportedTemplates } from "@/types";
+import { Challenge, SupportedLocales, SupportedTemplates } from "@/types";
 
 export const PLAYGROUND = `${DOMAIN}/play`;
 
@@ -62,7 +62,7 @@ export function getSolutionsURL(no: number) {
  */
 export const getShareAnswerURL = (props: {
   challenge: Challenge;
-  locale?: SupportedLocale;
+  locale?: SupportedLocales;
   files?: SandpackState["files"];
   template?: SupportedTemplates;
 }) => {

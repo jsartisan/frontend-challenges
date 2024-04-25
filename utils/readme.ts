@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import { escapeHtml } from "./helpers";
 import { getFileNameByLocale, translate } from "./locales";
 import { getChallengeInfoByLocale } from "@/db/challenge";
-import { Challenge, Difficulty, QuestionMetaInfo, SupportedLocale } from "@/types";
+import { Challenge, Difficulty, QuestionMetaInfo, SupportedLocales } from "@/types";
 import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
 import { toNearborREADME, getQuestionURL, getChallengeReadmeURL, getShareAnswerURL, getSolutionsURL } from ".";
 
@@ -32,7 +32,7 @@ export function cleanUpReadme(text: string) {
 export async function insertInfoReadme(
   filepath: string,
   quiz: Challenge,
-  locale: SupportedLocale,
+  locale: SupportedLocales,
   quizzes: Challenge[],
 ) {
   if (!fs.existsSync(filepath)) return;
@@ -116,7 +116,7 @@ export async function insertInfoReadme(
  *
  * @returns
  */
-export function getDifficultyBadge(difficulty: Difficulty, locale: SupportedLocale) {
+export function getDifficultyBadge(difficulty: Difficulty, locale: SupportedLocales) {
   return getBadge("", translate(locale, `difficulty.${difficulty}`), DIFFICULTY_COLORS[difficulty]);
 }
 
@@ -169,7 +169,7 @@ export function toAuthorInfo(author: Partial<QuestionMetaInfo["author"]> = {}) {
  *
  * @returns
  */
-export function getDifficultyBadgeInverted(difficulty: Difficulty, locale: SupportedLocale, count: number) {
+export function getDifficultyBadgeInverted(difficulty: Difficulty, locale: SupportedLocales, count: number) {
   return getBadge(translate(locale, `difficulty.${difficulty}`), count.toString(), DIFFICULTY_COLORS[difficulty]);
 }
 
@@ -178,7 +178,7 @@ export function getDifficultyBadgeInverted(difficulty: Difficulty, locale: Suppo
  *
  * @returns
  */
-export function getDifficultyPlainText(difficulty: string, locale: SupportedLocale, count: number) {
+export function getDifficultyPlainText(difficulty: string, locale: SupportedLocales, count: number) {
   return `${translate(locale, `difficulty.${difficulty}`)} (${count.toString()})`;
 }
 

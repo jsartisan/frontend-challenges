@@ -1,9 +1,8 @@
 import { getChallengeInfoByLocale } from "@/db/challenge";
-import type { SupportedLocale } from "../utils/locales";
 import { translate } from "../utils/locales";
-import { Question } from "@/types";
+import { Question, SupportedLocales } from "@/types";
 
-export const toInfoHeader = function toInfoHeader(quiz: Question, locale: SupportedLocale) {
+export const toInfoHeader = function toInfoHeader(quiz: Question, locale: SupportedLocales) {
   const info = getChallengeInfoByLocale(quiz, locale);
 
   const author = `${info.author?.name} (@${info?.author?.github})`;
