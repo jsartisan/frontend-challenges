@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/client";
 
 import { Button, Icon } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useUiStore } from "@/store/ui";
 import Link from "next/link";
 
@@ -32,7 +32,8 @@ export function SignInButton() {
             Sign In
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[350px]">
+        <PopoverContent className="w-[350px]" align="end" side="bottom">
+          <PopoverArrow />
           <div className="space-y-2">
             <div className="flex flex-col gap-4">
               <div className="space-y-1 text-center">
