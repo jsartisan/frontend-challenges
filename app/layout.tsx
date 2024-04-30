@@ -5,12 +5,6 @@ import { cn } from "@/utils/helpers";
 import { Provider } from "@/providers";
 import { getChallenges } from "@/db/challenge";
 import { Header } from "@/components/layout/Header";
-import { Inter as FontSans } from "next/font/google";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   title: "Frontend Challenges",
@@ -25,7 +19,7 @@ export default async function RootLayout(params) {
   return (
     <html suppressHydrationWarning>
       <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
-      <body className={cn("bg-background-secondary font-sans text-sm antialiased", fontSans.variable)}>
+      <body className={cn("flex min-h-screen flex-col bg-background-secondary font-sans text-sm antialiased")}>
         <Provider>
           <Header challenges={challenges.map((c) => ({ path: c.path, title: c.info.en?.title }))} />
           {children}

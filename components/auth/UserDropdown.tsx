@@ -9,14 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IconButton } from "@/components/ui";
-import { createClient } from "@/utils/supabase/client";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
+import { useLogout } from "@/hooks";
 
 export function UserDropdown() {
   const auth = useAuth();
-  const supabase = createClient();
+  const { logout, isLoggingOut } = useLogout();
 
   return (
     <>
@@ -42,13 +42,13 @@ export function UserDropdown() {
             <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={async () => {
-              await supabase.auth.signOut();
+            onSelect={(event) => {
+              event.preventDefault();
 
-              window.location.reload();
+              logout();
             }}
           >
-            Log out
+            {isLoggingOut ? "Logging out..." : "Logout"}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

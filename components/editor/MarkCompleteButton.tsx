@@ -50,15 +50,15 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
           variant="tertiary"
           onClick={onClick}
           className={cn({
-            "text-green-500": isCompleted,
-            "text-gray-400 hover:text-foreground-neutral": !isCompleted,
+            "text-foreground-success": isCompleted,
+            "text-foreground-neutral-subtle hover:text-foreground-neutral-subtle-hover": !isCompleted,
           })}
         >
           <Icon name="check-circle" />
         </IconButton>
       </TooltipTrigger>
 
-      <TooltipContent>
+      <TooltipContent side="right">
         {isCompleted ? "Mark as incomplete" : "Mark as complete"}
         <TooltipArrow />
       </TooltipContent>

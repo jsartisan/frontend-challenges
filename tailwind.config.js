@@ -14,24 +14,6 @@ module.exports = {
       },
     },
     extend: {
-      gridTemplateAreas: {
-        "question-layout-1": ["description editor", "description preview"],
-        "question-layout-2": ["description editor preview"],
-        "question-layout-3": ["description editor", "preview editor"],
-        "answer-layout": ["header", "content", "preview"],
-      },
-      gridTemplateColumns: {
-        "question-layout-1": "1fr 1fr",
-        "question-layout-2": "1fr 60ch 1fr",
-        "question-layout-3": "1fr 1fr",
-        "answer-layout": "1fr",
-      },
-      gridTemplateRows: {
-        "question-layout-1": "1fr 1fr",
-        "question-layout-2": "1fr",
-        "question-layout-3": "1fr 1fr",
-        "answer-layout": "auto 1fr 1fr",
-      },
       colors: {
         background: {
           DEFAULT: "var(--color-bg)",
@@ -66,8 +48,8 @@ module.exports = {
           accent: "var(--ramp-blue-500)",
           "accent-strong": "color-mix(in srgb, var(--color-fg-accent) black 20%)",
           neutral: "var(--ramp-grey-900)",
-          "neutral-subtle": "color-mix(in srgb, var(--color-fg-neutral), transparent 30%)",
-          "neutral-subtle-hover": "color-mix(in srgb, var(--color-fg-neutral), transparent 5%)",
+          "neutral-subtle": "var(--color-fg-neutral-subtle)",
+          "neutral-subtle-hover": "var(--color-fg-neutral-subtle-hover)",
           "on-assistive": "var(--ramp-white-1000)",
           negative: "var(--ramp-red-500)",
           easy: "var(--ramp-green-900)",
@@ -120,9 +102,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("tailwindcss-animate"),
-    require("@savvywombat/tailwindcss-grid-areas"),
-  ],
+  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
 };

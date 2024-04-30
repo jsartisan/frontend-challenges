@@ -11,3 +11,7 @@ export async function getAuthUser() {
 
   return supabase.from("profiles").select("*").eq("id", userData.data.user.id);
 }
+
+export async function logoutUser() {
+  return supabase.auth.signOut();
+}
