@@ -18,7 +18,7 @@ export default function Client(props: any) {
           <p>{rest.published_at}</p>
         </div>
         <Card className="max-w-screen-lg p-4">
-          <div className="prose dark:prose-invert">
+          <div className="">
             <MDXComponent code={code} />
           </div>
         </Card>

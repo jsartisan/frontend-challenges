@@ -7,13 +7,9 @@ author:
   email: pawankumar2901@gmail.com
   github: jsartisan
   avatar_url: https://avatars.githubusercontent.com/u/39918415?v=4
-
 tags: css, logical properties
-
 resources:
   - https://developer.mozilla.org/en-US/docs/Web/CSS/margin-inline-start
   - https://css-tricks.com/almanac/properties/g/gap/
-
 template: vanilla
-
 published_date: 2024-01-03

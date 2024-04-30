@@ -32,12 +32,14 @@ export const components = {
       </SandpackProvider>
     );
   },
-  h2: (props: any) => <h2 className="not-prose mb-3 mt-8 text-2xl font-bold" {...props} />,
-  p: (props: any) => <p className="not-prose mb-2 leading-snug" {...props} />,
-  ul: (props: any) => <ul className="my-2" {...props} />,
+  h2: (props: any) => <h2 className="mb-3 mt-6 text-2xl font-bold" {...props} />,
+  h3: (props: any) => <h3 className="text-base font-semibold" {...props} />,
+  p: (props: any) => <p className="leading-snug" {...props} />,
+  ul: (props: any) => <ul className="" {...props} />,
+  li: (props: any) => <li className="ml-4 list-disc" {...props} />,
   code: (props: any) => (
     <code
-      className="not-prose rounded bg-[var(--color-bg-neutral-subtle)] px-1 py-0.5 text-[var(--color-fg-neutral)]"
+      className="rounded bg-[var(--color-bg-neutral-subtle)] px-1 py-0.5 text-[var(--color-fg-neutral)]"
       {...props}
     />
   ),

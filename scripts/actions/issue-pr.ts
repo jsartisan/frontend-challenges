@@ -99,7 +99,10 @@ const action: Action = async (github, context, core) => {
     if (!info.author) {
       info.author = info.author || {};
       info.author.github = issue.user.login;
-      if (user) info.author.name = user.name;
+      if (user) {
+        info.author.name = user.name;
+        info.author.avatar_url = user.avatar_url;
+      }
     }
 
     // add published_date to the info
