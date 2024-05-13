@@ -40,7 +40,7 @@ export default function SpotLight(props: SpotlightProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="text-muted-foreground hover:text-accent-foreground focus-visible:ring-ring relative inline-flex h-8 w-full !scale-100 animate-fade-in items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-[var(--color-border)] bg-background px-4 py-2 text-sm font-normal opacity-0 shadow-none transition-colors delay-300 hover:bg-[var(--color-bg-neutral)] focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 sm:pr-12 md:w-20 lg:w-[180px]"
+        className="text-muted-foreground hover:text-accent-foreground focus-visible:ring-ring relative hidden h-8 w-full !scale-100 animate-fade-in items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-[var(--color-border)] bg-background px-4 py-2 text-sm font-normal opacity-0 shadow-none transition-colors delay-300 hover:bg-[var(--color-bg-neutral)] focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 sm:flex sm:pr-12 md:inline-flex md:w-20 lg:w-[180px]"
       >
         <span className="hidden lg:inline-flex">Search...</span>
         <span className="inline-flex lg:hidden">Search...</span>
@@ -49,27 +49,53 @@ export default function SpotLight(props: SpotlightProps) {
         </kbd>
       </button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="Search Challenges,..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
-            <CommandItem>
+            <CommandItem
+              onSelect={() => {
+                router.push("/");
+                setOpen(false);
+              }}
+            >
               <span>Home</span>
             </CommandItem>
-            <CommandItem onSelect={() => router.push("/challenges")}>
+            <CommandItem
+              onSelect={() => {
+                router.push("/challenges");
+                setOpen(false);
+              }}
+            >
               <span>Challenges</span>
             </CommandItem>
-            <CommandItem onSelect={() => router.push("/blog")}>
+            <CommandItem
+              onSelect={() => {
+                router.push("/blog");
+                setOpen(false);
+              }}
+            >
               <span>Blog</span>
             </CommandItem>
-            <CommandItem onSelect={() => window.open(REPO, "_blank")?.focus()}>
+            <CommandItem
+              onSelect={() => {
+                window.open(REPO, "_blank")?.focus();
+                setOpen(false);
+              }}
+            >
               <span>Github</span>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Challenges">
             {items.map((item) => (
-              <CommandItem key={item.path} onSelect={() => router.push(`/challenges/${item.path}`)}>
+              <CommandItem
+                key={item.path}
+                onSelect={() => {
+                  router.push(`/challenges/${item.path}`);
+                  setOpen(false);
+                }}
+              >
                 <span>{item.title}</span>
               </CommandItem>
             ))}

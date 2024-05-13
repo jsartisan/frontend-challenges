@@ -19,9 +19,9 @@ const ThemeChanger = dynamic(() => import("../common/ThemeChanger"), {
 export default function Footer() {
   return (
     <div className="border-t border-[var(--color-border)] bg-background  py-4 sm:py-6">
-      <div className="mx-auto flex max-w-screen-xl justify-between px-4 sm:px-6">
+      <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-4 px-4 sm:flex-row sm:px-6">
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2 sm:justify-start">
             <Logo isTextVisible />
             <span className="text-xs text-[var(--color-fg-subtle)]">by</span>
             <a
@@ -66,7 +66,7 @@ export default function Footer() {
             </a>
           </p>
         </div>
-        <div className="flex flex-col items-end gap-2">
+        <div className="flex flex-col items-center gap-2 sm:items-end">
           <div className="flex items-center gap-2">
             <ThemeChanger />
           </div>

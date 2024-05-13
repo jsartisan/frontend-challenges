@@ -20,7 +20,7 @@ function Preview(props: PreviewProps) {
   const { sandpack } = useSandpack();
   const { activeFile } = sandpack;
   const isTestFile = activeFile.includes(".test.");
-  const mode = "mode" in TEMPLATES[template] ? TEMPLATES[template].mode : undefined;
+  const mode = "mode" in TEMPLATES[template] ? (TEMPLATES[template] as any).mode : undefined;
 
   useEffect(() => {
     setTimeout(() => {

@@ -9,6 +9,7 @@ import { Skeleton } from "../ui/skeleton";
 
 const SpotLight = dynamic(() => import("@/components/common/Spotlight"), {
   ssr: false,
+  loading: () => <Skeleton className="h-8 w-20" />,
 });
 const UserNav = dynamic(() => import("@/components/auth/UserNav"), {
   ssr: false,
