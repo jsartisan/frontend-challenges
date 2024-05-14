@@ -14,6 +14,7 @@ import {
 import { REPO } from "@/constants";
 import { SearchItem } from "@/types";
 import { useRouter } from "next/navigation";
+import { Badge, Icon } from "../ui";
 
 interface SpotlightProps {
   items: SearchItem[];
@@ -59,6 +60,7 @@ export default function SpotLight(props: SpotlightProps) {
                 setOpen(false);
               }}
             >
+              <Icon name="home" />
               <span>Home</span>
             </CommandItem>
             <CommandItem
@@ -67,6 +69,7 @@ export default function SpotLight(props: SpotlightProps) {
                 setOpen(false);
               }}
             >
+              <Icon name="challenge" />
               <span>Challenges</span>
             </CommandItem>
             <CommandItem
@@ -75,6 +78,7 @@ export default function SpotLight(props: SpotlightProps) {
                 setOpen(false);
               }}
             >
+              <Icon name="blog" />
               <span>Blog</span>
             </CommandItem>
             <CommandItem
@@ -83,6 +87,7 @@ export default function SpotLight(props: SpotlightProps) {
                 setOpen(false);
               }}
             >
+              <Icon name="github" />
               <span>Github</span>
             </CommandItem>
           </CommandGroup>
@@ -90,6 +95,7 @@ export default function SpotLight(props: SpotlightProps) {
           <CommandGroup heading="Challenges">
             {items.map((item) => (
               <CommandItem
+                className="flex items-center justify-between  gap-2"
                 key={item.path}
                 onSelect={() => {
                   router.push(`/challenges/${item.path}`);
@@ -97,6 +103,7 @@ export default function SpotLight(props: SpotlightProps) {
                 }}
               >
                 <span>{item.title}</span>
+                <Badge variant={item.difficulty}>{item.difficulty}</Badge>
               </CommandItem>
             ))}
           </CommandGroup>

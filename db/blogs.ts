@@ -15,10 +15,12 @@ export const getAllBlogs = (): Blog[] => {
       const source = fs.readFileSync(path.join(filePath), "utf8");
       const { data } = matter(source);
 
+      console.log({ filePath });
+
       return {
         ...data,
         slug: filePath.replace(`${PATH}/`, "").replace("/index.md", ""),
-        path: filePath.replace(`${CONTENT_PATH}/`, "").replace("/index.md", ""),
+        path: filePath.replace(`${CONTENT_PATH.replace("./", "")}/`, "").replace("/index.md", ""),
       };
     })
 

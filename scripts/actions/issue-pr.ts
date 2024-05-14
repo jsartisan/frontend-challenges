@@ -218,6 +218,46 @@ const action: Action = async (github, context, core) => {
       core.info(JSON.stringify(pr, null, 2));
 
       if (pr) await updateComment(github, context, createMessageBody(pr.number));
+
+      // check if there is an existing discussion for the challenge ( we check it by the label )
+      const result = await github.graphql<{ repository: { discussions: { nodes: { id: string }[] } } }>(
+        `
+          query GetDiscussions($label: String!) {
+            repository(owner: "jsartisan", name: "frontend-challenges") {
+              discussions(first: 1, query: $label) {
+                nodes {
+                  id
+                }
+              }
+            }
+          }
+        `,
+        {
+          label: no.toString(),
+        },
+      );
+
+      if (result.repository.discussions.nodes.length === 0) {
+        await github.graphql(
+          `
+            mutation CreateDiscussion($input: CreateDiscussionInput!) {
+              createDiscussion(input: $input) {
+                discussion {
+                  id
+                }
+              }
+            }
+          `,
+          {
+            input: {
+              repositoryId: context.repo.repo,
+              title: `#${no} - ${info.title}`,
+              body: `This is an auto-generated discussion that auto reflect on #${no}, please go to #${no} for discussion or making changes.`,
+              category: "Polls",
+            },
+          },
+        );
+      }
     }
   } else {
     core.info("No matched labels, skipped");

@@ -18,10 +18,12 @@ export default async function RootLayout(params) {
 
   return (
     <html suppressHydrationWarning>
-      <link rel="icon" href="/images/favicon.ico" type="image/png" sizes="32x32" />
+      <link rel="icon" href="/favicon.ico" type="image/png" sizes="32x32" />
       <body className={cn("flex min-h-screen flex-col bg-background-secondary font-sans text-sm antialiased")}>
         <Provider>
-          <Header challenges={challenges.map((c) => ({ path: c.path, title: c.info.en?.title }))} />
+          <Header
+            challenges={challenges.map((c) => ({ path: c.path, title: c.info.en?.title, difficulty: c.difficulty }))}
+          />
           {children}
         </Provider>
       </body>

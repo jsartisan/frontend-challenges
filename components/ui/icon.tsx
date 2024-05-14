@@ -15,6 +15,9 @@ import {
   SpinnerIcon,
   SortIcon,
   CheckIcon,
+  ChallengeIcon,
+  BlogIcon,
+  HomeIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "@/utils/helpers";
@@ -62,7 +65,9 @@ export type IconProps = {
     | "sort"
     | "arrow-up"
     | "arrow-down"
-    | "check-circle";
+    | "check-circle"
+    | "blog"
+    | "challenge";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -88,7 +93,7 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       icon = RadixIcon.PlayIcon;
       break;
     case "home":
-      icon = RadixIcon.HomeIcon;
+      icon = HomeIcon;
       break;
     case "chevron-right":
       icon = RadixIcon.ChevronRightIcon;
@@ -194,6 +199,12 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "check-circle":
       icon = CheckIcon;
+      break;
+    case "blog":
+      icon = BlogIcon;
+      break;
+    case "challenge":
+      icon = ChallengeIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

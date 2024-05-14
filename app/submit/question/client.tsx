@@ -1,14 +1,12 @@
 "use client";
 
 import * as z from "zod";
-import { useQueryState } from "nuqs";
 import { Difficulty } from "@/types";
 import { TEMPLATES } from "@/templates";
 import { useForm } from "react-hook-form";
 import { DIFFICULTY_RANK } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tabs, TabsContent, Form } from "@/components/ui";
-import { getSubmitChallengeURL } from "@/utils/questions";
 import SandpackRoot from "@/components/editor/SandpackRoot";
 
 import { Description } from "./Description";
@@ -16,6 +14,7 @@ import { Step1Fields } from "./Step1Fields";
 import { Step2Fields } from "./Step2Fields";
 import { Step1Header } from "./Step1Header";
 import { Step2Header } from "./Step2Header";
+import { useState } from "react";
 
 export const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -39,12 +38,8 @@ console.log("Hello World!");
 \`\`\`
 `;
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  window.open(getSubmitChallengeURL(values), "_blank")?.focus();
-}
-
 export default function Client() {
-  const [tab, setActiveTab] = useQueryState("tab");
+  const [tab, setActiveTab] = useState("description");
   const activeTab = tab || "description";
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -64,7 +59,7 @@ export default function Client() {
   return (
     <Form {...form}>
       <SandpackRoot files={form.getValues().files}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="h-full p-4">
+        <form className="h-full p-4">
           <Tabs className="h-full w-full p-0 " value={activeTab || "description"} onValueChange={setActiveTab}>
             <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
               <Step1Header form={form} setActiveTab={setActiveTab} />
@@ -74,7 +69,7 @@ export default function Client() {
               </div>
             </TabsContent>
             <TabsContent value="code" className="h-full w-full flex-col p-0 px-0 [&:not([hidden])]:flex">
-              <Step2Header setActiveTab={setActiveTab} />
+              <Step2Header setActiveTab={setActiveTab} form={form} />
               <Step2Fields form={form} />
             </TabsContent>
           </Tabs>

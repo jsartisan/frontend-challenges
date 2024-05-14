@@ -14,3 +14,6 @@ export { MoonIcon } from "./MoonIcon";
 export { SpinnerIcon } from "./SpinnerIcon";
 export { SortIcon } from "./SortIcon";
 export { CheckIcon } from "./CheckIcon";
+export { BlogIcon } from "./BlogIcon";
+export { ChallengeIcon } from "./ChallengeIcon";
+export { HomeIcon } from "./HomeIcon";

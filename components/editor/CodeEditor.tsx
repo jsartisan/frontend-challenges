@@ -27,7 +27,7 @@ type Props = {
 
 export function CodeEditor(props: Props) {
   const codemirrorInstance = useRef<any>(null);
-  const { className, onChange, showTabs = true, exclude } = props;
+  const { className, showTabs = true, exclude } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -37,12 +37,6 @@ export function CodeEditor(props: Props) {
       setLoading(false);
     }, 500);
   }, []);
-
-  useEffect(() => {
-    if (files && onChange !== undefined) {
-      onChange(files);
-    }
-  }, [files]);
 
   const onPrettify = () => {
     // if there is an error, we don't want to prettify the code
