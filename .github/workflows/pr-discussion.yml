@@ -1,23 +1,26 @@
-name: PR to Discussion 
+name: PR to Discussion
 
 on:
   pull_request:
-    types: [closed]
-  branches:
-    - main
+    types:
+      - closed
 
 jobs:
   start:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'npm'
+          cache: npm
       - run: cd scripts && npm i --only=production
-      - run: cd scripts/actions && npx esno ./loader.ts ${{github.token}} pr-discussion
+      - run: >-
+          cd scripts/actions && npx esno ./loader.ts ${{github.token}}
+          pr-discussion
       - run: npm run lint -- --fix
       - uses: EndBug/add-and-commit@v9
         with:
-          message: "chore: create discussion for challenge ${{ github.event.pull_request.title }}"
+          message: >-
+            chore: create discussion for challenge ${{github.event.pull_request.title }}
