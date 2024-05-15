@@ -14,6 +14,9 @@ const action: Action = async (github, context, core) => {
     pull_number: no,
   });
 
+  core.info("-----Files-----");
+  core.info(JSON.stringify(files, null, 2));
+
   if (files.data.some((file) => file.filename === "info.yml")) {
     const infoRaw = files.data.find((file) => file.filename === "info.yml")?.patch;
 
