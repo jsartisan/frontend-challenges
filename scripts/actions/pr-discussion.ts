@@ -41,6 +41,12 @@ const action: Action = async (github, context, core) => {
   const issue = payload.issue;
   const no = context.issue.number;
 
+  core.info("-----Issue-----");
+  core.info(JSON.stringify(issue, null, 2));
+
+  core.info("-----no-----");
+  core.info(no.toString());
+
   if (!issue) return;
 
   const labels: string[] = (issue.labels || []).map((i: any) => i && i.name).filter(Boolean);
