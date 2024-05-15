@@ -1,0 +1,23 @@
+name: PR to Discussion 
+
+on:
+  pull_request:
+    types: [closed]
+  branches:
+    - main
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: cd scripts && npm i --only=production
+      - run: cd scripts/actions && npx esno ./loader.ts ${{github.token}} pr-discussion
+      - run: npm run lint -- --fix
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: "chore: create discussion for challenge ${{ github.event.pull_request.title }}"
