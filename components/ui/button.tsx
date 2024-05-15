@@ -17,6 +17,7 @@ const buttonVariants = cva(
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
         discord: "bg-social-discord text-white hover:bg-discord/90",
+        github: "bg-black text-white hover:bg-black/90",
       },
       size: {
         default: "h-8 px-3 py-2 [&>svg]:h-5 [&>svg]:w-5 [&_img]:h-5 [&_img]:w-5 gap-2",

@@ -51,7 +51,7 @@
     --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral-subtle), black 30%);
     --color-fg-on-assistive: var(--ramp-white-1000);
     --color-fg-negative: var(--ramp-red-500);
-    --color-fg-position: var(--ramp-green-600);
+    --color-fg-positive: var(--ramp-green-600);
     --color-fg-easy: var(--ramp-green-900);
     --color-fg-medium: var(--ramp-orange-900);
     --color-fg-hard: var(--ramp-red-900);

@@ -4,11 +4,9 @@ import { Challenge, SupportedTemplates } from "@/types";
 import { Icon, IconButton, Tooltip, TooltipArrow } from "@/components/ui";
 import { cn } from "@/utils/helpers";
 import { TooltipContent, TooltipTrigger } from "@/components/ui";
-import { useUiStore } from "@/store/ui";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCompletion, deleteCompletion } from "@/db/completions";
 import { useCompletions } from "@/hooks/useCompletions";
-import { useAuth } from "@/hooks/useAuth";
 
 type ShareSolutionProps = {
   challenge: Challenge;
@@ -17,11 +15,9 @@ type ShareSolutionProps = {
 
 export default function MarkCompleteButton(props: ShareSolutionProps) {
   const { challenge } = props;
-  const ui = useUiStore();
-  const auth = useAuth();
   const queryClient = useQueryClient();
   const { completions } = useCompletions();
-  const isCompleted = completions.includes(challenge.no);
+  const isCompleted = completions.includes(`challenge-${challenge.no}`);
 
   const mutation = useMutation({
     mutationFn: isCompleted ? deleteCompletion : createCompletion,
@@ -31,15 +27,9 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
   });
 
   const onClick = () => {
-    if (!auth.user) {
-      ui.toggleLoginModal(true);
-
-      return;
-    }
-
     if (mutation.isPending) return;
 
-    mutation.mutate({ challenge_id: challenge.no, user_id: auth.user.id });
+    mutation.mutate({ challenge_id: challenge.no });
   };
 
   return (
@@ -50,7 +40,7 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
           variant="tertiary"
           onClick={onClick}
           className={cn({
-            "text-foreground-success": isCompleted,
+            "text-[var(--color-fg-positive)]": isCompleted,
             "text-foreground-neutral-subtle hover:text-foreground-neutral-subtle-hover": !isCompleted,
           })}
         >

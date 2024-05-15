@@ -8,6 +8,7 @@ export const CONTENT_PATH = "./content";
 export const REPO = "https://github.com/jsartisan/frontend-challenges";
 export const DOMAIN = process.env.NEXT_BASE_URL || "https://frontend-challenges.com";
 export const DISCORD = "https://discord.gg/utqqFmhQmT";
+export const DISCUSSIONS = "https://github.com/jsartisan/frontend-challenges/discussions";
 
 export const DEFAULT_TEMPLATE = "vanilla";
 export const SUPPORTED_TEMPLATES = Object.keys(TEMPLATES) as (keyof typeof TEMPLATES)[];

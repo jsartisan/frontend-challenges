@@ -1,6 +1,6 @@
 import { Button } from "../ui/button";
-import { DISCORD, REPO } from "@/constants";
-import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { DISCUSSIONS, REPO } from "@/constants";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export function Community() {
   return (
@@ -26,10 +26,10 @@ export function Community() {
               <span>Give us a star on Github</span>
             </a>
           </Button>
-          <Button asChild variant="discord">
-            <a href={DISCORD} target="_blank" rel="noreferrer">
-              <DiscordLogoIcon />
-              <span>Join us on Discord</span>
+          <Button asChild variant="tertiary">
+            <a href={DISCUSSIONS} target="_blank" rel="noreferrer">
+              <GitHubLogoIcon />
+              <span>Join us on Discussion</span>
             </a>
           </Button>
         </div>

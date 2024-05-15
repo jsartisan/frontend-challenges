@@ -11,10 +11,6 @@ const SpotLight = dynamic(() => import("@/components/common/Spotlight"), {
   ssr: false,
   loading: () => <Skeleton className="h-8 w-20" />,
 });
-const UserNav = dynamic(() => import("@/components/auth/UserNav"), {
-  ssr: false,
-  loading: () => <Skeleton className="size-8" />,
-});
 
 type HeaderProps = {
   challenges: SearchItem[];
@@ -38,7 +34,6 @@ export async function Header(props: HeaderProps) {
                   <GitHubLogoIcon />
                 </a>
               </IconButton>
-              <UserNav />
             </div>
           </div>
         </div>

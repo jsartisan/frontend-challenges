@@ -1,16 +1,11 @@
-import { supabase } from "@/utils/supabase/client";
-
 /**
- * Mark a challenge as completed
+ * Mark a challenge as completed in localstorage
  *
  * @param param0
  * @returns
  */
-export async function createCompletion({ challenge_id, user_id }) {
-  return supabase.from("completions").insert({
-    challenge_id: challenge_id,
-    user_id: user_id,
-  });
+export async function createCompletion({ challenge_id }) {
+  return localStorage.setItem(`challenge-${challenge_id}`, "completed");
 }
 
 /**
@@ -20,8 +15,8 @@ export async function createCompletion({ challenge_id, user_id }) {
  * @param {string} user_id
  * @returns
  */
-export async function deleteCompletion({ challenge_id, user_id }) {
-  return supabase.from("completions").delete().eq("challenge_id", challenge_id).eq("user_id", user_id);
+export async function deleteCompletion({ challenge_id }) {
+  return localStorage.removeItem(`challenge-${challenge_id}`);
 }
 
 /**
@@ -30,6 +25,6 @@ export async function deleteCompletion({ challenge_id, user_id }) {
  * @param user_id
  * @returns
  */
-export async function getCompletions({ user_id }) {
-  return supabase.from("completions").select("*").eq("user_id", user_id);
+export async function getCompletions() {
+  return Object.keys(localStorage).filter((key) => key.includes("challenge-"));
 }
