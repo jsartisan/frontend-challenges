@@ -17,8 +17,8 @@ const action: Action = async (github, context, core) => {
   core.info("-----Files-----");
   core.info(JSON.stringify(files, null, 2));
 
-  if (files.data.some((file) => file.filename === "info.yml")) {
-    const infoRaw = files.data.find((file) => file.filename === "info.yml")?.patch;
+  if (files.data.some((file) => file.filename.includes("info.yml"))) {
+    const infoRaw = files.data.find((file) => file.filename === "info.yml")?.patch?.split("@@")[2];
 
     let info: any;
 
