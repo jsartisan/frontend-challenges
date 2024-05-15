@@ -14,13 +14,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          cache: npm
+          cache: 'npm'
       - run: cd scripts && npm i --only=production
-      - run: >-
-          cd scripts/actions && npx esno ./loader.ts ${{github.token}}
-          pr-discussion
+      - run: cd scripts/actions && npx esno ./loader.ts ${{github.token}} pr-discussion
       - run: npm run lint -- --fix
       - uses: EndBug/add-and-commit@v9
         with:
           message: >-
-            chore: create discussion for challenge ${{github.event.pull_request.title }}
+           chore: create discussion for challenge ${{github.event.pull_request.title }}

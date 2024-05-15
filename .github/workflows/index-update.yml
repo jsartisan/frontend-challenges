@@ -18,7 +18,6 @@ jobs:
           node-version: 18.x
       - run: npm i
       - run: npm run readme
-      - run: npm run lint -- --fix
       - uses: EndBug/add-and-commit@v9
         with:
           message: "chore: update index"
