@@ -12,7 +12,7 @@ const action: Action = async (github, context, core) => {
     pull_number: no,
   });
 
-  const filePath = files.data.find((file) => file.filename.includes("info.yml"))?.filename;
+  const filePath = `../../${files.data.find((file) => file.filename.includes("info.yml"))?.filename}`;
 
   if (filePath) {
     const infoRaw = fs.readFileSync(filePath, "utf-8");
