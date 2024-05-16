@@ -42,6 +42,7 @@ const action: Action = async (github, context, core) => {
             createDiscussion(input: {
               repositoryId: "${context.repo.repo}",
               title: "${info.title}",
+              categoryId: "general",
               body: "This is a discussion for #${no} - ${info.title}",
             }) {
               discussion {
