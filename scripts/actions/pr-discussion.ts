@@ -33,7 +33,7 @@ const action: Action = async (github, context, core) => {
 
     // create discussion with octokit graphql
     if (info.discussion == undefined) {
-      const { data: response } = await github.graphql<any>(
+      const response = await github.graphql<any>(
         `mutation {
             createDiscussion(input: {
               repositoryId: "R_kgDOKwgAJQ",
@@ -48,7 +48,9 @@ const action: Action = async (github, context, core) => {
             }`,
       );
 
-      info.discussion = response.createDiscussion.discussion.id;
+      core.info(`----${JSON.stringify(response)}-----`);
+
+      info.discussion = response.data.data.createDiscussion.discussion.id;
 
       core.info("-----Discussion Created-----");
       core.info(JSON.stringify(response, null, 2));
