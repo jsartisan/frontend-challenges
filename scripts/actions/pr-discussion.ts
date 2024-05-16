@@ -42,7 +42,7 @@ const action: Action = async (github, context, core) => {
             createDiscussion(input: {
               repositoryId: 721944613,
               title: "${info.title}",
-              categoryId: "general",
+              categoryId: "DIC_kwDOKwgAJc4CfYsh",
               body: "This is a discussion for #${no} - ${info.title}",
             }) {
               discussion {
@@ -52,7 +52,7 @@ const action: Action = async (github, context, core) => {
             }`,
       );
 
-      info.discussion = response.discussion.id;
+      info.createDiscussion.discussion = response.discussion.id;
 
       core.info("-----Discussion Created-----");
       core.info(JSON.stringify(response, null, 2));
