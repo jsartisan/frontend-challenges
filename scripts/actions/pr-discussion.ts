@@ -1,8 +1,6 @@
 import YAML from "js-yaml";
-import slug from "limax";
 import fs from "fs-extra";
 import type { Action } from "../../types";
-import { DEFAULT_LOCALE } from "../../constants";
 
 export const getOthers = <A, B>(condition: boolean, a: A, b: B): A | B => (condition ? a : b);
 
@@ -14,11 +12,10 @@ const action: Action = async (github, context, core) => {
     pull_number: no,
   });
 
-  core.info("-----Files-----");
-  core.info(JSON.stringify(files, null, 2));
+  const filePath = files.data.find((file) => file.filename.includes("info.yml"))?.filename;
 
-  if (files.data.some((file) => file.filename.includes("info.yml"))) {
-    const infoRaw = files.data.find((file) => file.filename === "info.yml")?.patch?.split("@@")[2];
+  if (filePath) {
+    const infoRaw = fs.readFileSync(filePath, "utf-8");
 
     let info: any;
 
@@ -27,9 +24,6 @@ const action: Action = async (github, context, core) => {
     } catch {
       info = null;
     }
-
-    core.info("-----Playload-----");
-    core.info(JSON.stringify(context.payload, null, 2));
 
     // check if if there is something missing in the issue
     if (!info) {
@@ -59,23 +53,10 @@ const action: Action = async (github, context, core) => {
       core.info(JSON.stringify(response, null, 2));
     }
 
-    const dir = `challenges/${getQuestionFullName(no, info.difficulty, info.title)}`;
-
-    fs.writeFile(resolveFilePath(dir, "info", "yml", "en"), `${YAML.dump(info)}\n`);
+    fs.writeFile(filePath, `${YAML.dump(info)}\n`);
   } else {
     core.info("No matched labels, skipped");
   }
 };
-
-export function getQuestionFullName(no: number, difficulty: string, title: string) {
-  return `${String(no).padStart(5, "0")}-${difficulty}-${slug(title.replace(/\./g, "-").replace(/<.*>/g, ""), {
-    tone: false,
-  })}`;
-}
-
-export function resolveFilePath(dir: string, name: string, ext: string, locale: string) {
-  if (locale === DEFAULT_LOCALE) return `${dir}/${name}.${ext}`;
-  else return `${dir}/${name}.${locale}.${ext}`;
-}
 
 export default action;
