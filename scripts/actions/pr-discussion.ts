@@ -14,8 +14,6 @@ const action: Action = async (github, context, core) => {
 
   const filePath = `../../${files.data.find((file) => file.filename.includes("info.yml"))?.filename}`;
 
-  core.info(`-----${filePath}-----`);
-
   if (filePath) {
     const infoRaw = fs.readFileSync(filePath, "utf-8");
 
@@ -26,8 +24,6 @@ const action: Action = async (github, context, core) => {
     } catch {
       info = null;
     }
-
-    core.info(`-----${JSON.stringify(info)}-----`);
 
     // check if if there is something missing in the issue
     if (!info) {
@@ -52,7 +48,7 @@ const action: Action = async (github, context, core) => {
             }`,
       );
 
-      info.createDiscussion.discussion = response.discussion.id;
+      info.discussion = response.createDiscussion.discussion.id;
 
       core.info("-----Discussion Created-----");
       core.info(JSON.stringify(response, null, 2));
