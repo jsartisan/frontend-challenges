@@ -36,7 +36,7 @@ const action: Action = async (github, context, core) => {
     }
 
     // create discussion with octokit graphql
-    if (info.discussion !== undefined) {
+    if (info.discussion == undefined) {
       const { data: response } = await github.graphql<any>(
         `mutation {
             createDiscussion(input: {
