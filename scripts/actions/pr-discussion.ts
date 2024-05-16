@@ -50,13 +50,13 @@ const action: Action = async (github, context, core) => {
 
       core.info(`----${JSON.stringify(response)}-----`);
 
-      info.discussion = response.data.data.createDiscussion.discussion.id;
+      info.discussion = response.createDiscussion.discussion.id;
 
       core.info("-----Discussion Created-----");
       core.info(JSON.stringify(response, null, 2));
     }
 
-    fs.writeFile(filePath, `${YAML.dump(info)}\n`);
+    fs.writeFileSync(filePath, `${YAML.dump(info)}\n`);
   } else {
     core.info("No matched labels, skipped");
   }
