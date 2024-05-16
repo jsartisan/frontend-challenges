@@ -40,7 +40,7 @@ const action: Action = async (github, context, core) => {
       const { data: response } = await github.graphql<any>(
         `mutation {
             createDiscussion(input: {
-              repositoryId: "${context.repo.repo}",
+              repositoryId: "721944613",
               title: "${info.title}",
               categoryId: "general",
               body: "This is a discussion for #${no} - ${info.title}",
