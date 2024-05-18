@@ -41,9 +41,9 @@ const action: Action = async (github, context, core) => {
       const response = await github.graphql<any>(
         `mutation {
             createDiscussion(input: {
-              repositoryId: ${DISCUSSIONS_REPOSITORY_ID},
+              repositoryId: "${DISCUSSIONS_REPOSITORY_ID}",
               title: "${challengeNo} - ${info.title}",
-              categoryId: ${DISCUSSIONS_CHALLENGES_CATEGORY_ID},
+              categoryId: "${DISCUSSIONS_CHALLENGES_CATEGORY_ID}",
               body: "This is an auto-generated discussion for #${challengeNo} - ${info.title}. Feel free to discuss anything related to this challenge here. Good luck! 🚀",
               clientMutationId: "${REPOSITORY_CLIENT_ID}"
             }) {
