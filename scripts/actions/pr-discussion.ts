@@ -1,8 +1,11 @@
 import YAML from "js-yaml";
 import fs from "fs-extra";
+
 import type { Action } from "../../types";
 
-export const getOthers = <A, B>(condition: boolean, a: A, b: B): A | B => (condition ? a : b);
+const REPOSITORY_CLIENT_ID = `MDQ6VXNlcjY2MzYzNjA=`;
+const DISCUSSIONS_REPOSITORY_ID = `R_kgDOLK6p3w`;
+const DISCUSSIONS_CHALLENGES_CATEGORY_ID = `DIC_kwDOLK6p384Cfb6l`;
 
 const action: Action = async (github, context, core) => {
   const no = context.issue.number;
@@ -12,6 +15,8 @@ const action: Action = async (github, context, core) => {
     pull_number: no,
   });
 
+  const dir = files.data[0].filename.split("/")[0];
+  const challengeNo = Number(dir.replace(/^(\d+)-.*/, "$1"));
   const filePath = `../../${files.data.find((file) => file.filename.includes("info.yml"))?.filename}`;
 
   if (filePath) {
@@ -32,28 +37,25 @@ const action: Action = async (github, context, core) => {
     }
 
     // create discussion with octokit graphql
-    if (info.discussion == undefined) {
+    if (info.discussionNo == undefined) {
       const response = await github.graphql<any>(
         `mutation {
             createDiscussion(input: {
-              repositoryId: "R_kgDOKwgAJQ",
-              title: "${info.title}",
-              categoryId: "DIC_kwDOKwgAJc4CfYsh",
-              body: "This is a discussion for #${no} - ${info.title}",
+              repositoryId: ${DISCUSSIONS_REPOSITORY_ID},
+              title: "${challengeNo} - ${info.title}",
+              categoryId: ${DISCUSSIONS_CHALLENGES_CATEGORY_ID},
+              body: "This is an auto-generated discussion for #${challengeNo} - ${info.title}. Feel free to discuss anything related to this challenge here. Good luck! 🚀",
+              clientMutationId: "${REPOSITORY_CLIENT_ID}"
             }) {
               discussion {
               id
+              number
             }
           }
             }`,
       );
 
-      core.info(`----${JSON.stringify(response)}-----`);
-
-      info.discussion = response.createDiscussion.discussion.id;
-
-      core.info("-----Discussion Created-----");
-      core.info(JSON.stringify(response, null, 2));
+      info.discussionNo = response.createDiscussion.discussion.number;
     }
 
     fs.writeFileSync(filePath, `${YAML.dump(info)}\n`);
