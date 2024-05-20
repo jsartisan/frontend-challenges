@@ -25,7 +25,7 @@ export function CheckboxButton(props: AriaCheckboxProps) {
       <VisuallyHidden>
         <input {...mergeProps(inputProps, focusProps)} ref={ref} />
       </VisuallyHidden>
-      {!isSelected && <div className="size-5 rounded-full bg-[var(--color-bg-neutral-strong)]"></div>}
+      {!isSelected && <div className="size-5 rounded-full bg-[var(--color-bg-neutral)]"></div>}
       {isSelected && (
         <Icon
           name="check"

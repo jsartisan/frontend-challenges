@@ -1,5 +1,15 @@
 import { CATEGORIES, DIFFICULTY_RANK } from "@/constants";
-import { Sheet, SheetTrigger, IconButton, Icon, SheetHeader, SheetContent, CheckboxButton, SheetTitle } from "../ui";
+import {
+  Sheet,
+  SheetTrigger,
+  IconButton,
+  Icon,
+  SheetContent,
+  CheckboxButton,
+  SheetTitle,
+  Button,
+  SheetClose,
+} from "../ui";
 
 type ChallengeListFilterMobileProps = {
   state: any;
@@ -16,9 +26,9 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
           <Icon name="filter" />
         </IconButton>
       </SheetTrigger>
-      <SheetContent side="bottom">
-        <SheetHeader>
-          <SheetTitle>Filters</SheetTitle>
+      <SheetContent side="bottom" className="flex flex-col gap-3">
+        <SheetTitle>Filters</SheetTitle>
+        <div className="flex flex-col gap-2">
           <h4>Difficulty</h4>
           <div className="flex flex-wrap gap-3">
             {DIFFICULTY_RANK.map((difficulty) => (
@@ -42,6 +52,8 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
               </CheckboxButton>
             ))}
           </div>
+        </div>
+        <div className="flex flex-col gap-2">
           <h4>Category</h4>
           <div className="flex flex-wrap gap-3">
             {CATEGORIES.map((category) => (
@@ -65,6 +77,8 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
               </CheckboxButton>
             ))}
           </div>
+        </div>
+        <div className="flex flex-col gap-2">
           <h4>Type</h4>
           <div className="flex gap-3">
             {["all", "question", "quiz"].map((type) => (
@@ -86,7 +100,35 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
               </CheckboxButton>
             ))}
           </div>
-        </SheetHeader>
+        </div>
+        <div className="mt-8 flex  gap-2">
+          <SheetClose asChild>
+            <Button variant="primary" className="flex-grow">
+              Apply Filter
+            </Button>
+          </SheetClose>
+          <Button
+            disabled={
+              state.filters.category.length === 0 &&
+              state.filters.difficulty.length === 0 &&
+              state.filters.type === "all"
+            }
+            variant="tertiary"
+            className="flex-grow"
+            onClick={() => {
+              dispatch({
+                type: "filter",
+                payload: {
+                  category: [],
+                  difficulty: [],
+                  type: "all",
+                },
+              });
+            }}
+          >
+            Clear Filters
+          </Button>
+        </div>
       </SheetContent>
     </Sheet>
   );

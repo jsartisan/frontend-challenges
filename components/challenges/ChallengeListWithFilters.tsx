@@ -120,7 +120,7 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
         <Input
-          className="w-52"
+          className="max-w-52"
           placeholder="Search"
           onChange={(e) => {
             dispatch({ type: "search", payload: e.target.value });
@@ -177,6 +177,7 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
 
         {(state.filters.category.length > 0 || state.filters.difficulty.length > 0 || state.filters.type !== "all") && (
           <Button
+            className="hidden lg:flex"
             variant="secondary"
             onClick={() => {
               dispatch({

@@ -2,6 +2,7 @@ import { Card } from "@/components/ui";
 
 import React, { useState } from "react";
 import { MDXComponent } from "@/components/common/MDXComponent";
+import { cn } from "@/utils/helpers";
 
 type SolutionProps = {
   solution: string;
@@ -12,7 +13,13 @@ function Solution(props: SolutionProps) {
   const [showSolution, setShowSolution] = useState(false);
 
   return (
-    <Card className="h-full overflow-y-auto p-4">
+    <Card
+      className={cn({
+        "h-full p-4": true,
+        "overflow-y-auto": showSolution,
+        "overflow-hidden": !showSolution,
+      })}
+    >
       {!showSolution && (
         <button
           className="absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center gap-2 bg-[var(--color-bg)] hover:bg-[var(--color-bg-hover)]"
