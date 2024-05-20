@@ -15,7 +15,7 @@ export default async function Page() {
             Learn about the latest frontend technologies and best practices.
           </div>
         </div>
-        <div className="mt-10">
+        <div className="mt-6">
           <BlogList blogs={blogs} />
         </div>
       </Layout>

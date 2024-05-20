@@ -1,7 +1,7 @@
 "use client";
 
 import { Challenge, SupportedTemplates } from "@/types";
-import { Icon, IconButton, Tooltip, TooltipArrow } from "@/components/ui";
+import { Button, Icon, Tooltip, TooltipArrow } from "@/components/ui";
 import { cn } from "@/utils/helpers";
 import { TooltipContent, TooltipTrigger } from "@/components/ui";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -35,17 +35,22 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger>
-        <IconButton
-          isLoading={mutation.isPending}
-          variant="tertiary"
+        <Button
+          variant="secondary"
           onClick={onClick}
           className={cn({
-            "text-[var(--color-fg-positive)]": isCompleted,
+            "border-[var(--color-bd-positive)] bg-[var(--color-bg-positive-subtle)]": isCompleted,
             "text-foreground-neutral-subtle hover:text-foreground-neutral-subtle-hover": !isCompleted,
           })}
         >
-          <Icon name="check-circle" />
-        </IconButton>
+          <Icon
+            name="check-circle"
+            className={cn({
+              "text-[var(--color-fg-positive)]": isCompleted,
+            })}
+          />
+          {isCompleted ? "Completed" : "Mark as complete"}
+        </Button>
       </TooltipTrigger>
 
       <TooltipContent side="right">

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { TEMPLATES } from "@/templates";
 import { Breadcrumb } from "./Breadcrumb";
 import { Card } from "@/components/ui/card";
+import { DEFAULT_LOCALE } from "@/constants";
 import Preview from "@/components/editor/Preview";
 import { TemplateChanger } from "./TemplateChanger";
 import { Question, SupportedTemplates } from "@/types";
@@ -13,8 +15,12 @@ import SandpackRoot from "@/components/editor/SandpackRoot";
 import { AnswerList } from "@/components/questions/AnswerList";
 import { LayoutChanger } from "@/components/questions/LayoutChanger";
 import { ResizableLayout } from "@/components/editor/ResizableLayout";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
 import { ShareSolutionButton } from "@/components/editor/ShareSolutionButton";
+import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+
+const MarkCompleteButton = dynamic(() => import("@/components/editor/MarkCompleteButton"), {
+  ssr: false,
+});
 
 type QuestionProps = {
   question: Question;
@@ -37,6 +43,7 @@ function QuestionChallenge(props: QuestionProps) {
             <Breadcrumb challenge={question} />
             <LayoutChanger className="absolute -top-[2px] left-[calc(50%-125px)] w-[250px]" />
             <div className="flex items-center gap-2">
+              <MarkCompleteButton challenge={question} />
               <TemplateChanger template={template} setTemplate={setTemplate} question={question} />
               <ShareSolutionButton template={template} challenge={question} />
             </div>
@@ -48,6 +55,13 @@ function QuestionChallenge(props: QuestionProps) {
                   <TabsList>
                     <TabsTrigger value="description">Description</TabsTrigger>
                     <TabsTrigger value="solutions">Submissions</TabsTrigger>
+                    {question.info[DEFAULT_LOCALE]?.discussionNo && (
+                      <Button variant="tertiary" size="sm" asChild>
+                        <a href={question.discussionURL} target="_blank" rel="noopener noreferrer">
+                          Discussion
+                        </a>
+                      </Button>
+                    )}
                   </TabsList>
                   <TabsContent value="description" className="overflow-y-auto">
                     <Description challenge={question} />

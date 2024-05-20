@@ -5,9 +5,9 @@ import { cleanUpReadme } from "@/utils";
 import { parseMetaInfo } from "@/utils/questions";
 import { Category, Challenge, QuestionMetaInfo } from "@/types";
 import { getLocaleVariations } from "@/utils/locales";
-import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE } from "@/constants";
+import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@/constants";
 
-import { getAnswersOfQuestion, getAnswersOfQuiz } from "./answers";
+import { getAnswersOfQuestion } from "./answers";
 import { getCodeFilesByTemplate } from "./template";
 import { bundleMarkdown } from "@/utils/markdown";
 
@@ -43,9 +43,20 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
       return info?.en?.tags?.includes(category) || info?.en?.related?.includes(category);
     });
   })() as Category;
+  const discussionURL = `${REPO}/discussions/${info?.[DEFAULT_LOCALE]?.discussionNo}`;
+  const githubURL = `${REPO}/tree/main/challenges/${dir}`;
 
-  if (info?.en?.type === "quiz") {
-    const answers = await getAnswersOfQuiz(no);
+  const challenge = {
+    no,
+    difficulty,
+    path: dir,
+    info,
+    category,
+    discussionURL,
+    githubURL,
+  } as any;
+
+  if (info?.[DEFAULT_LOCALE]?.type === "quiz") {
     const solution = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "solution.md"), [cleanUpReadme]);
 
     for (const locale of Object.keys(readme)) {
@@ -57,15 +68,10 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
     }
 
     return {
-      no,
-      difficulty,
-      path: dir,
-      info,
+      ...challenge,
       readme,
       type: "quiz",
-      answers,
       solution,
-      category,
     };
   }
 
@@ -77,14 +83,10 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
   }
 
   return {
-    no,
-    difficulty,
-    path: dir,
-    info,
-    readme,
+    ...challenge,
     templateFiles,
     answers,
-    category,
+    readme,
     type: info?.en?.type || "question",
   };
 }

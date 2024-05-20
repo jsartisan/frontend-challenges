@@ -5,7 +5,7 @@ export function HomeIcon(props: ComponentProps<"svg">) {
     <svg xmlns="http://www.w3.org/2000/svg" {...props} viewBox="-0.75 -0.75 20 20">
       <path
         fill="none"
-        stroke="#000"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
@@ -13,7 +13,7 @@ export function HomeIcon(props: ComponentProps<"svg">) {
       ></path>
       <path
         fill="none"
-        stroke="#000"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"

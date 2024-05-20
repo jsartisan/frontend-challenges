@@ -24,7 +24,7 @@ export default function SandpackRoot(props: Props) {
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
         classes: {
-          "sp-code-editor": "!bg-background h-full",
+          "sp-code-editor": "!bg-[var(--color-bg)] h-full",
           "sp-wrapper": "!h-auto sm:!h-[calc(100vh_-_var(--nav-top-offset))]",
           "sp-layout": cn("!bg-inherit !border-none h-full", className),
           "sp-navigator": "!h-10 !border-b-[var(--color-border)]",

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Challenge } from "@/types";
+import { Question } from "@/types";
 import {
   Sheet,
   SheetContent,
@@ -20,7 +20,7 @@ import SandpackRoot from "../editor/SandpackRoot";
 import { CodeEditor } from "../editor/CodeEditor";
 
 type QuestionListProps = {
-  challenge: Challenge;
+  challenge: Question;
 };
 
 export function AnswerList(props: QuestionListProps) {

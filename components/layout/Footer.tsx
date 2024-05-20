@@ -18,7 +18,7 @@ const ThemeChanger = dynamic(() => import("../common/ThemeChanger"), {
 
 export default function Footer() {
   return (
-    <div className="border-t border-[var(--color-border)] bg-background  py-4 sm:py-6">
+    <div className="border-t border-[var(--color-border)] bg-[var(--color-bg)]  py-4 sm:py-6">
       <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-4 px-4 sm:flex-row sm:px-6">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-center gap-2 sm:justify-start">

@@ -35,7 +35,7 @@ export function ChallengeListFilter(props: ChallengeListFilterProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="secondary">
+        <Button variant="secondary" className="hidden lg:flex">
           <Icon name="plus-circled" />
           {title}
           {selectedValues?.size > 0 && (

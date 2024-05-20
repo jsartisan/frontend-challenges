@@ -17,3 +17,6 @@ export { CheckIcon } from "./CheckIcon";
 export { BlogIcon } from "./BlogIcon";
 export { ChallengeIcon } from "./ChallengeIcon";
 export { HomeIcon } from "./HomeIcon";
+export { ExternalLinkIcon } from "./ExternalLinkIcon";
+export { EditIcon } from "./EditIcon";
+export { FilterIcon } from "./FilterIcon";

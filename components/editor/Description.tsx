@@ -2,15 +2,11 @@ import { Challenge } from "@/types";
 
 import { Badge, BadgeProps } from "../ui/badge";
 import { MDXComponent } from "../common/MDXComponent";
-import dynamic from "next/dynamic";
+import { Icon, IconButton } from "../ui";
 
 type DescriptionProps = {
   challenge: Challenge;
 };
-
-const MarkCompleteButton = dynamic(() => import("../editor/MarkCompleteButton"), {
-  ssr: false,
-});
 
 export default function Description(props: DescriptionProps) {
   const { challenge } = props;
@@ -18,11 +14,15 @@ export default function Description(props: DescriptionProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <h1 className="text-2xl font-bold">
           {challenge.no} - {challenge.info["en"]?.title}
         </h1>
-        <MarkCompleteButton challenge={challenge} />
+        <IconButton asChild variant="secondary" size="sm">
+          <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
+            <Icon name="github" />
+          </a>
+        </IconButton>
       </div>
       <div className="flex items-center gap-2">
         <div className="me-1 flex items-center gap-2">

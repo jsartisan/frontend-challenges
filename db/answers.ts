@@ -4,8 +4,7 @@ import remarkParse from "remark-parse";
 
 import { createFileMap } from "@/utils";
 import { SUPPORTED_TEMPLATES } from "@/constants";
-import { CodeFile, Question, Quiz, SupportedTemplates } from "@/types";
-import { bundleMarkdown } from "@/utils/markdown";
+import { CodeFile, Question, SupportedTemplates } from "@/types";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_PAT,
@@ -62,47 +61,6 @@ export async function getAnswersOfQuestion(
       answers.push({
         files: files,
         ...meta,
-      });
-    }
-  }
-
-  return answers;
-}
-
-/**
- * get answers of question
- *
- * @param no
- * @param quiz
- * @returns
- */
-export async function getAnswersOfQuiz(no: number) {
-  const answers: Quiz["answers"] = [];
-
-  const { data } = await octokit.request("GET /repos/{owner}/{repo}/issues", {
-    owner: "jsartisan",
-    repo: "frontend-challenges",
-    labels: `answer,${no}`,
-    state: "all",
-  });
-
-  for (const datum of data) {
-    if (datum.body) {
-      const meta = {
-        title: datum.title,
-        no: datum.number,
-        url: datum.html_url,
-        author: datum.user?.login || "jsartisan",
-        author_url: datum.user?.html_url || "https://github.com/jsartisan",
-        author_avatar_url: datum.user?.avatar_url || "https://avatars.githubusercontent.com/u/10251037?v=4",
-        body: datum.body,
-      };
-
-      const markdown = await bundleMarkdown(datum.body);
-
-      answers.push({
-        ...meta,
-        body: markdown.code,
       });
     }
   }

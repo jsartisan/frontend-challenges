@@ -116,12 +116,10 @@ export function CodeEditor(props: Props) {
                   );
                 })}
             </div>
-            <div className="mx-1">
-              <Button variant="tertiary" size="sm" onClick={onPrettify}>
-                <Icon name="tidy" />
-                Tidy
-              </Button>
-            </div>
+            <Button variant="tertiary" size="sm" onClick={onPrettify}>
+              <Icon name="tidy" />
+              Tidy
+            </Button>
           </TabsList>
         </Tabs>
       )}

@@ -21,7 +21,7 @@ export async function Header(props: HeaderProps) {
 
   return (
     <>
-      <div className="sticky top-0 z-30 w-full border-b border-[var(--color-border)] bg-background bg-opacity-5 backdrop-blur-md transition-[background-color]">
+      <div className="sticky top-0 z-30 w-full border-b border-[var(--color-border)] bg-[var(--color-bg)] bg-opacity-5 backdrop-blur-md transition-[background-color]">
         <div className="mx-auto px-4">
           <div className="flex h-[var(--navbar-height)] items-center justify-between md:justify-start md:gap-4">
             <div className="flex items-center justify-start gap-3">

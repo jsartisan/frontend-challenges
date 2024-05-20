@@ -18,6 +18,9 @@ import {
   ChallengeIcon,
   BlogIcon,
   HomeIcon,
+  ExternalLinkIcon,
+  EditIcon,
+  FilterIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "@/utils/helpers";
@@ -67,7 +70,10 @@ export type IconProps = {
     | "arrow-down"
     | "check-circle"
     | "blog"
-    | "challenge";
+    | "challenge"
+    | "external-link"
+    | "edit"
+    | "filter";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -205,6 +211,15 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "challenge":
       icon = ChallengeIcon;
+      break;
+    case "external-link":
+      icon = ExternalLinkIcon;
+      break;
+    case "edit":
+      icon = EditIcon;
+      break;
+    case "filter":
+      icon = FilterIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

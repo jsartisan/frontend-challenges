@@ -29,7 +29,7 @@ export function Community() {
           <Button asChild variant="tertiary">
             <a href={DISCUSSIONS} target="_blank" rel="noreferrer">
               <GitHubLogoIcon />
-              <span>Join us on Discussion</span>
+              <span>Join us on Discussions</span>
             </a>
           </Button>
         </div>

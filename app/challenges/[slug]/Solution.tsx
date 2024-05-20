@@ -12,10 +12,10 @@ function Solution(props: SolutionProps) {
   const [showSolution, setShowSolution] = useState(false);
 
   return (
-    <Card className="h-full overflow-hidden p-4">
+    <Card className="h-full overflow-y-auto p-4">
       {!showSolution && (
         <button
-          className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-2 bg-background hover:bg-[var(--color-bg-hover)]"
+          className="absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center gap-2 bg-[var(--color-bg)] hover:bg-[var(--color-bg-hover)]"
           onClick={() => {
             setShowSolution(true);
           }}
@@ -24,7 +24,9 @@ function Solution(props: SolutionProps) {
           <p>Click here to see the solution</p>
         </button>
       )}
-      <MDXComponent code={solution} />
+      <div className="flex flex-col gap-2">
+        <MDXComponent code={solution} />
+      </div>
     </Card>
   );
 }

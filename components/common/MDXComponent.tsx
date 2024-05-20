@@ -7,7 +7,11 @@ import { components } from "../mdx";
 function MDXComponent(props: any) {
   const Comp = getMDXComponent(props.code);
 
-  return <Comp components={components} />;
+  return (
+    <div className="flex flex-col gap-2">
+      <Comp components={components} />
+    </div>
+  );
 }
 
 export { MDXComponent };

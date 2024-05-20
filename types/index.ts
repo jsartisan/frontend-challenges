@@ -9,45 +9,39 @@ export type Importance = "hight" | "medium" | "low";
 
 export type Challenge = Question | Quiz;
 
-export interface Question {
+interface BaseChallengeProps {
   no: number;
   difficulty: Difficulty;
   path: string;
   readme: Record<string, string>;
-  templateFiles: Record<SupportedTemplates, Record<string, CodeFile>>;
   info: Record<string, DeepPartial<QuestionMetaInfo> | undefined>;
-  type: "question";
-  answers?: {
-    files?: Record<string, CodeFile>;
-    title: string;
-    author: string;
-    author_url: string;
-    author_avatar_url: string;
-    url: string;
-    no: number;
-    template: SupportedTemplates;
-  }[];
   category: Category;
+  discussionURL?: string;
+  githubURL?: string;
+  editURL?: string;
 }
 
-export interface Quiz {
+interface BaseChallengeAnswerProps {
+  title: string;
+  author: string;
+  author_url: string;
+  author_avatar_url: string;
+  url: string;
   no: number;
-  difficulty: Difficulty;
-  path: string;
-  readme: Record<string, string>;
+}
+
+export interface Question extends BaseChallengeProps {
+  templateFiles: Record<SupportedTemplates, Record<string, CodeFile>>;
+  type: "question";
+  answers?: (BaseChallengeAnswerProps & {
+    files?: Record<string, CodeFile>;
+    template: SupportedTemplates;
+  })[];
+}
+
+export interface Quiz extends BaseChallengeProps {
   type: "quiz";
-  info: Record<string, DeepPartial<Omit<QuestionMetaInfo, "template">> | undefined>;
   solution: Record<string, string>;
-  answers: {
-    title: string;
-    author: string;
-    author_url: string;
-    author_avatar_url: string;
-    url: string;
-    no: number;
-    body: string;
-  }[];
-  category: Category;
 }
 
 export interface QuestionMetaInfo {
@@ -64,6 +58,7 @@ export interface QuestionMetaInfo {
   excerpt: string;
   published_date: string;
   type: "question" | "quiz";
+  discussionNo: string;
 }
 
 export type SupportedTemplates = (typeof SUPPORTED_TEMPLATES)[number];

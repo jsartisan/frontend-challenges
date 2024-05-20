@@ -3,12 +3,17 @@
 import { Category, Challenge, Difficulty } from "@/types";
 import { Input } from "../ui/input";
 import { useReducer } from "react";
-import { Button, Icon, IconButton, ToggleGroupItem } from "@/components/ui";
+import { Button, Icon, ToggleGroupItem } from "@/components/ui";
 import { CATEGORIES, DEFAULT_LOCALE, DIFFICULTY_RANK } from "@/constants";
 import { ChallengeList } from "./ChallengeList";
 import { ChallengeListFilter } from "./ChallengeListFilter";
 import { ToggleGroup } from "@/components/ui";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { ChallengeListSort } from "./ChallengeListSort";
+import dynamic from "next/dynamic";
+
+const ChallengeListFilterMobile = dynamic(() => import("./ChallengeListFilterMobile"), {
+  ssr: false,
+});
 
 type ChallengeListWithFiltersProps = {
   challenges: Challenge[];
@@ -150,6 +155,7 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
           }
         />
         <ToggleGroup
+          className="hidden lg:flex"
           onValueChange={(value) => {
             dispatch({
               type: "filter",
@@ -161,12 +167,14 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
           }}
           type="single"
           variant="outline"
-          defaultValue="all"
+          value={state.filters.type}
         >
           <ToggleGroupItem value="all">All</ToggleGroupItem>
           <ToggleGroupItem value="question">Question</ToggleGroupItem>
           <ToggleGroupItem value="quiz">Quiz</ToggleGroupItem>
         </ToggleGroup>
+        <div className="mx-auto"></div>
+
         {(state.filters.category.length > 0 || state.filters.difficulty.length > 0 || state.filters.type !== "all") && (
           <Button
             variant="secondary"
@@ -185,59 +193,8 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
             <Icon name="cross" className="!h-4 !w-4" />
           </Button>
         )}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button className="ml-auto" variant="secondary">
-              <Icon name="sort" /> Sort
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end" forceMount>
-            <DropdownMenuItem
-              onClick={() => {
-                dispatch({
-                  type: "sort_by",
-                  payload: {
-                    type: "difficulty",
-                  },
-                });
-              }}
-            >
-              Difficulty
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                dispatch({
-                  type: "sort_by",
-                  payload: {
-                    type: "published_date",
-                  },
-                });
-              }}
-            >
-              Creation Date
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <IconButton
-          variant="tertiary"
-          size="sm"
-          onClick={() => {
-            dispatch({
-              type: "sort_order",
-              payload: {
-                sort_order: state.sort_order === "asc" ? "desc" : "asc",
-              },
-            });
-            dispatch({
-              type: "sort_by",
-              payload: {
-                type: state.sort_by,
-              },
-            });
-          }}
-        >
-          <Icon name={state.sort_order === "asc" ? "arrow-up" : "arrow-down"} />
-        </IconButton>
+        <ChallengeListFilterMobile state={state} dispatch={dispatch} />
+        <ChallengeListSort state={state} dispatch={dispatch} />
       </div>
       <ChallengeList challenges={state.filtered} />
     </div>

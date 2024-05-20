@@ -35,6 +35,8 @@
     --color-bg-assistive-transparent: color-mix(in srgb, var(--color-bg-assistive), transparent);
     --color-bg-negative: var(--ramp-red-500);
     --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
+    --color-bg-positive: var(--ramp-green-500);
+    --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
     --color-bg-easy: var(--ramp-green-100);
     --color-bg-medium: var(--ramp-orange-100);
     --color-bg-hard: var(--ramp-red-100);
@@ -49,6 +51,7 @@
     --color-fg-neutral: var(--ramp-grey-900);
     --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 40%);
     --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral-subtle), black 30%);
+    --color-fg-invert: var(--ramp-white-1000);
     --color-fg-on-assistive: var(--ramp-white-1000);
     --color-fg-negative: var(--ramp-red-500);
     --color-fg-positive: var(--ramp-green-600);
@@ -64,6 +67,14 @@
     --color-border-accent: var(--ramp-blue-500);
     --color-border-accent-subtle: color-mix(in srgb, var(--color-border-accent) 50%, transparent 20%);
     --color-border-assistive: var(--ramp-grey-900);
+
+    --color-bd: var(--ramp-grey-300);
+    --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
+    --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
+    --color-bd-accent: var(--ramp-blue-500);
+    --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
+    --color-bd-positive: var(--ramp-green-500);
+    --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive) 10%, white 90%);
   }
 
   .dark {

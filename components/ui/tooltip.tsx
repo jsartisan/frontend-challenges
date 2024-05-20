@@ -34,7 +34,7 @@ const TooltipArrow = React.forwardRef<
 >((props, ref) => (
   <TooltipPrimitive.Arrow
     ref={ref}
-    className="absolute z-50 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rotate-[225deg] transform border-l border-t border-transparent bg-background-assistive fill-transparent"
+    className="absolute z-50 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rotate-[225deg] transform border-l border-t border-transparent bg-[var(--color-bg-assistive)] fill-transparent"
     {...props}
   />
 ));
