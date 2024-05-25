@@ -34,7 +34,7 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
 
   return (
     <Tooltip delayDuration={0}>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <Button
           variant="secondary"
           onClick={onClick}
