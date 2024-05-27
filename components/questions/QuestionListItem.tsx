@@ -42,7 +42,7 @@ function QuestionListItem(props: { question: Question; showTypeIcon?: boolean })
           {Object.keys(question.templateFiles).map((framework) => {
             return (
               <Tooltip key={framework}>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                   <IconButton size="lg" key={framework} asChild variant="tertiary">
                     <Link href={`challenges/${question.path}?template=${framework}`}>
                       <Icon name={`${framework}-color` as IconProps["name"]} />
