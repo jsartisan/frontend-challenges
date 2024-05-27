@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getChallengeByPath, getChallenges } from "@/db/challenge";
 
 import Client from "./client";
+import { DOMAIN } from "@/constants";
 
 export const revalidate = 3600;
 
@@ -9,7 +10,11 @@ export async function generateMetadata(props: any): Promise<Metadata> {
   const question = await getChallengeByPath(props.params.slug);
 
   return {
-    title: question.info.en?.title,
+    title: `${question.info?.en?.title} | Frontend Challenges`,
+    openGraph: {
+      url: `${DOMAIN}/challenges/${question.path}`,
+      images: "/og.png",
+    },
   };
 }
 
