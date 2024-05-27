@@ -16,17 +16,13 @@ import { bundleMarkdown } from "@/utils/markdown";
  *
  * @returns
  */
-export async function getChallenges(
-  options: {
-    exclude?: string[];
-  } = {},
-): Promise<Challenge[]> {
+export async function getChallenges(): Promise<Challenge[]> {
   const folders = await fg("{0..9}*-*", {
     onlyDirectories: true,
     cwd: CHALLENGES_ROOT,
   });
 
-  const challenges = await Promise.all(folders.map(async (path: string) => getChallengeByPath(path, options)));
+  const challenges = await Promise.all(folders.map(async (path: string) => getChallengeByPath(path)));
 
   return challenges;
 }
@@ -37,12 +33,7 @@ export async function getChallenges(
  * @param path
  * @returns
  */
-export async function getChallengeByPath(
-  dir: string,
-  options: {
-    exclude?: string[];
-  } = {},
-): Promise<Challenge> {
+export async function getChallengeByPath(dir: string): Promise<Challenge> {
   const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
   const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
   const info = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "info.yml"), [parseMetaInfo]);
@@ -68,14 +59,12 @@ export async function getChallengeByPath(
   if (info?.[DEFAULT_LOCALE]?.type === "quiz") {
     const solution = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "solution.md"), [cleanUpReadme]);
 
-    if (options.exclude?.includes("code")) {
-      for (const locale of Object.keys(readme)) {
-        readme[locale] = (await bundleMarkdown(readme[locale])).code;
-      }
+    for (const locale of Object.keys(readme)) {
+      readme[locale] = (await bundleMarkdown(readme[locale])).code;
+    }
 
-      for (const locale of Object.keys(solution)) {
-        solution[locale] = (await bundleMarkdown(solution[locale])).code;
-      }
+    for (const locale of Object.keys(solution)) {
+      solution[locale] = (await bundleMarkdown(solution[locale])).code;
     }
 
     return {
@@ -87,7 +76,7 @@ export async function getChallengeByPath(
   }
 
   const templateFiles = await getCodeFilesByTemplate(path.join(CHALLENGES_ROOT, dir, "template.md"));
-  const answers = options.exclude?.includes("answers") ? [] : await getAnswersOfQuestion(no, templateFiles);
+  const answers = await getAnswersOfQuestion(no, templateFiles);
 
   for (const locale of Object.keys(readme)) {
     readme[locale] = (await bundleMarkdown(readme[locale])).code;
