@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Frontend Challenges is a collection of frontend interview questions and answers. It is designed to help you prepare for frontend interviews. It's free and open source.",
   openGraph: {
-    images: "/opengraph-image",
+    images: "/images/og.png",
   },
 };
 
