@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge, Icon, IconButton } from "../ui";
+import { Badge, Button, Icon } from "../ui";
 import { useRouter } from "next/navigation";
 
 export function SubmissionNavigator() {
@@ -15,11 +15,12 @@ export function SubmissionNavigator() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <IconButton variant="tertiary" className="gap-2">
-          <Icon name="plus" />
-        </IconButton>
+        <Button variant="secondary" className="gap-1">
+          <Icon name="plus" size="sm" />
+          Submit
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent side="bottom" align="end" sideOffset={8}>
         <DropdownMenuItem onSelect={() => router.push("/submit/question")}>
           <div className="flex gap-2">
             <Badge variant="quiz">

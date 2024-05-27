@@ -6,6 +6,7 @@ import { Logo } from "../common/Logo";
 import { SearchItem } from "@/types";
 import dynamic from "next/dynamic";
 import { Skeleton } from "../ui/skeleton";
+import { SubmissionNavigator } from "../common/SubmissionNavigator";
 
 const SpotLight = dynamic(() => import("@/components/common/Spotlight"), {
   ssr: false,
@@ -34,6 +35,7 @@ export async function Header(props: HeaderProps) {
                   <GitHubLogoIcon />
                 </a>
               </IconButton>
+              <SubmissionNavigator />
             </div>
           </div>
         </div>
