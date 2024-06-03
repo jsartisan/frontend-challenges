@@ -53,7 +53,7 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
         </Button>
       </TooltipTrigger>
 
-      <TooltipContent side="right">
+      <TooltipContent side="bottom" sideOffset={8}>
         {isCompleted ? "Mark as incomplete" : "Mark as complete"}
         <TooltipArrow />
       </TooltipContent>

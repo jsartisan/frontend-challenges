@@ -26,7 +26,7 @@ export function Community() {
               <span>Give us a star on Github</span>
             </a>
           </Button>
-          <Button asChild variant="tertiary">
+          <Button asChild variant="secondary">
             <a href={DISCUSSIONS} target="_blank" rel="noreferrer">
               <GitHubLogoIcon />
               <span>Join us on Discussions</span>

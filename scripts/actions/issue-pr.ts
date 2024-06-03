@@ -65,9 +65,9 @@ const action: Action = async (github, context, core) => {
     const question = getCommentRange(body, "question");
     const solution = getCommentRange(body, "solution");
     const template = info.template as SupportedTemplates;
-    const type = info.type === "quiz " ? "quiz" : "question";
+    const type = info.type === "quiz" ? "quiz" : "question";
 
-    core.info("-----Playload-----");
+    core.info("-----Payload-----");
     core.info(JSON.stringify(context.payload, null, 2));
 
     // check if if there is something missing in the issue

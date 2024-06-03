@@ -27,16 +27,23 @@ export default function Description(props: DescriptionProps) {
       <div className="flex items-center gap-2">
         <div className="me-1 flex items-center gap-2">
           <span className="block whitespace-nowrap text-xs">by</span>
-          <span className="inline-flex size-5 shrink-0 select-none items-center justify-center overflow-hidden rounded-full">
-            <img
-              alt={challenge.info["en"]?.author?.name}
-              className="size-full object-cover"
-              src={challenge.info["en"]?.author?.avatar_url}
-            />
-          </span>
-          <span className="block whitespace-nowrap text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-            {challenge.info["en"]?.author?.name}
-          </span>
+          <a
+            href={`https://github.com/${challenge.info["en"]?.author?.github}`}
+            target="_blank"
+            className="flex items-center gap-1"
+            rel="noreferrer"
+          >
+            <span className="inline-flex size-5 shrink-0 select-none items-center justify-center overflow-hidden rounded-full">
+              <img
+                alt={challenge.info["en"]?.author?.name}
+                className="size-full object-cover"
+                src={challenge.info["en"]?.author?.avatar_url}
+              />
+            </span>
+            <span className="block whitespace-nowrap text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+              {challenge.info["en"]?.author?.name}
+            </span>
+          </a>
         </div>
         <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
         {challenge.info["en"]?.tags?.map((tag) => (

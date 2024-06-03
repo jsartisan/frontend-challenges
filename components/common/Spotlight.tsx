@@ -41,7 +41,7 @@ export default function SpotLight(props: SpotlightProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="text-muted-foreground hover:text-accent-foreground focus-visible:ring-ring relative hidden h-8 w-full !scale-100 animate-fade-in items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-sm font-normal opacity-0 shadow-none transition-colors delay-300 hover:bg-[var(--color-bg-neutral)] focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 sm:flex sm:pr-12 md:inline-flex md:w-20 lg:w-[180px]"
+        className="text-muted-foreground hover:text-accent-foreground focus-visible:ring-ring relative hidden h-8 w-[180px] !scale-100 animate-fade-in items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-sm font-normal opacity-0 shadow-none transition-colors delay-300 hover:bg-[var(--color-bg-neutral)] focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 sm:flex sm:pr-12 md:inline-flex"
       >
         <span className="hidden lg:inline-flex">Search...</span>
         <span className="inline-flex lg:hidden">Search...</span>

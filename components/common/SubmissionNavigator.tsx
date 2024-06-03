@@ -16,7 +16,7 @@ export function SubmissionNavigator() {
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="gap-1">
-          <Icon name="plus" size="sm" />
+          <Icon name="plus" size="sm" className="-ml-1" />
           Submit
         </Button>
       </DropdownMenuTrigger>
