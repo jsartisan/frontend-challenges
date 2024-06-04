@@ -4,10 +4,7 @@
 
 <p align='center'>Collection of Frontend interview challenges</p>
 
-<p align='center'>
-  <a href='https://discord.gg/E9PfpPZ7aU'>
-    <img src='https://img.shields.io/badge/-Discord-yellowgreen?logo=discord&logoColor=white&color=7289da'/>
-  </a>
+<p align='center'> 
   <a href='https://frontend-challenges.com/play'>
     <img src='https://img.shields.io/badge/Playground-143?logo=javascript&color=0d99ff&logoColor=fff' />
   </a>

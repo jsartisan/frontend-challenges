@@ -1,24 +1,3 @@
-**Question:**
-
-The `createUser` function returns an object.
-
-What happens when we try to access its `ref` property? Why?
-
-```javascript
-function createUser() {
-  return {
-    name: "John Doe",
-    ref: this
-  };
-}
-
-let user = createUser();
-
-alert(user.ref.name); // What's the result?
-```
-
-**Solution:**
-
 The result is an error.
 
 ```javascript

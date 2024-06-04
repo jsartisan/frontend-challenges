@@ -15,7 +15,7 @@ const action: Action = async (github, context, core) => {
     pull_number: no,
   });
 
-  const dir = files.data[0].filename.split("/")[0];
+  const dir = files.data[0].filename.split("/")[1];
   const challengeNo = Number(dir.replace(/^(\d+)-.*/, "$1"));
   const filePath = `../../${files.data.find((file) => file.filename.includes("info.yml"))?.filename}`;
 
