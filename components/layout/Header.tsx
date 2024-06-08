@@ -1,12 +1,13 @@
 import { REPO } from "@/constants";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
-import { IconButton } from "../ui";
+import { IconButton, Separator } from "../ui";
 import { Logo } from "../common/Logo";
 import { SearchItem } from "@/types";
 import dynamic from "next/dynamic";
 import { Skeleton } from "../ui/skeleton";
 import { SubmissionNavigator } from "../common/SubmissionNavigator";
+import Link from "next/link";
 
 const SpotLight = dynamic(() => import("@/components/common/Spotlight"), {
   ssr: false,
@@ -30,12 +31,24 @@ export async function Header(props: HeaderProps) {
               <SpotLight items={challenges} />
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
+              <div className="flex items-center gap-4">
+                <Link href="/challenges" className="font-medium">
+                  Challenges
+                </Link>
+                <Link href="/study-plans" className="font-medium">
+                  Study Plans
+                </Link>
+                <Link href="/play" className="font-medium">
+                  Playground
+                </Link>
+              </div>
+              <Separator orientation="vertical" className="mx-3" />
+              <SubmissionNavigator />
               <IconButton asChild variant="tertiary">
                 <a href={REPO} target="_blank" rel="noreferrer">
                   <GitHubLogoIcon />
                 </a>
               </IconButton>
-              <SubmissionNavigator />
             </div>
           </div>
         </div>

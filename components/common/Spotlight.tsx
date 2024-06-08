@@ -14,7 +14,7 @@ import {
 import { REPO } from "@/constants";
 import { SearchItem } from "@/types";
 import { useRouter } from "next/navigation";
-import { Badge, Icon } from "../ui";
+import { Badge, Button, Icon } from "../ui";
 
 interface SpotlightProps {
   items: SearchItem[];
@@ -39,16 +39,13 @@ export default function SpotLight(props: SpotlightProps) {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="text-muted-foreground hover:text-accent-foreground focus-visible:ring-ring relative hidden h-8 w-[180px] !scale-100 animate-fade-in items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-sm font-normal opacity-0 shadow-none transition-colors delay-300 hover:bg-[var(--color-bg-neutral)] focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 sm:flex sm:pr-12 md:inline-flex"
-      >
+      <Button variant="secondary" onClick={() => setOpen(true)}>
         <span className="hidden lg:inline-flex">Search...</span>
         <span className="inline-flex lg:hidden">Search...</span>
-        <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded-[var(--radius-sm)] border-[var(--color-border)] bg-[var(--color-bg-neutral)] px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <kbd className="pointer-events-none ml-8 h-5 select-none items-center gap-1 rounded-[var(--radius-sm)] border-[var(--color-border)] bg-[var(--color-bg-neutral)] px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
-      </button>
+      </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Search Challenges,..." />
         <CommandList>
