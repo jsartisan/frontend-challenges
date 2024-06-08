@@ -1,5 +1,6 @@
 import path from "path";
 import fg from "fast-glob";
+import fs from "fs";
 import YAML from "js-yaml";
 
 import { cleanUpReadme, loadFile } from "@/utils";
@@ -10,33 +11,37 @@ import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO, STUDY_PLANS_ROOT } f
 import { getChallengeByPath } from "./challenge";
 
 export async function getStudyPlans(): Promise<StudyPlan[]> {
-  const files = await fg("**.yml", {
-    cwd: STUDY_PLANS_ROOT,
-  });
+  const folders = fs.readdirSync(STUDY_PLANS_ROOT);
 
-  console.log({ files });
-  //   const studyPlans = await Promise.all(files.map(async (path: string) => getStudyPlanByPath(path)));
+  console.log({ folders });
+  const studyPlans = await Promise.all(folders.map(async (dir: string) => getStudyPlanByPath(dir)));
 
-  return [];
+  return studyPlans;
 }
 
-export async function getStudyPlanByPath(filename: string): Promise<StudyPlan> {
-  const file = await loadFile(path.join(STUDY_PLANS_ROOT, `${filename}.yml`));
+export async function getStudyPlanByPath(dir: string): Promise<StudyPlan> {
+  const info = await getLocaleVariations(path.join(STUDY_PLANS_ROOT, dir, "info.yml"), [parseStudyPlan]);
 
-  if (!file) {
-    throw new Error(`Study plan not found: ${filename}`);
+  if (!info) {
+    throw new Error(`Study plan not found: ${dir}`);
   }
 
-  const info = parseStudyPlan(file);
+  const topics = await Promise.all(
+    info[DEFAULT_LOCALE].topics.map(async (topic) => {
+      return {
+        ...topic,
+        challenges: await Promise.all(
+          topic.challenges.map(async (challengePath: string) => {
+            const challenge = await getChallengeByPath(challengePath);
 
-  const challenges = await Promise.all(
-    info.challenges.map(async (challengePath: string) => {
-      const challenge = await getChallengeByPath(challengePath);
-      return challenge;
+            return challenge;
+          }),
+        ),
+      };
     }),
   );
 
-  return { ...info, challenges };
+  return { title: info[DEFAULT_LOCALE].title, topics };
 }
 
 export function parseStudyPlan(s: string): StudyPlanInfo {
@@ -45,7 +50,7 @@ export function parseStudyPlan(s: string): StudyPlanInfo {
   const arrayKeys = ["tags", "related"];
 
   for (const key of arrayKeys) {
-    if (object[key]) {
+    if (object && object[key]) {
       object[key] = (object[key] || "")
         .toString()
         .split(",")

@@ -96,11 +96,17 @@ export type SearchItem = {
 
 export type StudyPlan = {
   title: string;
-  challenges: Challenge[];
+  topics: {
+    title: string;
+    challenges: Challenge[];
+  }[];
 };
 
-export type StudyPlanRaw = {
+export type StudyPlanInfo = {
   title: string;
   description: string;
-  challenges: string[];
+  topics: {
+    title: string;
+    challenges: string[];
+  }[];
 };
