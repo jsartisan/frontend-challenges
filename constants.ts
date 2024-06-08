@@ -4,6 +4,7 @@ import { TEMPLATES } from "./templates";
 export const ROOT_PATH = "./";
 export const CHALLENGES_ROOT = "./challenges";
 export const CONTENT_PATH = "./content";
+export const STUDY_PLANS_ROOT = "./study-plans";
 
 export const REPO = "https://github.com/jsartisan/frontend-challenges";
 export const DOMAIN = process.env.NEXT_BASE_URL || "https://frontend-challenges.com";

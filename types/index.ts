@@ -93,3 +93,14 @@ export type SearchItem = {
   path?: string;
   difficulty?: Difficulty;
 };
+
+export type StudyPlan = {
+  title: string;
+  challenges: Challenge[];
+};
+
+export type StudyPlanRaw = {
+  title: string;
+  description: string;
+  challenges: string[];
+};
