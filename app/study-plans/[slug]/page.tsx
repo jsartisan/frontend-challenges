@@ -11,8 +11,8 @@ export default async function Page(props: any) {
       <Layout className="pb-12 pt-8">
         <div className="text-3xl font-bold">{studyPlan.title}</div>
         <div className="w-full pb-6 pt-3 leading-relaxed text-gray-500 md:w-2/4">
-          Frontend Challenges is a collection of frontend interview questions and answers. It is designed to help you
-          prepare for frontend interviews. It&apos;s free and open source.
+          Study Plans are a collection of topics and challenges designed to help you learn a specific topic. It starts
+          with the basics and progresses to more advanced topics.
         </div>
         {studyPlan.topics.map((topic) => {
           return (
