@@ -1,7 +1,29 @@
 import { ChallengeList } from "@/components/challenges/ChallengeList";
 import Footer from "@/components/layout/Footer";
 import { Layout } from "@/components/layout/Layout";
-import { getStudyPlanByPath } from "@/db/study-plans";
+import { DOMAIN } from "@/constants";
+import { getStudyPlanByPath, getStudyPlans } from "@/db/study-plans";
+import { Metadata } from "next";
+
+export async function generateMetadata(props: any): Promise<Metadata> {
+  const question = await getStudyPlanByPath(props.params.slug);
+
+  return {
+    title: `${question.info?.en?.title} Study Plan | Frontend Challenges`,
+    openGraph: {
+      url: `${DOMAIN}/study-plans/${question.path}`,
+      images: "/og.png",
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const studyPlans = await getStudyPlans();
+
+  return studyPlans.map((studyPlan) => ({
+    slug: studyPlan.path,
+  }));
+}
 
 export default async function Page(props: any) {
   const studyPlan = await getStudyPlanByPath(props.params.slug);
