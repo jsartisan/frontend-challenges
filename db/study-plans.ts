@@ -10,7 +10,6 @@ import { getChallengeByPath } from "./challenge";
 export async function getStudyPlans(): Promise<StudyPlan[]> {
   const folders = fs.readdirSync(STUDY_PLANS_ROOT);
 
-  console.log({ folders });
   const studyPlans = await Promise.all(folders.map(async (dir: string) => getStudyPlanByPath(dir)));
 
   return studyPlans;
