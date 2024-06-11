@@ -1,8 +1,7 @@
 "use client";
 
 import { Challenge } from "@/types";
-import { QuizListItem } from "../quizzes/QuizListItem";
-import { QuestionListItem } from "../questions/QuestionListItem";
+import { ChallengeListItem } from "./ChallengeListItem";
 
 type ChallengeListProps = {
   challenges: Challenge[];
@@ -14,13 +13,9 @@ export function ChallengeList(props: ChallengeListProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      {challenges.map((challenge) => {
-        return challenge.type === "question" ? (
-          <QuestionListItem showTypeIcon key={challenge.path} question={challenge} />
-        ) : (
-          <QuizListItem showTypeIcon key={challenge.path} quiz={challenge} />
-        );
-      })}
+      {challenges.map((challenge) => (
+        <ChallengeListItem key={challenge.path} challenge={challenge} />
+      ))}
     </div>
   );
 }

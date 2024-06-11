@@ -1,21 +1,22 @@
-import { ChallengeList } from "@/components/challenges/ChallengeList";
 import Footer from "@/components/layout/Footer";
+import { getStudyPlans } from "@/db/study-plans";
 import { Layout } from "@/components/layout/Layout";
-import { getStudyPlanByPath, getStudyPlans } from "@/db/study-plans";
+import { StudyPlanListItem } from "@/components/study-plans/StudyPlanListItem";
 
-export default async function Page(props: any) {
+export default async function Page() {
   const studyPlans = await getStudyPlans();
 
   return (
     <>
-      <Layout className="pt-8 pb-12">
+      <Layout className="pb-12 pt-8">
         <div className="text-3xl font-bold">Study Plans</div>
-        <div className="w-full pt-3 pb-6 leading-relaxed text-gray-500 md:w-2/4">
-          Frontend Challenges is a collection of frontend interview questions and answers. It is designed to help you
-          prepare for frontend interviews. It&apos;s free and open source.
+        <div className="w-full pb-6 pt-3 leading-relaxed text-gray-500 md:w-3/4">
+          Study plans are a collection of challenges and quizzes that are designed to help you learn a specific
+          language, framework, or topic. Each study plan is curated by the community and is designed to help you learn a
+          specific topic from scratch.
         </div>
         {studyPlans.map((studyPlan) => {
-          return <div key={`study-plan-${studyPlan.title}`}>{studyPlan.title}</div>;
+          return <StudyPlanListItem studyPlan={studyPlan} key={`study-plan-${studyPlan.title}`} />;
         })}
       </Layout>
 

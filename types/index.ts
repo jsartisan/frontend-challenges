@@ -96,10 +96,12 @@ export type SearchItem = {
 
 export type StudyPlan = {
   title: string;
+  path?: string;
   topics: {
     title: string;
     challenges: Challenge[];
   }[];
+  info: Record<string, DeepPartial<StudyPlanInfo> | undefined>;
 };
 
 export type StudyPlanInfo = {

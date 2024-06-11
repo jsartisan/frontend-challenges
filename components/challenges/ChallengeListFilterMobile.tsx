@@ -22,7 +22,7 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <IconButton variant="secondary" className="flex lg:hidden">
+        <IconButton variant="secondary" className="flex flex-shrink-0 lg:hidden">
           <Icon name="filter" />
         </IconButton>
       </SheetTrigger>

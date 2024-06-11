@@ -1,13 +1,10 @@
 import path from "path";
-import fg from "fast-glob";
 import fs from "fs";
 import YAML from "js-yaml";
 
-import { cleanUpReadme, loadFile } from "@/utils";
-import { parseMetaInfo } from "@/utils/questions";
-import { Category, Challenge, QuestionMetaInfo, StudyPlan, StudyPlanInfo } from "@/types";
+import { StudyPlan, StudyPlanInfo } from "@/types";
 import { getLocaleVariations } from "@/utils/locales";
-import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO, STUDY_PLANS_ROOT } from "@/constants";
+import { DEFAULT_LOCALE, STUDY_PLANS_ROOT } from "@/constants";
 import { getChallengeByPath } from "./challenge";
 
 export async function getStudyPlans(): Promise<StudyPlan[]> {
@@ -41,7 +38,7 @@ export async function getStudyPlanByPath(dir: string): Promise<StudyPlan> {
     }),
   );
 
-  return { title: info[DEFAULT_LOCALE].title, topics };
+  return { title: info[DEFAULT_LOCALE].title, topics, path: dir, info };
 }
 
 export function parseStudyPlan(s: string): StudyPlanInfo {
