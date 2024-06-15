@@ -4,4 +4,12 @@ topics:
   - title: "Objects"
     challenges:
       - 00066-easy-this
-      - 00069-easy-two-functions-one-object 
+      - 00069-easy-two-functions-one-object
+  - title: "Data Types"
+    challenges:
+      - 00018-easy-flatten
+  - title: "Promises"
+    challenges:
+      - 00035-hard-promise-all
+      - 00037-hard-promise-race
+      - 00043-hard-promise-any

@@ -36,14 +36,16 @@ export default async function Page(props: any) {
           Study Plans are a collection of topics and challenges designed to help you learn a specific topic. It starts
           with the basics and progresses to more advanced topics.
         </div>
-        {studyPlan.topics.map((topic) => {
-          return (
-            <div className="flex flex-col gap-2" key={`topic-${topic.title}`}>
-              <h3 className="text-base font-semibold ">{topic.title}</h3>
-              <ChallengeList challenges={topic.challenges} />
-            </div>
-          );
-        })}
+        <div className="flex flex-col gap-3">
+          {studyPlan.topics.map((topic) => {
+            return (
+              <div className="flex flex-col gap-1" key={`topic-${topic.title}`}>
+                <h3 className="text-base font-semibold ">{topic.title}</h3>
+                <ChallengeList challenges={topic.challenges} />
+              </div>
+            );
+          })}
+        </div>
       </Layout>
 
       <Footer />
