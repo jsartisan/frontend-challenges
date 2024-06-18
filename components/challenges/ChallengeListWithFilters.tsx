@@ -2,7 +2,7 @@
 
 import { Category, Challenge, Difficulty } from "@/types";
 import { Input } from "../ui/input";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { Button, Icon, ToggleGroupItem } from "@/components/ui";
 import { CATEGORIES, DEFAULT_LOCALE, DIFFICULTY_RANK } from "@/constants";
 import { ChallengeList } from "./ChallengeList";
@@ -10,6 +10,7 @@ import { ChallengeListFilter } from "./ChallengeListFilter";
 import { ToggleGroup } from "@/components/ui";
 import { ChallengeListSort } from "./ChallengeListSort";
 import dynamic from "next/dynamic";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const ChallengeListFilterMobile = dynamic(() => import("./ChallengeListFilterMobile"), {
   ssr: false,
@@ -103,6 +104,8 @@ const reducer = (state: State, action: Action) => {
 
 export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) => {
   const { challenges } = props;
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [state, dispatch] = useReducer(reducer, {
     search: "",
     challenges: challenges,
@@ -115,6 +118,42 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
     sort_order: "asc",
     sort_by: "difficulty",
   });
+
+  useEffect(() => {
+    const category = searchParams.get("category");
+    const difficulty = searchParams.get("difficulty");
+    const type = searchParams.get("type");
+
+    if (category) {
+      dispatch({
+        type: "filter",
+        payload: {
+          ...state.filters,
+          category: Array.isArray(category) ? category : [category],
+        },
+      });
+    }
+
+    if (difficulty) {
+      dispatch({
+        type: "filter",
+        payload: {
+          ...state.filters,
+          difficulty: Array.isArray(difficulty) ? difficulty : [difficulty],
+        },
+      });
+    }
+
+    if (type) {
+      dispatch({
+        type: "filter",
+        payload: {
+          ...state.filters,
+          type: type,
+        },
+      });
+    }
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col gap-3">
@@ -157,13 +196,7 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
         <ToggleGroup
           className="hidden lg:flex"
           onValueChange={(value) => {
-            dispatch({
-              type: "filter",
-              payload: {
-                ...state.filters,
-                type: value,
-              },
-            });
+            router.push(`/challenges?type=${value}`);
           }}
           type="single"
           variant="outline"

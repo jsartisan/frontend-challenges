@@ -2,31 +2,23 @@ import { commonFiles } from "./common";
 
 export const VANILLA_TEMPLATE = {
   files: {
+    "/index.html": {
+      active: true,
+      code: `<!doctype html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h1>Hello World</h1>
+  </body>
+</html>`,
+    },
     ...commonFiles,
     "/index.js": {
-      code: `import "./styles.css";
-
-document.getElementById("app").innerHTML=
-  \`<h1>Hello world</h1>\`;
-`,
-    },
-    "/index.html": {
-      code: `<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Parcel Sandbox</title>
-  <meta charset="UTF-8" />
-</head>
-
-<body>
-  <div id="app"></div>
-
-  <script type="module" src="index.js">
-  </script>
-</body>
-
-</html>`,
+      code: `import "./styles.css";`,
     },
     "/package.json": {
       code: JSON.stringify({
