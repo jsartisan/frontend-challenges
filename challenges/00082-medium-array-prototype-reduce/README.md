@@ -5,14 +5,14 @@ The arrayReduce function should take an array, a callback function, and an optio
 Use the following example to understand how the arrayReduce function should work:
 
 ```js index.js
-function arrayReduce(callback, initialValue) {
+const arrayReduce = (array, callback, initialValue) => {
   // Your implementation here
 };
 
 const sum = (acc, curr) => acc + curr;
 
 const numbers = [1, 2, 3, 4];
-const result = numbers.arrayReduce(sum, 0);
+const result = arrayReduce(numbers, sum, 0);
 
 console.log(result); 
 // Output: 10
