@@ -1,18 +1,19 @@
 "use client";
 
+import { TEMPLATES } from "@/templates";
+import { useEffect, useState } from "react";
+import { SupportedTemplates } from "@/types";
+import Preview from "@/components/editor/Preview";
+import { SUPPORTED_TEMPLATES } from "@/constants";
 import { CodeEditor } from "@/components/editor/CodeEditor";
 import SandpackRoot from "@/components/editor/SandpackRoot";
-import Preview from "@/components/editor/Preview";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { SUPPORTED_TEMPLATES } from "@/constants";
-import { SupportedTemplates } from "@/types";
-import { useSearchParams, ReadonlyURLSearchParams } from "next/navigation";
 import { FileExplorer } from "@/components/editor/FileExplorer";
-import { TEMPLATES } from "@/templates";
 import { TemplateChanger } from "@/components/editor/TemplateChanger";
-import { useState } from "react";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import { SharePlaygroundButton } from "./SharePlaygroundButton";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const getTempalteFromURL = (searchParams: ReadonlyURLSearchParams): SupportedTemplates => {
+const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
 
   if (template && SUPPORTED_TEMPLATES.includes(template as SupportedTemplates)) {
@@ -22,7 +23,9 @@ const getTempalteFromURL = (searchParams: ReadonlyURLSearchParams): SupportedTem
   return "vanilla";
 };
 
-const getFilesFromURL = (files: string | null, template: SupportedTemplates) => {
+const getFilesFromURL = (searchParams: URLSearchParams, template: SupportedTemplates) => {
+  const files = searchParams.get("files");
+
   if (files) {
     try {
       const parsedFiles = JSON.parse(files);
@@ -40,9 +43,40 @@ const getFilesFromURL = (files: string | null, template: SupportedTemplates) => 
 };
 
 export default function Client() {
-  const searchParams = useSearchParams();
-  const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
-  const [files, setFiles] = useState(() => getFilesFromURL(searchParams.get("code"), template));
+  const [mounted, setMounted] = useState(false);
+  const [template, setTemplate] = useState<SupportedTemplates>("vanilla");
+  const [files, setFiles] = useState(TEMPLATES[template].files);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    setTemplate(getTempalteFromURL(searchParams));
+    setFiles(getFilesFromURL(searchParams, template as SupportedTemplates));
+  }, [template, setTemplate, setFiles]);
+
+  if (!mounted) {
+    return (
+      <div className="h-auto sm:h-[calc(100vh_-_var(--nav-top-offset))]">
+        <div className="flex h-full w-full flex-col gap-4 p-4">
+          <div className="relative flex w-full justify-between">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-semibold">Playground</h1>
+            </div>
+            <Skeleton className="h-8 w-20" />
+          </div>
+          <div className="flex w-full flex-grow gap-4">
+            <Skeleton className="h-full w-2/12" />
+            <Skeleton className="h-full w-6/12" />
+            <Skeleton className="h-full w-4/12" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <SandpackRoot files={files}>
@@ -51,6 +85,7 @@ export default function Client() {
           <div className="flex items-center">
             <h1 className="text-2xl font-semibold">Playground</h1>
           </div>
+          <SharePlaygroundButton template={template} />
         </div>
         <div className="w-full flex-grow">
           <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
@@ -60,7 +95,7 @@ export default function Client() {
                   template={template}
                   setTemplate={(template) => {
                     setTemplate(template);
-                    setFiles(getFilesFromURL(searchParams.get("code"), template));
+                    setFiles(TEMPLATES[template].files);
                   }}
                 />
                 <FileExplorer />
