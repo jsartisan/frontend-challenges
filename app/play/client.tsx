@@ -1,17 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { TEMPLATES } from "@/templates";
-import { useEffect, useState } from "react";
 import { SupportedTemplates } from "@/types";
 import Preview from "@/components/editor/Preview";
 import { SUPPORTED_TEMPLATES } from "@/constants";
 import { CodeEditor } from "@/components/editor/CodeEditor";
 import SandpackRoot from "@/components/editor/SandpackRoot";
 import { FileExplorer } from "@/components/editor/FileExplorer";
+import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { TemplateChanger } from "@/components/editor/TemplateChanger";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { SharePlaygroundButton } from "./SharePlaygroundButton";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -43,40 +42,9 @@ const getFilesFromURL = (searchParams: URLSearchParams, template: SupportedTempl
 };
 
 export default function Client() {
-  const [mounted, setMounted] = useState(false);
-  const [template, setTemplate] = useState<SupportedTemplates>("vanilla");
-  const [files, setFiles] = useState(TEMPLATES[template].files);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-
-    setTemplate(getTempalteFromURL(searchParams));
-    setFiles(getFilesFromURL(searchParams, template as SupportedTemplates));
-  }, [template, setTemplate, setFiles]);
-
-  if (!mounted) {
-    return (
-      <div className="h-auto sm:h-[calc(100vh_-_var(--nav-top-offset))]">
-        <div className="flex h-full w-full flex-col gap-4 p-4">
-          <div className="relative flex w-full justify-between">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-semibold">Playground</h1>
-            </div>
-            <Skeleton className="h-8 w-20" />
-          </div>
-          <div className="flex w-full flex-grow gap-4">
-            <Skeleton className="h-full w-2/12" />
-            <Skeleton className="h-full w-6/12" />
-            <Skeleton className="h-full w-4/12" />
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const searchParams = new URLSearchParams(window.location.search);
+  const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
+  const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
 
   return (
     <SandpackRoot files={files}>
