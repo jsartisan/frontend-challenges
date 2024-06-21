@@ -3,19 +3,14 @@ import fg from "fast-glob";
 
 import { cleanUpReadme } from "@/utils";
 import { parseMetaInfo } from "@/utils/questions";
-import { Category, Challenge, QuestionMetaInfo } from "@/types";
 import { getLocaleVariations } from "@/utils/locales";
+import { Category, Challenge, QuestionMetaInfo } from "@/types";
 import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@/constants";
 
 import { getAnswersOfQuestion } from "./answers";
 import { getCodeFilesByTemplate } from "./template";
 import { bundleMarkdown } from "@/utils/markdown";
 
-/**
- * get all questions
- *
- * @returns
- */
 export async function getChallenges(): Promise<Challenge[]> {
   const folders = await fg("{0..9}*-*", {
     onlyDirectories: true,
@@ -27,12 +22,6 @@ export async function getChallenges(): Promise<Challenge[]> {
   return challenges;
 }
 
-/**
- * get question by path
- *
- * @param path
- * @returns
- */
 export async function getChallengeByPath(dir: string): Promise<Challenge> {
   const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
   const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
@@ -106,15 +95,7 @@ export function getChallengeInfoByLocale(quiz: Challenge, locale: string = DEFAU
   return info as QuestionMetaInfo;
 }
 
-/**
- * get quizzes grouped by tag
- *
- * @param quizzes
- * @param locale
- * @param tag
- * @returns
- */
-export function getQuizesByTag(quizzes: Challenge[], locale: string, tag: string) {
+export function getChallengesByTag(quizzes: Challenge[], locale: string, tag: string) {
   return quizzes.filter((quiz) => {
     const info = getChallengeInfoByLocale(quiz, locale);
 
@@ -122,13 +103,6 @@ export function getQuizesByTag(quizzes: Challenge[], locale: string, tag: string
   });
 }
 
-/**
- * get all tags from questions
- *
- * @param quizzes
- * @param locale
- * @returns
- */
 export function getAllTags(quizzes: Challenge[], locale: string) {
   const set = new Set<string>();
   for (const quiz of quizzes) {

@@ -2,7 +2,7 @@
 
 import { Category, Challenge, Difficulty } from "@/types";
 import { Input } from "../ui/input";
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import { Button, Icon, ToggleGroupItem } from "@/components/ui";
 import { CATEGORIES, DEFAULT_LOCALE, DIFFICULTY_RANK } from "@/constants";
 import { ChallengeList } from "./ChallengeList";
@@ -10,7 +10,6 @@ import { ChallengeListFilter } from "./ChallengeListFilter";
 import { ToggleGroup } from "@/components/ui";
 import { ChallengeListSort } from "./ChallengeListSort";
 import dynamic from "next/dynamic";
-import { useRouter, useSearchParams } from "next/navigation";
 
 const ChallengeListFilterMobile = dynamic(() => import("./ChallengeListFilterMobile"), {
   ssr: false,
@@ -18,6 +17,7 @@ const ChallengeListFilterMobile = dynamic(() => import("./ChallengeListFilterMob
 
 type ChallengeListWithFiltersProps = {
   challenges: Challenge[];
+  includes?: ("category" | "difficulty")[];
 };
 
 interface Action {
@@ -103,9 +103,7 @@ const reducer = (state: State, action: Action) => {
 };
 
 export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) => {
-  const { challenges } = props;
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const { challenges, includes = ["category", "difficulty"] } = props;
   const [state, dispatch] = useReducer(reducer, {
     search: "",
     challenges: challenges,
@@ -119,42 +117,6 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
     sort_by: "difficulty",
   });
 
-  useEffect(() => {
-    const category = searchParams.get("category");
-    const difficulty = searchParams.get("difficulty");
-    const type = searchParams.get("type");
-
-    if (category) {
-      dispatch({
-        type: "filter",
-        payload: {
-          ...state.filters,
-          category: Array.isArray(category) ? category : [category],
-        },
-      });
-    }
-
-    if (difficulty) {
-      dispatch({
-        type: "filter",
-        payload: {
-          ...state.filters,
-          difficulty: Array.isArray(difficulty) ? difficulty : [difficulty],
-        },
-      });
-    }
-
-    if (type) {
-      dispatch({
-        type: "filter",
-        payload: {
-          ...state.filters,
-          type: type,
-        },
-      });
-    }
-  }, [searchParams]);
-
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
@@ -165,38 +127,48 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
             dispatch({ type: "search", payload: e.target.value });
           }}
         />
-        <ChallengeListFilter
-          title="Difficulty"
-          selectedValues={state.filters.difficulty}
-          options={difficultyOptions}
-          setSelectedValues={(values) =>
-            dispatch({
-              type: "filter",
-              payload: {
-                ...state.filters,
-                difficulty: values,
-              },
-            })
-          }
-        />
-        <ChallengeListFilter
-          title="Category"
-          selectedValues={state.filters.category}
-          options={categoryOptions}
-          setSelectedValues={(values) =>
-            dispatch({
-              type: "filter",
-              payload: {
-                ...state.filters,
-                category: values,
-              },
-            })
-          }
-        />
+        {includes.includes("difficulty") && (
+          <ChallengeListFilter
+            title="Difficulty"
+            selectedValues={state.filters.difficulty}
+            options={difficultyOptions}
+            setSelectedValues={(values) =>
+              dispatch({
+                type: "filter",
+                payload: {
+                  ...state.filters,
+                  difficulty: values,
+                },
+              })
+            }
+          />
+        )}
+        {includes.includes("category") && (
+          <ChallengeListFilter
+            title="Category"
+            selectedValues={state.filters.category}
+            options={categoryOptions}
+            setSelectedValues={(values) =>
+              dispatch({
+                type: "filter",
+                payload: {
+                  ...state.filters,
+                  category: values,
+                },
+              })
+            }
+          />
+        )}
         <ToggleGroup
           className="hidden lg:flex"
           onValueChange={(value) => {
-            router.push(`/challenges?type=${value}`);
+            dispatch({
+              type: "filter",
+              payload: {
+                ...state.filters,
+                type: value,
+              },
+            });
           }}
           type="single"
           variant="outline"

@@ -42,7 +42,7 @@ function QuestionChallenge(props: QuestionProps) {
           <div className="relative flex w-full justify-between">
             <Breadcrumb challenge={question} />
             <LayoutChanger className="absolute -top-[2px] left-[calc(50%-125px)] w-[250px]" />
-            <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-2 md:flex">
               <MarkCompleteButton challenge={question} />
               <TemplateChanger template={template} setTemplate={setTemplate} question={question} />
               <ShareSolutionButton template={template} challenge={question} />

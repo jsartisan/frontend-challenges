@@ -11,7 +11,7 @@ import {
 } from "@/utils";
 import { Challenge } from "@/types";
 import { DIFFICULTY_RANK, SUPPORTED_LOCALES } from "@/constants";
-import { getAllTags, getQuizesByTag, getChallenges } from "@/db/challenge";
+import { getAllTags, getChallengesByTag, getChallenges } from "@/db/challenge";
 
 /**
  * update the root readme
@@ -49,7 +49,7 @@ async function updateIndexREADME(challenges: Challenge[]) {
     const tags = getAllTags(challenges, locale);
     for (const tag of tags) {
       challengesREADME += `<tr><td>${getBadge("", `#${tag}`, "999")}</td><td>`;
-      getQuizesByTag(challengesByDifficulty, locale, tag).forEach((quiz) => {
+      getChallengesByTag(challengesByDifficulty, locale, tag).forEach((quiz) => {
         challengesREADME += getChallengeBadge(quiz, locale);
       });
       challengesREADME += "</td></tr>";

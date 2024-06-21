@@ -31,7 +31,7 @@ export async function Header(props: HeaderProps) {
               <SpotLight items={challenges} />
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
-              <div className="flex items-center gap-4">
+              <div className="hidden items-center gap-4 md:flex">
                 <Link href="/challenges" className="font-medium">
                   Challenges
                 </Link>
@@ -42,7 +42,7 @@ export async function Header(props: HeaderProps) {
                   Playground
                 </Link>
               </div>
-              <Separator orientation="vertical" className="mx-3" />
+              <Separator orientation="vertical" className="mx-3 hidden md:flex" />
               <SubmissionNavigator />
               <IconButton asChild variant="tertiary">
                 <a href={REPO} target="_blank" rel="noreferrer">

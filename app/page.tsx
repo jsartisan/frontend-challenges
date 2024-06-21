@@ -1,10 +1,11 @@
 import { getChallenges } from "@/db/challenge";
-import { DEFAULT_LOCALE } from "@/constants";
+import { CATEGORIES, DEFAULT_LOCALE } from "@/constants";
 import { Layout } from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
 import { Community } from "@/components/home/Community";
 import { ChallengeList } from "@/components/challenges/ChallengeList";
+import { CategoryList } from "@/components/home/CategoryList";
 
 export default async function Page() {
   const challenges = await getChallenges();
@@ -22,6 +23,7 @@ export default async function Page() {
     <>
       <Layout>
         <Hero />
+        <CategoryList challenges={challenges} categories={CATEGORIES as any} />
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <h3 className="text-xl font-bold">Recently Added</h3>

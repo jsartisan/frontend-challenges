@@ -5,6 +5,8 @@ import Client from "./client";
 import { DOMAIN } from "@/constants";
 
 export const revalidate = 3600;
+export const dynamicParams = false;
+export const dynamic = "force-static";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
   const question = await getChallengeByPath(props.params.slug);

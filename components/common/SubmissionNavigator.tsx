@@ -15,7 +15,7 @@ export function SubmissionNavigator() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" className="gap-1">
+        <Button variant="secondary" className="hidden gap-1 md:flex">
           <Icon name="plus" size="sm" className="-ml-1" />
           Submit
         </Button>
