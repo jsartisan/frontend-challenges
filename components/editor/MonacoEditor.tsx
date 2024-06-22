@@ -36,6 +36,9 @@ export function MonacoEditor() {
       language={language}
       theme={`vs-${theme}`}
       defaultValue={code}
+      options={{
+        minimap: { enabled: false },
+      }}
       onChange={(value) => updateCode(value || "")}
     />
   );
