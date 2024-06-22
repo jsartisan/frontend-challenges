@@ -11,10 +11,9 @@ import estree from "prettier/plugins/estree";
 import babel from "prettier/plugins/babel";
 import html from "prettier/plugins/html";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
+import { SandpackCodeEditor, SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 
 import { Button, Icon } from "../ui";
-import { MonacoEditor } from "./MonacoEditor";
 
 type Props = {
   files?: Record<string, CodeFile>;
@@ -132,7 +131,7 @@ export function CodeEditor(props: Props) {
             <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <MonacoEditor />
+          <SandpackCodeEditor ref={codemirrorInstance} showLineNumbers showTabs={false} className="h-full" />
         )}
       </div>
     </Card>
