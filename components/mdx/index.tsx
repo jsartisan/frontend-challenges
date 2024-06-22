@@ -36,6 +36,7 @@ export const components = {
   p: (props: any) => <p className="leading-snug" {...props} />,
   ol: (props: any) => <ol className="flex flex-col gap-2" {...props} />,
   li: (props: any) => <li className="ml-4 list-disc [&_ul]:mt-2" {...props} />,
+  ul: (props: any) => <ul className="flex flex-col gap-1" {...props} />,
   code: (props: any) => (
     <code
       className="rounded bg-[var(--color-bg-neutral-subtle)] px-1 py-0.5 text-[var(--color-fg-neutral)]"
