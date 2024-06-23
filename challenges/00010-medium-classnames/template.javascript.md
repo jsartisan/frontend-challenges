@@ -5,7 +5,7 @@ export const classNames = (...args) => {
 ```
 
 ```js index.test.js
-import { classNames } from './';
+import { classNames } from './index';
 
 describe('classNames utility function', () => {
   it('should concatenate strings and numbers', () => {

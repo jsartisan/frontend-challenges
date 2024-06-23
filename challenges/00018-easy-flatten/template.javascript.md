@@ -5,7 +5,7 @@ export function flatten(arr, depth = 1) {
 ```
 
 ```js index.test.js
-import { flatten } from './';
+import { flatten } from './index';
 
 describe('flatten function', () => {
   test('should flatten the array by default depth', () => {

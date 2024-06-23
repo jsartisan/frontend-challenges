@@ -5,7 +5,7 @@ export function promiseAll(promises) {
 ```
 
 ```js index.test.js
-import { promiseAll } from './';
+import { promiseAll } from './index';
 
 describe('promiseAll', () => {
   test('Resolves all promises correctly', async () => {

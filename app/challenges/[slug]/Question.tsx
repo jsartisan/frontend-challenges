@@ -71,7 +71,12 @@ function QuestionChallenge(props: QuestionProps) {
                   </TabsContent>
                 </Tabs>
               </Card>
-              <CodeEditor exclude={["/package.json"]} className="min-h-0" question={question} />
+              <CodeEditor
+                path={`/challenges/${question.path}`}
+                exclude={["/package.json"]}
+                className="min-h-0"
+                question={question}
+              />
               <Preview className="min-h-0" template={template} />
             </ResizableLayout>
           </div>

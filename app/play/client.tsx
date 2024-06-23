@@ -23,11 +23,13 @@ const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates =
 };
 
 const getFilesFromURL = (searchParams: URLSearchParams, template: SupportedTemplates) => {
-  const files = searchParams.get("files");
+  const files = searchParams.get("code");
 
   if (files) {
     try {
       const parsedFiles = JSON.parse(files);
+
+      console.log({ parsedFiles });
 
       return {
         ...TEMPLATES[template].files,
@@ -71,7 +73,7 @@ export default function Client() {
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={50}>
-              <CodeEditor />
+              <CodeEditor path="/playground" />
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={35}>

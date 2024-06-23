@@ -5,7 +5,7 @@ export function arrayMap(array, callback) {
 ```
 
 ```js index.test.js
-import { arrayMap } from './';
+import { arrayMap } from './index';
 
 describe('arrayMap function', () => {
   it('should double the numbers', () => {

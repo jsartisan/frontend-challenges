@@ -5,7 +5,7 @@ export const arrayReduce = (array, callback, initialValue) => {
 ```
 
 ```js index.test.js
-import { arrayReduce } from './';
+import { arrayReduce } from './index';
 
 describe('arrayReduce function', () => {
   it('should sum an array of numbers with initial value', () => {

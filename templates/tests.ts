@@ -4,7 +4,7 @@ export const TESTS_TEMPLATE = {
       code: `export const add = (a, b) => a + b;`,
     },
     "/index.test.js": {
-      code: `import { add } from './';
+      code: `import { add } from './index';
 
 describe('add', () => {
   test('Commutative Law of Addition', () => {

@@ -5,7 +5,7 @@ export class EventEmitter {
 ```
 
 ```js index.test.js
-import { EventEmitter } from './';
+import { EventEmitter } from './index';
 
 describe('EventEmitter class', () => {
   let emitter;

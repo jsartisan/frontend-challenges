@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useRef } from "react";
+import { memo } from "react";
 import { Card } from "../ui/card";
 import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
@@ -9,11 +9,12 @@ import prettier from "prettier/standalone";
 import postcss from "prettier/plugins/postcss";
 import estree from "prettier/plugins/estree";
 import babel from "prettier/plugins/babel";
-import html from "prettier/plugins/html";
+import prettierHTML from "prettier/plugins/html";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SandpackCodeEditor, SandpackState, useSandpack } from "@codesandbox/sandpack-react";
+import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 
 import { Button, Icon } from "../ui";
+import { MonacoEditor } from "./MonacoEditor";
 
 type Props = {
   files?: Record<string, CodeFile>;
@@ -23,11 +24,11 @@ type Props = {
   onChange?: (files: SandpackState["files"]) => void;
   showTabs?: boolean;
   exclude?: string[];
+  path?: string;
 };
 
 export function CodeEditor(props: Props) {
-  const codemirrorInstance = useRef<any>(null);
-  const { className, showTabs = true, exclude } = props;
+  const { className, showTabs = true, exclude, path } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -51,7 +52,7 @@ export function CodeEditor(props: Props) {
     }
 
     if (ext === "html") {
-      plugins = [html];
+      plugins = [prettierHTML];
       parser = "html";
     }
 
@@ -67,20 +68,6 @@ export function CodeEditor(props: Props) {
       })
       .then((formatted) => {
         if (formatted) {
-          const cmInstance = codemirrorInstance.current.getCodemirror();
-
-          if (cmInstance) {
-            const trans = cmInstance.state.update({
-              changes: {
-                from: 0,
-                to: cmInstance.state.doc.length,
-                insert: formatted,
-              },
-            });
-
-            cmInstance.update([trans]);
-          }
-
           sandpack.updateFile(activeFile, formatted);
         }
       })
@@ -116,7 +103,7 @@ export function CodeEditor(props: Props) {
                   );
                 })}
             </div>
-            <Button variant="tertiary" size="sm" onClick={onPrettify}>
+            <Button variant="tertiary" size="sm" onClick={onPrettify} type="button">
               <Icon name="tidy" />
               Tidy
             </Button>
@@ -131,7 +118,7 @@ export function CodeEditor(props: Props) {
             <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <SandpackCodeEditor ref={codemirrorInstance} showLineNumbers showTabs={false} className="h-full" />
+          <MonacoEditor path={path} key={Object.keys(files).join("-")} />
         )}
       </div>
     </Card>

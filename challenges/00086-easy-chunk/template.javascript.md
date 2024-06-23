@@ -6,7 +6,7 @@ export function chunk(array, size) {
 ```
 
 ```js index.test.js
-import { chunk } from './';
+import { chunk } from './index';
 
 describe('chunk function', () => {
   test('should split an array into chunks of specified size', () => {

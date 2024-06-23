@@ -5,7 +5,7 @@ export function isEmpty(value) {
 ```
 
 ```js index.test.js
-import { isEmpty } from './';
+import { isEmpty } from './index';
 
 describe('isEmpty function', () => {
     it('should return true for empty objects, arrays, maps, and sets', () => {

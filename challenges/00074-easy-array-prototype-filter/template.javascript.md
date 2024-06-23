@@ -5,7 +5,7 @@ export function arrayFilter(array, callback) {
 ```
 
 ```js index.test.js
-import { arrayFilter } from './';
+import { arrayFilter } from './index';
 
 describe('arrayFilter function', () => {
   it('should filter even numbers', () => {

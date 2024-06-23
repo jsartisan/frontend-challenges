@@ -6,7 +6,7 @@ export function memo(func) {
 ```
 
 ```js index.test.js
-import { memo } from './';
+import { memo } from './index';
 
 describe('memo function', () => {
   it('should memoize function calls', () => {

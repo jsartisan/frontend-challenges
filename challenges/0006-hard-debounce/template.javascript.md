@@ -6,7 +6,7 @@ export function debounce(func, delay) {
 ```
 
 ```js index.test.js 
-import { debounce } from './';
+import { debounce } from './index';
 
 function wait(time) {
   return new Promise((resolve) => setTimeout(resolve, time));

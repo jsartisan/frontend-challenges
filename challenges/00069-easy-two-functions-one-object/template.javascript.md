@@ -9,7 +9,7 @@ export function B() {
 ```
 
 ```js index.test.js
-import { A, B } from './';
+import { A, B } from './index';
 
 describe('Constructor Functions A and B', () => {
   test('new A() should equal new B()', () => {
