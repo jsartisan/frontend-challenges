@@ -13,12 +13,17 @@ export function MonacoEditor(props: MonacoEditorProps) {
   const { code, updateCode } = useActiveCode();
   const { sandpack } = useSandpack();
   const { files } = sandpack;
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (monaco) {
       Object.keys(files).forEach((file) => {
-        if (monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))) return;
+        if (monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))) {
+          // update the model if it already exists
+          monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))?.setValue(files[file].code);
+
+          return;
+        }
 
         monaco.editor.createModel(files[file].code, setLanguage(file), monaco.Uri.parse(`${path}${file}`));
       });
@@ -49,7 +54,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
       height="100%"
       path={`${path}${sandpack.activeFile}`}
       language={setLanguage(sandpack.activeFile)}
-      theme={`vs-${theme}`}
+      theme={`vs-${resolvedTheme}`}
       value={code}
       options={{
         minimap: { enabled: false },
