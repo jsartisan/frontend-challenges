@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const SpotLight = dynamic(() => import("@/components/common/Spotlight"), {
   ssr: false,
-  loading: () => <Skeleton className="h-8 w-20" />,
+  loading: () => <Skeleton className="hidden h-8 w-20 md:flex" />,
 });
 
 type HeaderProps = {

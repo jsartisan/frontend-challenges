@@ -58,6 +58,8 @@ export function MonacoEditor(props: MonacoEditorProps) {
       value={code}
       options={{
         minimap: { enabled: false },
+        tabSize: 2,
+        detectIndentation: false,
       }}
       onChange={(value) => updateCode(value || "")}
     />
