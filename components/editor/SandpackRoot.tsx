@@ -23,6 +23,7 @@ export default function SandpackRoot(props: Props) {
       key={Object.keys(files).join("-")}
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
+        bundlerURL: "https://bundler.frontend-challenges.com",
         classes: {
           "sp-code-editor": "!bg-[var(--color-bg)] h-full",
           "sp-wrapper": "!h-auto sm:!h-[calc(100vh_-_var(--nav-top-offset))]",
