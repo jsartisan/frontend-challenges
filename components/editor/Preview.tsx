@@ -26,8 +26,6 @@ function Preview(props: PreviewProps) {
   const showTestsOnly = (isTestFile || mode == "tests") && !showLogs;
   const showPreviewOnly = !(isTestFile || mode == "tests" || showLogs);
 
-  console.log({ showPreviewOnly, mode, isTestFile, showLogs });
-
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -35,7 +33,7 @@ function Preview(props: PreviewProps) {
   }, []);
 
   const showLogButton = (
-    <Button size="sm" className="rounded-[40px]" variant="tertiary" onClick={() => setShowLogs((prev) => !prev)}>
+    <Button size="sm" className="rounded-xl" variant="tertiary" onClick={() => setShowLogs((prev) => !prev)}>
       {showLogs ? "Hide Logs" : "Show Logs"}
     </Button>
   );
