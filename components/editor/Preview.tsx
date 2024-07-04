@@ -1,14 +1,12 @@
 "use client";
 
-import { SandpackPreview, SandpackTests, useSandpack, useSandpackConsole } from "@codesandbox/sandpack-react";
+import { SandpackPreview, SandpackTests, useSandpack } from "@codesandbox/sandpack-react";
 import { Card } from "../ui/card";
 import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
 import { SupportedTemplates } from "@/types";
 import { TEMPLATES } from "@/templates";
 import { memo } from "react";
-import { Button } from "../ui";
-import { Console } from "console-feed";
 
 type PreviewProps = {
   className?: string;
@@ -19,26 +17,18 @@ type PreviewProps = {
 function Preview(props: PreviewProps) {
   const { className, template = "vanilla" } = props;
   const [loading, setLoading] = useState(true);
-  const [showLogs, setShowLogs] = useState(false);
   const { sandpack } = useSandpack();
-  const { logs } = useSandpackConsole({ resetOnPreviewRestart: true });
   const { activeFile } = sandpack;
   const isTestFile = activeFile.includes(".test.");
   const mode = "mode" in TEMPLATES[template] ? (TEMPLATES[template] as any).mode : undefined;
-  const showTestsOnly = (isTestFile || mode == "tests") && !showLogs;
-  const showPreviewOnly = !(isTestFile || mode == "tests" || showLogs);
+  const showTestsOnly = isTestFile || mode == "tests";
+  const showPreviewOnly = !(isTestFile || mode == "tests");
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
   }, []);
-
-  const showLogButton = (
-    <Button size="sm" className="rounded-xl" variant="tertiary" onClick={() => setShowLogs((prev) => !prev)}>
-      {showLogs ? "Hide Logs" : "Show Logs"}
-    </Button>
-  );
 
   return (
     <Card className={cn("relative flex h-full w-full flex-col overflow-hidden", className)}>
@@ -49,15 +39,10 @@ function Preview(props: PreviewProps) {
         </div>
       ) : (
         <>
-          <div className={cn(cn("!absolute !inset-0 bg-[var(--color-bg)]", showLogs ? "z-10" : "z-0"))}>
-            <Console logs={logs as any} />
-            {showLogButton}
-          </div>
-          {showTestsOnly && <SandpackTests actionsChildren={showLogButton} className={cn("!absolute !inset-0 z-10")} />}
+          {showTestsOnly && <SandpackTests className={cn("!absolute !inset-0 z-10")} />}
           <SandpackPreview
             showOpenNewtab
             showNavigator
-            actionsChildren={showLogButton}
             showOpenInCodeSandbox={false}
             className={cn("!absolute !inset-0", showPreviewOnly ? "z-10" : "z-0")}
           />
