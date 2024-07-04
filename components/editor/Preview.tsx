@@ -50,7 +50,7 @@ function Preview(props: PreviewProps) {
       ) : (
         <>
           <div className={cn(cn("!absolute !inset-0 bg-[var(--color-bg)]", showLogs ? "z-10" : "z-0"))}>
-            <Console logs={logs} />
+            <Console logs={logs as any} />
             {showLogButton}
           </div>
           {showTestsOnly && <SandpackTests actionsChildren={showLogButton} className={cn("!absolute !inset-0 z-10")} />}
