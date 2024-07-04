@@ -1,7 +1,5 @@
 <!--info-header-start--><h1>Queue using Stack <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23javascript-999" alt="#javascript"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/00104-easy-queue-using-stack" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
 
-Certainly! Here is the question, boilerplate implementation, and Jest tests for implementing a queue using two stacks:
-
 Implement a queue data structure using stacks in JavaScript. A queue follows the First-In-First-Out (FIFO) principle. Your queue should have the following methods:
 
 - `enqueue(element)`: Adds an element to the end of the queue.

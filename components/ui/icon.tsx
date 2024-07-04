@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Layout1Icon,
   Layout2Icon,
@@ -21,12 +22,12 @@ import {
   ExternalLinkIcon,
   EditIcon,
   FilterIcon,
+  LockIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "@/utils/helpers";
 import * as RadixIcon from "@radix-ui/react-icons";
 import { VariantProps, cva } from "class-variance-authority";
-import * as React from "react";
 import { ArrowUpIcon } from "../icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../icons/ArrowDownIcon";
 
@@ -73,7 +74,8 @@ export type IconProps = {
     | "challenge"
     | "external-link"
     | "edit"
-    | "filter";
+    | "filter"
+    | "lock";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -220,6 +222,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "filter":
       icon = FilterIcon;
+      break;
+    case "lock":
+      icon = LockIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

@@ -57,6 +57,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
       theme={`vs-${resolvedTheme}`}
       value={code}
       options={{
+        readOnly: files[sandpack.activeFile]?.readOnly,
         minimap: { enabled: false },
         tabSize: 2,
         detectIndentation: false,

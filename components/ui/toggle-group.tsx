@@ -22,7 +22,7 @@ const ToggleGroup = React.forwardRef<
     className={cn(
       cn(
         "inline-flex h-8 items-center justify-center gap-1 rounded bg-[var(--color-bg)] p-1 shadow-sm",
-        "data-[variant=outline]:border data-[variant=outline]:border-[var(--color-border)]",
+        "data-[variant=outline]:border data-[variant=outline]:border-[var(--color-bd)]",
         "data-[variant=ghost]:gap-2 data-[variant=ghost]:p-0 data-[variant=ghost]:shadow-none [&:is([data-size=icon][data-variant=outline])]:p-[2px]",
       ),
       className,

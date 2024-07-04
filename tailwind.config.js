@@ -16,7 +16,7 @@ module.exports = {
     extend: {
       colors: {
         border: {
-          DEFAULT: "var(--color-border)",
+          DEFAULT: "var(--color-bd)",
         },
       },
       borderRadius: {

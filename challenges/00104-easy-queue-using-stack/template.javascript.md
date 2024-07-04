@@ -1,7 +1,40 @@
 ```js index.js
+import { Stack } from "./Stack";
+
 export class QueueUsingStacks {
   // Your code here
 }
+```
+
+```js Stack.js readOnly
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  size() {
+    return this.items.length;
+  }
+
+  peek() {
+    return this.items.at(-1);
+  }
+
+  push(item) {
+    return this.items.push(item);
+  }
+
+  pop() {
+    return this.items.pop();
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+}
+
+export { Stack };
+
 ```
 
 ```js index.test.js

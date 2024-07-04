@@ -40,7 +40,7 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
           onClick={onClick}
           className={cn({
             "border-[var(--color-bd-positive)] bg-[var(--color-bg-positive-subtle)]": isCompleted,
-            "text-foreground-neutral-subtle hover:text-foreground-neutral-subtle-hover": !isCompleted,
+            "hover:text-foreground-neutral-subtle-hover text-[var(--color-fg)]": !isCompleted,
           })}
         >
           <Icon

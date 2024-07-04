@@ -1,6 +1,6 @@
 "use client";
 
-import { SandpackConsole, SandpackPreview, SandpackTests, useSandpack } from "@codesandbox/sandpack-react";
+import { SandpackPreview, SandpackTests, useSandpack, useSandpackConsole } from "@codesandbox/sandpack-react";
 import { Card } from "../ui/card";
 import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { SupportedTemplates } from "@/types";
 import { TEMPLATES } from "@/templates";
 import { memo } from "react";
 import { Button } from "../ui";
+import { Console } from "console-feed";
 
 type PreviewProps = {
   className?: string;
@@ -20,6 +21,7 @@ function Preview(props: PreviewProps) {
   const [loading, setLoading] = useState(true);
   const [showLogs, setShowLogs] = useState(false);
   const { sandpack } = useSandpack();
+  const { logs } = useSandpackConsole({ resetOnPreviewRestart: true });
   const { activeFile } = sandpack;
   const isTestFile = activeFile.includes(".test.");
   const mode = "mode" in TEMPLATES[template] ? (TEMPLATES[template] as any).mode : undefined;
@@ -47,14 +49,11 @@ function Preview(props: PreviewProps) {
         </div>
       ) : (
         <>
-          <SandpackConsole
-            actionsChildren={showLogButton}
-            className={cn("!absolute !inset-0", showLogs ? "z-10" : "z-0")}
-          />
-          <SandpackTests
-            actionsChildren={showLogButton}
-            className={cn("!absolute !inset-0", showTestsOnly ? "z-10" : "z-0")}
-          />
+          <div className={cn(cn("!absolute !inset-0 bg-[var(--color-bg)]", showLogs ? "z-10" : "z-0"))}>
+            <Console logs={logs} />
+            {showLogButton}
+          </div>
+          {showTestsOnly && <SandpackTests actionsChildren={showLogButton} className={cn("!absolute !inset-0 z-10")} />}
           <SandpackPreview
             showOpenNewtab
             showNavigator

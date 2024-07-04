@@ -98,6 +98,7 @@ export function CodeEditor(props: Props) {
                 .map((file) => {
                   return (
                     <TabsTrigger key={file} value={file}>
+                      {files[file].readOnly && <Icon name="lock" className="text-[var(--color-ic-neutral-subtle)]" />}{" "}
                       {file.replace("/", "")}
                     </TabsTrigger>
                   );

@@ -61,14 +61,17 @@
     --color-fg-question: var(--ramp-purple-900);
     --color-fg-quiz: var(--ramp-orange-900);
 
-    --color-border: var(--ramp-grey-300);
-    --color-border-hover: color-mix(in srgb, var(--color-border) 80%, black 20%);
-    --color-border-strong: color-mix(in srgb, var(--color-border), black 20%);
-    --color-border-accent: var(--ramp-blue-500);
-    --color-border-accent-subtle: color-mix(in srgb, var(--color-border-accent) 50%, transparent 20%);
-    --color-border-assistive: var(--ramp-grey-900);
+    --color-ic-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
 
     --color-bd: var(--ramp-grey-300);
+    --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
+    --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
+    --color-bd-accent: var(--ramp-blue-500);
+    --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
+    --color-bd-assistive: var(--ramp-grey-900);
+
+    --color-bd: var(--ramp-grey-300);
+    --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, black 10%);
     --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
     --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
     --color-bd-accent: var(--ramp-blue-500);
@@ -86,6 +89,7 @@
     --color-bg-accent: var(--ramp-blue-500);
     --color-bg-neutral: color-mix(in srgb, var(--ramp-grey-100), 80% black);
     --color-bg-neutral-subtle: var(--ramp-grey-700);
+    --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 100%, black 90%);
     --color-bg-easy: color-mix(in srgb, var(--ramp-green-100), 80% black);
     --color-bg-medium: color-mix(in srgb, var(--ramp-orange-100), 80% black);
     --color-bg-hard: color-mix(in srgb, var(--ramp-red-100), 80% black);
@@ -102,7 +106,8 @@
     --color-fg-question: color-mix(in srgb, var(--ramp-purple-900), 50% white);
     --color-fg-quiz: color-mix(in srgb, var(--ramp-orange-900), 50% white);
 
-    --color-border: color-mix(in oklch, var(--ramp-grey-600), 50% transparent);
+    --color-bd: color-mix(in oklch, var(--ramp-grey-600), 50% transparent);
+    --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, black 10%);
 
     --sp-colors-surface1: var(--color-bg) !important;
   }
@@ -280,4 +285,27 @@
   --ramp-yellow-800: #eba611;
   --ramp-yellow-900: #dd940e;
   --ramp-yellow-1000: #b86200;
+}
+
+.hero-circle {
+  --size: 121px;
+  animation-duration: 1s;
+  animation-name: anim-grow;
+  border: 1px dashed var(--color-bd-subtle);
+  border-radius: 9999px;
+  height: var(--size);
+  left: calc((100% - var(--size)) / 2);
+  position: absolute;
+  top: calc((100% - var(--size)) / 2);
+  width: var(--size);
+}
+
+@keyframes GFG {
+  0% {
+    transform: rotate(0deg) translateX(calc(var(--size) / 2)) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg) translateX(calc(var(--size) / 2)) rotate(360deg);
+  }
 }

@@ -1,15 +1,17 @@
+import { cn } from "@/utils/helpers";
 import Link from "next/link";
 
 type LogoProps = {
+  className?: string;
   isTextVisible?: boolean;
 };
 
 function Logo(props: LogoProps) {
-  const { isTextVisible } = props;
+  const { isTextVisible, className = "" } = props;
 
   return (
     <Link className="inline-flex items-center" aria-label="Go to the homepage" href="/">
-      <svg className="size-5" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className={cn("size-5", className)} viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M15.4272 0H1.57279C0.704162 0 0 0.869847 0 1.94286V14.0571C0 15.1302 0.704162 16 1.57279 16H15.4272C16.2958 16 17 15.1302 17 14.0571V1.94286C17 0.869847 16.2958 0 15.4272 0Z"
           fill="#0099FF"

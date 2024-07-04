@@ -25,7 +25,11 @@ export default async function RootLayout(params) {
   return (
     <html suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" type="image/png" sizes="32x32" />
-      <body className={cn("flex min-h-screen flex-col bg-[var(--color-bg-secondary)] font-sans text-sm antialiased")}>
+      <body
+        className={cn(
+          "flex min-h-screen flex-col overflow-x-hidden bg-[var(--color-bg-secondary)] font-sans text-sm antialiased",
+        )}
+      >
         <Provider>
           <Header
             challenges={challenges.map((c) => ({ path: c.path, title: c.info.en?.title, difficulty: c.difficulty }))}

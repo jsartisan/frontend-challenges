@@ -48,7 +48,7 @@ export function AnswerList(props: QuestionListProps) {
             <Link
               href={answer.url}
               target="_blank"
-              className="group flex items-center gap-1 underline decoration-[var(--color-border)] underline-offset-4 hover:decoration-[var(--color-border-hover)]"
+              className="group flex items-center gap-1 underline decoration-[var(--color-bd)] underline-offset-4 hover:decoration-[var(--color-bd-hover)]"
             >
               <p className="text-muted-foreground text-sm">{answer.title}</p>
             </Link>
