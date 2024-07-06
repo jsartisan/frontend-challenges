@@ -8,7 +8,7 @@ export { Queue }
 
 ```
 
-```js index.test.js readOnly
+```js index.test.js
 import { Queue } from './index';
 
 describe('Queue class', () => {
