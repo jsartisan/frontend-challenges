@@ -6,6 +6,7 @@ import { SupportedTemplates } from "@/types";
 import Preview from "@/components/editor/Preview";
 import { SUPPORTED_TEMPLATES } from "@/constants";
 import { CodeEditor } from "@/components/editor/CodeEditor";
+import { Console } from "@/components/editor/Console";
 import SandpackRoot from "@/components/editor/SandpackRoot";
 import { FileExplorer } from "@/components/editor/FileExplorer";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
@@ -77,7 +78,13 @@ export default function Client() {
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={35}>
-              <Preview template={template} />
+              <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
+                <ResizablePanel defaultSizePercentage={100}>
+                  <Preview template={template} />
+                </ResizablePanel>
+                <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
+                <Console />
+              </ResizablePanelGroup>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>

@@ -29,6 +29,9 @@ export function MonacoEditor(props: MonacoEditorProps) {
       });
 
       monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+      monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+        noImplicitAny: true,
+      });
 
       monaco.editor.registerEditorOpener({
         openCodeEditor(source, resource) {

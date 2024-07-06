@@ -40,12 +40,14 @@ function Preview(props: PreviewProps) {
       ) : (
         <>
           {showTestsOnly && <SandpackTests className={cn("!absolute !inset-0 z-10")} />}
-          <SandpackPreview
-            showOpenNewtab
-            showNavigator
-            showOpenInCodeSandbox={false}
-            className={cn("!absolute !inset-0", showPreviewOnly ? "z-10" : "z-0")}
-          />
+          {showPreviewOnly && (
+            <SandpackPreview
+              showOpenNewtab
+              showNavigator
+              showOpenInCodeSandbox={false}
+              className={cn("!absolute !inset-0", showPreviewOnly ? "z-10" : "z-0")}
+            />
+          )}
         </>
       )}
     </Card>

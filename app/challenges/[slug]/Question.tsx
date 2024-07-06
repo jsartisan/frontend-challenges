@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { DEFAULT_LOCALE } from "@/constants";
 import Preview from "@/components/editor/Preview";
 import { TemplateChanger } from "./TemplateChanger";
+import { Console } from "@/components/editor/Console";
 import { Question, SupportedTemplates } from "@/types";
 import CodeEditor from "@/components/editor/CodeEditor";
 import Description from "@/components/editor/Description";
@@ -78,6 +79,7 @@ function QuestionChallenge(props: QuestionProps) {
                 question={question}
               />
               <Preview className="min-h-0" template={template} />
+              <Console />
             </ResizableLayout>
           </div>
         </div>

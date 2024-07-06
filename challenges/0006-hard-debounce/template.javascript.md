@@ -47,6 +47,8 @@ describe('Debounce Function', () => {
     debouncedFunction4(2);
     debouncedFunction4(3);
     await wait(300);
+    expect(originalFunction4).not.toBeCalledWith(1);
+    expect(originalFunction4).not.toBeCalledWith(2);
     expect(originalFunction4).toBeCalledWith(3);
   });
 });

@@ -23,6 +23,13 @@ import {
   EditIcon,
   FilterIcon,
   LockIcon,
+  LogClearIcon,
+  LogErrorIcon,
+  LogInfoIcon,
+  LogWarningIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  LogAllIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "@/utils/helpers";
@@ -42,6 +49,8 @@ export type IconProps = {
     | "check"
     | "chevron-right"
     | "chevron-left"
+    | "chevron-down"
+    | "chevron-up"
     | "home"
     | "markdown"
     | "eye"
@@ -75,7 +84,12 @@ export type IconProps = {
     | "external-link"
     | "edit"
     | "filter"
-    | "lock";
+    | "lock"
+    | "log-clear"
+    | "log-error"
+    | "log-info"
+    | "log-warning"
+    | "log-all";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -225,6 +239,30 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "lock":
       icon = LockIcon;
+      break;
+    case "log-clear":
+      icon = LogClearIcon;
+      break;
+    case "log-error":
+      icon = LogErrorIcon;
+      break;
+    case "log-info":
+      icon = LogInfoIcon;
+      break;
+    case "log-warning":
+      icon = LogWarningIcon;
+      break;
+    case "log-clear":
+      icon = LogClearIcon;
+      break;
+    case "log-all":
+      icon = LogAllIcon;
+      break;
+    case "chevron-down":
+      icon = ChevronDownIcon;
+      break;
+    case "chevron-up":
+      icon = ChevronUpIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;
