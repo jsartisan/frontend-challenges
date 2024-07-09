@@ -17,7 +17,7 @@ import { AnswerList } from "@/components/questions/AnswerList";
 import { LayoutChanger } from "@/components/questions/LayoutChanger";
 import { ResizableLayout } from "@/components/editor/ResizableLayout";
 import { ShareSolutionButton } from "@/components/editor/ShareSolutionButton";
-import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+import { Button, Icon, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
 
 const MarkCompleteButton = dynamic(() => import("@/components/editor/MarkCompleteButton"), {
   ssr: false,
@@ -60,6 +60,7 @@ function QuestionChallenge(props: QuestionProps) {
                       <Button variant="tertiary" size="sm" asChild>
                         <a href={question.discussionURL} target="_blank" rel="noopener noreferrer">
                           Discussion
+                          <Icon name="external-link" />
                         </a>
                       </Button>
                     )}

@@ -59,7 +59,12 @@ export default function Client() {
   return (
     <Form {...form}>
       <SandpackRoot files={form.getValues().files}>
-        <form className="h-full p-4">
+        <form
+          className="h-full p-4"
+          onSubmit={() => {
+            //
+          }}
+        >
           <Tabs className="h-full w-full p-0 " value={activeTab || "description"} onValueChange={setActiveTab}>
             <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
               <Step1Header form={form} setActiveTab={setActiveTab} />

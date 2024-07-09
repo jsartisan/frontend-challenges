@@ -8,6 +8,10 @@ topics:
   - title: "Data Types"
     challenges:
       - 00018-easy-flatten
+   - title: "Advanced Functions"
+    challenges:
+      - 00099-easy-closure-2
+      - 00109-easy-jest-spyon
   - title: "Promises"
     challenges:
       - 00035-hard-promise-all

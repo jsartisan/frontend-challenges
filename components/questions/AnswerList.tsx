@@ -44,13 +44,16 @@ export function AnswerList(props: QuestionListProps) {
             <img className="aspect-square h-full w-full" alt="Avatar" src={answer.author_avatar_url} />
           </span>
           <div className="ml-4 space-y-1">
-            <p className="text-sm font-medium leading-none">{answer.author}</p>
+            <p className="text-sm font-medium leading-none text-[var(--color-fg-subtle)]">{answer.author}</p>
             <Link
               href={answer.url}
               target="_blank"
               className="group flex items-center gap-1 underline decoration-[var(--color-bd)] underline-offset-4 hover:decoration-[var(--color-bd-hover)]"
             >
-              <p className="text-muted-foreground text-sm">{answer.title}</p>
+              <div className="flex items-center gap-2">
+                <p className="text-muted-foreground text-sm">{answer.title}</p>
+                <p className="text-[var(--color-fg-subtle)]">#{answer.no}</p>
+              </div>
             </Link>
           </div>
           <div className="ml-auto">

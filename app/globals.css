@@ -64,13 +64,6 @@
     --color-ic-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
 
     --color-bd: var(--ramp-grey-300);
-    --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
-    --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
-    --color-bd-accent: var(--ramp-blue-500);
-    --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
-    --color-bd-assistive: var(--ramp-grey-900);
-
-    --color-bd: var(--ramp-grey-300);
     --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, black 10%);
     --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
     --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
@@ -78,6 +71,7 @@
     --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
     --color-bd-positive: var(--ramp-green-500);
     --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive) 10%, white 90%);
+    --color-bd-assistive: var(--ramp-grey-900);
   }
 
   .dark {
@@ -107,7 +101,8 @@
     --color-fg-quiz: color-mix(in srgb, var(--ramp-orange-900), 50% white);
 
     --color-bd: color-mix(in oklch, var(--ramp-grey-600), 50% transparent);
-    --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, black 10%);
+    --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, white 2%);
+    --color-bd-strong: color-mix(in srgb, var(--color-bd), white 1%);
 
     --sp-colors-surface1: var(--color-bg) !important;
   }
@@ -287,25 +282,11 @@
   --ramp-yellow-1000: #b86200;
 }
 
-.hero-circle {
-  --size: 121px;
-  animation-duration: 1s;
-  animation-name: anim-grow;
-  border: 1px dashed var(--color-bd-subtle);
-  border-radius: 9999px;
-  height: var(--size);
-  left: calc((100% - var(--size)) / 2);
-  position: absolute;
-  top: calc((100% - var(--size)) / 2);
-  width: var(--size);
+/* this is required because sandpack root is not getting color scheme due server-side rendering */
+.dark .sp-wrapper {
+  color-scheme: dark !important;
 }
 
-@keyframes GFG {
-  0% {
-    transform: rotate(0deg) translateX(calc(var(--size) / 2)) rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(-360deg) translateX(calc(var(--size) / 2)) rotate(360deg);
-  }
+.light .sp-wrapper {
+  color-scheme: light !important;
 }
