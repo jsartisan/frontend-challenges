@@ -7,7 +7,7 @@ import { HeroImage } from "./HeroImage";
 
 export function Hero() {
   return (
-    <div className="flex flex-col gap-4 py-12">
+    <div className="flex flex-col gap-4 py-16">
       <a href={REPO} target="_blank" rel="noreferrer" className="self-start">
         <div className="inline-flex h-8 items-center rounded-md border border-dashed border-[var(--color-bd-accent-subtle)] bg-opacity-20 px-2 py-1 text-sm">
           <span className="font-semibold text-[var(--color-fg-accent-strong)]">We&apos;re Open Source</span>

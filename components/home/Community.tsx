@@ -4,10 +4,10 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export function Community() {
   return (
-    <div className="bg-[var(--color-bg-secondary)] py-20 text-left sm:text-center">
-      <div className="container !max-w-[600px]">
-        <p className="text-2xl font-bold sm:text-5xl">Community</p>{" "}
-        <p className="my-2.5 text-sm leading-relaxed text-gray-600 sm:my-5 sm:text-lg">
+    <div className="bg-[var(--color-bg-secondary)] py-16 text-left sm:text-center">
+      <div className="container flex !max-w-[600px] flex-col gap-4">
+        <p className="flex h-[1cap] items-center justify-center text-2xl font-bold sm:text-5xl">Community</p>{" "}
+        <p className="text-sm leading-relaxed text-gray-600  sm:text-lg">
           frontend-challenges.com is an{" "}
           <a
             href={REPO}
@@ -19,7 +19,7 @@ export function Community() {
           </a>
           and is created by the community for the community.
         </p>
-        <div className="mb-1.5 flex flex-col justify-start gap-3 sm:mb-0 sm:flex-row sm:justify-center">
+        <div className="mt-2 flex flex-col justify-start gap-3 sm:flex-row sm:justify-center">
           <Button asChild variant="secondary">
             <a href={REPO} target="_blank" rel="noreferrer">
               <GitHubLogoIcon />

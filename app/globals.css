@@ -102,7 +102,7 @@
 
     --color-bd: color-mix(in oklch, var(--ramp-grey-600), 50% transparent);
     --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, white 2%);
-    --color-bd-strong: color-mix(in srgb, var(--color-bd), white 1%);
+    --color-bd-strong: color-mix(in srgb, var(--color-bd), white 5%);
 
     --sp-colors-surface1: var(--color-bg) !important;
   }
