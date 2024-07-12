@@ -2,7 +2,7 @@ difficulty: easy
 title: jest.spyOn
 type: question
 template: javascript
-tags: css, html, javascript
+tags: javascript
 author:
   github: jsartisan
   name: Pawan Kumar
