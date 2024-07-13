@@ -1,13 +1,10 @@
 title: useClickOutside
-
+excerpt: Implement a custom hook that listens for clicks outside of a given element.
 author:
   name: Pawan Kumar
   email: pawankumar2901@gmail.com
   github: jsartisan
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
-
 tags: react, event listeners, hooks
-
 template: react
-
 difficulty: easy

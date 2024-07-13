@@ -51,8 +51,8 @@ function QuestionChallenge(props: QuestionProps) {
           </div>
           <div className="min-h-0 w-full flex-grow">
             <ResizableLayout>
-              <Card className="h-full min-h-0">
-                <Tabs defaultValue="description" className="h-full">
+              <Card className="h-full min-h-0 overflow-hidden">
+                <Tabs defaultValue="description" className="flex h-full flex-col">
                   <TabsList>
                     <TabsTrigger value="description">Description</TabsTrigger>
                     <TabsTrigger value="solutions">Submissions</TabsTrigger>
@@ -65,7 +65,7 @@ function QuestionChallenge(props: QuestionProps) {
                       </Button>
                     )}
                   </TabsList>
-                  <TabsContent value="description" className="overflow-y-auto">
+                  <TabsContent value="description" className="flex-grow overflow-y-auto">
                     <Description challenge={question} />
                   </TabsContent>
                   <TabsContent value="solutions">

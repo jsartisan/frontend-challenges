@@ -282,6 +282,15 @@
   --ramp-yellow-1000: #b86200;
 }
 
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:is(:not(input)):focus-visible {
+  outline: 2px solid var(--color-bd-accent);
+  outline-offset: 0px;
+}
+
 /* this is required because sandpack root is not getting color scheme due server-side rendering */
 .dark .sp-wrapper {
   color-scheme: dark !important;

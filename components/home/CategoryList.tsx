@@ -13,8 +13,8 @@ export function CategoryList(props: CategoryListProps) {
   return (
     <div className="mb-8 mt-4 grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-4">
       {categories.map((category) => (
-        <Card className="p-3 hover:bg-[var(--color-bg-hover)]" key={`category-${category}`}>
-          <Link href={`/${category}`} className="flex items-center gap-3">
+        <Link href={`/${category}`} className="rounded " key={`category-${category}`}>
+          <Card className="flex items-center gap-3 p-3 hover:bg-[var(--color-bg-hover)]">
             <Icon name={`${category}-color`} size="lg" />
             <div>
               <h3 className="text-lg font-bold capitalize">{category === "css" ? "CSS" : category}</h3>
@@ -22,8 +22,8 @@ export function CategoryList(props: CategoryListProps) {
                 {challenges.filter((challenge) => challenge.category === category).length} Challenges
               </p>
             </div>
-          </Link>
-        </Card>
+          </Card>
+        </Link>
       ))}
     </div>
   );

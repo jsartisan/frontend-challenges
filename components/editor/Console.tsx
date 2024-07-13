@@ -19,7 +19,7 @@ export function Console(props: Props) {
   const [filterType, setFilterType] = useState<"warn" | "error" | "info" | "debug" | "all">("all");
   const [consoleCollapsed, setConsoleCollapsed] = useState(true);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const { logs, reset } = useSandpackConsole({ resetOnPreviewRestart: false });
+  const { logs, reset } = useSandpackConsole({ resetOnPreviewRestart: true });
 
   const onClickConsolePanel = () => {
     if (ref.current) {
