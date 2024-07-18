@@ -41,7 +41,7 @@ export default function Description(props: DescriptionProps) {
               />
             </span>
             <span className="block whitespace-nowrap text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-              {challenge.info["en"]?.author?.name}
+              {challenge.info["en"]?.author?.name ?? challenge.info["en"]?.author?.github}
             </span>
           </a>
         </div>
