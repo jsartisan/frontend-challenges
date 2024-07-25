@@ -87,8 +87,8 @@ export function ChallengeListFilter(props: ChallengeListFilterProps) {
                   >
                     <div
                       className={cn(
-                        "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-[var(--color-bd)]",
-                        isSelected ? "bg-primary text-primary-foreground" : "[&_svg]:invisible",
+                        "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-[var(--color-bd-strong)]",
+                        isSelected ? "text-primary-foreground bg-[var(--color-bg)]" : "[&_svg]:invisible",
                       )}
                     >
                       <CheckIcon className={cn("h-4 w-4")} />

@@ -23,3 +23,4 @@ export * from "./tooltip";
 export * from "./sheet";
 export * from "./separator";
 export * from "./checkbox-button";
+export * from "./skeleton";

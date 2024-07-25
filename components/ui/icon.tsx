@@ -99,7 +99,7 @@ const iconVariants = cva("", {
   },
   variants: {
     size: {
-      default: "h-6 w-6",
+      default: "size-5",
       lg: "h-11 w-11",
       sm: "h-4 w-4",
       xs: "h-3 w-3",

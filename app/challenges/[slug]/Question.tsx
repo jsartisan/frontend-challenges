@@ -6,21 +6,33 @@ import { TEMPLATES } from "@/templates";
 import { Breadcrumb } from "./Breadcrumb";
 import { Card } from "@/components/ui/card";
 import { DEFAULT_LOCALE } from "@/constants";
-import Preview from "@/components/editor/Preview";
 import { TemplateChanger } from "./TemplateChanger";
-import { Console } from "@/components/editor/Console";
 import { Question, SupportedTemplates } from "@/types";
-import CodeEditor from "@/components/editor/CodeEditor";
 import Description from "@/components/editor/Description";
 import SandpackRoot from "@/components/editor/SandpackRoot";
 import { AnswerList } from "@/components/questions/AnswerList";
 import { LayoutChanger } from "@/components/questions/LayoutChanger";
 import { ResizableLayout } from "@/components/editor/ResizableLayout";
 import { ShareSolutionButton } from "@/components/editor/ShareSolutionButton";
-import { Button, Icon, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+import { Button, Icon, Tabs, TabsContent, TabsList, TabsTrigger, Separator, Skeleton } from "@/components/ui";
 
 const MarkCompleteButton = dynamic(() => import("@/components/editor/MarkCompleteButton"), {
   ssr: false,
+});
+
+const CodeEditor = dynamic(() => import("@/components/editor/CodeEditor"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-full w-full" />,
+});
+
+const Console = dynamic(() => import("@/components/editor/Console"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-[40px] w-full" />,
+});
+
+const Preview = dynamic(() => import("@/components/editor/Preview"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-full w-full" />,
 });
 
 type QuestionProps = {
@@ -44,8 +56,9 @@ function QuestionChallenge(props: QuestionProps) {
             <Breadcrumb challenge={question} />
             <LayoutChanger className="absolute -top-[2px] left-[calc(50%-125px)] w-[250px]" />
             <div className="hidden items-center gap-2 md:flex">
-              <MarkCompleteButton challenge={question} />
               <TemplateChanger template={template} setTemplate={setTemplate} question={question} />
+              <Separator orientation="vertical" className="mx-1" />
+              <MarkCompleteButton challenge={question} />
               <ShareSolutionButton template={template} challenge={question} />
             </div>
           </div>
@@ -78,6 +91,7 @@ function QuestionChallenge(props: QuestionProps) {
                 exclude={["/package.json"]}
                 className="min-h-0"
                 question={question}
+                template={template}
               />
               <Preview className="min-h-0" template={template} />
               <Console />

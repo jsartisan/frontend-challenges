@@ -7,7 +7,18 @@ import { Console as ConsoleFeed } from "console-feed";
 
 import { useSandpackConsole } from "@codesandbox/sandpack-react";
 import { ImperativePanelHandle } from "react-resizable-panels";
-import { Icon, IconButton, Input, ResizablePanel, ToggleGroup, ToggleGroupItem } from "../ui";
+import {
+  Icon,
+  IconButton,
+  Input,
+  ResizablePanel,
+  ToggleGroup,
+  ToggleGroupItem,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipArrow,
+} from "../ui";
 
 type Props = {
   className?: string;
@@ -65,22 +76,68 @@ export function Console(props: Props) {
               onValueChange={(value) => setFilterType(value as any)}
               value={filterType}
             >
-              <ToggleGroupItem value="all">
-                <Icon name="log-all" className="text-black-500" />
-              </ToggleGroupItem>
-              <ToggleGroupItem value="error">
-                <Icon name="log-error" className="text-red-500" />
-              </ToggleGroupItem>
-              <ToggleGroupItem value="warn">
-                <Icon name="log-warning" className="text-yellow-500" />
-              </ToggleGroupItem>
-              <ToggleGroupItem value="info">
-                <Icon name="log-info" className="text-blue-500" />
-              </ToggleGroupItem>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <ToggleGroupItem value="all">
+                    <Icon name="log-all" />
+                  </ToggleGroupItem>
+                </TooltipTrigger>
+
+                <TooltipContent>
+                  All logs
+                  <TooltipArrow />
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <ToggleGroupItem value="error">
+                    <Icon name="log-error" className="text-red-500" />
+                  </ToggleGroupItem>
+                </TooltipTrigger>
+
+                <TooltipContent>
+                  Error logs
+                  <TooltipArrow />
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <ToggleGroupItem value="warn">
+                    <Icon name="log-warning" className="text-yellow-500" />
+                  </ToggleGroupItem>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Warning logs
+                  <TooltipArrow />
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <ToggleGroupItem value="info">
+                    <Icon name="log-info" className="text-blue-500" />
+                  </ToggleGroupItem>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Info logs
+                  <TooltipArrow />
+                </TooltipContent>
+              </Tooltip>
             </ToggleGroup>
-            <IconButton variant="tertiary" size="sm" className="ml-auto" onClick={reset}>
-              <Icon name="log-clear" />
-            </IconButton>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <IconButton variant="tertiary" size="sm" className="ml-auto" onClick={reset}>
+                  <Icon name="log-clear" />
+                </IconButton>
+              </TooltipTrigger>
+
+              <TooltipContent>
+                Clear all logs
+                <TooltipArrow />
+              </TooltipContent>
+            </Tooltip>
           </div>
           <div className="overflow-auto">
             <ConsoleFeed

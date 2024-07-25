@@ -4,7 +4,7 @@ import { memo } from "react";
 import { Card } from "../ui/card";
 import { cn } from "@/utils/helpers";
 import { useEffect, useState } from "react";
-import { CodeFile, Question } from "@/types";
+import { CodeFile, Question, SupportedTemplates } from "@/types";
 import prettier from "prettier/standalone";
 import postcss from "prettier/plugins/postcss";
 import estree from "prettier/plugins/estree";
@@ -25,10 +25,11 @@ type Props = {
   showTabs?: boolean;
   exclude?: string[];
   path?: string;
+  template: SupportedTemplates;
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path } = props;
+  const { className, showTabs = true, exclude, path, template } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -119,7 +120,7 @@ export function CodeEditor(props: Props) {
             <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <MonacoEditor path={path} key={Object.keys(files).join("-")} />
+          <MonacoEditor template={template} path={path} key={Object.keys(files).join("-")} />
         )}
       </div>
     </Card>

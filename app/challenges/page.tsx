@@ -1,6 +1,6 @@
 import { getChallenges } from "@/db/challenge";
-import { Layout } from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
+import { Layout } from "@/components/layout/Layout";
 import { ChallengeListWithFilters } from "@/components/challenges/ChallengeListWithFilters";
 
 export default async function Page() {

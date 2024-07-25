@@ -1,15 +1,15 @@
 "use client";
 
-import { Category, Challenge, Difficulty } from "@/types";
-import { Input } from "../ui/input";
-import { useReducer } from "react";
-import { Button, Icon, ToggleGroupItem } from "@/components/ui";
-import { CATEGORIES, DEFAULT_LOCALE, DIFFICULTY_RANK } from "@/constants";
-import { ChallengeList } from "./ChallengeList";
-import { ChallengeListFilter } from "./ChallengeListFilter";
-import { ToggleGroup } from "@/components/ui";
-import { ChallengeListSort } from "./ChallengeListSort";
 import dynamic from "next/dynamic";
+import { Input } from "../ui/input";
+import type { Challenge } from "@/types";
+import { ToggleGroup } from "@/components/ui";
+import { ChallengeList } from "./ChallengeList";
+import { ChallengeListSort } from "./ChallengeListSort";
+import { CATEGORIES, DIFFICULTY_RANK } from "@/constants";
+import { ChallengeListFilter } from "./ChallengeListFilter";
+import { Button, Icon, ToggleGroupItem } from "@/components/ui";
+import { useFilteredChallenges } from "@/hooks/useFilteredChallenges";
 
 const ChallengeListFilterMobile = dynamic(() => import("./ChallengeListFilterMobile"), {
   ssr: false,
@@ -20,102 +20,12 @@ type ChallengeListWithFiltersProps = {
   includes?: ("category" | "difficulty")[];
 };
 
-interface Action {
-  type: "filter" | "search" | "sort_by" | "sort_order";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  payload: any;
-}
-
-interface State {
-  search: string;
-  challenges: Challenge[];
-  filtered: Challenge[];
-  filters: {
-    category: Category[];
-    difficulty: Difficulty;
-    type: Challenge["type"];
-  };
-  sort_by?: "difficulty" | "published_date";
-  sort_order?: "asc" | "desc";
-}
-
 const difficultyOptions = DIFFICULTY_RANK.map((difficulty) => ({ label: difficulty, value: difficulty }));
 const categoryOptions = CATEGORIES.map((category) => ({ label: category, value: category }));
 
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "search":
-      return {
-        ...state,
-        search: action.payload,
-        filtered: state.challenges.filter((question) => {
-          return question.info?.en?.title?.toLowerCase().includes(action.payload.toLowerCase());
-        }),
-      };
-    case "filter":
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          category: action.payload.category,
-          difficulty: action.payload.difficulty,
-          type: action.payload.type,
-        },
-        filtered: state.challenges.filter((question) => {
-          return (
-            (action.payload.category.length === 0 || action.payload.category.includes(question.category)) &&
-            (action.payload.difficulty.length === 0 || action.payload.difficulty.includes(question.difficulty)) &&
-            (action.payload.type === "all" || action.payload.type === question.type)
-          );
-        }),
-      };
-    case "sort_by":
-      if (action.payload.type === "difficulty") {
-        return {
-          ...state,
-          sort_by: action.payload.type,
-          filtered: state.filtered.sort(
-            (a, b) =>
-              (DIFFICULTY_RANK.indexOf(a.difficulty) - DIFFICULTY_RANK.indexOf(b.difficulty)) *
-              (state.sort_order === "asc" ? 1 : -1),
-          ),
-        };
-      }
-
-      return {
-        ...state,
-        sort_by: action.payload.type,
-        filtered: state.filtered.sort((a, b) => {
-          const aDate = new Date(a.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
-          const bDate = new Date(b.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
-
-          return (bDate.getTime() - aDate.getTime()) * (state.sort_order === "asc" ? 1 : -1);
-        }),
-      };
-    case "sort_order":
-      return {
-        ...state,
-        sort_order: action.payload.sort_order,
-      };
-    default:
-      return state;
-  }
-};
-
 export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) => {
   const { challenges, includes = ["category", "difficulty"] } = props;
-  const [state, dispatch] = useReducer(reducer, {
-    search: "",
-    challenges: challenges,
-    filtered: challenges,
-    filters: {
-      category: [],
-      difficulty: [],
-      type: "all",
-    },
-    sort_order: "asc",
-    sort_by: "difficulty",
-  });
+  const { state, dispatch } = useFilteredChallenges(challenges);
 
   return (
     <div className="flex flex-col gap-3">
@@ -162,6 +72,8 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
         <ToggleGroup
           className="hidden lg:flex"
           onValueChange={(value) => {
+            if (!value) return;
+
             dispatch({
               type: "filter",
               payload: {

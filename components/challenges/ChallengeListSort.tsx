@@ -19,6 +19,7 @@ export function ChallengeListSort(props: ChallengeListProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuItem
+            className="flex justify-between"
             onClick={() => {
               dispatch({
                 type: "sort_by",
@@ -29,8 +30,10 @@ export function ChallengeListSort(props: ChallengeListProps) {
             }}
           >
             Difficulty
+            {state.sort_by === "difficulty" && <Icon name="check" />}
           </DropdownMenuItem>
           <DropdownMenuItem
+            className="flex justify-between"
             onClick={() => {
               dispatch({
                 type: "sort_by",
@@ -41,6 +44,7 @@ export function ChallengeListSort(props: ChallengeListProps) {
             }}
           >
             Creation Date
+            {state.sort_by === "published_date" && <Icon name="check" />}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

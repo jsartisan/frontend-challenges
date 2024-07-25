@@ -65,6 +65,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
   }
 
   const templateFiles = await getCodeFilesByTemplate(path.join(CHALLENGES_ROOT, dir, "template.md"));
+
   const answers = await getAnswersOfQuestion(no, templateFiles);
 
   for (const locale of Object.keys(readme)) {

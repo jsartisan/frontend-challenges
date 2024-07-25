@@ -2,13 +2,15 @@ import { useTheme } from "next-themes";
 import React, { useEffect } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { useActiveCode, useSandpack } from "@codesandbox/sandpack-react";
+import { SupportedTemplates } from "@/types";
 
 type MonacoEditorProps = {
   path?: string;
+  template: SupportedTemplates;
 };
 
 export function MonacoEditor(props: MonacoEditorProps) {
-  const { path = "" } = props;
+  const { path = "", template } = props;
   const monaco = useMonaco();
   const { code, updateCode } = useActiveCode();
   const { sandpack } = useSandpack();
@@ -31,13 +33,25 @@ export function MonacoEditor(props: MonacoEditorProps) {
       monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
       monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
         noImplicitAny: true,
+        esModuleInterop: true,
+        strict: true,
+        lib: ["dom", "es2015"],
+        types: ["jest"],
       });
+
+      // add jest types to the monaco editor
+      monaco.languages.typescript.typescriptDefaults.addExtraLib(
+        `declare const test: any;declare const expect: any;declare const describe: any;declare const it: any;`,
+        "jest.d.ts",
+      );
 
       monaco.editor.registerEditorOpener({
         openCodeEditor(source, resource) {
           const { path } = resource;
 
           const model = monaco.editor.getModel(monaco.Uri.parse(path));
+
+          console.log({ path, model });
 
           if (!model) return false;
 
@@ -46,8 +60,11 @@ export function MonacoEditor(props: MonacoEditorProps) {
           return true;
         },
       });
+
+      const modelList = monaco.editor.getModels();
+      console.log("#### models", modelList);
     }
-  }, [monaco]);
+  }, [monaco, template]);
 
   if (!monaco) return null;
 
@@ -79,6 +96,8 @@ const setLanguage = function (activeFile) {
       return "javascript";
     case "ts":
       return "typescript";
+    case "tsx":
+      return "typescript";
     case "css":
       return "css";
     case "html":
@@ -87,6 +106,8 @@ const setLanguage = function (activeFile) {
       return "json";
     case "md":
       return "markdown";
+    case "svelte":
+      return "html";
     default:
       return "plaintext";
   }
