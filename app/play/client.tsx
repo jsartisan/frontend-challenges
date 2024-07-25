@@ -74,7 +74,7 @@ export default function Client() {
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={50}>
-              <CodeEditor path="/playground" />
+              <CodeEditor path="/playground" template={template} />
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={35}>
