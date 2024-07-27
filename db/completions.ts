@@ -1,7 +1,7 @@
 /**
  * Mark a challenge as completed in localstorage
  *
- * @param param0
+ * @param {number} challenge_id
  * @returns
  */
 export async function createCompletion({ challenge_id }) {

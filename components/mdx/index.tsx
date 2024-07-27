@@ -14,8 +14,8 @@ export const components = {
       <SandpackProvider
         options={{
           classes: {
-            "sp-code-editor": "!border !border-[var(--color-bd)] !bg-[var(--color-bg-neutral)] !rounded",
-            "sp-editor-viewer": "!bg-[var(--color-bg-neutral)] !rounded",
+            "sp-code-editor": "!border !border-[var(--color-bd)] !rounded",
+            "sp-editor-viewer": "!rounded",
           },
         }}
         theme={resolvedTheme === "dark" ? "dark" : "light"}

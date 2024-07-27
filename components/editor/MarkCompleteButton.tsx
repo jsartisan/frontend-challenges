@@ -39,6 +39,7 @@ export default function MarkCompleteButton(props: ShareSolutionProps) {
           variant="secondary"
           onClick={onClick}
           className={cn({
+            "hidden md:flex": true,
             "border-[var(--color-bd-positive)] bg-[var(--color-bg-positive-subtle)]": isCompleted,
             "hover:text-foreground-neutral-subtle-hover text-[var(--color-fg)]": !isCompleted,
           })}

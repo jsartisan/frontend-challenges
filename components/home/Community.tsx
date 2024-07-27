@@ -4,15 +4,15 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export function Community() {
   return (
-    <div className="bg-[var(--color-bg-secondary)] py-16 text-left sm:text-center">
+    <div className="bg-[var(--color-bg-secondary)] py-12 text-left sm:text-center md:py-16">
       <div className="container flex !max-w-[600px] flex-col gap-4">
         <p className="flex h-[1cap] items-center justify-center text-2xl font-bold sm:text-5xl">Community</p>{" "}
-        <p className="text-sm leading-relaxed text-gray-600  sm:text-lg">
+        <p className="text-center text-sm leading-relaxed text-[var(--color-fg-subtle)] sm:text-lg  md:text-start">
           frontend-challenges.com is an{" "}
           <a
             href={REPO}
             target="_blank"
-            className="font-medium text-gray-600 underline underline-offset-2 hover:text-black"
+            className="font-medium underline underline-offset-2 hover:text-[var(--color-fg)]"
             rel="noreferrer"
           >
             open source project on GitHub{" "}

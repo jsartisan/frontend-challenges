@@ -292,10 +292,12 @@
 }
 
 /* this is required because sandpack root is not getting color scheme due server-side rendering */
-.dark .sp-wrapper {
+.dark .sp-wrapper,
+.dark .sp-wrapper .sp-wrapper {
   color-scheme: dark !important;
 }
 
-.light .sp-wrapper {
+.light .sp-wrapper,
+.light .sp-wrapper .sp-wrapper {
   color-scheme: light !important;
 }

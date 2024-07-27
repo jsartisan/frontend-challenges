@@ -47,6 +47,7 @@ export function Console(props: Props) {
       collapsible
       collapsedSizePixels={40}
       minSizePixels={200}
+      className="min-h-[200px] sm:min-h-0"
       ref={ref}
       onCollapse={() => {
         setConsoleCollapsed(true);

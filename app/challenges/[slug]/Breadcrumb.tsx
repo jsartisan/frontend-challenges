@@ -23,7 +23,9 @@ export function Breadcrumb(props: BreadcrumbProps) {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink href={`/challenges/${challenge.path}`}>{challenge.info["en"]?.title}</BreadcrumbLink>
+          <BreadcrumbLink className="line-clamp-1" href={`/challenges/${challenge.path}`}>
+            {challenge.info["en"]?.title}
+          </BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumRoot>
     </div>

@@ -37,10 +37,12 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
           </ResizablePanel>
           <ResizableHandle className="hidden w-2 sm:block" />
           <ResizablePanel defaultSizePercentage={100 / 2}>
-            <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
-              <ResizablePanel defaultSizePercentage={100 / 2}>{editor}</ResizablePanel>
+            <ResizablePanelGroup direction="vertical" className="!grid gap-4 sm:!flex sm:gap-1">
+              <ResizablePanel defaultSizePercentage={100 / 2} className="min-h-[200px] sm:min-h-0">
+                {editor}
+              </ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              <ResizablePanel defaultSizePercentage={100 / 2} minSizePixels={40}>
+              <ResizablePanel defaultSizePercentage={100 / 2} minSizePixels={40} className="min-h-[200px] sm:min-h-0">
                 {preview}
               </ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
@@ -94,7 +96,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
 
   return (
     <>
-      <ResizablePanelGroup direction="horizontal" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
+      <ResizablePanelGroup direction="horizontal" className="!grid gap-4 sm:!flex sm:gap-1">
         {renderChildren()}
       </ResizablePanelGroup>
     </>
