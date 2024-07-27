@@ -40,7 +40,7 @@ export default function Client() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    window.open(getSubmitChallengeURL(values), "_blank")?.focus();
+    window.open(getSubmitChallengeURL(values))?.focus();
   }
 
   form.watch(["title", "readme", "difficulty", "answer"]);
