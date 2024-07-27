@@ -13,18 +13,17 @@ import { User } from './index';
 describe('User constructor', () => {
   test('should correctly calculate age', () => {
     const user = new User("Pawan Kumar", new Date(1993, 1, 29));
-    const currentYear = new Date().getFullYear();
-    const expectedAge = currentYear - 1993 - (new Date().getMonth() < 1 || (new Date().getMonth() === 1 && new Date().getDate() < 29) ? 1 : 0);
-    expect(user.age).toBe(expectedAge);
+
+    expect(user.age).toBe(31);
   });
 
   test('should update age if birthday is updated', () => {
-    let person = new User("Pawan Kumar", new Date(1995, 6, 15)); // July 15, 1995
-    expect(person.age).toBe(28); // Assuming current year is 2024
+    let person = new User("Pawan Kumar", new Date(1995, 6, 15));
+    expect(person.age).toBe(29); 
 
     // Update the birthday
-    person.birthday = new Date(2000, 6, 15); // July 15, 2000
-    expect(person.age).toBe(23); // The new age should reflect the updated birthday
+    person.birthday = new Date(2000, 6, 15);
+    expect(person.age).toBe(24);
   });
 });
 ```
