@@ -77,7 +77,7 @@ function Sandpack(props: SandpackProps) {
   return (
     <div className="not-prose">
       <SandpackRoot files={allFiles}>
-        <CodeEditor showTabs={false} />
+        <CodeEditor template={template} showTabs={false} />
       </SandpackRoot>
     </div>
   );

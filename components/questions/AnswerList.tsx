@@ -100,6 +100,7 @@ export function AnswerList(props: QuestionListProps) {
                       exclude={["/package.json"]}
                       className="flex-grow"
                       files={answer.files || {}}
+                      template={answer.template}
                     />
                     <Preview template={answer.template} className="" />
                   </div>
