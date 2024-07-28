@@ -30,7 +30,7 @@
     --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral), white 5%);
     --color-bg-neutral-subtle-hover: color-mix(in srgb, var(--color-bg-neutral-subtle), white 10%);
     --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%);
-    --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 10%);
+    --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 5%);
     --color-bg-assistive: var(--ramp-grey-900);
     --color-bg-assistive-transparent: color-mix(in srgb, var(--color-bg-assistive), transparent);
     --color-bg-negative: var(--ramp-red-500);
@@ -38,6 +38,7 @@
     --color-bg-positive: var(--ramp-green-500);
     --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
     --color-bg-easy: var(--ramp-green-100);
+    --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 8% black);
     --color-bg-medium: var(--ramp-orange-100);
     --color-bg-hard: var(--ramp-red-100);
     --color-bg-question: var(--ramp-purple-100);
@@ -45,11 +46,12 @@
 
     --color-fg: var(--ramp-grey-900);
     --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, white 20%);
+    --color-fg-subtle-hover: color-mix(in srgb, var(--color-fg-subtle), black 30%);
     --color-fg-onaccent: var(--ramp-white-1000);
     --color-fg-accent: var(--ramp-blue-500);
     --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent), black 20%);
     --color-fg-neutral: var(--ramp-grey-900);
-    --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 40%);
+    --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
     --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral-subtle), black 30%);
     --color-fg-invert: var(--ramp-white-1000);
     --color-fg-on-assistive: var(--ramp-white-1000);
@@ -70,7 +72,7 @@
     --color-bd-accent: var(--ramp-blue-500);
     --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
     --color-bd-positive: var(--ramp-green-500);
-    --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive) 10%, white 90%);
+    --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive), transparent 50%);
     --color-bd-assistive: var(--ramp-grey-900);
   }
 
@@ -83,8 +85,9 @@
     --color-bg-accent: var(--ramp-blue-500);
     --color-bg-neutral: color-mix(in srgb, var(--ramp-grey-100), 80% black);
     --color-bg-neutral-subtle: var(--ramp-grey-700);
-    --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 100%, black 90%);
+    --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive), transparent 80%);
     --color-bg-easy: color-mix(in srgb, var(--ramp-green-100), 80% black);
+    --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 10% black);
     --color-bg-medium: color-mix(in srgb, var(--ramp-orange-100), 80% black);
     --color-bg-hard: color-mix(in srgb, var(--ramp-red-100), 80% black);
     --color-bg-question: color-mix(in srgb, var(--ramp-purple-100), 80% black);
