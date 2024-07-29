@@ -6,7 +6,6 @@ import { useCompletions } from "@/hooks/useCompletions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCompletion, deleteCompletion } from "@/db/completions";
 import { cn } from "@/utils/helpers";
-import { mixpanel } from "@/utils/mixpanel";
 
 function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean }) {
   const { challenge, showTypeIcon = true } = props;
@@ -40,9 +39,6 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Link
-              onClick={() => {
-                mixpanel.track("challenge_view", { challenge: challenge.no });
-              }}
               className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
               href={`/challenges/${challenge.path}`}
             >

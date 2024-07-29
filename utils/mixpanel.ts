@@ -1,6 +1,6 @@
 import mixpanel from "mixpanel-browser";
 
-mixpanel.init(process.env.NEXT_MIXPANEL_PROJECT_KEY);
+mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_KEY);
 
 const env_check: any = process.env.NODE_ENV === "development";
 
@@ -33,7 +33,7 @@ const actions = {
     mixpanel.alias(id);
   },
   track: (name: any, props: any) => {
-    mixpanel.track(name, props);
+    mixpanel?.track(name, props);
   },
   people: {
     set: (props: any) => {
