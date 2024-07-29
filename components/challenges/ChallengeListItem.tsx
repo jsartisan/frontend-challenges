@@ -6,6 +6,7 @@ import { useCompletions } from "@/hooks/useCompletions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCompletion, deleteCompletion } from "@/db/completions";
 import { cn } from "@/utils/helpers";
+import { mixpanel } from "@/utils/mixpanel";
 
 function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean }) {
   const { challenge, showTypeIcon = true } = props;
@@ -31,7 +32,6 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
       key={challenge.no}
       className={cn({
         "group/challenge flex px-4 py-3 md:px-4": true,
-        "border-[var(--color-bd-positive-subtle)] bg-[var(--color-bg-positive-subtle)]": isCompleted,
       })}
       data-completed={isCompleted ? "true" : undefined}
       role="listitem"
@@ -40,6 +40,9 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Link
+              onClick={() => {
+                mixpanel.track("challenge_view", { challenge: challenge.no });
+              }}
               className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
               href={`/challenges/${challenge.path}`}
             >
@@ -48,7 +51,7 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-[var(--color-fg-neutral-subtle)]">#{challenge.no}</span>
+          <span className="text-xs text-[var(--color-fg-subtle)]">#{challenge.no}</span>
           {showTypeIcon && (
             <Tooltip delayDuration={300}>
               <TooltipTrigger>
@@ -91,10 +94,13 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
           <IconButton
             onClick={onMarkComplete}
             variant="tertiary"
-            className="text-[var(--color-fg-neutral-subtle)] hover:bg-transparent active:bg-transparent group-[[data-completed]]/challenge:text-[var(--color-fg-positive)]"
+            className="text-[var(--color-fg-neutral-subtle)] hover:bg-transparent active:bg-transparent"
             size="lg"
           >
-            <Icon name="check-circle" />
+            <Icon
+              name={isCompleted ? "check" : "check-circle"}
+              className="rounded-full group-[[data-completed]]/challenge:bg-[var(--color-bg-positive)] group-[[data-completed]]/challenge:text-[var(--color-fg-on-positive)]"
+            />
           </IconButton>
         </div>
       }

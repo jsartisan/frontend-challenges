@@ -6,7 +6,7 @@ import { cn } from "@/utils/helpers";
 
 const iconButtonVariants = cva(
   cn(
-    "relative inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    "relative inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
     "[&[data-loading=true]>*]:invisible data-[loading=true]:after:content-[''] data-[loading=true]:after:absolute data-[loading=true]:after:top-1/2 data-[loading=true]:after:left-1/2 data-[loading=true]:after:w-4 data-[loading=true]:after:h-4 data-[loading=true]:after:-mt-2 data-[loading=true]:after:-ml-2 data-[loading=true]:after:rounded-full data-[loading=true]:after:border data-[loading=true]:after:border-t-black data-[loading=true]:after:animate-spin data-[loading=true]:after:absolute",
   ),
   {

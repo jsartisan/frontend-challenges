@@ -51,8 +51,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
 
           const model = monaco.editor.getModel(monaco.Uri.parse(path));
 
-          console.log({ path, model });
-
           if (!model) return false;
 
           sandpack.setActiveFile(path.replace(props.path || "", ""));
@@ -60,9 +58,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
           return true;
         },
       });
-
-      const modelList = monaco.editor.getModels();
-      console.log("#### models", modelList);
     }
   }, [monaco, template]);
 

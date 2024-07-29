@@ -9,13 +9,12 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default: "border-transparent bg-[var(--color-bg-neutral)] text-[var(--color-fg-neutral)]",
-        secondary:
-          "border-transparent bg-[var(--color-bg-neutral)] text-[var(--color-fg-neutral)] group-[[data-completed]]/challenge:bg-[var(--color-bg-neutral-strong)]",
+        secondary: "border-transparent bg-[var(--color-bg-neutral)] text-[var(--color-fg-neutral)]",
         tertiary: "border-transparent text-[var(--color-fg-neutral)]",
         destructive: "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
         warm: "border-transparent bg-[var(--color-bg-warm)] text-[var(--color-fg-warm)]",
-        easy: "border-transparent bg-[var(--color-bg-easy)] text-[var(--color-fg-easy)]  group-[[data-completed]]/challenge:bg-[var(--color-bg-easy-strong)]",
+        easy: "border-transparent bg-[var(--color-bg-easy)] text-[var(--color-fg-easy)]",
         medium: "border-transparent bg-[var(--color-bg-medium)] text-[var(--color-fg-medium)]",
         hard: "border-transparent bg-[var(--color-bg-hard)] text-[var(--color-fg-hard)]",
         question: "border-transparent bg-[var(--color-bg-question)] text-[var(--color-fg-question)]",
