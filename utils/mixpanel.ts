@@ -6,21 +6,21 @@ const env_check: any = process.env.NODE_ENV === "development";
 
 if (env_check) {
   mixpanel.identify = (id: any) => {
-    console.log("mixpanel disabled", id);
+    console.log("mixpanel identify", id);
   };
 
   mixpanel.alias = (id: any) => {
-    console.log("mixpanel disabled", id);
+    console.log("mixpanel alias", id);
   };
 
   mixpanel.track = (name: any, props: any) => {
-    console.log("mixpanel disabled", name, props);
+    console.log("mixpanel track", name, props);
   };
 
   mixpanel.people = {
     ...mixpanel.people,
     set: (props: any) => {
-      console.log("mixpanel disabled", props);
+      console.log("mixpanel people", props);
     },
   };
 }
