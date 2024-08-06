@@ -1,7 +1,4 @@
-import type IO from "@actions/io";
-import type Core from "@actions/core";
 import { DeepPartial } from "utility-types";
-import type { context, getOctokit } from "@actions/github";
 import { CATEGORIES, SUPPORTED_LOCALES, SUPPORTED_TEMPLATES } from "@/constants";
 
 export type Difficulty = "warm" | "easy" | "medium" | "hard" | "extreme" | "pending";
@@ -70,10 +67,6 @@ export type CodeFile = {
   active?: boolean;
   readOnly?: boolean;
 };
-
-export type Context = typeof context;
-export type Github = ReturnType<typeof getOctokit>;
-export type Action = (github: Github, context: Context, core: typeof Core, io: typeof IO) => Promise<void>;
 
 export type Blog = {
   title: string;

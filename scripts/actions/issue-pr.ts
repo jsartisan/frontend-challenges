@@ -1,7 +1,7 @@
 import YAML from "js-yaml";
 import slug from "limax";
 import { PushCommit } from "@type-challenges/octokit-create-pull-request";
-import type { Action, Context, Github, Question, SupportedTemplates } from "../../types";
+import type { Action, Context, Github, Question, SupportedTemplates } from "../types";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { createFileMap } from "../..//utils";

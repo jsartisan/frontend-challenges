@@ -1,7 +1,7 @@
 import YAML from "js-yaml";
 import fs from "fs-extra";
 
-import type { Action } from "../../types";
+import type { Action } from "../types";
 
 const REPOSITORY_CLIENT_ID = `MDQ6VXNlcjY2MzYzNjA=`;
 const DISCUSSIONS_REPOSITORY_ID = `R_kgDOLK6p3w`;
