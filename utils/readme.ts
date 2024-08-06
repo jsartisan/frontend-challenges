@@ -1,8 +1,8 @@
 import fs from "fs-extra";
 
-import { escapeHtml } from "./helpers";
+import { escapeHtml } from "@/website/utils/helpers";
 import { getFileNameByLocale, translate } from "./locales";
-import { getChallengeInfoByLocale } from "@/db/challenge";
+import { getChallengeInfoByLocale } from "@/utils/challenges";
 import { Challenge, Difficulty, QuestionMetaInfo, SupportedLocales } from "@/types";
 import { DEFAULT_LOCALE, DIFFICULTY_COLORS, SUPPORTED_LOCALES } from "@/constants";
 import { toNearborREADME, getQuestionURL, getChallengeReadmeURL, getShareAnswerURL, getSolutionsURL } from ".";

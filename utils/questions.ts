@@ -1,7 +1,7 @@
 import YAML from "js-yaml";
 
 import { REPO } from "@/constants";
-import { FormValues } from "@/app/submit/question/client";
+import { FormValues } from "@/website/app/submit/question/client";
 import { QuestionMetaInfo } from "@/types";
 
 /**

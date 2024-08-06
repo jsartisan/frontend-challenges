@@ -12,6 +12,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'npm'
+          cache: pnpm
       - run: cd scripts && npm i --only=production
       - run: cd scripts/actions && npx esno ./loader.ts ${{github.token}} issue-pr

@@ -1,6 +1,6 @@
 import { SandpackState } from "@codesandbox/sandpack-react";
 
-import { TEMPLATES } from "@/templates";
+import { TEMPLATES } from "@/website/templates";
 import { DEFAULT_LOCALE, DOMAIN, REPO } from "@/constants";
 import { Challenge, SupportedLocales, SupportedTemplates } from "@/types";
 

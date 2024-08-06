@@ -1,6 +1,6 @@
 import path from "path";
 import { loadFile } from "./fs";
-import { pipe } from "./helpers";
+import { pipe } from "@/website/utils/helpers";
 import { SupportedLocales } from "@/types";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES, TRANSLATIONS } from "@/constants";
 

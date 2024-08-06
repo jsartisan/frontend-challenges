@@ -1,10 +1,11 @@
 import { Difficulty } from "./types";
-import { TEMPLATES } from "./templates";
+import { TEMPLATES } from "@/website/templates";
 
-export const ROOT_PATH = "./";
-export const CHALLENGES_ROOT = "./challenges";
+export const ROOT_PATH = process.cwd();
+export const IS_WEBSITE_ROOT = ROOT_PATH.endsWith("website");
+export const CHALLENGES_ROOT = IS_WEBSITE_ROOT ? "../challenges" : "./challenges";
 export const CONTENT_PATH = "./content";
-export const STUDY_PLANS_ROOT = "./study-plans";
+export const STUDY_PLANS_ROOT = IS_WEBSITE_ROOT ? "../study-plans" : "./study-plans";
 
 export const REPO = "https://github.com/jsartisan/frontend-challenges";
 export const DOMAIN = process.env.NEXT_BASE_URL || "https://frontend-challenges.com";

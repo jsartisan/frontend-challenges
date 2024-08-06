@@ -11,7 +11,7 @@ import {
 } from "@/utils";
 import { Challenge } from "@/types";
 import { DIFFICULTY_RANK, SUPPORTED_LOCALES } from "@/constants";
-import { getAllTags, getChallengesByTag, getChallenges } from "@/db/challenge";
+import { getAllTags, getChallengesByTag, getChallenges } from "@/utils/challenges";
 
 /**
  * update the root readme

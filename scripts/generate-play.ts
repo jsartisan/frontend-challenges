@@ -4,7 +4,7 @@ import c from "picocolors";
 import prompts from "prompts";
 import { fileURLToPath } from "node:url";
 import { ROOT_PATH, SUPPORTED_LOCALES } from "@/constants";
-import { getChallenges } from "@/db/challenge";
+import { getChallenges } from "@/utils/challenges";
 import { copy, createDir, writeFile } from "@/utils";
 import { Question, SupportedTemplates } from "@/types";
 

@@ -1,4 +1,4 @@
-import { getChallengeInfoByLocale } from "@/db/challenge";
+import { getChallengeInfoByLocale } from "@/utils/challenges";
 import { translate } from "../utils/locales";
 import { Question, SupportedLocales } from "@/types";
 
