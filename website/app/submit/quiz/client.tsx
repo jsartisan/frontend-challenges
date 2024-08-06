@@ -1,7 +1,7 @@
 "use client";
 
 import * as z from "zod";
-import { useQueryState } from "nuqs";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getSubmitChallengeURL } from "@/utils/questions";
@@ -25,7 +25,7 @@ console.log("Hello World!");
 `;
 
 export default function Client() {
-  const [tab, setActiveTab] = useQueryState("tab");
+  const [tab, setActiveTab] = useState("tab");
   const activeTab = tab || "description";
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

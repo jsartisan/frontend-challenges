@@ -11,7 +11,6 @@
     "dev": "cd website && next dev -p 8080",
     "generate": "esno ./scripts/generate-play.ts",
     "lint": "next lint",
-    "prepare": "husky install",
     "readme": "esno ./scripts/readme.ts",
     "start": "next start",
     "lint:fix": "eslint --fix ."
