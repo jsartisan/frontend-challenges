@@ -59,4 +59,4 @@ Since the playground is made with vite, it supports hot module reloading. So, an
 
 ### Inspired by
 
-- [typescript-challenges/typescript-challenges](https://github.com/typescript-challenges/typescript-challenges)
+- [type-challenges/type-challenges](https://github.com/type-challenges/type-challenges)

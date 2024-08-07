@@ -12,5 +12,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - run: cd scripts && npm i --only=production
+          cache: pnpm
+      - run: cd scripts && pnpm i --only=production
       - run: cd scripts/actions && npx esno ./loader.ts ${{github.token}} labeling
