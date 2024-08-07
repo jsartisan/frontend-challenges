@@ -1,32 +1,26 @@
 {
-  "name": "frontend-challenges",
+  "name": "@frontend-challenges/scripts",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@9.6.0",
   "author": "Pawan Kumar <pawankumar2901@hotmail.com>",
   "license": "MIT",
   "repository": "https://github.com/jsartisan/frontend-challenges.git",
-  "scripts": {
-    "build": "pnpm run --filter=@frontend-challenges/website build",
-    "dev": "pnpm run --filter=@frontend-challenges/website dev",
-    "generate": "esno ./scripts/generate-play.ts",
-    "lint": "next lint",
-    "readme": "esno ./scripts/readme.ts",
-    "start": "next start",
-    "lint:fix": "eslint --fix .",
-    "clean:workspaces": "rm -rf node_modules && pnpm -r exec rm -rf node_modules"
-  },
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
     "@actions/io": "^1.1.3",
-    "prettier": "^3.1.0"
+    "@type-challenges/octokit-create-pull-request": "^0.1.9",
+    "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.2.0",
+    "js-yaml": "^4.1.0",
+    "limax": "^4.1.0",
+    "picocolors": "^1.0.1",
+    "prettier": "^3.1.0",
+    "prompts": "^2.4.2",
+    "remark-parse": "^11.0.0"
   },
   "devDependencies": {
     "@frontend-challenges/shared": "workspace:*",
-    "@frontend-challenges/website": "workspace:*",
-    "@frontend-challenges/scripts": "workspace:*",
-    "@frontend-challenges/backend": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.54.0",
@@ -39,11 +33,9 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.0",
     "postcss": "^8",
-    "prettier-plugin-tailwindcss": "^0.5.9",
-    "tailwindcss": "^3.3.0",
     "typescript": "^5",
-    "utility-types": "^3.10.0",
     "unified": "^11.0.4",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "utility-types": "^3.10.0"
   }
 }
