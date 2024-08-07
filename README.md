@@ -1,6 +1,12 @@
-<p align='center'>
-  <img src='./public/images/logo-2.png' width='400'/>
+<p align="center">
+  <a href="https://github.com/jsartisan/frontend-challenges#gh-dark-mode-only">
+    <img width="500px" src="https://github.com/jsartisan/frontend-challenges/raw/master/packages/website/public/images/logo-readme-dark.png#gh-dark-mode-only" />
+  </a>
+  <a href="https://github.com/jsartisan/frontend-challenges#gh-light-mode-only">
+    <img width="500px" src="https://github.com/jsartisan/frontend-challenges/raw/master/packages/website/public/images/logo-readme-dark.png#gh-light-mode-only" />
+  </a>
 </p>
+
 
 <p align='center'>Collection of Frontend interview challenges</p>
 
