@@ -9,9 +9,9 @@
   "scripts": {
     "build": "pnpm run --filter=@frontend-challenges/website build",
     "dev": "pnpm run --filter=@frontend-challenges/website dev",
-    "generate": "esno ./scripts/generate-play.ts",
+    "generate": "esno ./packages/scripts/generate-play.ts",
     "lint": "next lint",
-    "readme": "esno ./scripts/readme.ts",
+    "readme": "esno ./packages/scripts/readme.ts",
     "start": "next start",
     "lint:fix": "eslint --fix .",
     "clean:workspaces": "rm -rf node_modules && pnpm -r exec rm -rf node_modules"
