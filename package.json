@@ -20,13 +20,14 @@
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
     "@actions/io": "^1.1.3",
+    "esno": "^4.0.0",
     "prettier": "^3.1.0"
   },
   "devDependencies": {
+    "@frontend-challenges/backend": "workspace:*",
+    "@frontend-challenges/scripts": "workspace:*",
     "@frontend-challenges/shared": "workspace:*",
     "@frontend-challenges/website": "workspace:*",
-    "@frontend-challenges/scripts": "workspace:*",
-    "@frontend-challenges/backend": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.54.0",
@@ -42,8 +43,8 @@
     "prettier-plugin-tailwindcss": "^0.5.9",
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
-    "utility-types": "^3.10.0",
     "unified": "^11.0.4",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "utility-types": "^3.10.0"
   }
 }
