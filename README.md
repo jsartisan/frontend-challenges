@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://github.com/jsartisan/frontend-challenges#gh-dark-mode-only">
-    <img width="500px" src="https://github.com/jsartisan/frontend-challenges/raw/main/packages/website/public/images/logo-readme-dark.png#gh-dark-mode-only" />
+    <img width="293px" src="https://github.com/jsartisan/frontend-challenges/raw/main/packages/website/public/images/logo-readme-dark.png#gh-dark-mode-only" />
   </a>
   <a href="https://github.com/jsartisan/frontend-challenges#gh-light-mode-only">
-    <img width="500px" src="https://github.com/jsartisan/frontend-challenges/raw/main/packages/website/public/images/logo-readme-dark.png#gh-light-mode-only" />
+    <img width="293px" src="https://github.com/jsartisan/frontend-challenges/raw/main/packages/website/public/images/logo-readme-dark.png#gh-light-mode-only" />
   </a>
 </p>
 
