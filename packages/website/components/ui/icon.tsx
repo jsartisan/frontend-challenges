@@ -30,6 +30,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   LogAllIcon,
+  TypescriptColorIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "../../utils/helpers";
@@ -89,7 +90,8 @@ export type IconProps = {
     | "log-error"
     | "log-info"
     | "log-warning"
-    | "log-all";
+    | "log-all"
+    | "typescript-color";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -263,6 +265,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "chevron-up":
       icon = ChevronUpIcon;
+      break;
+    case "typescript-color":
+      icon = TypescriptColorIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

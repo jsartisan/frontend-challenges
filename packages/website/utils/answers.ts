@@ -15,15 +15,13 @@ import remarkParse from "remark-parse";
 import { SandpackState } from "@codesandbox/sandpack-react";
 
 export const getAnswersOfQuestion = async (challenge: Question) => {
-  const response = await fetch(`${REPO_API}/issues?labels=answer,${challenge.no}`);
+  const response = await fetch(`${REPO_API}/issues?labels=${challenge.no}`);
   const data = await response.json();
 
   const answers = [];
 
-  console.log({ data });
-
   for (const datum of data) {
-    if (datum.body) {
+    if (datum.body && datum.labels.some((label) => label.name === "answer")) {
       const meta = {
         title: datum.title,
         no: datum.number,
