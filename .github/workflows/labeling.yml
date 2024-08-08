@@ -16,5 +16,5 @@ jobs:
         with:
           node-version: 18.x
           cache: pnpm
-      - run: cd packages/scripts && pnpm i --only=production
+      - run: pnpm i --only=production
       - run: cd packages/scripts/actions && npx esno ./loader.ts ${{github.token}} labeling
