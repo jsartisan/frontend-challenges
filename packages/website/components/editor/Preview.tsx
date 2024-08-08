@@ -30,6 +30,12 @@ function Preview(props: PreviewProps) {
     }, 500);
   }, []);
 
+  useEffect(() => {
+    if (showPreviewOnly) {
+      sandpack.runSandpack();
+    }
+  }, [showPreviewOnly]);
+
   return (
     <Card className={cn("relative flex h-full w-full flex-col overflow-hidden", className)}>
       {loading ? (

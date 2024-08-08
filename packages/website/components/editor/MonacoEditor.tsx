@@ -35,8 +35,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
         noImplicitAny: true,
         esModuleInterop: true,
         strict: true,
-        lib: ["dom", "es2015"],
-        types: ["jest"],
       });
 
       // add jest types to the monaco editor
