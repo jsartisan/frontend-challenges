@@ -39,6 +39,7 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Link
+              prefetch={false}
               className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
               href={`/challenges/${challenge.path}`}
             >

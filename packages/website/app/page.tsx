@@ -7,6 +7,8 @@ import { CategoryList } from "../components/home/CategoryList";
 import { ChallengeList } from "../components/challenges/ChallengeList";
 import { CATEGORIES, DEFAULT_LOCALE } from "@frontend-challenges/shared";
 
+export const dynamic = "force-static";
+
 export default async function Page() {
   const challenges = await getChallenges();
 

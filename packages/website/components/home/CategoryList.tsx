@@ -13,7 +13,7 @@ export function CategoryList(props: CategoryListProps) {
   return (
     <div className="mb-8 mt-4 grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-4">
       {categories.map((category) => (
-        <Link href={`/${category}`} className="rounded " key={`category-${category}`}>
+        <Link prefetch={false} href={`/${category}`} className="rounded " key={`category-${category}`}>
           <Card className="flex items-center gap-3 p-3 hover:bg-[var(--color-bg-hover)]">
             <Icon name={`${category}-color`} size="lg" />
             <div>
