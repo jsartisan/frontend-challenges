@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ComponentPropsWithRef } from "react";
 
+import { Link } from "../ui";
 import { cn } from "../../utils/helpers";
 
 type LogoProps = {

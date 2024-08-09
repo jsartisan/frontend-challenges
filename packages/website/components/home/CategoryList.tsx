@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Card, Icon } from "../ui";
+import { Card, Icon, Link } from "../ui";
 import { Category, Challenge } from "@frontend-challenges/shared";
 
 type CategoryListProps = {

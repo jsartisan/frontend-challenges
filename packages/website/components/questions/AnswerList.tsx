@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Question, TEMPLATES } from "@frontend-challenges/shared";
 import {
   Sheet,
@@ -12,6 +11,7 @@ import {
   Icon,
   IconButton,
   Button,
+  Link,
 } from "../ui";
 
 import Preview from "../editor/Preview";

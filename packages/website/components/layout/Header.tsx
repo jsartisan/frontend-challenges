@@ -1,11 +1,10 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { REPO, SearchItem } from "@frontend-challenges/shared";
 
 import { Logo } from "../common/Logo";
 import { Skeleton } from "../ui/skeleton";
-import { IconButton, Separator } from "../ui";
+import { IconButton, Link, Separator } from "../ui";
 import { SubmissionNavigator } from "../common/SubmissionNavigator";
 
 const SpotLight = dynamic(() => import("../../components/common/Spotlight"), {

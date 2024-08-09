@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { REPO } from "@frontend-challenges/shared";
 
-import { Icon } from "../ui";
+import { Icon, Link } from "../ui";
 import { HeroImage } from "./HeroImage";
 import { Separator } from "../ui/separator";
 import { Button } from "../../components/ui/button";

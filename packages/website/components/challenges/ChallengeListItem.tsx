@@ -1,11 +1,21 @@
-import Link from "next/link";
 import { Challenge } from "@frontend-challenges/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import {
+  Badge,
+  BadgeProps,
+  Card,
+  Icon,
+  IconButton,
+  IconProps,
+  Link,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../ui";
 import { cn } from "../../utils/helpers";
 import { useCompletions } from "../..//hooks/useCompletions";
 import { createCompletion, deleteCompletion } from "../../db/completions";
-import { Badge, BadgeProps, Card, Icon, IconButton, IconProps, Tooltip, TooltipContent, TooltipTrigger } from "../ui";
 
 function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean }) {
   const { challenge, showTypeIcon = true } = props;

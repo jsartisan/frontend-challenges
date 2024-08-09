@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { Blog } from "@frontend-challenges/shared";
 
-import { Card } from "../ui";
+import { Card, Link } from "../ui";
 
 type BlogListProps = {
   blogs: Blog[];

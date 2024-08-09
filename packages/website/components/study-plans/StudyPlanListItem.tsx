@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { StudyPlan } from "@frontend-challenges/shared";
 
-import { Card } from "../ui";
+import { Card, Link } from "../ui";
 
 function StudyPlanListItem(props: { studyPlan: StudyPlan }) {
   const { studyPlan } = props;

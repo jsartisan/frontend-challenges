@@ -1,5 +1,6 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
+
+import { Link } from "../ui";
 import { Logo } from "../common/Logo";
 import { Skeleton } from "../ui/skeleton";
 

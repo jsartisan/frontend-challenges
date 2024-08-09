@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "../../../components/ui";
 import { Challenge } from "@frontend-challenges/shared";
 import { BreadcrumbItem, BreadcrumbLink, Breadcrumb as BreadcrumRoot } from "../../../components/ui";
 
