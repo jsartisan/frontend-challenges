@@ -17,7 +17,7 @@ const action: Action = async (github, context, core) => {
 
   const dir = files.data[0].filename.split("/")[1];
   const challengeNo = Number(dir.replace(/^(\d+)-.*/, "$1"));
-  const filePath = `../../../../${files.data.find((file) => file.filename.includes("info.yml"))?.filename}`;
+  const filePath = `../../../${files.data.find((file) => file.filename.includes("info.yml"))?.filename}`;
 
   if (filePath) {
     const infoRaw = fs.readFileSync(filePath, "utf-8");
