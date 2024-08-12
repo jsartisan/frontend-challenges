@@ -56,7 +56,7 @@ function QuestionChallenge(props: QuestionProps) {
             <LayoutChanger className="absolute -top-[2px] left-[calc(50%-125px)] w-[250px]" />
             <div className="hidden items-center gap-2 md:flex">
               <TemplateChanger template={template} setTemplate={setTemplate} question={question} />
-              <Separator orientation="vertical" className="mx-1" />
+              {Object.keys(question.templateFiles).length > 1 && <Separator orientation="vertical" className="mx-1" />}
               <MarkCompleteButton challenge={question} />
               <ShareSolutionButton template={template} challenge={question} />
             </div>
@@ -92,7 +92,7 @@ function QuestionChallenge(props: QuestionProps) {
                 question={question}
                 template={template}
               />
-              <Preview className="min-h-0" template={template} />
+              <Preview dispatchTestsRanEvent className="min-h-0" template={template} />
               <Console />
             </ResizableLayout>
           </div>
