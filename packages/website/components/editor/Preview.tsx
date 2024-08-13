@@ -12,11 +12,10 @@ type PreviewProps = {
   className?: string;
   isTestsMode?: boolean;
   template: SupportedTemplates;
-  dispatchTestsRanEvent?: boolean;
 };
 
 function Preview(props: PreviewProps) {
-  const { className, template = "vanilla", dispatchTestsRanEvent } = props;
+  const { className, template = "vanilla" } = props;
   const [loading, setLoading] = useState(true);
   const { sandpack } = useSandpack();
   const { activeFile } = sandpack;
@@ -46,28 +45,7 @@ function Preview(props: PreviewProps) {
         </div>
       ) : (
         <>
-          {showTestsOnly && (
-            <SandpackTests
-              onComplete={(specs) => {
-                dispatchTestsRanEvent &&
-                  document.dispatchEvent(
-                    new CustomEvent("tests-ran", {
-                      detail: {
-                        passed: Object.values(specs).every((spec) => {
-                          return Object.values(spec.describes).every((describe) => {
-                            return Object.values(describe.tests).every((test) => {
-                              return test.status === "pass";
-                            });
-                          });
-                        }),
-                      },
-                      bubbles: true,
-                    }),
-                  );
-              }}
-              className={cn("!absolute !inset-0")}
-            />
-          )}
+          {showTestsOnly && <SandpackTests className={cn("!absolute !inset-0 z-10")} />}
           {showPreviewOnly && (
             <SandpackPreview
               showOpenNewtab

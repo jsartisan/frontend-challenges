@@ -92,7 +92,7 @@ function QuestionChallenge(props: QuestionProps) {
                 question={question}
                 template={template}
               />
-              <Preview dispatchTestsRanEvent className="min-h-0" template={template} />
+              <Preview className="min-h-0" template={template} />
               <Console />
             </ResizableLayout>
           </div>
