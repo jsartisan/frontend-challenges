@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { ChallengeSlim } from "@frontend-challenges/shared";
 import { REPO } from "@frontend-challenges/shared/src/constants";
-import { SearchItem } from "@frontend-challenges/shared";
 
 import {
   CommandDialog,
@@ -17,7 +17,7 @@ import {
 import { Badge, Button, Icon } from "../ui";
 
 interface SpotlightProps {
-  items: SearchItem[];
+  items: ChallengeSlim[];
 }
 
 export default function SpotLight(props: SpotlightProps) {

@@ -5,7 +5,9 @@ export type Difficulty = "easy" | "medium" | "hard" | "extreme";
 export type Importance = "hight" | "medium" | "low";
 
 export type Challenge = Question | Quiz;
-export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path" | "category">;
+export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path"> & {
+  title?: string;
+};
 
 interface BaseChallengeProps {
   no: number;
