@@ -24,7 +24,6 @@ export const DEFAULT_LOCALE = "en";
 export const SUPPORTED_LOCALES = Object.keys(TRANSLATIONS) as (keyof typeof TRANSLATIONS)[];
 
 export const DIFFICULTY_COLORS = {
-  warm: "teal",
   easy: "7aad0c",
   medium: "d9901a",
   hard: "de3d37",

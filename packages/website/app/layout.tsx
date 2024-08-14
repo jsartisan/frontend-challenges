@@ -33,7 +33,12 @@ export default async function RootLayout(params) {
       >
         <Provider>
           <Header
-            challenges={challenges.map((c) => ({ path: c.path, title: c.info.en?.title, difficulty: c.difficulty }))}
+            challenges={challenges.map((c) => ({
+              no: c.no,
+              path: c.path,
+              title: c.info.en?.title,
+              difficulty: c.difficulty,
+            }))}
           />
           {children}
         </Provider>

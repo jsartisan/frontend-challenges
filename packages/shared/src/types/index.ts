@@ -1,10 +1,11 @@
 import { DeepPartial } from "utility-types";
 import { CATEGORIES, SUPPORTED_LOCALES, SUPPORTED_TEMPLATES } from "../constants";
 
-export type Difficulty = "warm" | "easy" | "medium" | "hard" | "extreme" | "pending";
+export type Difficulty = "easy" | "medium" | "hard" | "extreme";
 export type Importance = "hight" | "medium" | "low";
 
 export type Challenge = Question | Quiz;
+export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path" | "category">;
 
 interface BaseChallengeProps {
   no: number;
@@ -80,12 +81,6 @@ export type Blog = {
 };
 
 export type Category = (typeof CATEGORIES)[number];
-
-export type SearchItem = {
-  title?: string;
-  path?: string;
-  difficulty?: Difficulty;
-};
 
 export type StudyPlan = {
   title: string;

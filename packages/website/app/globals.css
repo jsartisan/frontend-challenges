@@ -37,10 +37,18 @@
     --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
     --color-bg-positive: var(--ramp-green-500);
     --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
-    --color-bg-easy: var(--ramp-green-100);
+    --color-bg-easy: var(--ramp-green-500);
+    --color-bg-easy-subtle: color-mix(in srgb, var(--color-bg-easy) 10%, white 90%);
     --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 8% black);
-    --color-bg-medium: var(--ramp-orange-100);
-    --color-bg-hard: var(--ramp-red-100);
+    --color-bg-medium: var(--ramp-orange-500);
+    --color-bg-medium-subtle: color-mix(in srgb, var(--color-bg-medium) 10%, white 90%);
+    --color-bg-medium-strong: color-mix(in srgb, var(--color-bg-medium), 8% black);
+    --color-bg-hard: var(--ramp-red-500);
+    --color-bg-hard-subtle: color-mix(in srgb, var(--color-bg-hard) 10%, white 90%);
+    --color-bg-hard-strong: color-mix(in srgb, var(--color-bg-hard), 8% black);
+    --color-bg-extreme: var(--ramp-purple-500);
+    --color-bg-extreme-subtle: color-mix(in srgb, var(--color-bg-extreme) 10%, white 90%);
+    --color-bg-extreme-strong: color-mix(in srgb, var(--color-bg-extreme), 8% black);
     --color-bg-question: var(--ramp-purple-100);
     --color-bg-quiz: var(--ramp-orange-100);
 
@@ -87,10 +95,11 @@
     --color-bg-neutral: color-mix(in srgb, var(--ramp-grey-100), 80% black);
     --color-bg-neutral-subtle: var(--ramp-grey-700);
     --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive), transparent 80%);
-    --color-bg-easy: color-mix(in srgb, var(--ramp-green-100), 80% black);
+    --color-bg-easy-subtle: color-mix(in srgb, var(--ramp-green-100), 80% black);
     --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 10% black);
-    --color-bg-medium: color-mix(in srgb, var(--ramp-orange-100), 80% black);
-    --color-bg-hard: color-mix(in srgb, var(--ramp-red-100), 80% black);
+    --color-bg-medium-subtle: color-mix(in srgb, var(--ramp-orange-100), 80% black);
+    --color-bg-hard-subtle: color-mix(in srgb, var(--ramp-red-100), 80% black);
+    --color-bg-extreme-subtle: color-mix(in srgb, var(--ramp-purple-100), 80% black);
     --color-bg-question: color-mix(in srgb, var(--ramp-purple-100), 80% black);
     --color-bg-quiz: color-mix(in srgb, var(--ramp-orange-100), 80% black);
 

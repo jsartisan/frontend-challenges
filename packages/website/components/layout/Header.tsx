@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { REPO, SearchItem } from "@frontend-challenges/shared";
+import { REPO, ChallengeSlim } from "@frontend-challenges/shared";
 
 import { Logo } from "../common/Logo";
 import { Skeleton } from "../ui/skeleton";
@@ -12,8 +12,13 @@ const SpotLight = dynamic(() => import("../../components/common/Spotlight"), {
   loading: () => <Skeleton className="hidden h-8 w-20 md:flex" />,
 });
 
+const CompletionStats = dynamic(() => import("../common/CompletionStats"), {
+  ssr: false,
+  loading: () => <Skeleton className="size-8" />,
+});
+
 type HeaderProps = {
-  challenges: SearchItem[];
+  challenges: ChallengeSlim[];
 };
 
 export async function Header(props: HeaderProps) {
@@ -40,7 +45,8 @@ export async function Header(props: HeaderProps) {
                   Playground
                 </Link>
               </div>
-              <Separator orientation="vertical" className="mx-3 hidden md:flex" />
+              <Separator orientation="vertical" className="mx-2 hidden md:flex" />
+              <CompletionStats challenges={challenges} />
               <SubmissionNavigator />
               <IconButton asChild variant="tertiary">
                 <a href={REPO} target="_blank" rel="noreferrer">
