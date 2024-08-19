@@ -12,6 +12,7 @@ topics:
     challenges:
       - 00099-easy-closure-2
       - 00109-easy-jest-spyon
+      - 00121-easy-f-prototype
   - title: "Promises"
     challenges:
       - 00035-hard-promise-all
