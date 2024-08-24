@@ -1,33 +1,165 @@
-import { Link } from "../../../components/ui";
-import { Challenge } from "@frontend-challenges/shared";
-import { BreadcrumbItem, BreadcrumbLink, Breadcrumb as BreadcrumRoot } from "../../../components/ui";
+import { ChallengeFilterState, useFilteredChallenges } from "packages/website/hooks/useFilteredChallenges";
+import { ChallengeList } from "packages/website/components/challenges/ChallengeList";
+import { CATEGORIES, Challenge, DIFFICULTY_RANK, STORAGE_KEY } from "@frontend-challenges/shared";
+
+import {
+  Button,
+  CheckboxButton,
+  Icon,
+  IconButton,
+  Link,
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Breadcrumb as BreadcrumRoot,
+  Separator,
+} from "../../../components/ui";
+import { useRouter } from "next/navigation";
+import { cn } from "packages/website/utils/helpers";
+import { getSessionStorageItem } from "packages/website/utils/sessionStorage";
+import { useEffect } from "react";
 
 type BreadcrumbProps = {
-  challenge: Challenge;
+  challenges: Challenge[];
+  currentChallenge: Challenge;
+  className?: string;
 };
 
-export function Breadcrumb(props: BreadcrumbProps) {
-  const { challenge } = props;
+export default function Breadcrumb(props: BreadcrumbProps) {
+  const { challenges, currentChallenge, className } = props;
+  const router = useRouter();
+  const scope = sessionStorage.getItem(`${STORAGE_KEY}:scope`) || "all";
+  const { state, dispatch, filtered } = useFilteredChallenges(challenges, scope);
+  const nextChallenge = filtered[filtered.findIndex((challenge) => challenge.path === currentChallenge.path) + 1];
+  const previousChallenge = filtered[filtered.findIndex((challenge) => challenge.path === currentChallenge.path) - 1];
+
+  useEffect(() => {
+    dispatch({
+      category: getSessionStorageItem(`${STORAGE_KEY}:${scope}:category`, []),
+      difficulty: getSessionStorageItem(`${STORAGE_KEY}:${scope}:difficulty`, []),
+      type: (sessionStorage.getItem(`${STORAGE_KEY}:${scope}:type`) || "all") as ChallengeFilterState["type"],
+    });
+  }, [scope]);
+
+  const shouldShowCategory = CATEGORIES.some((category) => category === scope) == false;
 
   return (
-    <div className="flex items-center">
-      <BreadcrumRoot separator="/">
-        <BreadcrumbItem>
-          <BreadcrumbLink as={Link} href="/">
-            Home
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink as={Link} href="/challenges">
-            Challenges
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink className="line-clamp-1" href={`/challenges/${challenge.path}`}>
-            {challenge.info["en"]?.title}
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      </BreadcrumRoot>
-    </div>
+    <>
+      <div className="flex items-center gap-4">
+        <BreadcrumRoot separator="/">
+          <BreadcrumbItem>
+            <BreadcrumbLink as={Link} href="/">
+              Home
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <div className={cn("flex items-center justify-center gap-1", className)}>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <div className="group flex cursor-pointer items-center gap-1 text-sm">
+                    Challenges
+                    <IconButton variant="tertiary" size="xs" className="p-1 group-hover:bg-[var(--color-bg-hover)]">
+                      <Icon name="chevron-down" />
+                    </IconButton>
+                  </div>
+                </SheetTrigger>
+                <SheetContent side="left" className="flex w-5/12 flex-col gap-2 overflow-auto">
+                  <h3 className="text-2xl font-bold">Challenges</h3>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <h4>Difficulty</h4>
+                      <div className="flex flex-wrap gap-3">
+                        {DIFFICULTY_RANK.map((difficulty) => (
+                          <CheckboxButton
+                            isSelected={state.difficulty.includes(difficulty)}
+                            key={difficulty}
+                            onChange={() => {
+                              dispatch({
+                                category: state.category,
+                                difficulty: state.difficulty.includes(difficulty)
+                                  ? state.difficulty.filter((d) => d !== difficulty)
+                                  : [...state.difficulty, difficulty],
+                                type: state.type,
+                              });
+                            }}
+                          >
+                            {difficulty}
+                          </CheckboxButton>
+                        ))}
+                      </div>
+                    </div>
+                    {shouldShowCategory && (
+                      <div className="flex flex-col gap-2">
+                        <h4>Category</h4>
+                        <div className="flex flex-wrap gap-3">
+                          {CATEGORIES.map((category) => (
+                            <CheckboxButton
+                              key={category}
+                              isSelected={state.category.includes(category)}
+                              onChange={() => {
+                                dispatch({
+                                  category: state.category.includes(category)
+                                    ? state.category.filter((c) => c !== category)
+                                    : [...state.category, category],
+                                  difficulty: state.difficulty,
+                                  type: state.type,
+                                });
+                              }}
+                            >
+                              {category}
+                            </CheckboxButton>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex flex-col gap-2">
+                      <h4>Type</h4>
+                      <div className="flex gap-3">
+                        {["all", "question", "quiz"].map((type) => (
+                          <CheckboxButton
+                            isSelected={state.type === type}
+                            key={type}
+                            onChange={() => {
+                              dispatch({
+                                category: state.category,
+                                difficulty: state.difficulty,
+                                type: type,
+                              });
+                            }}
+                          >
+                            {type}
+                          </CheckboxButton>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <ChallengeList variant="compact" challenges={filtered} />
+                </SheetContent>
+              </Sheet>
+            </div>
+          </BreadcrumbItem>
+        </BreadcrumRoot>
+        <div className="flex items-center gap-1">
+          <IconButton
+            variant="secondary"
+            size="xs"
+            disabled={!previousChallenge}
+            onClick={() => router.push(`/challenges/${previousChallenge.path}`)}
+          >
+            <Icon name="chevron-left" />
+          </IconButton>
+          <IconButton
+            variant="secondary"
+            size="xs"
+            disabled={!nextChallenge}
+            onClick={() => router.push(`/challenges/${nextChallenge.path}`)}
+          >
+            <Icon name="chevron-right" />
+          </IconButton>
+        </div>
+      </div>
+    </>
   );
 }

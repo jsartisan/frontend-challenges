@@ -1,15 +1,17 @@
-import { Suspense } from "react";
-import Client from "./client";
+import dynamic from "next/dynamic";
+
+import Loading from "./loading";
+
+const Client = dynamic(() => import("./client"), {
+  ssr: false,
+  loading: Loading,
+});
 
 export const metadata = {
   title: "Submit",
-  description: "Submit a new link",
+  description: "Submit a new quiz",
 };
 
 export default function Page() {
-  return (
-    <Suspense>
-      <Client />
-    </Suspense>
-  );
+  return <Client />;
 }

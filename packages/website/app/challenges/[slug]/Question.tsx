@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { DEFAULT_LOCALE, TEMPLATES, Question, SupportedTemplates } from "@frontend-challenges/shared";
+import { DEFAULT_LOCALE, TEMPLATES, Question, SupportedTemplates, Challenge } from "@frontend-challenges/shared";
 
-import { Breadcrumb } from "./Breadcrumb";
 import { Card } from "../../../components/ui/card";
 import { TemplateChanger } from "./TemplateChanger";
 import Description from "../../../components/editor/Description";
@@ -17,6 +16,7 @@ import { Button, Icon, Tabs, TabsContent, TabsList, TabsTrigger, Separator, Skel
 
 const MarkCompleteButton = dynamic(() => import("../../../components/editor/MarkCompleteButton"), {
   ssr: false,
+  loading: () => <Skeleton className="h-8 w-32" />,
 });
 
 const CodeEditor = dynamic(() => import("../../../components/editor/CodeEditor"), {
@@ -34,12 +34,18 @@ const Preview = dynamic(() => import("../../../components/editor/Preview"), {
   loading: () => <Skeleton className="h-full w-full" />,
 });
 
+const Breadcrumb = dynamic(() => import("./Breadcrumb"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-8 w-28" />,
+});
+
 type QuestionProps = {
   question: Question;
+  challenges: Challenge[];
 };
 
 function QuestionChallenge(props: QuestionProps) {
-  const { question } = props;
+  const { question, challenges } = props;
   const [template, setTemplate] = useState(Object.keys(question.templateFiles)[0] as SupportedTemplates);
 
   return (
@@ -52,9 +58,9 @@ function QuestionChallenge(props: QuestionProps) {
       >
         <div className="flex h-full w-full flex-col gap-4 p-4">
           <div className="relative flex w-full justify-between">
-            <Breadcrumb challenge={question} />
-            <LayoutChanger className="absolute -top-[2px] left-[calc(50%-125px)] w-[250px]" />
-            <div className="hidden items-center gap-2 md:flex">
+            <Breadcrumb currentChallenge={question} challenges={challenges} />
+            <LayoutChanger className="absolute left-[calc(50%-125px)] w-[250px]" />
+            <div className="ms-auto hidden items-center gap-2 md:flex">
               <TemplateChanger template={template} setTemplate={setTemplate} question={question} />
               {Object.keys(question.templateFiles).length > 1 && <Separator orientation="vertical" className="mx-1" />}
               <MarkCompleteButton challenge={question} />

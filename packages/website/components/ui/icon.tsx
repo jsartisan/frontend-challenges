@@ -31,6 +31,9 @@ import {
   ChevronUpIcon,
   LogAllIcon,
   TypescriptColorIcon,
+  ListIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "../../utils/helpers";
@@ -91,7 +94,8 @@ export type IconProps = {
     | "log-info"
     | "log-warning"
     | "log-all"
-    | "typescript-color";
+    | "typescript-color"
+    | "list";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -120,10 +124,10 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       icon = HomeIcon;
       break;
     case "chevron-right":
-      icon = RadixIcon.ChevronRightIcon;
+      icon = ChevronRightIcon;
       break;
     case "chevron-left":
-      icon = RadixIcon.ChevronLeftIcon;
+      icon = ChevronLeftIcon;
       break;
     case "check":
       icon = RadixIcon.CheckIcon;
@@ -268,6 +272,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "typescript-color":
       icon = TypescriptColorIcon;
+      break;
+    case "list":
+      icon = ListIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

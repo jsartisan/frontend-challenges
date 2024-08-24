@@ -17,8 +17,14 @@ import { cn } from "../../utils/helpers";
 import { useCompletions } from "../..//hooks/useCompletions";
 import { createCompletion, deleteCompletion } from "../../db/completions";
 
-function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean }) {
-  const { challenge, showTypeIcon = true } = props;
+export type ChallengeListItemProps = {
+  challenge: Challenge;
+  showTypeIcon?: boolean;
+  variant?: "default" | "compact";
+};
+
+function ChallengeListItem(props: ChallengeListItemProps) {
+  const { challenge, showTypeIcon = true, variant } = props;
   const queryClient = useQueryClient();
   const { completions } = useCompletions();
   const isCompleted = completions.includes(`challenge-${challenge.no}`);
@@ -35,6 +41,17 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
 
     mutation.mutate({ challenge_id: challenge.no });
   };
+
+  if (variant === "compact") {
+    return (
+      <Link href={`/challenges/${challenge.path}`} key={challenge.path}>
+        <Card className="flex items-center justify-between gap-2 p-2 hover:bg-[var(--color-bg-hover)]">
+          <span className="font-semibold">{challenge.info.en?.title}</span>
+          <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
+        </Card>
+      </Link>
+    );
+  }
 
   return (
     <Card
@@ -66,7 +83,9 @@ function ChallengeListItem(props: { challenge: Challenge; showTypeIcon?: boolean
                   <Icon name={challenge.type === "question" ? "code" : "file-text"} size="sm" />
                 </Badge>
               </TooltipTrigger>
-              <TooltipContent className="capitalize">{challenge.type}</TooltipContent>
+              <TooltipContent side="bottom" className="capitalize">
+                {challenge.type}
+              </TooltipContent>
             </Tooltip>
           )}
           <div className="flex items-center gap-2">

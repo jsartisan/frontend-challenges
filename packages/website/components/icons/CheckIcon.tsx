@@ -2,7 +2,6 @@ import { ComponentProps } from "react";
 
 export const CheckIcon = (props: ComponentProps<"svg">) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.75 -0.75 20 20" {...props}>
-    <desc>Check Circle 1 Streamline Icon: https://streamlinehq.com</desc>
     <path
       d="M4.625 10.192729166666668 6.513541666666667 12.872916666666667a0.8086041666666667 0.8086041666666667 0 0 0 1.3158125 0.0393125L13.875 5.26325"
       fill="none"

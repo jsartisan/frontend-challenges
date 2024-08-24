@@ -31,8 +31,9 @@ export async function generateStaticParams() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Page(props: any) {
+  const challenges = await getChallenges();
   let challenge = await getChallengeByPath(props.params.slug);
   challenge = await bundleMarkdownOfChallenge(challenge);
 
-  return <Client challenge={challenge} />;
+  return <Client challenge={challenge} challenges={challenges} />;
 }

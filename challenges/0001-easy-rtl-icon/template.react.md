@@ -1,8 +1,8 @@
-```js App.tsx
+```js App.jsx
 import React, { useState, useEffect } from 'react';
 
-const App: React.FC = () => {
-  const [checked, setChecked] = useState<boolean>(false);
+const App = () => {
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
      document.documentElement.dir = checked ? "rtl" : "ltr";

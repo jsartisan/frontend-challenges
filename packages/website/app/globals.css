@@ -31,6 +31,7 @@
     --color-bg-neutral-subtle-hover: color-mix(in srgb, var(--color-bg-neutral-subtle), white 10%);
     --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%);
     --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 5%);
+    --color-bg-neutral-strong-hover: color-mix(in srgb, var(--color-bg-neutral-strong), black 5%);
     --color-bg-assistive: var(--ramp-grey-900);
     --color-bg-assistive-transparent: color-mix(in srgb, var(--color-bg-assistive), transparent);
     --color-bg-negative: var(--ramp-red-500);

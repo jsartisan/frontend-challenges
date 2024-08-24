@@ -12,6 +12,7 @@ import {
   IconButton,
   Button,
   Link,
+  Skeleton,
 } from "../ui";
 
 import Preview from "../editor/Preview";
@@ -29,9 +30,19 @@ export function AnswerList(props: QuestionListProps) {
 
   if (isLoading) {
     return (
-      <div className="flex h-full flex-col justify-center gap-2 text-center">
-        <p className="animate-spin text-3xl">⚙️</p>
-        <p className="text-lg font-semibold">Loading answers...</p>
+      <div className="flex flex-col gap-4">
+        {[...Array(3)].map((_, index) => (
+          <div className="flex items-center gap-4" key={index}>
+            <Skeleton className="flex h-9 w-9 shrink-0 overflow-hidden rounded-full" />
+            <div className="flex flex-grow flex-col gap-2">
+              <Skeleton className="h-4 w-1/2 rounded-sm" />
+              <Skeleton className="h-4 w-3/4 rounded-sm" />
+            </div>
+            <div className="ml-auto">
+              <Skeleton className="h-8 w-8" />
+            </div>
+          </div>
+        ))}
       </div>
     );
   }

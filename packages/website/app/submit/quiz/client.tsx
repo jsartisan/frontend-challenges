@@ -25,7 +25,7 @@ console.log("Hello World!");
 `;
 
 export default function Client() {
-  const [tab, setActiveTab] = useState("tab");
+  const [tab, setActiveTab] = useState("description");
   const activeTab = tab || "description";
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,7 +46,7 @@ export default function Client() {
   form.watch(["title", "readme", "difficulty", "answer"]);
 
   return (
-    <Form {...form}>
+    <Form {...form} data-pawan="hello">
       <form onSubmit={form.handleSubmit(onSubmit)} className="h-[calc(100vh_-_var(--nav-top-offset))] p-4 text-sm">
         <Tabs className="h-full w-full p-0 " value={activeTab || "description"} onValueChange={setActiveTab}>
           <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">

@@ -1,11 +1,7 @@
-import { Hero } from "../components/home/Hero";
-import Footer from "../components/layout/Footer";
-import { Layout } from "../components/layout/Layout";
 import { getChallenges } from "@frontend-challenges/backend";
-import { Community } from "../components/home/Community";
-import { CategoryList } from "../components/home/CategoryList";
-import { ChallengeList } from "../components/challenges/ChallengeList";
-import { CATEGORIES, DEFAULT_LOCALE } from "@frontend-challenges/shared";
+import { DEFAULT_LOCALE } from "@frontend-challenges/shared";
+
+import { Client } from "./client";
 
 export const dynamic = "force-static";
 
@@ -21,21 +17,5 @@ export default async function Page() {
     })
     .slice(0, 5);
 
-  return (
-    <>
-      <Layout>
-        <Hero />
-        <CategoryList challenges={challenges} categories={CATEGORIES as any} />
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-col gap-1">
-            <h3 className="text-xl font-bold">Recently Added</h3>
-            <p className="text-fg-subtle">The newest challenges added by the community</p>
-          </div>
-          <ChallengeList showTypeIcon challenges={sortedChallenges} />
-        </div>
-      </Layout>
-      <Community />
-      <Footer />
-    </>
-  );
+  return <Client challenges={challenges} sortedChallenges={sortedChallenges} />;
 }

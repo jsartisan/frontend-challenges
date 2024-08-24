@@ -20,10 +20,10 @@ const iconButtonVariants = cva(
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       },
       size: {
-        default: "h-8 w-8 [&>svg]:h-5 [&>svg]:w-5",
-        xs: "h-4 w-4 [&>svg]:h-3 [&>svg]:w-3",
-        sm: "h-7 w-7 [&>svg]:h-[18px] [&>svg]:w-[18px] rounded",
-        lg: "h-10 w-10 [&>svg]:h-7 [&>svg]:w-7",
+        default: "h-8 w-8 [&>svg]:size-5",
+        xs: "size-6 [&>svg]:size-3 [&>svg>path]:stroke-2",
+        sm: "size-7 [&>svg]:size-[18px] rounded",
+        lg: "size-10 [&>svg]:size-7",
       },
     },
     defaultVariants: {

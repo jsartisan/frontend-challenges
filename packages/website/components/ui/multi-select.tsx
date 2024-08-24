@@ -1,9 +1,10 @@
 import * as React from "react";
 import { CheckIcon } from "@radix-ui/react-icons";
 
+import { Icon } from "../ui";
 import { cn } from "../../utils/helpers";
-import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+import { Badge } from "./badge";
+import { Button } from "./button";
 import {
   Command,
   CommandEmpty,
@@ -15,9 +16,8 @@ import {
 } from "../ui/command";
 import { Separator } from "../ui/separator";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Icon } from "../ui";
 
-interface ChallengeListFilterProps {
+interface MultiSelectProps {
   title?: string;
   selectedValues?: string[];
   setSelectedValues: (values: string[]) => void;
@@ -28,7 +28,7 @@ interface ChallengeListFilterProps {
   }[];
 }
 
-export function ChallengeListFilter(props: ChallengeListFilterProps) {
+export function MultiSelect(props: MultiSelectProps) {
   const { selectedValues: selectedValuesProp = [], setSelectedValues, title, options } = props;
   const selectedValues = new Set(selectedValuesProp);
 

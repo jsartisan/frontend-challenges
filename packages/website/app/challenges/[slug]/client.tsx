@@ -8,8 +8,13 @@ import { mixpanel } from "../../../utils/mixpanel";
 import { Quiz } from "./Quiz";
 import { Question } from "./Question";
 
-export default function Client(props: { challenge: Challenge }) {
-  const { challenge } = props;
+type ClientProps = {
+  challenge: Challenge;
+  challenges: Challenge[];
+};
+
+export default function Client(props: ClientProps) {
+  const { challenge, challenges } = props;
 
   useEffect(() => {
     mixpanel.track("Challenge Viewed", {
@@ -18,5 +23,9 @@ export default function Client(props: { challenge: Challenge }) {
     });
   }, [challenge]);
 
-  return challenge.type === "question" ? <Question question={challenge} /> : <Quiz quiz={challenge} />;
+  if (challenge.type === "question") {
+    return <Question question={challenge} challenges={challenges} />;
+  }
+
+  return <Quiz challenge={challenge} challenges={challenges} />;
 }

@@ -1,92 +1,71 @@
-import { useReducer } from "react";
-import { Category, Challenge, Difficulty } from "@frontend-challenges/shared";
+import { useEffect, useState } from "react";
+import { Category, Challenge, Difficulty, STORAGE_KEY } from "@frontend-challenges/shared";
 import { sortChallengesByDate, sortChallengesByDifficulty } from "../utils/challenges";
 
-interface Action {
-  type: "filter" | "search" | "sort_by" | "sort_order";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  payload: any;
-}
-
-interface State {
+export interface ChallengeFilterState {
   search: string;
-  challenges: Challenge[];
-  filtered: Challenge[];
-  filters: {
-    category: Category[];
-    difficulty: Difficulty;
-    type: Challenge["type"];
-  };
+  category: Category[];
+  difficulty: Difficulty[];
+  type: Challenge["type"] | "all";
   sort_by?: "difficulty" | "published_date";
   sort_order?: "asc" | "desc";
 }
 
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "search":
-      return {
-        ...state,
-        search: action.payload,
-        filtered: state.challenges.filter((question) => {
-          return question.info?.en?.title?.toLowerCase().includes(action.payload.toLowerCase());
-        }),
-      };
-    case "filter":
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          category: action.payload.category,
-          difficulty: action.payload.difficulty,
-          type: action.payload.type,
-        },
-        filtered: state.challenges.filter((question) => {
-          return (
-            (action.payload.category.length === 0 || action.payload.category.includes(question.category)) &&
-            (action.payload.difficulty.length === 0 || action.payload.difficulty.includes(question.difficulty)) &&
-            (action.payload.type === "all" || action.payload.type === question.type)
-          );
-        }),
-      };
-    case "sort_by":
-      if (action.payload.type === "difficulty") {
-        return {
-          ...state,
-          sort_by: action.payload.type,
-          filtered: sortChallengesByDifficulty(state.filtered, state.sort_order),
-        };
-      }
+export type ChallengeFilterDispatch = (state: Omit<Partial<ChallengeFilterState>, "challenges" | "filtered">) => void;
 
-      return {
-        ...state,
-        sort_by: action.payload.type,
-        filtered: sortChallengesByDate(state.filtered, state.sort_order),
-      };
-    case "sort_order":
-      return {
-        ...state,
-        sort_order: action.payload.sort_order,
-      };
-    default:
-      return state;
-  }
+const defaults: ChallengeFilterState = {
+  search: "",
+  category: [],
+  difficulty: [],
+  type: "all",
+  sort_by: "published_date",
+  sort_order: "desc",
 };
 
-function useFilteredChallenges(challenges: Challenge[]) {
-  const [state, dispatch] = useReducer(reducer, {
-    search: "",
-    challenges,
-    filtered: sortChallengesByDifficulty(sortChallengesByDate(challenges, "asc"), "asc"),
-    filters: {
-      category: [],
-      difficulty: [],
-      type: "all",
-    },
-    sort_order: "asc",
-    sort_by: "difficulty",
+function useFilteredChallenges(
+  challenges: Challenge[],
+  scope = "all",
+  filters: Partial<ChallengeFilterState> = defaults,
+) {
+  const [state, setState] = useState<ChallengeFilterState>({ ...defaults, ...filters });
+
+  const dispatch = (state: Omit<Partial<ChallengeFilterState>, "challenges" | "filtered">) => {
+    setState((prevState) => {
+      const finalState = { ...prevState, ...state };
+
+      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:difficulty`, JSON.stringify(finalState.difficulty));
+      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:category`, JSON.stringify(finalState.category));
+      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:type`, finalState.type);
+
+      return finalState;
+    });
+  };
+
+  let filtered = challenges.filter((question) => {
+    return (
+      (state.category.length === 0 || state.category.includes(question.category)) &&
+      (state.difficulty.length === 0 || state.difficulty.includes(question.difficulty)) &&
+      (state.type === "all" || state.type === question.type)
+    );
   });
 
-  return { state, dispatch };
+  filtered = filtered.filter((question) => {
+    return question.info?.en?.title.toLowerCase().includes(state.search.toLowerCase());
+  });
+
+  if (state.sort_by === "difficulty") {
+    filtered = sortChallengesByDifficulty(filtered, state.sort_order);
+  }
+
+  if (state.sort_by === "published_date") {
+    filtered = sortChallengesByDate(filtered, state.sort_order);
+  }
+
+  if (scope && scope !== "all") {
+    filtered = filtered.filter((question) => question.info?.en?.tags?.includes(scope));
+  }
+
+  return { state, filtered, dispatch };
 }
 
 export { useFilteredChallenges };

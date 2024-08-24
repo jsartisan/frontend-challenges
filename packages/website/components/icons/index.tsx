@@ -29,3 +29,6 @@ export { LogAllIcon } from "./LogAllIcon";
 export { ChevronUpIcon } from "./ChevronUpIcon";
 export { ChevronDownIcon } from "./ChevronDownIcon";
 export { TypescriptColorIcon } from "./TypescriptColorIcon";
+export { ListIcon } from "./ListIcon";
+export { ChevronLeftIcon } from "./ChevronLeftIcon";
+export { ChevronRightIcon } from "./ChevronRightIcon";

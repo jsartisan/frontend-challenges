@@ -17,6 +17,8 @@ export const DISCUSSIONS = "https://github.com/jsartisan/frontend-challenges/dis
 export const DEFAULT_TEMPLATE = "vanilla";
 export const SUPPORTED_TEMPLATES = Object.keys(TEMPLATES) as (keyof typeof TEMPLATES)[];
 
+export const STORAGE_KEY = "fc";
+
 export const TRANSLATIONS = {
   en: require("../../../locales/en.json"),
 } as const;

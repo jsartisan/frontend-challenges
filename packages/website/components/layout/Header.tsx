@@ -4,7 +4,7 @@ import { REPO, ChallengeSlim } from "@frontend-challenges/shared";
 
 import { Logo } from "../common/Logo";
 import { Skeleton } from "../ui/skeleton";
-import { IconButton, Link, Separator } from "../ui";
+import { Icon, IconButton, Link, Separator } from "../ui";
 import { SubmissionNavigator } from "../common/SubmissionNavigator";
 
 const SpotLight = dynamic(() => import("../../components/common/Spotlight"), {
@@ -43,6 +43,14 @@ export async function Header(props: HeaderProps) {
                 </Link>
                 <Link href="/play" className="font-medium">
                   Playground
+                </Link>
+                <Link
+                  href="https://frontend-challenges.canny.io/feature-requests"
+                  target="_blank"
+                  className="flex items-center gap-1 font-medium"
+                >
+                  Feedback
+                  <Icon name="external-link" size="sm" className="text-[var(--color-fg-neutral-subtle)]" />
                 </Link>
               </div>
               <Separator orientation="vertical" className="mx-2 hidden md:flex" />
