@@ -55,9 +55,6 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
 
   const templateFiles = await getCodeFilesByTemplate(path.join(CHALLENGES_ROOT, dir, "template.md"));
 
-  // TODO
-  // const answers = await getAnswersOfQuestion(no, templateFiles);
-
   return {
     ...challenge,
     templateFiles,

@@ -1,6 +1,6 @@
 import { Skeleton } from "../../components/ui/skeleton";
 
-export function Loading() {
+export default function Loading() {
   return (
     <div className="h-auto sm:h-[calc(100vh_-_var(--nav-top-offset))]">
       <div className="flex h-full w-full flex-col gap-4 p-4">

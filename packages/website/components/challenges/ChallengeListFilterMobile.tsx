@@ -1,15 +1,7 @@
-import { CATEGORIES, DIFFICULTY_RANK } from "@frontend-challenges/shared";
-import {
-  Sheet,
-  SheetTrigger,
-  IconButton,
-  Icon,
-  SheetContent,
-  CheckboxButton,
-  SheetTitle,
-  Button,
-  SheetClose,
-} from "../ui";
+import { Sheet, SheetTrigger, IconButton, Icon, SheetContent, SheetTitle, Button, SheetClose } from "../ui";
+import { ChallengeDifficultyFilterMobile } from "./filters-mobile/ChallengeDifficultyFilterMobile";
+import { ChallengeCategoryFilterMobile } from "./filters-mobile/ChallengeCategoryFilterMobile";
+import { ChallengeTypeFilterMobile } from "./filters-mobile/ChallengeTypeFilterMobile";
 
 type ChallengeListFilterMobileProps = {
   state: any;
@@ -28,79 +20,9 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
       </SheetTrigger>
       <SheetContent side="bottom" className="flex flex-col gap-3">
         <SheetTitle>Filters</SheetTitle>
-        <div className="flex flex-col gap-2">
-          <h4>Difficulty</h4>
-          <div className="flex flex-wrap gap-3">
-            {DIFFICULTY_RANK.map((difficulty) => (
-              <CheckboxButton
-                isSelected={state.filters.difficulty.includes(difficulty)}
-                key={difficulty}
-                onChange={() => {
-                  dispatch({
-                    type: "filter",
-                    payload: {
-                      category: state.filters.category,
-                      difficulty: state.filters.difficulty.includes(difficulty)
-                        ? state.filters.difficulty.filter((d) => d !== difficulty)
-                        : [...state.filters.difficulty, difficulty],
-                      type: state.filters.type,
-                    },
-                  });
-                }}
-              >
-                {difficulty}
-              </CheckboxButton>
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <h4>Category</h4>
-          <div className="flex flex-wrap gap-3">
-            {CATEGORIES.map((category) => (
-              <CheckboxButton
-                key={category}
-                isSelected={state.filters.category.includes(category)}
-                onChange={() => {
-                  dispatch({
-                    type: "filter",
-                    payload: {
-                      category: state.filters.category.includes(category)
-                        ? state.filters.category.filter((c) => c !== category)
-                        : [...state.filters.category, category],
-                      difficulty: state.filters.difficulty,
-                      type: state.filters.type,
-                    },
-                  });
-                }}
-              >
-                {category}
-              </CheckboxButton>
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <h4>Type</h4>
-          <div className="flex gap-3">
-            {["all", "question", "quiz"].map((type) => (
-              <CheckboxButton
-                isSelected={state.filters.type === type}
-                key={type}
-                onChange={() => {
-                  dispatch({
-                    type: "filter",
-                    payload: {
-                      category: state.filters.category,
-                      difficulty: state.filters.difficulty,
-                      type: type,
-                    },
-                  });
-                }}
-              >
-                {type}
-              </CheckboxButton>
-            ))}
-          </div>
-        </div>
+        <ChallengeDifficultyFilterMobile state={state} dispatch={dispatch} />
+        <ChallengeCategoryFilterMobile state={state} dispatch={dispatch} />
+        <ChallengeTypeFilterMobile state={state} dispatch={dispatch} />
         <div className="mt-8 flex  gap-2">
           <SheetClose asChild>
             <Button variant="primary" className="flex-grow">
@@ -108,11 +30,7 @@ export default function ChallengeListFilterMobile(props: ChallengeListFilterMobi
             </Button>
           </SheetClose>
           <Button
-            disabled={
-              state.filters.category.length === 0 &&
-              state.filters.difficulty.length === 0 &&
-              state.filters.type === "all"
-            }
+            disabled={state.category.length === 0 && state.difficulty.length === 0 && state.type === "all"}
             variant="tertiary"
             className="flex-grow"
             onClick={() => {

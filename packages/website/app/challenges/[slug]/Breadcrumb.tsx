@@ -3,7 +3,6 @@ import { ChallengeList } from "packages/website/components/challenges/ChallengeL
 import { CATEGORIES, Challenge, DIFFICULTY_RANK, STORAGE_KEY } from "@frontend-challenges/shared";
 
 import {
-  Button,
   CheckboxButton,
   Icon,
   IconButton,
@@ -14,7 +13,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Breadcrumb as BreadcrumRoot,
-  Separator,
 } from "../../../components/ui";
 import { useRouter } from "next/navigation";
 import { cn } from "packages/website/utils/helpers";
@@ -125,7 +123,7 @@ export default function Breadcrumb(props: BreadcrumbProps) {
                               dispatch({
                                 category: state.category,
                                 difficulty: state.difficulty,
-                                type: type,
+                                type: type as any,
                               });
                             }}
                           >

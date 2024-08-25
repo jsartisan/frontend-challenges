@@ -3,6 +3,7 @@
 import { Challenge } from "@frontend-challenges/shared";
 
 import CompletionStats from "./CompletionStats";
+import Footer from "../../components/layout/Footer";
 import { Layout } from "../../components/layout/Layout";
 import { ChallengeListWithFilters } from "../../components/challenges/ChallengeListWithFilters";
 import type { ChallengeListWithFiltersProps } from "../../components/challenges/ChallengeListWithFilters";
@@ -14,7 +15,7 @@ type ClientProps = {
 };
 
 export default function Client(props: ClientProps) {
-  const { challenges, filters = {}, scope } = props;
+  const { challenges, scope } = props;
 
   return (
     <>
@@ -29,8 +30,9 @@ export default function Client(props: ClientProps) {
           </div>
           <CompletionStats challenges={challenges} />
         </div>
-        <ChallengeListWithFilters challenges={challenges} filters={filters} scope={scope} includes={["difficulty"]} />
+        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={["difficulty"]} />
       </Layout>
+      <Footer />
     </>
   );
 }

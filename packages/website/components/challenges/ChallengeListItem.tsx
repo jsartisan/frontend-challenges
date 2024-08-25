@@ -13,7 +13,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../ui";
-import { cn } from "../../utils/helpers";
 import { useCompletions } from "../..//hooks/useCompletions";
 import { createCompletion, deleteCompletion } from "../../db/completions";
 
@@ -55,10 +54,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
 
   return (
     <Card
-      key={challenge.no}
-      className={cn({
-        "group/challenge flex px-4 py-3 md:px-4": true,
-      })}
+      className="group/challenge flex px-4 py-3 md:px-4"
       data-completed={isCompleted ? "true" : undefined}
       role="listitem"
     >
@@ -115,21 +111,19 @@ function ChallengeListItem(props: ChallengeListItemProps) {
         </div>
         {/* <p className="text-sm text-[var(--color-fg-neutral-subtle)]">{challenge.info.en?.excerpt}</p> */}
       </div>
-      {
-        <div className="hidden items-center sm:flex">
-          <IconButton
-            onClick={onMarkComplete}
-            variant="tertiary"
-            className="text-[var(--color-fg-neutral-subtle)] hover:bg-transparent active:bg-transparent"
-            size="lg"
-          >
-            <Icon
-              name={isCompleted ? "check" : "check-circle"}
-              className="rounded-full group-[[data-completed]]/challenge:bg-[var(--color-bg-positive)] group-[[data-completed]]/challenge:text-[var(--color-fg-on-positive)]"
-            />
-          </IconButton>
-        </div>
-      }
+      <div className="hidden items-center sm:flex">
+        <IconButton
+          onClick={onMarkComplete}
+          variant="tertiary"
+          className="text-[var(--color-fg-neutral-subtle)] hover:bg-transparent active:bg-transparent"
+          size="lg"
+        >
+          <Icon
+            name={isCompleted ? "check" : "check-circle"}
+            className="rounded-full group-[[data-completed]]/challenge:bg-[var(--color-bg-positive)] group-[[data-completed]]/challenge:text-[var(--color-fg-on-positive)]"
+          />
+        </IconButton>
+      </div>
     </Card>
   );
 }
