@@ -4,6 +4,9 @@ import Editor, { useMonaco } from "@monaco-editor/react";
 import { SupportedTemplates } from "@frontend-challenges/shared";
 import { useActiveCode, useSandpack } from "@codesandbox/sandpack-react";
 
+import { setLanguage } from "../../utils/helpers";
+import { useLocalStorageChallengeFiles } from "packages/website/hooks/useLocalStorageChallengeFiles";
+
 type MonacoEditorProps = {
   path?: string;
   template: SupportedTemplates;
@@ -14,8 +17,9 @@ export function MonacoEditor(props: MonacoEditorProps) {
   const monaco = useMonaco();
   const { code, updateCode } = useActiveCode();
   const { sandpack } = useSandpack();
-  const { files } = sandpack;
+  const { files, activeFile } = sandpack;
   const { resolvedTheme } = useTheme();
+  const challengeFiles = useLocalStorageChallengeFiles(`${path}-${template}`);
 
   useEffect(() => {
     if (monaco) {
@@ -77,32 +81,16 @@ export function MonacoEditor(props: MonacoEditorProps) {
         detectIndentation: false,
         fixedOverflowWidgets: true,
       }}
-      onChange={(value) => updateCode(value || "")}
+      onChange={(value) => {
+        localStorage.setItem(
+          `${path}-${template}`,
+          JSON.stringify({
+            ...challengeFiles,
+            [activeFile]: value,
+          }),
+        );
+        updateCode(value);
+      }}
     />
   );
 }
-
-const setLanguage = function (activeFile) {
-  switch (activeFile.split(".").pop()) {
-    case "js":
-      return "javascript";
-    case "jsx":
-      return "javascript";
-    case "ts":
-      return "typescript";
-    case "tsx":
-      return "typescript";
-    case "css":
-      return "css";
-    case "html":
-      return "html";
-    case "json":
-      return "json";
-    case "md":
-      return "markdown";
-    case "svelte":
-      return "html";
-    default:
-      return "plaintext";
-  }
-};

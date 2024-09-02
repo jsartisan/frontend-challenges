@@ -78,3 +78,13 @@ type: ${type}\n`;
 
   return URL;
 };
+
+export function getSortedChallengesByDate(challenges: Challenge[], limit?: number) {
+  const sorted = challenges.sort((a, b) => {
+    const aDate = new Date(a.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
+    const bDate = new Date(b.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
+    return bDate.getTime() - aDate.getTime();
+  });
+
+  return limit ? sorted.slice(0, limit) : sorted;
+}

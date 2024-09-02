@@ -11,6 +11,7 @@ import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../components/ui/resizable";
+import { useLocalStorageChallengeFiles } from "packages/website/hooks/useLocalStorageChallengeFiles";
 
 const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -47,9 +48,10 @@ export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
+  const savedChallengeFiles = useLocalStorageChallengeFiles(`/playground-${template}`);
 
   return (
-    <SandpackRoot files={files}>
+    <SandpackRoot files={{ ...files, ...savedChallengeFiles }}>
       <div className="flex h-full w-full flex-col gap-4 p-4">
         <div className="relative flex w-full justify-between">
           <div className="flex items-center">

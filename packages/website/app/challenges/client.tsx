@@ -30,7 +30,7 @@ export default function Client(props: ClientProps) {
           </div>
           <CompletionStats challenges={challenges} />
         </div>
-        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={["difficulty"]} />
+        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={["difficulty", "category"]} />
       </Layout>
       <Footer />
     </>

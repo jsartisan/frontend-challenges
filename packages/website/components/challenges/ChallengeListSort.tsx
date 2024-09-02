@@ -22,10 +22,7 @@ export function ChallengeListSort(props: ChallengeListProps) {
             className="flex justify-between"
             onClick={() => {
               dispatch({
-                type: "sort_by",
-                payload: {
-                  type: "difficulty",
-                },
+                sort_by: "difficulty",
               });
             }}
           >
@@ -36,10 +33,7 @@ export function ChallengeListSort(props: ChallengeListProps) {
             className="flex justify-between"
             onClick={() => {
               dispatch({
-                type: "sort_by",
-                payload: {
-                  type: "published_date",
-                },
+                sort_by: "published_date",
               });
             }}
           >
@@ -53,16 +47,10 @@ export function ChallengeListSort(props: ChallengeListProps) {
         size="sm"
         onClick={() => {
           dispatch({
-            type: "sort_order",
-            payload: {
-              sort_order: state.sort_order === "asc" ? "desc" : "asc",
-            },
+            sort_order: state.sort_order === "asc" ? "desc" : "asc",
           });
           dispatch({
-            type: "sort_by",
-            payload: {
-              type: state.sort_by,
-            },
+            sort_by: state.sort_by,
           });
         }}
       >

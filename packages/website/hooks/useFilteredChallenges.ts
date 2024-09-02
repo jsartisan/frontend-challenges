@@ -37,10 +37,14 @@ function useFilteredChallenges(
       sessionStorage.setItem(`${STORAGE_KEY}:${scope}:difficulty`, JSON.stringify(finalState.difficulty));
       sessionStorage.setItem(`${STORAGE_KEY}:${scope}:category`, JSON.stringify(finalState.category));
       sessionStorage.setItem(`${STORAGE_KEY}:${scope}:type`, finalState.type);
+      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:sort_by`, finalState.sort_by);
+      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:sort_order`, finalState.sort_order);
 
       return finalState;
     });
   };
+
+  console.log({ state });
 
   let filtered = challenges.filter((question) => {
     return (
