@@ -88,3 +88,7 @@ export function getSortedChallengesByDate(challenges: Challenge[], limit?: numbe
 
   return limit ? sorted.slice(0, limit) : sorted;
 }
+
+export function filterChallengesByCategory(challenges: Challenge[], category: string) {
+  return challenges.filter((challenge) => challenge.info?.en?.tags?.includes(category));
+}

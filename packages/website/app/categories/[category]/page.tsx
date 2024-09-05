@@ -1,5 +1,6 @@
 import { CATEGORIES } from "@frontend-challenges/shared";
 import { getChallenges } from "@frontend-challenges/backend";
+import { filterChallengesByCategory } from "../../../utils/challenges";
 
 import Client from "../../challenges/client";
 
@@ -14,9 +15,7 @@ export async function generateStaticParams() {
 
 export default async function Page(props: any) {
   const challenges = await getChallenges();
-  const challengesByCategory = challenges.filter((challenge) =>
-    challenge.info?.en?.tags?.includes(props.params.category),
-  );
+  const challengesByCategory = filterChallengesByCategory(challenges, props.params.category);
 
-  return <Client challenges={challengesByCategory} scope={props.params.category} />;
+  return <Client challenges={challengesByCategory} scope={props.params.category} include={["difficulty"]} />;
 }

@@ -5,6 +5,7 @@ import babel from "prettier/plugins/babel";
 import { useEffect, useState } from "react";
 import prettier from "prettier/standalone";
 import estree from "prettier/plugins/estree";
+import typescript from "prettier/plugins/typescript";
 import postcss from "prettier/plugins/postcss";
 import prettierHTML from "prettier/plugins/html";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
@@ -52,6 +53,11 @@ export function CodeEditor(props: Props) {
       plugins = [babel, estree];
     }
 
+    if (ext === "ts") {
+      parser = "babel-ts";
+      plugins = [babel, estree, typescript];
+    }
+
     if (ext === "html") {
       plugins = [prettierHTML];
       parser = "html";
@@ -61,6 +67,8 @@ export function CodeEditor(props: Props) {
       parser = "css";
       plugins = [postcss];
     }
+
+    console.log(plugins, parser);
 
     prettier
       .format(code, {
