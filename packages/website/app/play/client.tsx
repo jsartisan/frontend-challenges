@@ -11,13 +11,19 @@ import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../components/ui/resizable";
-import { useLocalStorageChallengeFiles } from "packages/website/hooks/useLocalStorageChallengeFiles";
 
 const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
 
   if (template && SUPPORTED_TEMPLATES.includes(template as SupportedTemplates)) {
     return template as SupportedTemplates;
+  }
+
+  if (
+    localStorage.getItem("playground-template") &&
+    SUPPORTED_TEMPLATES.includes(localStorage.getItem("playground-template") as SupportedTemplates)
+  ) {
+    return localStorage.getItem("playground-template") as SupportedTemplates;
   }
 
   return "vanilla";
@@ -30,7 +36,18 @@ const getFilesFromURL = (searchParams: URLSearchParams, template: SupportedTempl
     try {
       const parsedFiles = JSON.parse(files);
 
-      console.log({ parsedFiles });
+      return {
+        ...TEMPLATES[template].files,
+        ...parsedFiles,
+      };
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  if (localStorage.getItem(`/playground-${template}`)) {
+    try {
+      const parsedFiles = JSON.parse(localStorage.getItem(`/playground-${template}`) as string);
 
       return {
         ...TEMPLATES[template].files,
@@ -48,10 +65,9 @@ export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
-  const savedChallengeFiles = useLocalStorageChallengeFiles(`/playground-${template}`);
 
   return (
-    <SandpackRoot files={{ ...files, ...savedChallengeFiles }}>
+    <SandpackRoot files={files}>
       <div className="flex h-full w-full flex-col gap-4 p-4">
         <div className="relative flex w-full justify-between">
           <div className="flex items-center">
@@ -66,7 +82,11 @@ export default function Client() {
                 <TemplateChanger
                   template={template}
                   setTemplate={(template) => {
-                    setTemplate(template);
+                    setTemplate(() => {
+                      localStorage.setItem("playground-template", template);
+
+                      return template;
+                    });
                     setFiles(TEMPLATES[template].files);
                   }}
                 />

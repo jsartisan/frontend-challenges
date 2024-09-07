@@ -2,24 +2,23 @@ import { useTheme } from "next-themes";
 import React, { useEffect } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { SupportedTemplates } from "@frontend-challenges/shared";
-import { useActiveCode, useSandpack } from "@codesandbox/sandpack-react";
+import { SandpackState, useActiveCode, useSandpack } from "@codesandbox/sandpack-react";
 
 import { setLanguage } from "../../utils/helpers";
-import { useLocalStorageChallengeFiles } from "packages/website/hooks/useLocalStorageChallengeFiles";
 
 type MonacoEditorProps = {
   path?: string;
   template: SupportedTemplates;
+  onChange?: (files: SandpackState["files"]) => void;
 };
 
 export function MonacoEditor(props: MonacoEditorProps) {
-  const { path = "", template } = props;
+  const { path = "", template, onChange } = props;
   const monaco = useMonaco();
   const { code, updateCode } = useActiveCode();
   const { sandpack } = useSandpack();
   const { files, activeFile } = sandpack;
   const { resolvedTheme } = useTheme();
-  const challengeFiles = useLocalStorageChallengeFiles(`${path}-${template}`);
 
   useEffect(() => {
     if (monaco) {
@@ -82,13 +81,29 @@ export function MonacoEditor(props: MonacoEditorProps) {
         fixedOverflowWidgets: true,
       }}
       onChange={(value) => {
-        localStorage.setItem(
-          `${path}-${template}`,
-          JSON.stringify({
-            ...challengeFiles,
-            [activeFile]: value,
-          }),
-        );
+        if (path) {
+          localStorage.setItem(
+            `${path}-${template}`,
+            JSON.stringify({
+              ...files,
+              [activeFile]: {
+                ...files[activeFile],
+                code: value,
+              },
+            }),
+          );
+        }
+
+        if (onChange) {
+          onChange({
+            ...files,
+            [activeFile]: {
+              ...files[activeFile],
+              code: value,
+            },
+          });
+        }
+
         updateCode(value);
       }}
     />

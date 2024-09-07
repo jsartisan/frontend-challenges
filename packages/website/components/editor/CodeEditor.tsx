@@ -30,7 +30,7 @@ type Props = {
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template } = props;
+  const { className, showTabs = true, exclude, path, template, onChange } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -67,8 +67,6 @@ export function CodeEditor(props: Props) {
       parser = "css";
       plugins = [postcss];
     }
-
-    console.log(plugins, parser);
 
     prettier
       .format(code, {
@@ -128,7 +126,7 @@ export function CodeEditor(props: Props) {
             <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <MonacoEditor template={template} path={path} key={Object.keys(files).join("-")} />
+          <MonacoEditor onChange={onChange} template={template} path={path} key={Object.keys(files).join("-")} />
         )}
       </div>
     </Card>
