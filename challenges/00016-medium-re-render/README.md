@@ -1,7 +1,17 @@
-Imagine a site that has a slow component.
+Imagine an app that has some component that takes a long time to re-render.
 
 ```jsx
-const App = () => <SlowComponent />;
+export default function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <VerySlowComponent />
+      <BunchOfStuff />
+      <OtherStuffAlsoComplicated />
+    </>
+  );
+}
 
 export default App;
 ```
@@ -9,23 +19,21 @@ export default App;
 Now you are required to add a Button that opens a dialog. For that you added button and dialog and a state to manage the dialog.
 
 ```jsx
-const App = () => {
+export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <SlowComponent />
-      <button onClick={() => setIsDialogOpen(true)}>Open Dialog</button>
-      {isOpen && (
-        <dialog open={isOpen}>
-          <button onClick={() => setIsOpen(false)}>Close Dialog</button>
-        </dialog>
-      )}
+      <Button onClick={() => setIsOpen(true)}>Open dialog</Button>
+      {isOpen ? <ModalDialog onClose={() => setIsOpen(false)} /> : null}
+      <VerySlowComponent />
+      <BunchOfStuff />
+      <OtherStuffAlsoComplicated />
     </>
   );
-};
-
-export default App;
+}
 ```
 
 But the problem is with the above code is that because of slow component re-rendering, the dialog takes more than 1 second to open. How can we optimize this?
+
+Source: [https://www.advanced-react.com/examples/01/01](https://www.advanced-react.com/examples/01/01)
