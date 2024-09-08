@@ -5,10 +5,6 @@ import { MovingBlock } from "/components/moving-block";
 import { VerySlowComponent } from './components/very-slow-component';
 import { BunchOfStuff, OtherStuffAlsoComplicated } from './components/mocks';
 
-// just hard-coded approximation to demonstrate the re-renders problem
-// not to be used in real code
-const getPosition = (val) => 150 - val / 2;
-
 export default function App() {
   const [position, setPosition] = useState(150);
 
@@ -27,9 +23,12 @@ export default function App() {
   );
 }
 
+// just hard-coded approximation to demonstrate the re-renders problem
+// not to be used in real code
+const getPosition = (val) => 150 - val / 2;
 ```
 
-```jsx index.jsx
+```jsx index.jsx hidden
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.scss";
@@ -45,7 +44,7 @@ root.render(
 );
 ```
 
-```jsx components/moving-block.jsx
+```jsx components/moving-block.jsx hidden
 export const MovingBlock = ({ position }) => (
   <div className="movable-block" style={{ top: position }}>
     {position}
@@ -72,12 +71,12 @@ export const AnotherVerySlowComponent = () => {
 };
 ```
 
-```jsx components/mock.jsx
+```jsx components/mocks.jsx hidden
 export const BunchOfStuff = () => <div className="bunch-of-stuff">Bunch of stuff</div>;
 export const OtherStuffAlsoComplicated = () => <div>Other stuff</div>;
 ```
 
-```scss globals.scss
+```scss globals.scss hidden
 * {
   font-family: sans-serif;
   box-sizing: border-box;
@@ -189,7 +188,7 @@ input[type="text"] {
 }
 ```
 
-```scss styles.scss
+```scss styles.scss hidden
 .bunch-of-stuff {
   background: lightblue;
   border: 1px solid rgba(blue, 0.3);
@@ -216,7 +215,7 @@ input[type="text"] {
 }
 ```
 
-```json sandbox.config.json
+```json sandbox.config.json hidden
 {
   "infiniteLoopProtection": false,
   "hardReloadOnChange": false,
@@ -224,4 +223,5 @@ input[type="text"] {
 }
 ```
 
-
+```css styles.css hidden
+```

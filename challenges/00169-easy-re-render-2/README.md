@@ -21,3 +21,5 @@ export default function App() {
 ```
 
 But the implementation was not optimial, because of state updates, the VerySlowComponent re-renders as well making the moving block laggy. How can we optimize this?
+
+Source: [https://www.advanced-react.com/examples/02/01](https://www.advanced-react.com/examples/02/01)
