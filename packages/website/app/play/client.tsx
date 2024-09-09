@@ -11,6 +11,13 @@ import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../components/ui/resizable";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "packages/website/components/ui/dropdown-menu";
+import { Icon, IconButton } from "packages/website/components/ui";
 
 const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -46,19 +53,23 @@ const getFilesFromURL = (searchParams: URLSearchParams, template: SupportedTempl
   }
 
   if (localStorage.getItem(`/playground-${template}`)) {
-    try {
-      const parsedFiles = JSON.parse(localStorage.getItem(`/playground-${template}`) as string);
-
-      return {
-        ...TEMPLATES[template].files,
-        ...parsedFiles,
-      };
-    } catch (e) {
-      console.error(e);
-    }
+    return getFilesFromLocalStorage(template);
   }
 
   return TEMPLATES[template].files;
+};
+
+const getFilesFromLocalStorage = (template: SupportedTemplates) => {
+  try {
+    const parsedFiles = JSON.parse(localStorage.getItem(`/playground-${template}`) as string);
+
+    return {
+      ...TEMPLATES[template].files,
+      ...parsedFiles,
+    };
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export default function Client() {
@@ -73,7 +84,26 @@ export default function Client() {
           <div className="flex items-center">
             <h1 className="text-2xl font-semibold">Playground</h1>
           </div>
-          <SharePlaygroundButton template={template} />
+          <div className="flex items-center gap-2">
+            <SharePlaygroundButton template={template} />
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <IconButton variant="tertiary">
+                  <Icon name="vertical-dots" />
+                </IconButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem
+                  onClick={() => {
+                    setFiles(TEMPLATES[template].files);
+                    localStorage.removeItem(`/playground-${template}`);
+                  }}
+                >
+                  Reset
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
         <div className="w-full flex-grow">
           <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
@@ -87,7 +117,7 @@ export default function Client() {
 
                       return template;
                     });
-                    setFiles(TEMPLATES[template].files);
+                    setFiles(getFilesFromLocalStorage(template));
                   }}
                 />
                 <FileExplorer />

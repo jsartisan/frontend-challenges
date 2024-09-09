@@ -22,6 +22,8 @@ export const setLanguage = function (activeFile) {
       return "typescript";
     case "css":
       return "css";
+    case "scss":
+      return "scss";
     case "html":
       return "html";
     case "json":

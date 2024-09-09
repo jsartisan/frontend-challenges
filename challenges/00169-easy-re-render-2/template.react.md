@@ -1,7 +1,7 @@
 ```jsx App.jsx
 import { useState } from 'react';
 
-import { MovingBlock } from "/components/moving-block";
+import { MovingBlock } from "./components/moving-block";
 import { VerySlowComponent } from './components/very-slow-component';
 import { BunchOfStuff, OtherStuffAlsoComplicated } from './components/mocks';
 
@@ -46,7 +46,7 @@ root.render(
 
 ```jsx components/moving-block.jsx hidden
 export const MovingBlock = ({ position }) => (
-  <div className="movable-block" style={{ top: position }}>
+  <div className="movable-block" style={{ top: 20 }}>
     {position}
   </div>
 );

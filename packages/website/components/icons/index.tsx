@@ -32,3 +32,4 @@ export { TypescriptColorIcon } from "./TypescriptColorIcon";
 export { ListIcon } from "./ListIcon";
 export { ChevronLeftIcon } from "./ChevronLeftIcon";
 export { ChevronRightIcon } from "./ChevronRightIcon";
+export { VerticalDotsIcon } from "./VerticalDotsIcon";
