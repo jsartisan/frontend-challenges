@@ -21,7 +21,6 @@ export async function getChallenges(): Promise<Challenge[]> {
 
 export async function getChallengeByPath(dir: string): Promise<Challenge> {
   const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
-  const difficulty = dir.replace(/^\d+-(.+?)-.*$/, "$1") as any;
   const info = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "info.yml"), [parseMetaInfo]);
   const readme = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), [cleanUpReadme]);
   const category = (() => {
@@ -34,7 +33,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
 
   const challenge = {
     no,
-    difficulty,
+    difficulty: info?.[DEFAULT_LOCALE]?.difficulty,
     path: dir,
     info,
     category,

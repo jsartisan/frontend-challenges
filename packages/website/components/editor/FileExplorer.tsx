@@ -1,10 +1,8 @@
 import { useSandpack } from "@codesandbox/sandpack-react";
 import { Icon, IconButton } from "../ui";
-import { useState } from "react";
 
 function FileExplorer() {
   const { sandpack } = useSandpack();
-  const [newFiles, setNewFiles] = useState<string[]>([]);
   const { files, setActiveFile, activeFile, deleteFile, addFile, openFile, closeFile } = sandpack;
 
   return (
@@ -28,7 +26,6 @@ function FileExplorer() {
               addFile(name, "", false);
               openFile(name);
               setActiveFile(name);
-              setNewFiles([...newFiles, name]);
             }
           }}
         >
@@ -48,24 +45,23 @@ function FileExplorer() {
             >
               {filename}
 
-              {newFiles.includes(filename) && (
-                <IconButton
-                  variant="tertiary"
-                  size="sm"
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+              <IconButton
+                variant="tertiary"
+                size="sm"
+                type="button"
+                className="invisible group-hover:visible"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
 
-                    openFile("/index.js");
-                    setActiveFile("/index.js");
-                    closeFile(filename);
-                    deleteFile(filename, true);
-                  }}
-                >
-                  <Icon name="delete" />
-                </IconButton>
-              )}
+                  openFile("/index.js");
+                  setActiveFile("/index.js");
+                  closeFile(filename);
+                  deleteFile(filename, true);
+                }}
+              >
+                <Icon name="delete" />
+              </IconButton>
             </div>
           );
         })}

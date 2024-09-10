@@ -16,7 +16,7 @@ export default function Description(props: DescriptionProps) {
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-bold">
-          {challenge.no} - {challenge.info["en"]?.title}
+          <span className="text-[var(--color-fg-neutral-subtle)]">#{challenge.no}</span> {challenge.info["en"]?.title}
         </h1>
         <IconButton asChild variant="secondary" size="sm">
           <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">

@@ -46,6 +46,7 @@ export interface Quiz extends BaseChallengeProps {
 
 export interface QuestionMetaInfo {
   title: string;
+  difficulty: Difficulty;
   author: {
     name: string;
     email: string;

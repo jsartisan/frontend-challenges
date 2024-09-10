@@ -3,18 +3,18 @@ description: Challenges includes basic to advanced JavaScript concepts, includin
 topics:
   - title: "Objects"
     challenges:
-      - 00066-easy-this
-      - 00069-easy-two-functions-one-object
+      - 66-this
+      - 69-two-functions-one-object
   - title: "Data Types"
     challenges:
-      - 00018-easy-flatten
+      - 18-flatten
   - title: "Advanced Functions"
     challenges:
-      - 00099-easy-closure-2
-      - 00109-easy-jest-spyon
-      - 00121-easy-f-prototype
+      - 99-closure-2
+      - 109-jest-spyon
+      - 121-f-prototype
   - title: "Promises"
     challenges:
-      - 00035-hard-promise-all
-      - 00037-hard-promise-race
-      - 00043-hard-promise-any
+      - 35-promise-all
+      - 37-promise-race
+      - 43-promise-any

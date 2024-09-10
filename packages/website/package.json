@@ -70,6 +70,7 @@
     "prompts": "^2.4.2",
     "react": "^18.2.0",
     "react-aria": "^3.33.0",
+    "react-custom-scrollbars": "^4.2.1",
     "react-day-picker": "^8.9.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",

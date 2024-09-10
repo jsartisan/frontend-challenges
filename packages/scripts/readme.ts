@@ -31,16 +31,17 @@ async function updateIndexREADME(challenges: Challenge[]) {
     );
 
     for (const challenge of challengesByDifficulty) {
-      if (prev !== challenge.difficulty)
+      if (prev !== challenge.info[locale]?.difficulty)
         challengesREADME += `${prev ? "<br><br>" : ""}${getDifficultyBadgeInverted(
-          challenge.difficulty,
+          challenge.info[locale]?.difficulty,
           locale,
-          challengesByDifficulty.filter((q) => q.difficulty === challenge.difficulty).length,
+          challengesByDifficulty.filter((q) => q.info[locale]?.difficulty === challenge.info[locale]?.difficulty)
+            .length,
         )}<br>`;
 
       challengesREADME += getChallengeBadge(challenge, locale);
 
-      prev = challenge.difficulty;
+      prev = challenge.info[locale]?.difficulty;
     }
 
     // by tags

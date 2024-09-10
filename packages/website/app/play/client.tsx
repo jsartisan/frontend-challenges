@@ -11,13 +11,6 @@ import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../components/ui/resizable";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "packages/website/components/ui/dropdown-menu";
-import { Icon, IconButton } from "packages/website/components/ui";
 
 const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -86,23 +79,6 @@ export default function Client() {
           </div>
           <div className="flex items-center gap-2">
             <SharePlaygroundButton template={template} />
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <IconButton variant="tertiary">
-                  <Icon name="vertical-dots" />
-                </IconButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={() => {
-                    setFiles(TEMPLATES[template].files);
-                    localStorage.removeItem(`/playground-${template}`);
-                  }}
-                >
-                  Reset
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </div>
         <div className="w-full flex-grow">
@@ -125,7 +101,14 @@ export default function Client() {
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={50}>
-              <CodeEditor path="/playground" template={template} />
+              <CodeEditor
+                path="/playground"
+                template={template}
+                resetFiles={() => {
+                  setFiles(TEMPLATES[template].files);
+                  localStorage.removeItem(`/playground-${template}`);
+                }}
+              />
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={35}>

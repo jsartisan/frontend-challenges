@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useRef } from "react";
 import babel from "prettier/plugins/babel";
 import { useEffect, useState } from "react";
 import prettier from "prettier/standalone";
@@ -12,10 +12,11 @@ import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 import { CodeFile, Question, SupportedTemplates } from "@frontend-challenges/shared";
 
 import { Card } from "../ui/card";
-import { Button, Icon } from "../ui";
+import { Button, Icon, IconButton } from "../ui";
 import { cn } from "../../utils/helpers";
 import { MonacoEditor } from "./MonacoEditor";
 import { Tabs, TabsList, TabsTrigger } from "../ui";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 type Props = {
   files?: Record<string, CodeFile>;
@@ -27,10 +28,11 @@ type Props = {
   exclude?: string[];
   path?: string;
   template: SupportedTemplates;
+  resetFiles?: () => void;
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, onChange } = props;
+  const { className, showTabs = true, exclude, path, template, onChange, resetFiles } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -81,6 +83,42 @@ export function CodeEditor(props: Props) {
       .catch(console.log);
   };
 
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const shadowStartRef = useRef<HTMLDivElement>(null);
+  const shadowEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const content = contentRef.current;
+    const wrapper = wrapperRef.current;
+    const shadowStart = shadowStartRef.current;
+    const shadowEnd = shadowEndRef.current;
+
+    if (content && wrapper && shadowStart && shadowEnd) {
+      const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
+      const isOverflowing = contentScrollWidth > 0;
+      if (isOverflowing) {
+        shadowEnd.style.opacity = "1";
+      }
+    }
+
+    if (content && wrapper && shadowStart && shadowEnd) {
+      const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
+
+      const handleScroll = () => {
+        const currentScroll = content.scrollLeft / contentScrollWidth;
+        shadowStart.style.opacity = currentScroll.toString();
+        shadowEnd.style.opacity = (1 - currentScroll).toString();
+      };
+
+      content.addEventListener("scroll", handleScroll);
+
+      return () => {
+        content.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
+
   return (
     <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
       {showTabs && (
@@ -92,29 +130,63 @@ export function CodeEditor(props: Props) {
           value={activeFile}
           className="sticky top-0 z-10"
         >
-          <TabsList className="flex items-center">
-            <div className="flex flex-grow gap-2">
-              {Object.keys(files)
-                .filter((file) => {
-                  const isHidden = files[file].hidden;
-                  const excluded = exclude?.includes(file);
-                  const or = isHidden || excluded;
+          <TabsList className="flex items-center gap-0 p-0">
+            <div className="relative h-full flex-grow overflow-x-hidden" ref={wrapperRef}>
+              <div
+                className="absolute left-0 top-0 h-full w-4 bg-gradient-to-r from-black/10 to-transparent opacity-0"
+                ref={shadowStartRef}
+              />
+              <div
+                className="absolute right-0 top-0 h-full w-4 bg-gradient-to-l from-black/10 to-transparent opacity-0"
+                ref={shadowEndRef}
+              />
+              <div className="scrollbar-hide h-full overflow-x-auto" ref={contentRef}>
+                <div className="flex h-full w-max flex-nowrap items-center gap-2 px-1">
+                  {Object.keys(files)
+                    .filter((file) => {
+                      const isHidden = files[file].hidden;
+                      const excluded = exclude?.includes(file);
+                      const or = isHidden || excluded;
 
-                  return !or;
-                })
-                .map((file) => {
-                  return (
-                    <TabsTrigger key={file} value={file}>
-                      {files[file].readOnly && <Icon name="lock" className="text-[var(--color-ic-neutral-subtle)]" />}{" "}
-                      {file.replace("/", "")}
-                    </TabsTrigger>
-                  );
-                })}
+                      return !or;
+                    })
+                    .map((file) => {
+                      return (
+                        <TabsTrigger key={file} value={file}>
+                          {files[file].readOnly && (
+                            <Icon name="lock" className="text-[var(--color-ic-neutral-subtle)]" />
+                          )}{" "}
+                          {file.replace("/", "")}
+                        </TabsTrigger>
+                      );
+                    })}
+                </div>
+              </div>
             </div>
-            <Button variant="tertiary" size="sm" onClick={onPrettify} type="button">
-              <Icon name="tidy" />
-              Tidy
-            </Button>
+            <div className="flex items-center gap-2 px-1">
+              <Button variant="tertiary" size="sm" onClick={onPrettify} type="button">
+                <Icon name="tidy" />
+                Tidy
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <IconButton variant="tertiary" size="sm" type="button">
+                    <Icon name="vertical-dots" />
+                  </IconButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onClick={typeof resetFiles === "function" ? resetFiles : () => {}}
+                    className="flex-col items-start"
+                  >
+                    <div>Reset Files</div>
+                    <div className="text-xs text-[var(--color-fg-neutral-subtle)]">
+                      Reset all files to the initial state
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </TabsList>
         </Tabs>
       )}
