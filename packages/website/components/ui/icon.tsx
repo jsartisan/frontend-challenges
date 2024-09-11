@@ -35,6 +35,8 @@ import {
   ChevronRightIcon,
   ChevronLeftIcon,
   VerticalDotsIcon,
+  LinkedinIcon,
+  XIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "../../utils/helpers";
@@ -97,7 +99,9 @@ export type IconProps = {
     | "log-all"
     | "typescript-color"
     | "list"
-    | "vertical-dots";
+    | "vertical-dots"
+    | "linkedin"
+    | "x";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -280,6 +284,12 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "vertical-dots":
       icon = VerticalDotsIcon;
+      break;
+    case "linkedin":
+      icon = LinkedinIcon;
+      break;
+    case "x":
+      icon = XIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

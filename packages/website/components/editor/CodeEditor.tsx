@@ -87,37 +87,101 @@ export function CodeEditor(props: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const shadowStartRef = useRef<HTMLDivElement>(null);
   const shadowEndRef = useRef<HTMLDivElement>(null);
+  const scrollbarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const content = contentRef.current;
+      const wrapper = wrapperRef.current;
+      const shadowStart = shadowStartRef.current;
+      const shadowEnd = shadowEndRef.current;
+      const scrollbar = scrollbarRef.current;
+
+      if (content && wrapper && shadowStart && shadowEnd) {
+        const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
+        const scrollbarMaxLeft = wrapper.offsetWidth - scrollbar.offsetWidth;
+
+        const handleScroll = () => {
+          const currentScroll = content.scrollLeft / contentScrollWidth;
+          shadowStart.style.opacity = currentScroll.toString();
+          shadowEnd.style.opacity = (1 - currentScroll).toString();
+
+          scrollbar.style.left = `${currentScroll * scrollbarMaxLeft}px`;
+        };
+
+        // Dragging variables
+        let isDragging = false;
+        let startX, scrollStartLeft;
+
+        // Start dragging the scrollbar
+        const handleMouseDown = (e) => {
+          isDragging = true;
+          startX = e.clientX; // Get initial X position when dragging starts
+          scrollStartLeft = scrollbar.offsetLeft; // Get the scrollbar's current left position
+          document.body.style.userSelect = "none"; // Disable text selection during drag
+        };
+
+        // Drag the scrollbar
+        const handleMouseMove = (e) => {
+          if (!isDragging) return;
+
+          const deltaX = e.clientX - startX;
+          let newLeft = scrollStartLeft + deltaX;
+
+          // Clamp the new left position to within bounds
+          if (newLeft < 0) newLeft = 0;
+          if (newLeft > scrollbarMaxLeft) newLeft = scrollbarMaxLeft;
+
+          scrollbar.style.left = `${newLeft}px`;
+
+          // Calculate the scroll ratio and use native scrollTo for smooth scrolling
+          const scrollRatio = newLeft / scrollbarMaxLeft;
+          content.scrollTo({
+            left: scrollRatio * contentScrollWidth,
+          });
+        };
+
+        // Stop dragging the scrollbar
+        const handleMouseUp = () => {
+          isDragging = false;
+          document.body.style.userSelect = ""; // Re-enable text selection
+        };
+
+        content.addEventListener("scroll", handleScroll);
+        scrollbar.addEventListener("mousedown", handleMouseDown);
+        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mouseup", handleMouseUp);
+
+        return () => {
+          content.removeEventListener("scroll", handleScroll);
+          scrollbar.removeEventListener("mousedown", handleMouseDown);
+          window.removeEventListener("mousemove", handleMouseMove);
+          window.removeEventListener("mouseup", handleMouseUp);
+        };
+      }
+    }, 0);
+  }, []);
 
   useEffect(() => {
     const content = contentRef.current;
     const wrapper = wrapperRef.current;
     const shadowStart = shadowStartRef.current;
     const shadowEnd = shadowEndRef.current;
+    const scrollbar = scrollbarRef.current;
 
-    if (content && wrapper && shadowStart && shadowEnd) {
+    if (content && wrapper && shadowStart && shadowEnd && scrollbarRef) {
       const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
       const isOverflowing = contentScrollWidth > 0;
       if (isOverflowing) {
         shadowEnd.style.opacity = "1";
+        scrollbar.style.display = "block";
+        scrollbar.style.width = `${(wrapper.offsetWidth / content.scrollWidth) * 100}%`;
+      } else {
+        shadowEnd.style.opacity = "0";
+        scrollbar.style.display = "none";
       }
     }
-
-    if (content && wrapper && shadowStart && shadowEnd) {
-      const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
-
-      const handleScroll = () => {
-        const currentScroll = content.scrollLeft / contentScrollWidth;
-        shadowStart.style.opacity = currentScroll.toString();
-        shadowEnd.style.opacity = (1 - currentScroll).toString();
-      };
-
-      content.addEventListener("scroll", handleScroll);
-
-      return () => {
-        content.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, []);
+  }, [Object.keys(files).join("-")]);
 
   return (
     <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
@@ -130,7 +194,7 @@ export function CodeEditor(props: Props) {
           value={activeFile}
           className="sticky top-0 z-10"
         >
-          <TabsList className="flex items-center gap-0 p-0">
+          <TabsList className="group flex items-center gap-0 p-0">
             <div className="relative h-full flex-grow overflow-x-hidden" ref={wrapperRef}>
               <div
                 className="absolute left-0 top-0 h-full w-4 bg-gradient-to-r from-black/10 to-transparent opacity-0"
@@ -139,6 +203,10 @@ export function CodeEditor(props: Props) {
               <div
                 className="absolute right-0 top-0 h-full w-4 bg-gradient-to-l from-black/10 to-transparent opacity-0"
                 ref={shadowEndRef}
+              />
+              <div
+                ref={scrollbarRef}
+                className="absolute bottom-0 z-10 h-[2px] w-4 bg-[var(--color-bd-subtle)] opacity-0 hover:h-[4px] hover:bg-[var(--color-bd-subtle)] active:h-[4px] active:opacity-100 group-hover:opacity-100"
               />
               <div className="scrollbar-hide h-full overflow-x-auto" ref={contentRef}>
                 <div className="flex h-full w-max flex-nowrap items-center gap-2 px-1">
@@ -163,7 +231,7 @@ export function CodeEditor(props: Props) {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-2 px-1">
+            <div className="flex items-center gap-1 px-1">
               <Button variant="tertiary" size="sm" onClick={onPrettify} type="button">
                 <Icon name="tidy" />
                 Tidy

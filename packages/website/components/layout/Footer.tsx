@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-import { Link } from "../ui";
+import { Icon, Link } from "../ui";
 import { Logo } from "../common/Logo";
 import { Skeleton } from "../ui/skeleton";
 
@@ -26,12 +26,17 @@ export default function Footer() {
             <Logo isTextVisible />
             <span className="text-xs text-[var(--color-fg-subtle)]">by</span>
             <a
-              className="rounded-md bg-[var(--color-bg-neutral)] px-2 py-0.5 text-xs font-medium text-[var(--color-fg)]"
-              href="https://twitter.com/pawankumar2901"
+              className="flex items-center gap-1 rounded-md bg-[var(--color-bg-neutral)] px-2 py-0.5 text-xs font-medium text-[var(--color-fg)]"
+              href="https://x.com/pawankumar2901"
               target="_blank"
               rel="noopener noreferrer"
             >
+              <Icon name="x" size="xs" />
               pawankumar2901
+            </a>{" "}
+            /
+            <a href="https://www.linkedin.com/in/pawan-kumar-93a0a1115/" target="_blank" rel="noopener noreferrer">
+              <Icon name="linkedin" size="sm" />
             </a>
           </div>
           <p className="flex flex-wrap justify-center gap-2 font-medium sm:gap-4">

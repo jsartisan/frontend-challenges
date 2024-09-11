@@ -76,7 +76,7 @@
     --color-ic-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
 
     --color-bd: var(--ramp-grey-300);
-    --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, black 10%);
+    --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, transparent 60%);
     --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
     --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
     --color-bd-accent: var(--ramp-blue-500);
