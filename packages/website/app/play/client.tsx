@@ -70,6 +70,8 @@ export default function Client() {
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
 
+  console.log({ files });
+
   return (
     <SandpackRoot files={files}>
       <div className="flex h-full w-full flex-col gap-4 p-4">

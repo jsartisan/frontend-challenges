@@ -32,7 +32,7 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               <Icon name="x" size="xs" />
-              pawankumar2901
+              Pawan Kumar
             </a>{" "}
             /
             <a href="https://www.linkedin.com/in/pawan-kumar-93a0a1115/" target="_blank" rel="noopener noreferrer">

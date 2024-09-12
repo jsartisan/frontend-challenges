@@ -23,6 +23,11 @@ export default function Description(props: DescriptionProps) {
             <Icon name="github" />
           </a>
         </IconButton>
+        <IconButton asChild variant="secondary" size="sm">
+          <a href={`/challenges/${challenge.path}/edit`} target="_blank" rel="noopener noreferrer">
+            <Icon name="edit" />
+          </a>
+        </IconButton>
       </div>
       <div className="flex items-center gap-2">
         <div className="me-1 flex items-center gap-2">

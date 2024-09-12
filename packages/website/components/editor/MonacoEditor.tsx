@@ -81,6 +81,8 @@ export function MonacoEditor(props: MonacoEditorProps) {
         fixedOverflowWidgets: true,
       }}
       onChange={(value) => {
+        updateCode(value);
+
         if (path) {
           localStorage.setItem(
             `${path}-${template}`,
@@ -103,8 +105,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
             },
           });
         }
-
-        updateCode(value);
       }}
     />
   );
