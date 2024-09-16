@@ -1,10 +1,11 @@
 "use client";
 
-import { Children, useEffect, useState } from "react";
+import { Children, useEffect, useState, useRef, cloneElement } from "react";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
 import { useLayout } from "../../providers/LayoutProvider";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../ui/resizable";
+import { ImperativePanelHandle } from "react-resizable-panels";
 
 type ResizableLayoutProps = {
   children: React.ReactNode;
@@ -15,7 +16,11 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
   const { layout } = useLayout();
   const [mounted, setMounted] = useState(false);
   const { sandpack } = useSandpack();
-  const [description, editor, preview, console] = Children.toArray(props.children);
+  const consoleRef = useRef<ImperativePanelHandle>();
+  const [consoleCollapsed, setConsoleCollapsed] = useState(true);
+  const [description, editor, preview, consoleElement] = Children.toArray(props.children);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (mounted == true) {
@@ -47,7 +52,25 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
                 {preview}
               </ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              {console}
+              <ResizablePanel
+                collapsible
+                collapsedSizePixels={40}
+                minSizePixels={200}
+                className="min-h-[200px] sm:min-h-0"
+                ref={consoleRef}
+                onCollapse={() => {
+                  setConsoleCollapsed(true);
+                }}
+                onExpand={() => {
+                  setConsoleCollapsed(false);
+                }}
+              >
+                {cloneElement(consoleElement as React.ReactElement, {
+                  consoleRef,
+                  consoleCollapsed,
+                  setConsoleCollapsed,
+                })}
+              </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
         </>
@@ -65,7 +88,25 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
             <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
               <ResizablePanel defaultSizePercentage={100}>{preview}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              {console}
+              <ResizablePanel
+                collapsible
+                collapsedSizePixels={40}
+                minSizePixels={200}
+                className="min-h-[200px] sm:min-h-0"
+                ref={consoleRef}
+                onCollapse={() => {
+                  setConsoleCollapsed(true);
+                }}
+                onExpand={() => {
+                  setConsoleCollapsed(false);
+                }}
+              >
+                {cloneElement(consoleElement as React.ReactElement, {
+                  consoleRef,
+                  consoleCollapsed,
+                  setConsoleCollapsed,
+                })}
+              </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
         </>
@@ -87,7 +128,25 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
             <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
               <ResizablePanel defaultSizePercentage={100}>{editor}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              {console}
+              <ResizablePanel
+                collapsible
+                collapsedSizePixels={40}
+                minSizePixels={200}
+                className="min-h-[200px] sm:min-h-0"
+                ref={consoleRef}
+                onCollapse={() => {
+                  setConsoleCollapsed(true);
+                }}
+                onExpand={() => {
+                  setConsoleCollapsed(false);
+                }}
+              >
+                {cloneElement(consoleElement as React.ReactElement, {
+                  consoleRef,
+                  consoleCollapsed,
+                  setConsoleCollapsed,
+                })}
+              </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
         </>

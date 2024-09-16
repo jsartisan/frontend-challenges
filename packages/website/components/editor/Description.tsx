@@ -3,6 +3,7 @@ import { Challenge } from "@frontend-challenges/shared";
 import { Icon, IconButton } from "../ui";
 import { Badge, BadgeProps } from "../ui/badge";
 import { MDXComponent } from "../common/MDXComponent";
+import Link from "next/link";
 
 type DescriptionProps = {
   challenge: Challenge;
@@ -24,9 +25,9 @@ export default function Description(props: DescriptionProps) {
           </a>
         </IconButton>
         <IconButton asChild variant="secondary" size="sm">
-          <a href={`/challenges/${challenge.path}/edit`} target="_blank" rel="noopener noreferrer">
+          <Link href={`/challenges/${challenge.path}/edit`} rel="noopener noreferrer">
             <Icon name="edit" />
-          </a>
+          </Link>
         </IconButton>
       </div>
       <div className="flex items-center gap-2">

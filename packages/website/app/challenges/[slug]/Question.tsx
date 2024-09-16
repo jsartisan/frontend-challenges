@@ -98,7 +98,6 @@ function QuestionChallenge(props: QuestionProps) {
                 path={`/challenges/${question.path}`}
                 exclude={["/package.json"]}
                 className="min-h-0"
-                question={question}
                 template={template}
               />
               <Preview className="min-h-0" template={template} />

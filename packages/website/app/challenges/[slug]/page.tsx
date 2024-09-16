@@ -3,7 +3,6 @@ import { DOMAIN } from "@frontend-challenges/shared";
 import { getChallengeByPath, getChallenges } from "@frontend-challenges/backend";
 
 import Client from "./client";
-import { bundleMarkdownOfChallenge } from "../../../utils/markdown";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -32,8 +31,7 @@ export async function generateStaticParams() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Page(props: any) {
   const challenges = await getChallenges();
-  let challenge = await getChallengeByPath(props.params.slug);
-  challenge = await bundleMarkdownOfChallenge(challenge);
+  const challenge = await getChallengeByPath(props.params.slug);
 
   return <Client challenge={challenge} challenges={challenges} />;
 }

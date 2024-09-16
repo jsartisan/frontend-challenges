@@ -9,7 +9,7 @@ import typescript from "prettier/plugins/typescript";
 import postcss from "prettier/plugins/postcss";
 import prettierHTML from "prettier/plugins/html";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
-import { CodeFile, Question, SupportedTemplates } from "@frontend-challenges/shared";
+import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
 
 import { Card } from "../ui/card";
 import { Button, Icon, IconButton } from "../ui";
@@ -21,7 +21,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 type Props = {
   files?: Record<string, CodeFile>;
   style?: React.CSSProperties;
-  question?: Question;
   className?: string;
   onChange?: (files: SandpackState["files"]) => void;
   showTabs?: boolean;
@@ -163,24 +162,26 @@ export function CodeEditor(props: Props) {
   }, []);
 
   useEffect(() => {
-    const content = contentRef.current;
-    const wrapper = wrapperRef.current;
-    const shadowStart = shadowStartRef.current;
-    const shadowEnd = shadowEndRef.current;
-    const scrollbar = scrollbarRef.current;
+    setTimeout(() => {
+      const content = contentRef.current;
+      const wrapper = wrapperRef.current;
+      const shadowStart = shadowStartRef.current;
+      const shadowEnd = shadowEndRef.current;
+      const scrollbar = scrollbarRef.current;
 
-    if (content && wrapper && shadowStart && shadowEnd && scrollbarRef) {
-      const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
-      const isOverflowing = contentScrollWidth > 0;
-      if (isOverflowing) {
-        shadowEnd.style.opacity = "1";
-        scrollbar.style.display = "block";
-        scrollbar.style.width = `${(wrapper.offsetWidth / content.scrollWidth) * 100}%`;
-      } else {
-        shadowEnd.style.opacity = "0";
-        scrollbar.style.display = "none";
+      if (content && wrapper && shadowStart && shadowEnd && scrollbarRef) {
+        const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
+        const isOverflowing = contentScrollWidth > 0;
+        if (isOverflowing) {
+          shadowEnd.style.opacity = "1";
+          scrollbar.style.display = "block";
+          scrollbar.style.width = `${(wrapper.offsetWidth / content.scrollWidth) * 100}%`;
+        } else {
+          shadowEnd.style.opacity = "0";
+          scrollbar.style.display = "none";
+        }
       }
-    }
+    }, 0);
   }, [Object.keys(files).join("-")]);
 
   return (

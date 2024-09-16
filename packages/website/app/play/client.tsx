@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
 
 import Preview from "../../components/editor/Preview";
-import { Console } from "../../components/editor/Console";
+import Console from "../../components/editor/Console";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { CodeEditor } from "../../components/editor/CodeEditor";
 import SandpackRoot from "../../components/editor/SandpackRoot";
@@ -69,8 +69,6 @@ export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
-
-  console.log({ files });
 
   return (
     <SandpackRoot files={files}>

@@ -39,7 +39,7 @@ export default function Footer() {
               <Icon name="linkedin" size="sm" />
             </a>
           </div>
-          <p className="flex flex-wrap justify-center gap-2 font-medium sm:gap-4">
+          <p className="flex flex-wrap gap-2 font-medium sm:gap-4">
             <Link
               className="text-[var(--color-fg-subtle)] hover:text-[var(--color-fg-subtle-hover)]"
               href="/challenges"

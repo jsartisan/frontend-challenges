@@ -7,6 +7,7 @@ import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@frontend-cha
 
 import { getLocaleVariations } from "./locales";
 import { getCodeFilesByTemplate } from "./templates";
+import { bundleMarkdown } from "packages/website/utils/markdown";
 
 export async function getChallenges(): Promise<Challenge[]> {
   const folders = await fg("{0..9}*-*", {
@@ -22,7 +23,7 @@ export async function getChallenges(): Promise<Challenge[]> {
 export async function getChallengeByPath(dir: string): Promise<Challenge> {
   const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
   const info = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "info.yml"), [parseMetaInfo]);
-  const readme = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), [cleanUpReadme]);
+  const readmeRaw = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), [cleanUpReadme]);
   const category = (() => {
     return CATEGORIES.find((category) => {
       return info?.en?.tags?.includes(category) || info?.en?.related?.includes(category);
@@ -30,6 +31,12 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
   })() as Category;
   const discussionURL = `${REPO}/discussions/${info?.[DEFAULT_LOCALE]?.discussionNo}`;
   const githubURL = `${REPO}/tree/main/challenges/${dir}`;
+
+  const readme = {};
+
+  for (const locale of Object.keys(readmeRaw)) {
+    readme[locale] = (await bundleMarkdown(readmeRaw[locale])).code;
+  }
 
   const challenge = {
     no,
@@ -42,13 +49,21 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
   } as any;
 
   if (info?.[DEFAULT_LOCALE]?.type === "quiz") {
-    const solution = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "solution.md"), [cleanUpReadme]);
+    const solutionRaw = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "solution.md"), [cleanUpReadme]);
+
+    const solution = {};
+
+    for (const locale of Object.keys(solutionRaw)) {
+      solution[locale] = (await bundleMarkdown(solutionRaw[locale])).code;
+    }
 
     return {
       ...challenge,
       readme,
+      readmeRaw,
       type: "quiz",
       solution,
+      solutionRaw,
     };
   }
 
@@ -59,6 +74,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
     templateFiles,
     answers: [],
     readme,
+    readmeRaw,
     type: info?.en?.type || "question",
   };
 }
