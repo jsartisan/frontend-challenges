@@ -27,7 +27,6 @@ export function useInitializeFilters(scope: string, filters: Partial<ChallengeFi
       ?.split(",")
       .filter((d) => DIFFICULTY_RANK.includes(d as Difficulty)) ?? undefined;
 
-  console.log({ difficultyFromURL, searchParams: searchParams.get("difficulty") });
   useEffect(() => {
     const category = categoryFromURL || getSessionStorageItem(`${STORAGE_KEY}:${scope}:category`, []);
     const difficulty = difficultyFromURL || getSessionStorageItem(`${STORAGE_KEY}:${scope}:difficulty`, []);

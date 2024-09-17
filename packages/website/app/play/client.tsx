@@ -4,7 +4,6 @@ import { useState } from "react";
 import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
 
 import Preview from "../../components/editor/Preview";
-import Console from "../../components/editor/Console";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { CodeEditor } from "../../components/editor/CodeEditor";
 import SandpackRoot from "../../components/editor/SandpackRoot";
@@ -116,8 +115,6 @@ export default function Client() {
                 <ResizablePanel defaultSizePercentage={100}>
                   <Preview template={template} />
                 </ResizablePanel>
-                <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-                <Console />
               </ResizablePanelGroup>
             </ResizablePanel>
           </ResizablePanelGroup>
