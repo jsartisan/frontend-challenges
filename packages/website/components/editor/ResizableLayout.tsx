@@ -17,7 +17,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
   const [mounted, setMounted] = useState(false);
   const { sandpack } = useSandpack();
   const consoleRef = useRef<ImperativePanelHandle>();
-  const [consoleCollapsed, setConsoleCollapsed] = useState(true);
+  const [consoleCollapsed, setConsoleCollapsed] = useState(false);
   const [description, editor, preview, consoleElement] = Children.toArray(props.children);
 
   useEffect(() => {}, []);
@@ -56,7 +56,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
                 collapsible
                 collapsedSizePixels={40}
                 minSizePixels={200}
-                className="min-h-[200px] sm:min-h-0"
+                className="sm:min-h-0"
                 ref={consoleRef}
                 onCollapse={() => {
                   setConsoleCollapsed(true);

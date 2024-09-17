@@ -50,7 +50,7 @@ export async function Header(props: HeaderProps) {
                   Challenges
                 </Link>
                 <Link href="/study-plans" className="font-medium">
-                  Study Plans
+                  Roadmaps
                 </Link>
                 <Link href="/play" className="font-medium">
                   Playground

@@ -18,7 +18,7 @@ export function SubmissionNavigator() {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="hidden gap-1 md:flex">
           <Icon name="plus" size="sm" className="-ml-1" />
-          Submit
+          Contribute
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="bottom" align="end" sideOffset={8}>
@@ -28,7 +28,7 @@ export function SubmissionNavigator() {
               <Icon name="code" size="sm" />
             </Badge>
             <div className="flex flex-col gap-1">
-              <div>Question</div>
+              <div>Submit Question</div>
               <p className="text-xs text-[var(--color-fg-neutral-subtle)]">Challenges that tests codig skills</p>
             </div>
           </div>
@@ -39,7 +39,7 @@ export function SubmissionNavigator() {
               <Icon name="file-text" size="sm" />
             </Badge>
             <div className="flex flex-col gap-1">
-              <div>Quiz</div>
+              <div>Submit Quiz</div>
               <p className="text-xs text-[var(--color-fg-neutral-subtle)]">Challenges that tests concepts</p>
             </div>
           </div>

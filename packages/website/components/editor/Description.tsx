@@ -1,9 +1,14 @@
 import { Challenge } from "@frontend-challenges/shared";
 
-import { Icon, IconButton } from "../ui";
+import { Skeleton } from "../ui";
 import { Badge, BadgeProps } from "../ui/badge";
 import { MDXComponent } from "../common/MDXComponent";
-import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const EditDropdown = dynamic(() => import("./EditDropdown"), {
+  ssr: false,
+  loading: () => <Skeleton className="secondary size-6" />,
+});
 
 type DescriptionProps = {
   challenge: Challenge;
@@ -19,16 +24,7 @@ export default function Description(props: DescriptionProps) {
         <h1 className="text-2xl font-bold">
           <span className="text-[var(--color-fg-neutral-subtle)]">#{challenge.no}</span> {challenge.info["en"]?.title}
         </h1>
-        <IconButton asChild variant="secondary" size="sm">
-          <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
-            <Icon name="github" />
-          </a>
-        </IconButton>
-        <IconButton asChild variant="secondary" size="sm">
-          <Link href={`/challenges/${challenge.path}/edit`} rel="noopener noreferrer">
-            <Icon name="edit" />
-          </Link>
-        </IconButton>
+        <EditDropdown challenge={challenge} />
       </div>
       <div className="flex items-center gap-2">
         <div className="me-1 flex items-center gap-2">

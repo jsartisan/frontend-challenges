@@ -31,6 +31,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
   })() as Category;
   const discussionURL = `${REPO}/discussions/${info?.[DEFAULT_LOCALE]?.discussionNo}`;
   const githubURL = `${REPO}/tree/main/challenges/${dir}`;
+  const editURL = `${REPO}/blob/main/challenges/${dir}`.replace(".com", ".dev");
 
   const readme = {};
 
@@ -46,6 +47,7 @@ export async function getChallengeByPath(dir: string): Promise<Challenge> {
     category,
     discussionURL,
     githubURL,
+    editURL,
   } as any;
 
   if (info?.[DEFAULT_LOCALE]?.type === "quiz") {

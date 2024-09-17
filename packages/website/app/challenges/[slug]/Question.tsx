@@ -22,17 +22,17 @@ const MarkCompleteButton = dynamic(() => import("../../../components/editor/Mark
 
 const CodeEditor = dynamic(() => import("../../../components/editor/CodeEditor"), {
   ssr: false,
-  loading: () => <Skeleton className="h-full w-full" />,
+  loading: () => <Skeleton className="h-full w-full flex-grow" />,
 });
 
 const Console = dynamic(() => import("../../../components/editor/Console"), {
   ssr: false,
-  loading: () => <Skeleton className="h-[40px] w-full" />,
+  loading: () => <Skeleton className="h-full w-full" />,
 });
 
 const Preview = dynamic(() => import("../../../components/editor/Preview"), {
   ssr: false,
-  loading: () => <Skeleton className="h-full w-full" />,
+  loading: () => <Skeleton className="h-full w-full flex-grow" />,
 });
 
 const Breadcrumb = dynamic(() => import("./Breadcrumb"), {

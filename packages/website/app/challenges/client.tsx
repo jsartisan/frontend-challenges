@@ -7,6 +7,7 @@ import Footer from "../../components/layout/Footer";
 import { Layout } from "../../components/layout/Layout";
 import { ChallengeListWithFilters } from "../../components/challenges/ChallengeListWithFilters";
 import type { ChallengeListWithFiltersProps } from "../../components/challenges/ChallengeListWithFilters";
+import { Suspense } from "react";
 
 type ClientProps = {
   challenges: Challenge[];
@@ -31,7 +32,9 @@ export default function Client(props: ClientProps) {
           </div>
           <CompletionStats challenges={challenges} />
         </div>
-        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
+        <Suspense>
+          <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
+        </Suspense>
       </Layout>
       <Footer />
     </>

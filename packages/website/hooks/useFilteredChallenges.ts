@@ -44,6 +44,38 @@ function useFilteredChallenges(
     });
   };
 
+  const dispatchWithURLUpdate = (state: Omit<Partial<ChallengeFilterState>, "challenges" | "filtered">) => {
+    dispatch(state);
+
+    const searchParams = new URLSearchParams();
+
+    if (state.difficulty) {
+      searchParams.set("difficulty", state.difficulty.join(","));
+    }
+
+    if (state.sort_by) {
+      searchParams.set("sort_by", state.sort_by);
+    }
+
+    if (state.sort_order) {
+      searchParams.set("sort_order", state.sort_order);
+    }
+
+    if (state.category) {
+      searchParams.set("category", state.category.join(","));
+    }
+
+    if (state.type) {
+      searchParams.set("type", state.type);
+    }
+
+    if (state.search) {
+      searchParams.set("search", state.search);
+    }
+
+    window.history.replaceState({}, "", `?${searchParams.toString()}`);
+  };
+
   let filtered = challenges.filter((question) => {
     return (
       (state.category.length === 0 || state.category.includes(question.category)) &&
@@ -68,7 +100,7 @@ function useFilteredChallenges(
     filtered = filtered.filter((question) => question.info?.en?.tags?.includes(scope));
   }
 
-  return { state, filtered, dispatch };
+  return { state, filtered, dispatch, dispatchWithURLUpdate };
 }
 
 export { useFilteredChallenges };

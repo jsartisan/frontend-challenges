@@ -25,7 +25,7 @@ export type ChallengeListWithFiltersProps = {
 
 export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) => {
   const { challenges, scope, filters, includes = ["category", "difficulty"] } = props;
-  const { state, dispatch, filtered } = useFilteredChallenges(challenges, scope, filters);
+  const { state, dispatch, filtered, dispatchWithURLUpdate } = useFilteredChallenges(challenges, scope, filters);
 
   useInitializeFilters(scope, filters, dispatch);
   useSyncScopeToSessionStorage(scope);
@@ -33,13 +33,15 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <ChallengeSearchFilter state={state} dispatch={dispatch} />
-        {includes.includes("difficulty") && <ChallengeDifficultyFilter state={state} dispatch={dispatch} />}
-        {includes.includes("category") && <ChallengeCategoryFilter state={state} dispatch={dispatch} />}
-        <ChallengeTypeFilter state={state} dispatch={dispatch} />
+        <ChallengeSearchFilter state={state} dispatch={dispatchWithURLUpdate} />
+        {includes.includes("difficulty") && (
+          <ChallengeDifficultyFilter state={state} dispatch={dispatchWithURLUpdate} />
+        )}
+        {includes.includes("category") && <ChallengeCategoryFilter state={state} dispatch={dispatchWithURLUpdate} />}
+        <ChallengeTypeFilter state={state} dispatch={dispatchWithURLUpdate} />
         <div className="mx-auto"></div>
-        <ChallengeListFilterMobile state={state} dispatch={dispatch} />
-        <ChallengeListSort state={state} dispatch={dispatch} />
+        <ChallengeListFilterMobile state={state} dispatch={dispatchWithURLUpdate} />
+        <ChallengeListSort state={state} dispatch={dispatchWithURLUpdate} />
       </div>
       <ChallengeList challenges={filtered} />
     </div>
