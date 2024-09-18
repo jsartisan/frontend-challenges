@@ -27,11 +27,11 @@ type Props = {
   exclude?: string[];
   path?: string;
   template: SupportedTemplates;
-  resetFiles?: () => void;
+  onResetFiles?: () => void;
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, onChange, resetFiles } = props;
+  const { className, showTabs = true, exclude, path, template, onChange, onResetFiles } = props;
   const { sandpack } = useSandpack();
   const [loading, setLoading] = useState(true);
   const { setActiveFile, activeFile, files } = sandpack;
@@ -245,7 +245,7 @@ export function CodeEditor(props: Props) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
-                    onClick={typeof resetFiles === "function" ? resetFiles : () => {}}
+                    onClick={typeof onResetFiles === "function" ? onResetFiles : () => {}}
                     className="flex-col items-start"
                   >
                     <div>Reset Files</div>

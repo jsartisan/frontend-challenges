@@ -103,7 +103,7 @@ export default function Client() {
               <CodeEditor
                 path="/playground"
                 template={template}
-                resetFiles={() => {
+                onResetFiles={() => {
                   setFiles(TEMPLATES[template].files);
                   localStorage.removeItem(`/playground-${template}`);
                 }}

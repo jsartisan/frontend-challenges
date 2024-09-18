@@ -49,16 +49,15 @@ function QuestionChallenge(props: QuestionProps) {
   const { question, challenges } = props;
   const [template, setTemplate] = useState(Object.keys(question.templateFiles)[0] as SupportedTemplates);
   const savedChallengeFiles = useLocalStorageChallengeFiles(`/challenges/${question.path}-${template}`);
+  const [files, setFiles] = useState({
+    ...TEMPLATES[template].files,
+    ...question.templateFiles[template],
+    ...savedChallengeFiles,
+  });
 
   return (
     <>
-      <SandpackRoot
-        files={{
-          ...TEMPLATES[template].files,
-          ...question.templateFiles[template],
-          ...savedChallengeFiles,
-        }}
-      >
+      <SandpackRoot files={files}>
         <div className="flex h-full w-full flex-col gap-4 p-4">
           <div className="relative flex w-full justify-between">
             <Breadcrumb currentChallenge={question} challenges={challenges} />
@@ -99,6 +98,13 @@ function QuestionChallenge(props: QuestionProps) {
                 exclude={["/package.json"]}
                 className="min-h-0"
                 template={template}
+                onResetFiles={() => {
+                  setFiles({
+                    ...TEMPLATES[template].files,
+                    ...question.templateFiles[template],
+                  });
+                  localStorage.removeItem(`/challenges/${question.path}-${template}`);
+                }}
               />
               <Preview className="min-h-0" template={template} />
               <Console />

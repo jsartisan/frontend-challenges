@@ -1,24 +1,24 @@
 import fs from "fs";
 import path from "path";
 import YAML from "js-yaml";
-import { DEFAULT_LOCALE, STUDY_PLANS_ROOT, StudyPlan, StudyPlanInfo } from "@frontend-challenges/shared";
+import { DEFAULT_LOCALE, STUDY_PLANS_ROOT, Roadmap, RoadmapInfo } from "@frontend-challenges/shared";
 
 import { getLocaleVariations } from "./locales";
 import { getChallengeByPath } from "./challenges";
 
-export async function getStudyPlans(): Promise<StudyPlan[]> {
+export async function getRoadmaps(): Promise<Roadmap[]> {
   const folders = fs.readdirSync(STUDY_PLANS_ROOT);
 
-  const studyPlans = await Promise.all(folders.map(async (dir: string) => getStudyPlanByPath(dir)));
+  const studyPlans = await Promise.all(folders.map(async (dir: string) => getRoadmapByPath(dir)));
 
   return studyPlans;
 }
 
-export async function getStudyPlanByPath(dir: string): Promise<StudyPlan> {
-  const info = await getLocaleVariations(path.join(STUDY_PLANS_ROOT, dir, "info.yml"), [parseStudyPlan]);
+export async function getRoadmapByPath(dir: string): Promise<Roadmap> {
+  const info = await getLocaleVariations(path.join(STUDY_PLANS_ROOT, dir, "info.yml"), [parseRoadmap]);
 
   if (!info) {
-    throw new Error(`Study plan not found: ${dir}`);
+    throw new Error(`Roadmap not found: ${dir}`);
   }
 
   const topics = await Promise.all(
@@ -39,7 +39,7 @@ export async function getStudyPlanByPath(dir: string): Promise<StudyPlan> {
   return { title: info[DEFAULT_LOCALE].title, topics, path: dir, info };
 }
 
-export function parseStudyPlan(s: string): StudyPlanInfo {
+export function parseRoadmap(s: string): RoadmapInfo {
   const object = YAML.load(s) as any;
 
   const arrayKeys = ["tags", "related"];

@@ -37,6 +37,7 @@ import {
   VerticalDotsIcon,
   LinkedinIcon,
   XIcon,
+  BugIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "../../utils/helpers";
@@ -101,7 +102,8 @@ export type IconProps = {
     | "list"
     | "vertical-dots"
     | "linkedin"
-    | "x";
+    | "x"
+    | "bug";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -290,6 +292,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "x":
       icon = XIcon;
+      break;
+    case "bug":
+      icon = BugIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

@@ -85,17 +85,17 @@ export type Blog = {
 
 export type Category = (typeof CATEGORIES)[number];
 
-export type StudyPlan = {
+export type Roadmap = {
   title: string;
   path?: string;
   topics: {
     title: string;
     challenges: Challenge[];
   }[];
-  info: Record<string, DeepPartial<StudyPlanInfo> | undefined>;
+  info: Record<string, DeepPartial<RoadmapInfo> | undefined>;
 };
 
-export type StudyPlanInfo = {
+export type RoadmapInfo = {
   title: string;
   description: string;
   topics: {

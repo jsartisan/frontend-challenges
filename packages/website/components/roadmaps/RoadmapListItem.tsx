@@ -1,8 +1,8 @@
-import { StudyPlan } from "@frontend-challenges/shared";
+import { Roadmap } from "@frontend-challenges/shared";
 
 import { Card, Link } from "../ui";
 
-function StudyPlanListItem(props: { studyPlan: StudyPlan }) {
+function RoadmapListItem(props: { studyPlan: Roadmap }) {
   const { studyPlan } = props;
 
   return (
@@ -12,7 +12,7 @@ function StudyPlanListItem(props: { studyPlan: StudyPlan }) {
           <div className="flex items-center space-x-2">
             <Link
               className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
-              href={`/study-plans/${studyPlan.path}`}
+              href={`/roadmaps/${studyPlan.path}`}
             >
               {studyPlan.info.en?.title}
             </Link>
@@ -24,4 +24,4 @@ function StudyPlanListItem(props: { studyPlan: StudyPlan }) {
   );
 }
 
-export { StudyPlanListItem };
+export { RoadmapListItem };

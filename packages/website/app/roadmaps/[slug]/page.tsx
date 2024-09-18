@@ -1,25 +1,25 @@
 import { Metadata } from "next";
 import { DOMAIN } from "@frontend-challenges/shared";
-import { getStudyPlanByPath, getStudyPlans } from "@frontend-challenges/backend";
+import { getRoadmapByPath, getRoadmaps } from "@frontend-challenges/backend";
 
 import Footer from "../../../components/layout/Footer";
 import { Layout } from "../../../components/layout/Layout";
 import { ChallengeList } from "../../../components/challenges/ChallengeList";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
-  const question = await getStudyPlanByPath(props.params.slug);
+  const question = await getRoadmapByPath(props.params.slug);
 
   return {
-    title: `${question.info?.en?.title} Study Plan | Frontend Challenges`,
+    title: `${question.info?.en?.title} Roadmap | Frontend Challenges`,
     openGraph: {
-      url: `${DOMAIN}/study-plans/${question.path}`,
+      url: `${DOMAIN}/roadmaps/${question.path}`,
       images: "/og.png",
     },
   };
 }
 
 export async function generateStaticParams() {
-  const studyPlans = await getStudyPlans();
+  const studyPlans = await getRoadmaps();
 
   return studyPlans.map((studyPlan) => ({
     slug: studyPlan.path,
@@ -27,15 +27,15 @@ export async function generateStaticParams() {
 }
 
 export default async function Page(props: any) {
-  const studyPlan = await getStudyPlanByPath(props.params.slug);
+  const studyPlan = await getRoadmapByPath(props.params.slug);
 
   return (
     <>
       <Layout className="pb-12 pt-8">
         <div className="text-3xl font-bold">{studyPlan.title}</div>
         <div className="w-full pb-6 pt-3 leading-relaxed text-gray-500 md:w-2/4">
-          Study Plans are a collection of topics and challenges designed to help you learn a specific topic. It starts
-          with the basics and progresses to more advanced topics.
+          Roadmap are a collection of topics and challenges designed to help you learn a specific topic. It starts with
+          the basics and progresses to more advanced topics.
         </div>
         <div className="flex flex-col gap-3">
           {studyPlan.topics.map((topic) => {

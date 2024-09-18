@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../components/ui/dropdown-menu";
 import { Badge, Button, Icon } from "../ui";
@@ -43,6 +44,19 @@ export function SubmissionNavigator() {
               <p className="text-xs text-[var(--color-fg-neutral-subtle)]">Challenges that tests concepts</p>
             </div>
           </div>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="text-center">
+          <a
+            href="https://github.com/jsartisan/frontend-challenges/issues/new?assignees=jsartisan&labels=bug&projects=&template=bug.md&title=%5BBug%5D%3A+..."
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Report a bug"
+            className="flex w-full items-center justify-center gap-2  text-center  "
+          >
+            <Icon name="bug" size="sm" />
+            Report a bug
+          </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

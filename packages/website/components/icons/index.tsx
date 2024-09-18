@@ -35,3 +35,4 @@ export { ChevronRightIcon } from "./ChevronRightIcon";
 export { VerticalDotsIcon } from "./VerticalDotsIcon";
 export { LinkedinIcon } from "./LinkedinIcon";
 export { XIcon } from "./XIcon";
+export { BugIcon } from "./BugIcon";

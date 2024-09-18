@@ -49,14 +49,14 @@ export async function Header(props: HeaderProps) {
                 <Link href="/challenges" className="font-medium">
                   Challenges
                 </Link>
-                <Link href="/study-plans" className="font-medium">
+                <Link href="/roadmaps" className="font-medium">
                   Roadmaps
                 </Link>
                 <Link href="/play" className="font-medium">
                   Playground
                 </Link>
                 <Link
-                  href="https://frontend-challenges.canny.io/feature-requests"
+                  href="https://github.com/jsartisan/frontend-challenges/issues/new?assignees=jsartisan&labels=feedback&template=feedback.md&title=%5BFeedback%5D%3A+..."
                   target="_blank"
                   className="flex items-center gap-1 font-medium"
                 >

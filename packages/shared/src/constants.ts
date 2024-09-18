@@ -6,7 +6,7 @@ export const IS_WEBSITE_ROOT = ROOT_PATH.endsWith("website");
 
 export const CONTENT_PATH = "./content";
 export const CHALLENGES_ROOT = IS_WEBSITE_ROOT ? "../../challenges" : "./challenges";
-export const STUDY_PLANS_ROOT = IS_WEBSITE_ROOT ? "../../study-plans" : "./study-plans";
+export const STUDY_PLANS_ROOT = IS_WEBSITE_ROOT ? "../../roadmaps" : "./roadmaps";
 
 export const REPO = "https://github.com/jsartisan/frontend-challenges";
 export const REPO_API = "https://api.github.com/repos/jsartisan/frontend-challenges";
