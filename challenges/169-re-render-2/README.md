@@ -1,6 +1,6 @@
 <!--info-header-start--><h1>re-render 2 <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23react-999" alt="#react"/> <img src="https://img.shields.io/badge/-%23performance-999" alt="#performance"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/169-re-render-2" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
 
-Imagine an app that includes a scrollable content area, likely with an intricate layout featuring a sticky header, a collapsible sidebar on the left, and the core functionality in the central section. You were required to add a moving block that shows current scroll position. The code looks like this after implementation:
+Imagine an app that includes a scrollable content area. You were required to add a moving block that shows current scroll position. The code looks like this after implementation:
 
 ```jsx
 export default function App() {
