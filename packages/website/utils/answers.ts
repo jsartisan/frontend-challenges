@@ -87,6 +87,11 @@ export const getShareAnswerURL = (props: {
     Object.keys(files).map((filename) => {
       const file = files[filename];
 
+      // skipping tsconfig.json because it will be never changed
+      if (filename === "/tsconfig.json") {
+        return;
+      }
+
       // adding explicit check for package.json because of special characters like /n
       if (filename === "/package.json") {
         const templatePackageJSON = JSON.stringify(JSON.parse(file.code), null, 2);
