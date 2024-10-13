@@ -23,7 +23,7 @@ export type ChallengeListWithFiltersProps = {
   includes?: ("category" | "difficulty")[];
 };
 
-export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) => {
+export default function ChallengeListWithFilters(props: ChallengeListWithFiltersProps) {
   const { challenges, scope, filters, includes = ["category", "difficulty"] } = props;
   const { state, dispatch, filtered, dispatchWithURLUpdate } = useFilteredChallenges(challenges, scope, filters);
 
@@ -46,4 +46,4 @@ export const ChallengeListWithFilters = (props: ChallengeListWithFiltersProps) =
       <ChallengeList challenges={filtered} />
     </div>
   );
-};
+}

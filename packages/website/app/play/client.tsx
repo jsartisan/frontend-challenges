@@ -11,7 +11,7 @@ import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../components/ui/resizable";
 
-const getTempalteFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
+const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
 
   if (template && SUPPORTED_TEMPLATES.includes(template as SupportedTemplates)) {
@@ -61,16 +61,34 @@ const getFilesFromLocalStorage = (template: SupportedTemplates) => {
     };
   } catch (e) {
     console.error(e);
+
+    return TEMPLATES[template].files;
   }
 };
 
+const CURRENT_EDITOR_PATH = "/playground";
 export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
-  const [template, setTemplate] = useState<SupportedTemplates>(() => getTempalteFromURL(searchParams));
+  const [template, setTemplate] = useState<SupportedTemplates>(() => getTemplateFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
 
+  const onChangeTemplate = (template: SupportedTemplates) => {
+    setTemplate(() => {
+      localStorage.setItem("playground-template", template);
+
+      return template;
+    });
+
+    setFiles(getFilesFromLocalStorage(template));
+  };
+
   return (
-    <SandpackRoot files={files}>
+    <SandpackRoot
+      originalFiles={TEMPLATES[template].files}
+      files={files}
+      template={template}
+      path={CURRENT_EDITOR_PATH}
+    >
       <div className="flex h-full w-full flex-col gap-4 p-4">
         <div className="relative flex w-full justify-between">
           <div className="flex items-center">
@@ -84,28 +102,17 @@ export default function Client() {
           <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
             <ResizablePanel defaultSizePercentage={15}>
               <div className="flex flex-col gap-3">
-                <TemplateChanger
-                  template={template}
-                  setTemplate={(template) => {
-                    setTemplate(() => {
-                      localStorage.setItem("playground-template", template);
-
-                      return template;
-                    });
-                    setFiles(getFilesFromLocalStorage(template));
-                  }}
-                />
+                <TemplateChanger template={template} setTemplate={onChangeTemplate} />
                 <FileExplorer />
               </div>
             </ResizablePanel>
             <ResizableHandle className="w-2" />
             <ResizablePanel defaultSizePercentage={50}>
               <CodeEditor
-                path="/playground"
+                path={CURRENT_EDITOR_PATH}
                 template={template}
-                onResetFiles={() => {
-                  setFiles(TEMPLATES[template].files);
-                  localStorage.removeItem(`/playground-${template}`);
+                originalFiles={{
+                  ...TEMPLATES[template].files,
                 }}
               />
             </ResizablePanel>

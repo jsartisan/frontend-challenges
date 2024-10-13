@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+
 import Loading from "./loading";
 
 const Client = dynamic(() => import("./client"), {

@@ -1,25 +1,35 @@
 "use client";
 
-import { memo, useRef } from "react";
-import babel from "prettier/plugins/babel";
+import { memo } from "react";
 import { useEffect, useState } from "react";
-import prettier from "prettier/standalone";
-import estree from "prettier/plugins/estree";
-import typescript from "prettier/plugins/typescript";
-import postcss from "prettier/plugins/postcss";
-import prettierHTML from "prettier/plugins/html";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
-import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
+import { CodeFile, STORAGE_KEY, SupportedTemplates } from "@frontend-challenges/shared";
 
 import { Card } from "../ui/card";
-import { Button, Icon, IconButton } from "../ui";
+import {
+  Button,
+  Icon,
+  IconButton,
+  Label,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui";
 import { cn } from "../../utils/helpers";
 import { MonacoEditor } from "./MonacoEditor";
 import { Tabs, TabsList, TabsTrigger } from "../ui";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
+import { useSandpackLocal } from "./SandpackLocalProvider";
+import { useScrollableTabs } from "packages/website/hooks/useScrollableTabs";
+import { usePrettify } from "../../hooks/usePrettify";
 
 type Props = {
   files?: Record<string, CodeFile>;
+  originalFiles?: Record<string, CodeFile>;
   style?: React.CSSProperties;
   className?: string;
   onChange?: (files: SandpackState["files"]) => void;
@@ -27,162 +37,83 @@ type Props = {
   exclude?: string[];
   path?: string;
   template: SupportedTemplates;
-  onResetFiles?: () => void;
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, onChange, onResetFiles } = props;
+  const { className, showTabs = true, exclude, path, template, originalFiles } = props;
   const { sandpack } = useSandpack();
+  const { resetFiles } = useSandpackLocal();
   const [loading, setLoading] = useState(true);
-  const { setActiveFile, activeFile, files } = sandpack;
+  const [editorFontSize, _setEditorFontSize] = useState(() => {
+    const stored = localStorage.getItem(`${STORAGE_KEY}:editor-font-size`);
 
+    return stored ? parseInt(stored) : 14;
+  });
+  const [editorTabSize, _setEditorTabSize] = useState(() => {
+    const stored = localStorage.getItem(`${STORAGE_KEY}:editor-tab-size`);
+
+    return stored ? parseInt(stored) : 2;
+  });
+  const { setActiveFile, activeFile, files, updateFile } = sandpack;
+
+  const onChange = (files: SandpackState["files"]) => {
+    if (path) {
+      localStorage.setItem(
+        `${path}-${template}`,
+        JSON.stringify({
+          ...files,
+        }),
+      );
+    }
+  };
+
+  const setEditorFontSize = (size: number) => {
+    localStorage.setItem(`${STORAGE_KEY}:editor-font-size`, size.toString());
+    _setEditorFontSize(size);
+  };
+
+  const setEditorTabSize = (size: number) => {
+    localStorage.setItem(`${STORAGE_KEY}:editor-tab-size`, size.toString());
+    _setEditorTabSize(size);
+    onPrettify({ tabSize: size });
+  };
+
+  const onResetCurrentFile = () => {
+    const activeFile = sandpack.activeFile;
+    const originalCode = originalFiles[activeFile].code;
+
+    updateFile(activeFile, originalCode);
+
+    if (path) {
+      localStorage.setItem(
+        `${path}-${template}`,
+        JSON.stringify({
+          ...files,
+          [activeFile]: {
+            ...files[activeFile],
+            code: originalCode,
+          },
+        }),
+      );
+    }
+  };
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
   }, []);
 
-  const onPrettify = () => {
-    // if there is an error, we don't want to prettify the code
-    const activeFile = sandpack.activeFile;
-    const code = sandpack.files[activeFile].code;
-    const ext = activeFile.split(".").pop();
-    let plugins = [] as any[];
-    let parser = "babel";
+  const prettify = usePrettify();
 
-    if (ext === "js" || ext === "jsx") {
-      plugins = [babel, estree];
-    }
-
-    if (ext === "ts") {
-      parser = "babel-ts";
-      plugins = [babel, estree, typescript];
-    }
-
-    if (ext === "html") {
-      plugins = [prettierHTML];
-      parser = "html";
-    }
-
-    if (ext === "css") {
-      parser = "css";
-      plugins = [postcss];
-    }
-
-    prettier
-      .format(code, {
-        parser: parser,
-        plugins: plugins,
-      })
-      .then((formatted) => {
-        if (formatted) {
-          sandpack.updateFile(activeFile, formatted);
-        }
-      })
-      .catch(console.log);
+  const onPrettify = (options: { tabSize?: number }) => {
+    prettify(options).then((updatedFiles) => {
+      if (updatedFiles) {
+        onChange(updatedFiles);
+      }
+    });
   };
 
-  const contentRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const shadowStartRef = useRef<HTMLDivElement>(null);
-  const shadowEndRef = useRef<HTMLDivElement>(null);
-  const scrollbarRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      const content = contentRef.current;
-      const wrapper = wrapperRef.current;
-      const shadowStart = shadowStartRef.current;
-      const shadowEnd = shadowEndRef.current;
-      const scrollbar = scrollbarRef.current;
-
-      if (content && wrapper && shadowStart && shadowEnd) {
-        const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
-        const scrollbarMaxLeft = wrapper.offsetWidth - scrollbar.offsetWidth;
-
-        const handleScroll = () => {
-          const currentScroll = content.scrollLeft / contentScrollWidth;
-          shadowStart.style.opacity = currentScroll.toString();
-          shadowEnd.style.opacity = (1 - currentScroll).toString();
-
-          scrollbar.style.left = `${currentScroll * scrollbarMaxLeft}px`;
-        };
-
-        // Dragging variables
-        let isDragging = false;
-        let startX, scrollStartLeft;
-
-        // Start dragging the scrollbar
-        const handleMouseDown = (e) => {
-          isDragging = true;
-          startX = e.clientX; // Get initial X position when dragging starts
-          scrollStartLeft = scrollbar.offsetLeft; // Get the scrollbar's current left position
-          document.body.style.userSelect = "none"; // Disable text selection during drag
-        };
-
-        // Drag the scrollbar
-        const handleMouseMove = (e) => {
-          if (!isDragging) return;
-
-          const deltaX = e.clientX - startX;
-          let newLeft = scrollStartLeft + deltaX;
-
-          // Clamp the new left position to within bounds
-          if (newLeft < 0) newLeft = 0;
-          if (newLeft > scrollbarMaxLeft) newLeft = scrollbarMaxLeft;
-
-          scrollbar.style.left = `${newLeft}px`;
-
-          // Calculate the scroll ratio and use native scrollTo for smooth scrolling
-          const scrollRatio = newLeft / scrollbarMaxLeft;
-          content.scrollTo({
-            left: scrollRatio * contentScrollWidth,
-          });
-        };
-
-        // Stop dragging the scrollbar
-        const handleMouseUp = () => {
-          isDragging = false;
-          document.body.style.userSelect = ""; // Re-enable text selection
-        };
-
-        content.addEventListener("scroll", handleScroll);
-        scrollbar.addEventListener("mousedown", handleMouseDown);
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("mouseup", handleMouseUp);
-
-        return () => {
-          content.removeEventListener("scroll", handleScroll);
-          scrollbar.removeEventListener("mousedown", handleMouseDown);
-          window.removeEventListener("mousemove", handleMouseMove);
-          window.removeEventListener("mouseup", handleMouseUp);
-        };
-      }
-    }, 0);
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      const content = contentRef.current;
-      const wrapper = wrapperRef.current;
-      const shadowStart = shadowStartRef.current;
-      const shadowEnd = shadowEndRef.current;
-      const scrollbar = scrollbarRef.current;
-
-      if (content && wrapper && shadowStart && shadowEnd && scrollbarRef) {
-        const contentScrollWidth = content.scrollWidth - wrapper.offsetWidth;
-        const isOverflowing = contentScrollWidth > 0;
-        if (isOverflowing) {
-          shadowEnd.style.opacity = "1";
-          scrollbar.style.display = "block";
-          scrollbar.style.width = `${(wrapper.offsetWidth / content.scrollWidth) * 100}%`;
-        } else {
-          shadowEnd.style.opacity = "0";
-          scrollbar.style.display = "none";
-        }
-      }
-    }, 0);
-  }, [Object.keys(files).join("-")]);
+  const { contentRef, wrapperRef, shadowStartRef, shadowEndRef, scrollbarRef } = useScrollableTabs();
 
   return (
     <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
@@ -233,19 +164,84 @@ export function CodeEditor(props: Props) {
               </div>
             </div>
             <div className="flex items-center gap-1 px-1">
-              <Button variant="tertiary" size="sm" onClick={onPrettify} type="button">
+              <Button variant="tertiary" size="sm" onClick={() => onPrettify({ tabSize: editorTabSize })} type="button">
                 <Icon name="tidy" />
                 Tidy
               </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <IconButton variant="tertiary" size="sm" type="button">
+                    <Icon name="settings" />
+                  </IconButton>
+                </PopoverTrigger>
+                <PopoverContent align="end">
+                  <div className="font-bold">Editor Settings</div>
+                  <div className="mt-2 flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <Label>Font Size</Label>
+                      <Select
+                        onValueChange={(value: string) => setEditorFontSize(parseInt(value))}
+                        value={editorFontSize.toString()}
+                        defaultValue={editorFontSize.toString()}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select locale" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {[...Array(9)]
+                              .map((v, i) => i + 12)
+                              .map((fontSize) => (
+                                <SelectItem key={fontSize} value={fontSize.toString()}>
+                                  {fontSize}px
+                                </SelectItem>
+                              ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <Label>Tab Size</Label>
+                      <Select
+                        onValueChange={(value: string) => setEditorTabSize(parseInt(value))}
+                        value={editorTabSize.toString()}
+                        defaultValue={editorTabSize.toString()}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select locale" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {[2, 4].map((tabSize) => (
+                              <SelectItem key={tabSize} value={tabSize.toString()}>
+                                {tabSize}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
               <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger asChild>
                   <IconButton variant="tertiary" size="sm" type="button">
                     <Icon name="vertical-dots" />
                   </IconButton>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
-                    onClick={typeof onResetFiles === "function" ? onResetFiles : () => {}}
+                    onClick={typeof onResetCurrentFile === "function" ? onResetCurrentFile : () => {}}
+                    className="flex-col items-start"
+                  >
+                    <div>Reset Current File</div>
+                    <div className="text-xs text-[var(--color-fg-neutral-subtle)]">
+                      Reset the current file to the initial state
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={typeof resetFiles === "function" ? resetFiles : () => {}}
                     className="flex-col items-start"
                   >
                     <div>Reset Files</div>
@@ -267,7 +263,14 @@ export function CodeEditor(props: Props) {
             <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
           </div>
         ) : (
-          <MonacoEditor onChange={onChange} template={template} path={path} key={Object.keys(files).join("-")} />
+          <MonacoEditor
+            fontSize={editorFontSize}
+            tabSize={editorTabSize}
+            onChange={onChange}
+            template={template}
+            path={path}
+            key={Object.keys(files).join("-")}
+          />
         )}
       </div>
     </Card>

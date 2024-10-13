@@ -10,10 +10,12 @@ type MonacoEditorProps = {
   path?: string;
   template: SupportedTemplates;
   onChange?: (files: SandpackState["files"]) => void;
+  fontSize?: number;
+  tabSize?: number;
 };
 
 export function MonacoEditor(props: MonacoEditorProps) {
-  const { path = "", template, onChange } = props;
+  const { path = "", template, onChange, fontSize, tabSize } = props;
   const monaco = useMonaco();
   const { code, updateCode } = useActiveCode();
   const { sandpack } = useSandpack();
@@ -76,25 +78,13 @@ export function MonacoEditor(props: MonacoEditorProps) {
       options={{
         readOnly: files[sandpack.activeFile]?.readOnly,
         minimap: { enabled: false },
-        tabSize: 2,
+        tabSize: tabSize || 2,
+        fontSize: fontSize || 14,
         detectIndentation: false,
         fixedOverflowWidgets: true,
       }}
       onChange={(value) => {
         updateCode(value);
-
-        if (path) {
-          localStorage.setItem(
-            `${path}-${template}`,
-            JSON.stringify({
-              ...files,
-              [activeFile]: {
-                ...files[activeFile],
-                code: value,
-              },
-            }),
-          );
-        }
 
         if (onChange) {
           onChange({

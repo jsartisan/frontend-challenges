@@ -4,24 +4,27 @@ import { useTheme } from "next-themes";
 import { SandpackProvider } from "@codesandbox/sandpack-react";
 
 import { cn } from "../../utils/helpers";
+import { SandpackLocalProvider } from "./SandpackLocalProvider";
+import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
 
 type Props = {
+  path: string;
+  template: SupportedTemplates;
   children: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  files?: any;
+  files?: Record<string, string>;
   className?: string;
-  main?: string;
+  originalFiles?: Record<string, CodeFile>;
 };
 
 export default function SandpackRoot(props: Props) {
   const { resolvedTheme } = useTheme();
-  const { children, className, files } = props;
+  const { children, className, files, path, template, originalFiles } = props;
 
   return (
     <SandpackProvider
       files={files}
       customSetup={{}}
-      key={Object.keys(files).join("-")}
+      key={`${Object.keys(files).join("-")}-${resolvedTheme}`}
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
         bundlerURL: "https://bundler.frontend-challenges.com",
@@ -34,7 +37,9 @@ export default function SandpackRoot(props: Props) {
         },
       }}
     >
-      {children}
+      <SandpackLocalProvider originalFiles={originalFiles} path={path} template={template}>
+        {children}
+      </SandpackLocalProvider>
     </SandpackProvider>
   );
 }

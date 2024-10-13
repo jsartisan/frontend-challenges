@@ -45,6 +45,7 @@ import * as RadixIcon from "@radix-ui/react-icons";
 import { VariantProps, cva } from "class-variance-authority";
 import { ArrowUpIcon } from "../icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../icons/ArrowDownIcon";
+import { SettingsIcon } from "../icons/SettingsIcon";
 
 export type IconProps = {
   name:
@@ -103,7 +104,8 @@ export type IconProps = {
     | "vertical-dots"
     | "linkedin"
     | "x"
-    | "bug";
+    | "bug"
+    | "settings";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -295,6 +297,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "bug":
       icon = BugIcon;
+      break;
+    case "settings":
+      icon = SettingsIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

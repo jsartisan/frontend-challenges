@@ -14,9 +14,17 @@ import {
   TooltipTrigger,
   TooltipContent,
   TooltipArrow,
+  Label,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
 } from "../ui";
 import { Card } from "../ui/card";
 import { cn } from "../../utils/helpers";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 type Props = {
   className?: string;
@@ -30,6 +38,7 @@ function Console(props: Props) {
   const [filterType, setFilterType] = useState<"warn" | "error" | "info" | "debug" | "all">("all");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const { logs, reset } = useSandpackConsole({ resetOnPreviewRestart: true });
+  const [consoleFontSize, setConsoleFontSize] = useState(13);
 
   const onClickConsolePanel = () => {
     if (consoleRef?.current) {
@@ -51,6 +60,18 @@ function Console(props: Props) {
           </IconButton>
         </div>
         <div className="flex items-center gap-2 border-y border-y-[var(--color-bd)] px-2 py-2">
+          <Tooltip delayDuration={1}>
+            <TooltipTrigger asChild>
+              <IconButton variant="tertiary" size="sm" onClick={reset}>
+                <Icon name="log-clear" />
+              </IconButton>
+            </TooltipTrigger>
+
+            <TooltipContent>
+              Clear all logs
+              <TooltipArrow />
+            </TooltipContent>
+          </Tooltip>
           <Input
             placeholder="Type here to filter logs"
             className="w-48"
@@ -63,7 +84,7 @@ function Console(props: Props) {
             onValueChange={(value) => setFilterType(value as any)}
             value={filterType}
           >
-            <Tooltip>
+            <Tooltip delayDuration={1}>
               <TooltipTrigger asChild>
                 <ToggleGroupItem value="all">
                   <Icon name="log-all" />
@@ -76,7 +97,7 @@ function Console(props: Props) {
               </TooltipContent>
             </Tooltip>
 
-            <Tooltip>
+            <Tooltip delayDuration={1}>
               <TooltipTrigger asChild>
                 <ToggleGroupItem value="error">
                   <Icon name="log-error" className="text-red-500" />
@@ -89,7 +110,7 @@ function Console(props: Props) {
               </TooltipContent>
             </Tooltip>
 
-            <Tooltip>
+            <Tooltip delayDuration={1}>
               <TooltipTrigger asChild>
                 <ToggleGroupItem value="warn">
                   <Icon name="log-warning" className="text-yellow-500" />
@@ -101,7 +122,7 @@ function Console(props: Props) {
               </TooltipContent>
             </Tooltip>
 
-            <Tooltip>
+            <Tooltip delayDuration={1}>
               <TooltipTrigger asChild>
                 <ToggleGroupItem value="info">
                   <Icon name="log-info" className="text-blue-500" />
@@ -113,24 +134,52 @@ function Console(props: Props) {
               </TooltipContent>
             </Tooltip>
           </ToggleGroup>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <IconButton variant="tertiary" size="sm" className="ml-auto" onClick={reset}>
-                <Icon name="log-clear" />
-              </IconButton>
-            </TooltipTrigger>
-
-            <TooltipContent>
-              Clear all logs
-              <TooltipArrow />
-            </TooltipContent>
-          </Tooltip>
+          <div className="ms-auto">
+            <Popover>
+              <PopoverTrigger asChild>
+                <IconButton variant="tertiary" type="button" size="sm">
+                  <Icon name="settings" />
+                </IconButton>
+              </PopoverTrigger>
+              <PopoverContent align="end">
+                <div className="font-bold">Console Settings</div>
+                <div className="mt-2 flex flex-col gap-2">
+                  <div className="flex flex-col gap-2">
+                    <Label>Font Size</Label>
+                    <Select
+                      onValueChange={(value: string) => setConsoleFontSize(parseInt(value))}
+                      value={consoleFontSize.toString()}
+                      defaultValue={consoleFontSize.toString()}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select locale" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          {[...Array(9)]
+                            .map((v, i) => i + 12)
+                            .map((fontSize) => (
+                              <SelectItem key={fontSize} value={fontSize.toString()}>
+                                {fontSize}px
+                              </SelectItem>
+                            ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
         <div className="overflow-auto">
           <ConsoleFeed
             filter={filterType !== "all" ? [filterType] : undefined}
             searchKeywords={searchKeyword}
             logs={logs as any}
+            styles={{
+              BASE_FONT_SIZE: consoleFontSize,
+            }}
           />
         </div>
       </Card>

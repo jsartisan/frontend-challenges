@@ -152,7 +152,7 @@ const action: Action = async (github, context, core) => {
     };
 
     if (type === "question" && templateFiles) {
-      files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileConent(templateFiles)}\n`;
+      files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileContent(templateFiles)}\n`;
     }
 
     if (type === "quiz" && solution) {
@@ -226,7 +226,7 @@ const action: Action = async (github, context, core) => {
   }
 };
 
-async function getTemplateFiles(body: string) {
+export async function getTemplateFiles(body: string) {
   const templateStringRange = getCommentRange(body, "template") || "";
 
   if (!templateStringRange) return null;
@@ -263,7 +263,7 @@ async function updateComment(github: Github, context: Context, body: string) {
   }
 }
 
-function getTemplateFileConent(files: Question["templateFiles"]["vanilla"]) {
+export function getTemplateFileContent(files: Question["templateFiles"]["vanilla"]) {
   let body = "";
 
   if (files && Object.keys(files).length > 0) {
@@ -271,13 +271,35 @@ function getTemplateFileConent(files: Question["templateFiles"]["vanilla"]) {
       const file = files[filename];
 
       body += "```";
-      body += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
+      body += `${getFileLanguage(filename)} ${getFilePath(filename)} ${getFileMetaAttr(file)}\n`;
       body += file.code;
       body += "\n```\n\n";
     });
   }
 
   return body;
+}
+
+function getFileLanguage(filename: string) {
+  return filename.split(".").pop();
+}
+
+function getFilePath(filename: string) {
+  return filename.split("/").pop();
+}
+
+function getFileMetaAttr(file) {
+  let meta = "";
+
+  if (file.active) {
+    meta += "active";
+  }
+
+  if (file.hidden) {
+    meta = meta ? `${meta} hidden` : "hidden";
+  }
+
+  return meta;
 }
 
 function getCodeBlock(text: string, title: string, lang = "ts") {

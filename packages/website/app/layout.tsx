@@ -28,7 +28,7 @@ export default async function RootLayout(params) {
       <link rel="icon" href="/favicon.ico" type="image/png" sizes="32x32" />
       <body
         className={cn(
-          "flex min-h-screen w-[calc(100%-var(--removed-body-scroll-bar-size,0px))] flex-col overflow-x-hidden bg-[var(--color-bg-secondary)] font-sans text-sm antialiased",
+          "flex min-h-screen flex-col overflow-x-clip bg-[var(--color-bg-secondary)] font-sans text-sm antialiased",
         )}
       >
         <Provider>

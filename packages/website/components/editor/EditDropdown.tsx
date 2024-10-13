@@ -10,7 +10,7 @@ export default function EditDropdown(props: EditDropdownProps) {
   const { challenge } = props;
 
   return (
-    <div className="ms-auto flex items-center gap-1">
+    <div className="flex items-center gap-2">
       <IconButton asChild variant="secondary" size="sm">
         <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
           <Icon name="github" />

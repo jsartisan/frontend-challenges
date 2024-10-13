@@ -23,7 +23,6 @@ function Step2Header(props: Step2HeaderProps) {
           ...values,
           files,
         }),
-        "_blank",
       );
     })();
   };

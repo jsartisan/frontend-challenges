@@ -19,15 +19,17 @@ export default function Description(props: DescriptionProps) {
   const { readme } = challenge;
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-3">
-        <h1 className="text-2xl font-bold">
+    <div className="flex flex-col gap-2">
+      <header className="flex h-7 items-center gap-3">
+        <h1 className="flex h-[1cap] items-center gap-2 text-2xl font-bold">
           <span className="text-[var(--color-fg-neutral-subtle)]">#{challenge.no}</span> {challenge.info["en"]?.title}
         </h1>
-        <EditDropdown challenge={challenge} />
-      </div>
+        <div className="ms-auto flex gap-2">
+          <EditDropdown challenge={challenge} />
+        </div>
+      </header>
       <div className="flex items-center gap-2">
-        <div className="me-1 flex items-center gap-2">
+        <aside className="me-1 flex items-center gap-2">
           <span className="block whitespace-nowrap text-xs">by</span>
           <a
             href={`https://github.com/${challenge.info["en"]?.author?.github}`}
@@ -46,7 +48,7 @@ export default function Description(props: DescriptionProps) {
               {challenge.info["en"]?.author?.name ?? challenge.info["en"]?.author?.github}
             </span>
           </a>
-        </div>
+        </aside>
         <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
         {challenge.info["en"]?.tags?.map((tag) => (
           <Badge variant="secondary" key={tag}>

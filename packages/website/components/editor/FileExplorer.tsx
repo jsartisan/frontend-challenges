@@ -1,9 +1,12 @@
 import { useSandpack } from "@codesandbox/sandpack-react";
 import { Icon, IconButton } from "../ui";
+import { useContext } from "react";
+import { SandpackLocalContext } from "./SandpackLocalProvider";
 
 function FileExplorer() {
   const { sandpack } = useSandpack();
-  const { files, setActiveFile, activeFile, deleteFile, addFile, openFile, closeFile } = sandpack;
+  const { deleteFile, addFile } = useContext(SandpackLocalContext);
+  const { files, setActiveFile, activeFile } = sandpack;
 
   return (
     <div className="">
@@ -23,9 +26,7 @@ function FileExplorer() {
                 name = "/" + filename;
               }
 
-              addFile(name, "", false);
-              openFile(name);
-              setActiveFile(name);
+              addFile(name);
             }
           }}
         >
@@ -54,10 +55,7 @@ function FileExplorer() {
                   e.preventDefault();
                   e.stopPropagation();
 
-                  openFile("/index.js");
-                  setActiveFile("/index.js");
-                  closeFile(filename);
-                  deleteFile(filename, true);
+                  deleteFile(filename);
                 }}
               >
                 <Icon name="delete" />

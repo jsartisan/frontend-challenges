@@ -5,9 +5,12 @@ import { Challenge } from "@frontend-challenges/shared";
 import CompletionStats from "./CompletionStats";
 import Footer from "../../components/layout/Footer";
 import { Layout } from "../../components/layout/Layout";
-import { ChallengeListWithFilters } from "../../components/challenges/ChallengeListWithFilters";
 import type { ChallengeListWithFiltersProps } from "../../components/challenges/ChallengeListWithFilters";
-import { Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const ChallengeListWithFilters = dynamic(() => import("../../components/challenges/ChallengeListWithFilters"), {
+  ssr: false,
+});
 
 type ClientProps = {
   challenges: Challenge[];
@@ -25,16 +28,14 @@ export default function Client(props: ClientProps) {
         <div className="flex justify-between">
           <div>
             <div className="text-3xl font-bold">Challenges</div>
-            <div className="w-full pb-6 pt-3 leading-relaxed text-gray-500 md:w-2/4">
+            <p className="w-full pb-6 pt-3 leading-relaxed text-[var(--color-fg-neutral)] md:w-2/4">
               Frontend Challenges is a collection of frontend interview questions and answers. It is designed to help
               you prepare for frontend interviews. It&apos;s free and open source.
-            </div>
+            </p>
           </div>
           <CompletionStats challenges={challenges} />
         </div>
-        <Suspense>
-          <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
-        </Suspense>
+        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
       </Layout>
       <Footer />
     </>

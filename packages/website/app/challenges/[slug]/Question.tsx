@@ -49,11 +49,11 @@ function QuestionChallenge(props: QuestionProps) {
   const { question, challenges } = props;
   const [template, setTemplate] = useState(Object.keys(question.templateFiles)[0] as SupportedTemplates);
   const savedChallengeFiles = useLocalStorageChallengeFiles(`/challenges/${question.path}-${template}`);
-  const [files, setFiles] = useState({
+  const files = {
     ...TEMPLATES[template].files,
     ...question.templateFiles[template],
     ...savedChallengeFiles,
-  });
+  };
 
   return (
     <>
@@ -98,12 +98,9 @@ function QuestionChallenge(props: QuestionProps) {
                 exclude={["/package.json"]}
                 className="min-h-0"
                 template={template}
-                onResetFiles={() => {
-                  setFiles({
-                    ...TEMPLATES[template].files,
-                    ...question.templateFiles[template],
-                  });
-                  localStorage.removeItem(`/challenges/${question.path}-${template}`);
+                originalFiles={{
+                  ...TEMPLATES[template].files,
+                  ...question.templateFiles[template],
                 }}
               />
               <Preview className="min-h-0" template={template} />
