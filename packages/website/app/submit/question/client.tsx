@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TEMPLATES } from "@frontend-challenges/shared";
-import type { Difficulty } from "@frontend-challenges/shared";
+import type { Difficulty, SupportedTemplates } from "@frontend-challenges/shared";
 import { DIFFICULTY_RANK } from "@frontend-challenges/shared";
 
 import { Description } from "./Description";
@@ -58,7 +58,11 @@ export default function Client() {
 
   return (
     <Form {...form}>
-      <SandpackRoot files={form.getValues().files}>
+      <SandpackRoot
+        files={form.getValues().files}
+        template={form.getValues().template as SupportedTemplates}
+        path="/challenges/new"
+      >
         <form
           className="h-full p-4"
           onSubmit={() => {

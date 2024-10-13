@@ -8,8 +8,8 @@ import { SandpackLocalProvider } from "./SandpackLocalProvider";
 import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
 
 type Props = {
-  path: string;
-  template: SupportedTemplates;
+  path?: string;
+  template?: SupportedTemplates;
   children: React.ReactNode;
   files?: Record<string, string>;
   className?: string;

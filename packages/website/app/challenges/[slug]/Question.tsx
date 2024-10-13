@@ -57,7 +57,7 @@ function QuestionChallenge(props: QuestionProps) {
 
   return (
     <>
-      <SandpackRoot files={files}>
+      <SandpackRoot files={files} template={template} path={`/challenges/${question.path}`}>
         <div className="flex h-full w-full flex-col gap-4 p-4">
           <div className="relative flex w-full justify-between">
             <Breadcrumb currentChallenge={question} challenges={challenges} />
