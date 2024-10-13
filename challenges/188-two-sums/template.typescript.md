@@ -35,7 +35,7 @@ describe('twoSum function', () => {
   test('Different number order', () => {
     const nums = [1, 5, 7, 3, 8];
     const target = 10;
-    expect(twoSum(nums, target)).toEqual([1, 3]);
+    expect(twoSum(nums, target)).toEqual([2, 3]);
   });
 });
 ```
