@@ -16,9 +16,11 @@ export default async function Page() {
           framework, or topic. Each Roadmaps is curated by the community and is designed to help you learn a specific
           topic from scratch.
         </div>
-        {roadmaps.map((roadmap) => {
-          return <RoadmapListItem studyPlan={roadmap} key={`roadmap-${roadmap.title}`} />;
-        })}
+        <div className="flex flex-col flex-wrap gap-3">
+          {roadmaps.map((roadmap) => {
+            return <RoadmapListItem studyPlan={roadmap} key={`roadmap-${roadmap.title}`} />;
+          })}
+        </div>
       </Layout>
 
       <Footer />

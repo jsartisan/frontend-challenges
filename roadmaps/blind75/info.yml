@@ -1,0 +1,7 @@
+title: Blind 75
+description: A list of 75 essential coding interview questions for beginners and experienced developers alike.
+topics:
+  - title: "Arrays and Hashing"
+    challenges:
+      - 179-contains-duplicate
+      - 183-anagrams
