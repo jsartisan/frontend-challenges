@@ -1,3 +1,5 @@
+<!--info-header-start--><h1>Anagrams <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23javascrip-999" alt="#javascrip"/> <img src="https://img.shields.io/badge/-%23arrays-999" alt="#arrays"/> <img src="https://img.shields.io/badge/-%23blind75-999" alt="#blind75"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/183-anagrams" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
+
 Write a function that takes two strings `s` and `t` and returns `true` if the two strings are anagrams of each other, and `false` otherwise.
 
 An anagram is a word or phrase formed by rearranging the letters of another, such as "racecar" and "carrace". Both strings must contain the same characters with the same frequency, but in any order.
@@ -26,3 +28,6 @@ const s2 = "jar";
 const t2 = "jam";
 console.log(areAnagrams(s2, t2)); // Output: false
 ```
+
+
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,183,undefined&title=183%20-%20Anagrams%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A183+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
