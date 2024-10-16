@@ -5,12 +5,9 @@ import { Challenge } from "@frontend-challenges/shared";
 import CompletionStats from "./CompletionStats";
 import Footer from "../../components/layout/Footer";
 import { Layout } from "../../components/layout/Layout";
+import ChallengeListWithFilters from "../../components/challenges/ChallengeListWithFilters";
 import type { ChallengeListWithFiltersProps } from "../../components/challenges/ChallengeListWithFilters";
-import dynamic from "next/dynamic";
-
-const ChallengeListWithFilters = dynamic(() => import("../../components/challenges/ChallengeListWithFilters"), {
-  ssr: false,
-});
+import { Suspense } from "react";
 
 type ClientProps = {
   challenges: Challenge[];
@@ -35,7 +32,9 @@ export default function Client(props: ClientProps) {
           </div>
           <CompletionStats challenges={challenges} />
         </div>
-        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
+        </Suspense>
       </Layout>
       <Footer />
     </>

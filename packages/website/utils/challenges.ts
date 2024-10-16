@@ -1,4 +1,4 @@
-import { Challenge, REPO } from "@frontend-challenges/shared";
+import { Challenge, REPO, TEMPLATES } from "@frontend-challenges/shared";
 import { DEFAULT_LOCALE, DIFFICULTY_RANK } from "@frontend-challenges/shared";
 
 import { FormValues } from "../app/submit/question/client";
@@ -52,11 +52,40 @@ type: ${type}\n`;
     Object.keys(files).map((filename) => {
       const file = files[filename];
 
-      body += `${filename.replace("/", "")}\n`;
-      body += "```";
-      body += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
-      body += file.code;
-      body += "\n```\n\n";
+      if (filename === "/tsconfig.json") {
+        return;
+      }
+
+      if (filename === "/package.json") {
+        const templatePackageJSON = JSON.stringify(JSON.parse(file.code), null, 2);
+        const questionPackageJSON = JSON.stringify(
+          JSON.parse(
+            {
+              ...TEMPLATES[template].files,
+            }[filename]?.code,
+          ),
+          null,
+          2,
+        );
+
+        if (templatePackageJSON === questionPackageJSON) {
+          return;
+        }
+      }
+
+      const isFileChanged =
+        file.code !==
+        {
+          ...TEMPLATES[template].files,
+        }[filename]?.code;
+
+      if (isFileChanged) {
+        body += `${filename.replace("/", "")}\n`;
+        body += "```";
+        body += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
+        body += file.code;
+        body += "\n```\n\n";
+      }
     });
 
     body += `\n\n<!--template-end-->\n\n`;
