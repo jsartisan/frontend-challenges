@@ -108,16 +108,33 @@ type: ${type}\n`;
   return URL;
 };
 
+/**
+ * sorts the challenges by date, the most recent challenges come first
+ * Optionally, you can limit the number of challenges returned
+ *
+ * @param challenges - The challenges to sort
+ * @param limit - The number of challenges to return
+ * @returns The challenges sorted by date
+ */
 export function getSortedChallengesByDate(challenges: Challenge[], limit?: number) {
   const sorted = challenges.sort((a, b) => {
     const aDate = new Date(a.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
     const bDate = new Date(b.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
+
     return bDate.getTime() - aDate.getTime();
   });
 
   return limit ? sorted.slice(0, limit) : sorted;
 }
 
+/**
+ * filters the challenges by category,
+ * for example, if you want to get all the challenges that are tagged with "HTML" category, you can do that.
+ *
+ * @param challenges - The challenges to filter
+ * @param category - The category to filter by
+ * @returns The challenges filtered by category
+ */
 export function filterChallengesByCategory(challenges: Challenge[], category: string) {
   return challenges.filter((challenge) => challenge.info?.en?.tags?.includes(category));
 }

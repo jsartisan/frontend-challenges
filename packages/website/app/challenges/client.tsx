@@ -7,7 +7,6 @@ import Footer from "../../components/layout/Footer";
 import { Layout } from "../../components/layout/Layout";
 import ChallengeListWithFilters from "../../components/challenges/ChallengeListWithFilters";
 import type { ChallengeListWithFiltersProps } from "../../components/challenges/ChallengeListWithFilters";
-import { Suspense } from "react";
 
 type ClientProps = {
   challenges: Challenge[];
@@ -22,7 +21,7 @@ export default function Client(props: ClientProps) {
   return (
     <>
       <Layout className="pb-12 pt-6">
-        <div className="flex justify-between">
+        <header className="flex justify-between">
           <div>
             <div className="text-3xl font-bold">Challenges</div>
             <p className="w-full pb-6 pt-3 leading-relaxed text-[var(--color-fg-neutral)] md:w-2/4">
@@ -31,10 +30,8 @@ export default function Client(props: ClientProps) {
             </p>
           </div>
           <CompletionStats challenges={challenges} />
-        </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
-        </Suspense>
+        </header>
+        <ChallengeListWithFilters challenges={challenges} scope={scope} includes={include} />
       </Layout>
       <Footer />
     </>
