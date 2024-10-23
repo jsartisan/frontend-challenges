@@ -40,7 +40,7 @@ type Props = {
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, originalFiles } = props;
+  const { className, showTabs = true, exclude, path, template, originalFiles, onChange: onChangeProp } = props;
   const { sandpack } = useSandpack();
   const { resetFiles } = useSandpackLocal();
   const [loading, setLoading] = useState(true);
@@ -64,6 +64,10 @@ export function CodeEditor(props: Props) {
           ...files,
         }),
       );
+    }
+
+    if (typeof onChangeProp === "function") {
+      onChangeProp(files);
     }
   };
 
@@ -97,6 +101,7 @@ export function CodeEditor(props: Props) {
       );
     }
   };
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);

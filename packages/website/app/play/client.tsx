@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { ImperativePanelHandle } from "react-resizable-panels";
 import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
 
 import Preview from "../../components/editor/Preview";
+import Console from "../../components/editor/Console";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { CodeEditor } from "../../components/editor/CodeEditor";
 import SandpackRoot from "../../components/editor/SandpackRoot";
@@ -71,6 +73,8 @@ export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTemplateFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
+  const consoleRef = useRef<ImperativePanelHandle>();
+  const [consoleCollapsed, setConsoleCollapsed] = useState(false);
 
   const onChangeTemplate = (template: SupportedTemplates) => {
     setTemplate(() => {
@@ -81,6 +85,8 @@ export default function Client() {
 
     setFiles(getFilesFromLocalStorage(template));
   };
+
+  console.log({ files });
 
   return (
     <SandpackRoot
@@ -114,6 +120,7 @@ export default function Client() {
                 originalFiles={{
                   ...TEMPLATES[template].files,
                 }}
+                onChange={setFiles}
               />
             </ResizablePanel>
             <ResizableHandle className="w-2" />
@@ -121,6 +128,26 @@ export default function Client() {
               <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
                 <ResizablePanel defaultSizePercentage={100}>
                   <Preview template={template} />
+                </ResizablePanel>
+                <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
+                <ResizablePanel
+                  collapsible
+                  collapsedSizePixels={40}
+                  minSizePixels={200}
+                  className="sm:min-h-0"
+                  ref={consoleRef}
+                  onCollapse={() => {
+                    setConsoleCollapsed(true);
+                  }}
+                  onExpand={() => {
+                    setConsoleCollapsed(false);
+                  }}
+                >
+                  <Console
+                    consoleRef={consoleRef}
+                    consoleCollapsed={consoleCollapsed}
+                    setConsoleCollapsed={setConsoleCollapsed}
+                  />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </ResizablePanel>
