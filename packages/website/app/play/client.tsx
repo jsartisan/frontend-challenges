@@ -86,8 +86,6 @@ export default function Client() {
     setFiles(getFilesFromLocalStorage(template));
   };
 
-  console.log({ files });
-
   return (
     <SandpackRoot
       originalFiles={TEMPLATES[template].files}
@@ -120,7 +118,6 @@ export default function Client() {
                 originalFiles={{
                   ...TEMPLATES[template].files,
                 }}
-                onChange={setFiles}
               />
             </ResizablePanel>
             <ResizableHandle className="w-2" />

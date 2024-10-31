@@ -32,7 +32,6 @@ type Props = {
   originalFiles?: Record<string, CodeFile>;
   style?: React.CSSProperties;
   className?: string;
-  onChange?: (files: SandpackState["files"]) => void;
   showTabs?: boolean;
   exclude?: string[];
   path?: string;
@@ -40,7 +39,7 @@ type Props = {
 };
 
 export function CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, originalFiles, onChange: onChangeProp } = props;
+  const { className, showTabs = true, exclude, path, template, originalFiles } = props;
   const { sandpack } = useSandpack();
   const { resetFiles } = useSandpackLocal();
   const [loading, setLoading] = useState(true);
@@ -64,10 +63,6 @@ export function CodeEditor(props: Props) {
           ...files,
         }),
       );
-    }
-
-    if (typeof onChangeProp === "function") {
-      onChangeProp(files);
     }
   };
 
