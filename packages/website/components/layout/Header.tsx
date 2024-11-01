@@ -17,19 +17,6 @@ const CompletionStats = dynamic(() => import("../common/CompletionStats"), {
   loading: () => <Skeleton className="size-8" />,
 });
 
-const ThemeChanger = dynamic(() => import("../common/ThemeChanger"), {
-  ssr: false,
-  loading: () => (
-    <>
-      <div className="flex h-8 gap-2">
-        <Skeleton className="size-7" />
-        <Skeleton className="size-7" />
-        <Skeleton className="size-7" />
-      </div>
-    </>
-  ),
-});
-
 type HeaderProps = {
   challenges: ChallengeSlim[];
 };
@@ -68,8 +55,6 @@ export async function Header(props: HeaderProps) {
             <div className="ms-auto flex h-full items-center gap-3">
               <CompletionStats challenges={challenges} />
               <SubmissionNavigator />
-              <Separator orientation="vertical" className="ml-1 mr-2 hidden md:flex" />
-              <ThemeChanger />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <IconButton asChild variant="tertiary">
                 <a href={REPO} target="_blank" rel="noreferrer">

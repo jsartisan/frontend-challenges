@@ -70,9 +70,7 @@ function Step2Fields(props: Step2FieldsProps) {
         <FormField
           control={form.control}
           name="files"
-          render={({ field }) => (
-            <CodeEditor path="/submit/question" template={form.getValues("template")} onChange={field.onChange} />
-          )}
+          render={() => <CodeEditor path="/submit/question" template={form.getValues("template")} />}
         />
       </ResizablePanel>
       <ResizableHandle className="w-2" />
