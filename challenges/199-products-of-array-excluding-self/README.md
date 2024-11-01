@@ -5,8 +5,8 @@ Each product is guaranteed to fit in a 32-bit integer.
 **Follow-up:** Could you solve it in O(n) time without using the division operation?
 
 **Constraints:**
-- \(2 \leq \text{nums.length} \leq 1000\)
-- \(-20 \leq \text{nums[i]} \leq 20\)
+- 2 ≤ nums.length ≤ 1000
+- -20 ≤ nums[i] ≤ 20
 
 **Examples:**
 
