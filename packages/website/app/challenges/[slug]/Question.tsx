@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { DEFAULT_LOCALE, TEMPLATES, Question, SupportedTemplates, Challenge } from "@frontend-challenges/shared";
+import { TEMPLATES, Question, SupportedTemplates, Challenge } from "@frontend-challenges/shared";
 
 import { Card } from "../../../components/ui/card";
 import { TemplateChanger } from "./TemplateChanger";
@@ -13,7 +13,7 @@ import { LayoutChanger } from "../../../components/questions/LayoutChanger";
 import { ResizableLayout } from "../../../components/editor/ResizableLayout";
 import { ShareSolutionButton } from "../../../components/editor/ShareSolutionButton";
 import { useLocalStorageChallengeFiles } from "../../../hooks/useLocalStorageChallengeFiles";
-import { Button, Icon, Tabs, TabsContent, TabsList, TabsTrigger, Separator, Skeleton } from "../../../components/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger, Separator, Skeleton } from "../../../components/ui";
 
 const MarkCompleteButton = dynamic(() => import("../../../components/editor/MarkCompleteButton"), {
   ssr: false,
@@ -84,14 +84,6 @@ function QuestionChallenge(props: QuestionProps) {
                   <TabsList>
                     <TabsTrigger value="description">Description</TabsTrigger>
                     <TabsTrigger value="solutions">Submissions</TabsTrigger>
-                    {question.info[DEFAULT_LOCALE]?.discussionNo && (
-                      <Button variant="tertiary" size="sm" asChild>
-                        <a href={question.discussionURL} target="_blank" rel="noopener noreferrer">
-                          Discussion
-                          <Icon name="external-link" />
-                        </a>
-                      </Button>
-                    )}
                   </TabsList>
                   <TabsContent value="description" className="flex-grow overflow-y-auto">
                     <Description challenge={question} />
