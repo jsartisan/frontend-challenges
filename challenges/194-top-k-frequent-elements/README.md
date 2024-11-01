@@ -1,7 +1,3 @@
-### Interview Question: Top K Frequent Elements
-
-**Question:**
-
 Given an integer array `nums` and an integer `k`, write a function that returns the `k` most frequent elements in the array.
 
 The test cases are designed so that the answer is always unique (meaning that there is exactly one way to pick the `k` most frequent elements).
@@ -9,9 +5,9 @@ The test cases are designed so that the answer is always unique (meaning that th
 You may return the output in any order.
 
 **Constraints:**
-- \(1 \leq \text{nums.length} \leq 10^4\)
-- \(-1000 \leq \text{nums[i]} \leq 1000\)
-- \(1 \leq k \leq\) (number of distinct elements in `nums`)
+- 1 ≤ `nums.length` ≤ 10^4
+- -1000 ≤ `nums[i]` ≤ 1000
+- 1 ≤ `k` ≤ number of distinct elements in `nums`
 
 **Examples:**
 
