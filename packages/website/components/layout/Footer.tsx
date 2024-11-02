@@ -19,7 +19,7 @@ const ThemeChanger = dynamic(() => import("../common/ThemeChanger"), {
 
 export default function Footer() {
   return (
-    <div className="border-t border-[var(--color-bd)] bg-[var(--color-bg)]  py-4 sm:py-6">
+    <div className="border-t border-[var(--color-bd)] bg-[var(--color-bg)] py-6">
       <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-4 px-4 sm:flex-row sm:px-6">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-center gap-2 sm:justify-start">
@@ -39,7 +39,7 @@ export default function Footer() {
               <Icon name="linkedin" size="sm" />
             </a>
           </div>
-          <p className="flex flex-wrap gap-2 font-medium sm:gap-4">
+          <p className="flex flex-wrap justify-center gap-3 font-medium sm:justify-start sm:gap-4">
             <Link
               className="text-[var(--color-fg-subtle)] hover:text-[var(--color-fg-subtle-hover)]"
               href="/challenges"
