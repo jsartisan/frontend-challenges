@@ -1,8 +1,117 @@
 title: Blind 75
-description: A list of 75 essential coding interview questions for beginners and experienced developers alike.
+description: The Blind 75 is a curated list of the most important coding interview questions, created by a Facebook tech lead. This roadmap covers these essential questions across key data structure and algorithm topics like arrays, strings, trees, graphs and dynamic programming. Working through these problems will help build strong fundamentals for technical interviews.
 topics:
-  - title: "Arrays and Hashing"
+  - title: "Arrays & Hashing"
     challenges:
       - 179-contains-duplicate
       - 183-anagrams
       - 188-two-sums
+      - 191-anagram-groups
+      - 194-top-k-frequent-elements
+      - 197-string-encode-and-decode
+      - 199-products-of-array-excluding-self
+      - 201-longest-consecutive-sequence
+
+  - title: "Two Pointers"
+    challenges:
+      - 203-is-palindrome
+      - 205-three-integer-sum
+      - 207-max-water-container
+      - 209-best-time-to-buy-and-sell-stock
+
+  - title: "Sliding Window"
+    challenges:
+      - 211-longest-substring-without-repeating-characters
+      - 213-longest-repeating-substring-with-replacement
+      - 215-minimum-window-with-characters
+
+  - title: "Stack"
+    challenges:
+      - 217-validate-parentheses
+
+  - title: "Binary Search"
+    challenges:
+      - 219-find-minimum-in-rotated-sorted-array
+      - 221-find-target-in-rotated-sorted-array
+
+  - title: "Linked List"
+    challenges:
+      - 223-reverse-a-linked-list
+      - 225-merge-two-sorted-linked-lists
+      - 227-reorder-linked-list
+      - 229-remove-node-from-end-of-linked-list
+      - 231-linked-list-cycle-detection
+      - 233-merge-k-sorted-linked-lists
+
+  - title: "Trees"
+    challenges:
+      - 235-invert-a-binary-tree
+      - 237-depth-of-binary-tree
+      - 239-same-binary-tree
+      - 241-subtree-of-a-binary-tree
+      - 243-lowest-common-ancestor-in-binary-search-tree
+      - 245-level-order-traversal-of-binary-tree
+      - 247-valid-binary-search-tree
+      - 249-kth-smallest-integer-in-bst
+      - 251-binary-tree-from-preorder-and-inorder-traversal
+      - 253-binary-tree-maximum-path-sum
+      - 255-serialize-and-deserialize-binary-tree
+      - 263-implement-prefix-tree-trie
+
+  - title: "Heap / Priority Queue"
+    challenges:
+      - 257-find-median-in-a-data-stream
+
+  - title: "Backtracking"
+    challenges:
+      - 259-combination-target-sum
+      - 261-search-for-word
+      - 267-search-for-word-ii
+
+  - title: "Graphs"
+    challenges:
+      - 269-count-number-of-islands
+      - 271-clone-graph
+      - 273-pacific-atlantic-water-flow
+      - 275-course-schedule
+      - 277-valid-tree
+      - 279-count-connected-components
+      - 281-foreign-dictionary
+
+  - title: "Dynamic Programming"
+    challenges:
+      - 283-climbing-stairs
+      - 285-house-robber
+      - 287-house-robber-ii
+      - 289-longest-palindromic-substring
+      - 291-palindromic-substrings
+      - 293-decode-ways
+      - 295-coin-change
+      - 297-maximum-product-subarray
+      - 299-word-break
+      - 301-longest-increasing-subsequence
+      - 305-longest-common-subsequence
+      - 307-maximum-subarray
+      - 309-jump-game
+
+  - title: "Intervals"
+    challenges:
+      - 311-insert-new-interval
+      - 313-merge-intervals
+      - 315-non-overlapping-intervals
+      - 317-meeting-schedule
+      - 319-meeting-schedule-ii
+
+  - title: "Matrix"
+    challenges:
+      - 321-rotate-matrix
+      - 323-spiral-matrix
+      - 325-set-zeroes-in-matrix
+
+  - title: "Bit Manipulation"
+    challenges:
+      - 327-number-of-one-bits
+      - 329-counting-bits
+      - 331-reverse-bits
+      - 333-missing-number
+      - 335-sum-of-two-integers

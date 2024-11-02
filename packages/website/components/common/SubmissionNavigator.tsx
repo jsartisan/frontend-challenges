@@ -15,7 +15,7 @@ export function SubmissionNavigator() {
   const router = useRouter();
 
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="hidden gap-1 md:flex">
           <Icon name="plus" size="sm" className="-ml-1" />
