@@ -1,10 +1,10 @@
 <!--info-header-start--><h1>Top K Frequent Elements <img src="https://img.shields.io/badge/-medium-d9901a" alt="medium"/> <img src="https://img.shields.io/badge/-%23javascript-999" alt="#javascript"/> <img src="https://img.shields.io/badge/-%23blind75-999" alt="#blind75"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/194-top-k-frequent-elements" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
 
-Given an integer array `nums` and an integer `k`, write a function that returns the `k` most frequent elements in the array.
+Create a function that accepts an array of integers `nums` and a number `k`. The function should find and return the `k` elements that appear most frequently in the array.
 
-The test cases are designed so that the answer is always unique (meaning that there is exactly one way to pick the `k` most frequent elements).
+The problem guarantees that there will be only one valid solution - that is, there won't be any ties when determining the `k` most common elements.
 
-You may return the output in any order.
+The elements can be returned in any sequence you prefer.
 
 **Constraints:**
 - 1 ≤ `nums.length` ≤ 10^4

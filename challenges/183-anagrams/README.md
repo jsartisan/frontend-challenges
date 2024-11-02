@@ -1,8 +1,8 @@
 <!--info-header-start--><h1>Anagrams <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23javascrip-999" alt="#javascrip"/> <img src="https://img.shields.io/badge/-%23arrays-999" alt="#arrays"/> <img src="https://img.shields.io/badge/-%23blind75-999" alt="#blind75"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/183-anagrams" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
 
-Write a function that takes two strings `s` and `t` and returns `true` if the two strings are anagrams of each other, and `false` otherwise.
+Create a function that accepts two string parameters `s` and `t`. The function should output `true` when the strings are anagrams of one another, and `false` if they're not.
 
-An anagram is a word or phrase formed by rearranging the letters of another, such as "racecar" and "carrace". Both strings must contain the same characters with the same frequency, but in any order.
+Two strings are considered anagrams if you can shuffle the letters of one to create the other. For instance, "listen" and "silent" are anagrams because they use exactly the same letters the same number of times, just arranged differently.
 
 **Constraints:**
 - Both `s` and `t` consist of lowercase English letters.

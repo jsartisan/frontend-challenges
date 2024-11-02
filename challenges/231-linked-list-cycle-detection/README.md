@@ -1,10 +1,10 @@
-Given the beginning of a linked list `head`, return `true` if there is a cycle in the linked list. Otherwise, return `false`.
+Write a function that takes the head node of a linked list and checks if the list contains a cycle. Return `true` if a cycle exists, and `false` if not.
 
-There is a cycle in a linked list if at least one node in the list can be visited again by following the next pointer.
+A cycle occurs when following the next pointers eventually leads back to a previously visited node, creating a loop in the list.
 
-Internally, `index` determines the index of the beginning of the cycle, if it exists. The tail node of the list will set its next pointer to the index-th node. If index = -1, then the tail node points to null and no cycle exists.
+The implementation uses an internal `index` value that specifies where the cycle begins (if one exists). The last node's next pointer will connect back to the node at position `index`. When `index` is -1, the list ends normally with null and has no cycle.
 
-Note: `index` is not given to you as a parameter.
+Important: The `index` value is used internally and is not passed to your function.
 
 **Constraints:**
 - 1 ≤ Length of the list ≤ 1000

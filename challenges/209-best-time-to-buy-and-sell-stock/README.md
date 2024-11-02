@@ -1,8 +1,8 @@
-You are given an array `prices` where `prices[i]` is the price of a given stock on the ith day.
+Given a list of stock prices `prices` represented as an array, where each element `prices[i]` shows the stock price on day i.
 
-You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+Your task is to find the best possible profit by buying the stock on one day and selling it on a later day. You can only make one transaction (one buy and one sell).
 
-Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+Calculate and return the highest profit possible. If no profit can be made, return 0.
 
 **Constraints:**
 - 1 ≤ prices.length ≤ 10⁵

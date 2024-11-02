@@ -1,10 +1,10 @@
 <!--info-header-start--><h1>Two Sums <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23javascript-999" alt="#javascript"/> <img src="https://img.shields.io/badge/-%23blind75-999" alt="#blind75"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/188-two-sums" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
 
-You are given an array of integers `nums` and an integer `target`. Write a function that returns the indices `i` and `j` such that `nums[i] + nums[j] == target` and `i != j`.
+Given an array of numbers `nums` and a number `target`, implement a function that finds two different positions `i` and `j` in the array where the sum of their values equals the target (i.e. `nums[i] + nums[j] = target`).
 
-You can assume that each input will have exactly one pair of indices `i` and `j` that satisfy the condition.
+The input is guaranteed to contain exactly one valid solution where `i` and `j` are different indices.
 
-Make sure to return the indices with the smaller index first.
+Return the indices in ascending order (smaller index before larger index).
 
 **Constraints:**
 - 2 ≤ `nums.length` ≤ 1000

@@ -1,6 +1,6 @@
-Given a string `s`, return `true` if it is a palindrome, otherwise return `false`.
+Write a function that checks if a given string `s` is a palindrome and outputs `true` or `false` accordingly.
 
-A palindrome is a string that reads the same forward and backward. It is also case-insensitive and ignores all non-alphanumeric characters.
+For this challenge, a palindrome is defined as text that remains unchanged when reversed - for example "mom" or "race car". The check should ignore letter casing (uppercase/lowercase) and skip any characters that aren't letters or numbers.
 
 **Constraints:**
 - 1 ≤ s.length ≤ 1000

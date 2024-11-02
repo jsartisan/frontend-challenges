@@ -1,8 +1,8 @@
-You are given the heads of two sorted linked lists `list1` and `list2`.
+Write a function that takes two sorted linked lists as input parameters. The function should combine these lists into a single sorted linked list by interweaving their nodes in ascending order.
 
-Merge the two lists into one sorted linked list and return the head of the new sorted linked list.
+Your task is to return the head node of the resulting merged list, which should maintain sorted order and incorporate all nodes from both input lists.
 
-The new list should be made up of nodes from `list1` and `list2`.
+The merged result should preserve the original nodes, just relinked in the correct order.
 
 **Constraints:**
 - 0 ≤ The length of each list ≤ 100

@@ -1,13 +1,13 @@
-You are given an array of length n which was originally sorted in ascending order. It has now been rotated between 1 and n times. For example, the array nums = [1,2,3,4,5,6] might become:
+Consider an array that started out sorted in ascending order, but has undergone between 1 and n right rotations (where n is the length). Let's look at what happens to [1,2,3,4,5,6] after some rotations:
 
-- [3,4,5,6,1,2] if it was rotated 4 times.
-- [1,2,3,4,5,6] if it was rotated 6 times.
+- With 4 right rotations: [3,4,5,6,1,2] 
+- With 6 right rotations: [1,2,3,4,5,6]
 
-Given the rotated sorted array nums and an integer target, return the index of target within nums, or -1 if it is not present.
+Write a function that takes this rotated array nums and a target value as input. Your task is to find and return the index where target appears in nums. If target isn't found, return -1.
 
-You may assume all elements in the sorted rotated array nums are unique.
+You can count on the fact that no value appears more than once in the rotated array.
 
-A solution that runs in O(n) time is trivial, can you write an algorithm that runs in O(log n) time?
+While a simple linear search would work, the challenge is to develop a solution with O(log n) time complexity instead of O(n).
 
 **Constraints:**
 - 1 ≤ nums.length ≤ 1000

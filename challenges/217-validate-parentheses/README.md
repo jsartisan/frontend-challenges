@@ -1,11 +1,11 @@
-You are given a string `s` consisting of the following characters: '(', ')', '{', '}', '[' and ']'.
+Write a function that takes a string `s` containing bracket characters: '(', ')', '{', '}', '[', ']'.
 
-The input string `s` is valid if and only if:
-1. Every open bracket is closed by the same type of close bracket.
-2. Open brackets are closed in the correct order.
-3. Every close bracket has a corresponding open bracket of the same type.
+Determine if the string is valid by checking these rules:
+1. Each opening bracket must have a matching closing bracket of the same type
+2. Brackets must be closed in the proper nested order
+3. A closing bracket can only close a matching opening bracket
 
-Return `true` if s is a valid string, and `false` otherwise.
+The function should return `true` for valid bracket strings, and `false` for invalid ones.
 
 **Constraints:**
 - 1 ≤ s.length ≤ 1000

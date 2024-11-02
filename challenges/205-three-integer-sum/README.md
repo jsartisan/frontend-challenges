@@ -1,6 +1,6 @@
-Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` where `nums[i] + nums[j] + nums[k] == 0`, and the indices `i`, `j` and `k` are all distinct.
+Write a function that finds all unique combinations of three different numbers in an array `nums` that add up to zero. Each combination should be returned as an array of three numbers.
 
-The output should not contain any duplicate triplets. You may return the output and the triplets in any order.
+For example, if the array contains numbers that can form multiple triplets summing to 0, return all such triplets without duplicates. The order of the triplets and numbers within them doesn't matter.
 
 **Constraints:**
 - 3 ≤ nums.length ≤ 1000

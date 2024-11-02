@@ -1,6 +1,6 @@
-You are given an integer array `heights` where `heights[i]` represents the height of the ith bar.
+Given an array of integers `heights`, where each value represents the height of a vertical bar at position i, find the maximum volume of water that can be trapped between any two bars.
 
-You may choose any two bars to form a container. Return the maximum amount of water a container can store.
+Each pair of bars, along with the x-axis, forms a container that can hold water. Calculate and return the largest possible container volume.
 
 **Constraints:**
 - 2 ≤ height.length ≤ 1000

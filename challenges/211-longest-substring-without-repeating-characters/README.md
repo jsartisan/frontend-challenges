@@ -1,6 +1,6 @@
-Given a string `s`, find the length of the longest substring without repeating characters.
+Write a function that takes a string `s` and returns the length of the longest possible substring that has no duplicate characters.
 
-A substring is a contiguous sequence of characters within a string.
+A substring refers to any continuous part of the original string, formed by taking a sequence of consecutive characters.
 
 **Constraints:**
 - 0 ≤ s.length ≤ 5 × 10⁴

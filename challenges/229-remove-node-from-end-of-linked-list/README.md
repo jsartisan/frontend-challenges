@@ -1,6 +1,6 @@
-You are given the beginning of a linked list `head`, and an integer `n`.
+Write a function that takes two parameters: a linked list starting at node `head`, and a number `n`. 
 
-Remove the nth node from the end of the list and return the beginning of the list.
+Your task is to delete the node that is `n` positions from the tail of the list, then return the modified list's head node.
 
 **Constraints:**
 - The number of nodes in the list is sz

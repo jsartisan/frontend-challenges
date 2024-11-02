@@ -1,8 +1,8 @@
-Given an array of integers `nums`, return the length of the longest consecutive sequence of elements.
+Write a function that takes an array of integers `nums` and finds the longest chain of consecutive numbers within it.
 
-A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element.
+A chain of consecutive numbers means each number in the sequence is exactly one more than the number before it (like 1,2,3,4).
 
-You must write an algorithm that runs in O(n) time.
+Your solution needs to have O(n) time complexity.
 
 **Constraints:**
 - 0 ≤ nums.length ≤ 1000

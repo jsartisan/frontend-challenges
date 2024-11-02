@@ -1,6 +1,6 @@
 <!--info-header-start--><h1>Contains Duplicate <img src="https://img.shields.io/badge/-easy-7aad0c" alt="easy"/> <img src="https://img.shields.io/badge/-%23javascript-999" alt="#javascript"/> <img src="https://img.shields.io/badge/-%23blind75-999" alt="#blind75"/></h1><blockquote><p>by Pawan Kumar <a href="https://github.com/jsartisan" target="_blank">@jsartisan</a></p></blockquote><p><a href="https://frontend-challenges.com/challenges/179-contains-duplicate" target="_blank"><img src="https://img.shields.io/badge/-Take%20the%20Challenge-0d99ff?logo=javascript&logoColor=white" alt="Take the Challenge"/></a> </p><!--info-header-end-->
 
-You are given an array of integers `nums`. Write a function that returns `true` if any value appears more than once in the array. If all elements are unique, return `false`.
+Given an array of integers `nums`, write a function that returns `true` if any value appears at least twice in the array, and returns `false` if every element is distinct.
 
 **Requirements:**
 1. The function should take one argument:

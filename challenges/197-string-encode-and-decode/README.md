@@ -1,4 +1,4 @@
-Design an algorithm to encode a list of strings to a single string and decode it back to the original list of strings.
+Create a function that can convert an array of strings into a single encoded string, and another function that can decode that string back into the original array of strings. The encoding and decoding should be reversible, meaning decoding the encoded string should give back the exact same array that was encoded.
 
 **Constraints:**
 - 0 ≤ strs.length < 100

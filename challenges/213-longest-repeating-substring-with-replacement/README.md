@@ -1,6 +1,6 @@
-You are given a string `s` consisting of only uppercase English characters and an integer `k`. You can choose up to `k` characters of the string and replace them with any other uppercase English character.
+Given a string `s` made up of only capital letters A-Z and a number `k`, you can pick up to `k` positions in the string and change those letters to any other capital letter A-Z.
 
-After performing at most k replacements, return the length of the longest substring which contains only one distinct character.
+Your task is to find the longest substring containing exactly one unique letter after making at most k letter changes, and return its length.
 
 **Constraints:**
 - 1 ≤ s.length ≤ 1000

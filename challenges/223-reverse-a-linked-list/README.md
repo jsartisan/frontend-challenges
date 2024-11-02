@@ -1,4 +1,4 @@
-Given the beginning of a singly linked list `head`, reverse the list, and return the new beginning of the list.
+Write a function that accepts the head node of a singly linked list as input. Your task is to flip the order of the list so that it goes from end to start, then return the new head node that begins the reversed list.
 
 **Constraints:**
 - 0 ≤ The length of the list ≤ 1000

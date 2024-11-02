@@ -1,15 +1,15 @@
-You are given the head of a singly linked-list.
+Given a singly linked list, rearrange its nodes in a specific alternating pattern.
 
-The positions of a linked list of length = 7 for example, can initially be represented as:
+For instance, take a linked list with 7 nodes that starts as:
 `[0, 1, 2, 3, 4, 5, 6]`
 
-Reorder the nodes of the linked list to be in the following order:
+Your task is to reorganize it into this pattern:
 `[0, 6, 1, 5, 2, 4, 3]`
 
-Notice that in the general case for a list of length = n the nodes are reordered to be in the following order:
+The pattern follows this rule: take nodes from the start and end alternately. For any list of length n, the final arrangement should be:
 `[0, n-1, 1, n-2, 2, n-3, ...]`
 
-You may not modify the values in the list's nodes, but instead you must reorder the nodes themselves.
+Important: This reorganization must be done by changing the links between nodes, not by modifying the values stored in each node.
 
 **Constraints:**
 - 1 ≤ Length of the list ≤ 1000

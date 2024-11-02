@@ -1,6 +1,6 @@
-Given an integer array `nums`, return an array `output` where `output[i]` is the product of all elements in `nums` except `nums[i]`.
+Write a function that takes an array of integers `nums` and returns a new array where each element at index `i` contains the result of multiplying all numbers in the input array together, excluding the number at index `i`.
 
-Each product is guaranteed to fit in a 32-bit integer.
+You can assume that none of the multiplication results will exceed the maximum value that can be stored in a 32-bit integer.
 
 **Follow-up:** Could you solve it in O(n) time without using the division operation?
 

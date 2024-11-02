@@ -1,6 +1,6 @@
-You are given an array containing k sorted linked lists, where each list maintains ascending order.
+Write a function that accepts an array of k linked lists as input, where the nodes in each list are arranged in ascending order.
 
-Create and return a new sorted linked list that combines all nodes from the input lists while maintaining the sorted order.
+Your task is to merge all the input lists into a single linked list, ensuring that all nodes remain in sorted ascending order, and return this combined result.
 
 **Constraints:**
 - 0 ≤ k (number of lists) ≤ 1000

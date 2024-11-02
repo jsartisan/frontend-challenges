@@ -1,13 +1,13 @@
-You are given an array of length n which was originally sorted in ascending order. It has now been rotated between 1 and n times. For example, the array nums = [1,2,3,4,5,6] might become:
+Consider an array that was initially sorted in ascending order, but has been shifted right a certain number of positions (between 1 and n, where n is the array length). Take this example with the array [1,2,3,4,5,6]:
 
-- [3,4,5,6,1,2] if it was rotated 4 times.
-- [1,2,3,4,5,6] if it was rotated 6 times.
+- After shifting right 4 positions: [3,4,5,6,1,2]
+- After shifting right 6 positions: [1,2,3,4,5,6]
 
-Notice that rotating the array 4 times moves the last four elements of the array to the beginning. Rotating the array 6 times produces the original array.
+When we shift right by 4, the last 4 elements move to the front while the others move to the end. A full rotation of n positions returns us to the original array.
 
-Assuming all elements in the rotated sorted array nums are unique, return the minimum element of this array.
+Your task is to find the smallest number in this shifted array, given that all numbers are distinct.
 
-A solution that runs in O(n) time is trivial, can you write an algorithm that runs in O(log n) time?
+While scanning the entire array would work in O(n) time, can you devise a more efficient solution that runs in O(log n)?
 
 **Constraints:**
 - 1 ≤ nums.length ≤ 1000
