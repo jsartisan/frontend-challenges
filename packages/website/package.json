@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.10.0",
+    "@excalidraw/excalidraw": "^0.17.6",
     "@frontend-challenges/backend": "workspace:*",
     "@frontend-challenges/shared": "workspace:*",
     "@hookform/resolvers": "^3.3.2",

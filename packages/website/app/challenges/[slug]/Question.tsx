@@ -20,6 +20,11 @@ const MarkCompleteButton = dynamic(() => import("../../../components/editor/Mark
   loading: () => <Skeleton className="h-8 w-32" />,
 });
 
+const Notes = dynamic(() => import("../../../components/editor/Notes"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-full w-full flex-grow" />,
+});
+
 const CodeEditor = dynamic(() => import("../../../components/editor/CodeEditor"), {
   ssr: false,
   loading: () => <Skeleton className="h-full w-full flex-grow" />,
@@ -84,12 +89,16 @@ function QuestionChallenge(props: QuestionProps) {
                   <TabsList>
                     <TabsTrigger value="description">Description</TabsTrigger>
                     <TabsTrigger value="solutions">Submissions</TabsTrigger>
+                    <TabsTrigger value="notes">Notes</TabsTrigger>
                   </TabsList>
                   <TabsContent value="description" className="flex-grow overflow-y-auto">
                     <Description challenge={question} />
                   </TabsContent>
                   <TabsContent value="solutions">
                     <AnswerList challenge={question} />
+                  </TabsContent>
+                  <TabsContent value="notes" className="p-0">
+                    <Notes path={`/challenges/${question.path}`} />
                   </TabsContent>
                 </Tabs>
               </Card>
