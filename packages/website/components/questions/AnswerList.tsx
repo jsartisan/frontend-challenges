@@ -90,6 +90,7 @@ export function AnswerList(props: QuestionListProps) {
                     ...TEMPLATES[answer.template].files,
                     ...answer.files,
                   }}
+                  template={answer.template}
                   className="flex !h-full flex-col"
                 >
                   <SheetHeader className="h-20">

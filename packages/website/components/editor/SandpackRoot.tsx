@@ -9,7 +9,7 @@ import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
 
 type Props = {
   path?: string;
-  template?: SupportedTemplates;
+  template: SupportedTemplates;
   children: React.ReactNode;
   files?: Record<string, string>;
   className?: string;

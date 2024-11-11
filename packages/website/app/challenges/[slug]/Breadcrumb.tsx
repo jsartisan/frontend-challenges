@@ -63,7 +63,7 @@ export default function Breadcrumb(props: BreadcrumbProps) {
                     </IconButton>
                   </div>
                 </SheetTrigger>
-                <SheetContent side="left" className="flex w-5/12 flex-col gap-2 overflow-auto [&>*]:min-h-[auto]">
+                <SheetContent side="left" className=" w-5/12  overflow-auto">
                   <h3 className="text-2xl font-bold">Challenges</h3>
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col gap-2">
@@ -133,7 +133,9 @@ export default function Breadcrumb(props: BreadcrumbProps) {
                       </div>
                     </div>
                   </div>
-                  <ChallengeList variant="compact" challenges={filtered} />
+                  <div className="mt-6">
+                    <ChallengeList variant="compact" challenges={filtered} />
+                  </div>
                 </SheetContent>
               </Sheet>
             </div>
