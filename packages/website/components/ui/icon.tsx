@@ -105,7 +105,8 @@ export type IconProps = {
     | "linkedin"
     | "x"
     | "bug"
-    | "settings";
+    | "settings"
+    | "static-color";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -300,6 +301,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "settings":
       icon = SettingsIcon;
+      break;
+    case "static-color":
+      icon = VanillaColorIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;
