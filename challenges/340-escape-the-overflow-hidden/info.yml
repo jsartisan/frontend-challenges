@@ -2,7 +2,7 @@ difficulty: medium
 title: Escape the overflow hidden
 type: question
 template: static
-tags: css, javascript
+tags: css 
 author:
   github: jsartisan
   name: Pawan Kumar
