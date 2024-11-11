@@ -2,7 +2,7 @@
 
 import { Console as ConsoleFeed } from "console-feed";
 import { ImperativePanelHandle } from "react-resizable-panels";
-import { ComponentPropsWithRef, MutableRefObject, useState } from "react";
+import { ComponentPropsWithRef, forwardRef, MutableRefObject, useState } from "react";
 import { useSandpackConsole } from "@codesandbox/sandpack-react";
 import {
   Icon,
@@ -28,38 +28,37 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 type Props = {
   className?: string;
-  consoleRef?: MutableRefObject<ImperativePanelHandle>;
-  consoleCollapsed?: boolean;
-  setConsoleCollapsed?: (collapsed: boolean) => void;
+  collapsed?: boolean;
+  setCollapsed?: (collapsed: boolean) => void;
 } & ComponentPropsWithRef<"div">;
 
-function Console(props: Props) {
-  const { className, consoleRef, consoleCollapsed, ...rest } = props;
+function _Console(props: Props, ref: MutableRefObject<ImperativePanelHandle>) {
+  const { className, collapsed, ...rest } = props;
   const [filterType, setFilterType] = useState<"warn" | "error" | "info" | "debug" | "all">("all");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const { logs, reset } = useSandpackConsole({ resetOnPreviewRestart: false });
   const [consoleFontSize, setConsoleFontSize] = useState(13);
 
   const onClickConsolePanel = () => {
-    if (consoleRef?.current) {
-      if (consoleCollapsed) {
-        consoleRef.current.expand();
+    if (ref?.current) {
+      if (collapsed) {
+        ref.current.expand();
       } else {
-        consoleRef.current.collapse();
+        ref.current.collapse();
       }
     }
   };
 
   return (
-    <div className="flex h-full flex-grow" data-is-collpased={consoleCollapsed}>
+    <div className="flex h-full flex-grow" data-is-collpased={collapsed}>
       <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)} {...rest}>
         <div className="flex items-center justify-between" style={{ minHeight: 38 }} onClick={onClickConsolePanel}>
           <div className="pl-3 text-base">Console</div>
           <IconButton variant="tertiary" size="sm" className="mx-1">
-            <Icon name={consoleCollapsed ? "chevron-up" : "chevron-down"} />
+            <Icon name={collapsed ? "chevron-up" : "chevron-down"} />
           </IconButton>
         </div>
-        <div className="flex items-center gap-2 border-y border-y-[var(--color-bd)] px-2 py-2">
+        <div className="flex items-center gap-2 overflow-hidden border-y border-y-[var(--color-bd)] px-2 py-2">
           <Tooltip delayDuration={1}>
             <TooltipTrigger asChild>
               <IconButton variant="tertiary" size="sm" onClick={reset}>
@@ -186,5 +185,7 @@ function Console(props: Props) {
     </div>
   );
 }
+
+const Console = forwardRef(_Console);
 
 export default Console;

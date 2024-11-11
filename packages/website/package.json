@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.10.0",
+    "@codesandbox/sandpack-react": "^2.19.9",
     "@excalidraw/excalidraw": "^0.17.6",
     "@frontend-challenges/backend": "workspace:*",
     "@frontend-challenges/shared": "workspace:*",
@@ -55,11 +55,13 @@
     "cmdk": "^0.2.0",
     "console-feed": "^3.6.0",
     "date-fns": "^2.30.0",
+    "emmet-monaco-es": "^5.5.0",
     "esno": "^4.0.0",
     "esquery": "^1.5.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "js-yaml": "^4.1.0",
+    "klona": "^2.0.6",
     "limax": "^4.1.0",
     "mdx-bundler": "^10.0.1",
     "mixpanel-browser": "^2.54.0",

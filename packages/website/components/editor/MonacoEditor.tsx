@@ -1,5 +1,6 @@
 import { useTheme } from "next-themes";
 import React, { useEffect } from "react";
+import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { SupportedTemplates } from "@frontend-challenges/shared";
 import { SandpackState, useActiveCode, useSandpack } from "@codesandbox/sandpack-react";
@@ -64,6 +65,13 @@ export function MonacoEditor(props: MonacoEditorProps) {
       });
     }
   }, [monaco, template]);
+
+  useEffect(() => {
+    if (!monaco) return;
+
+    emmetHTML(monaco);
+    emmetCSS(monaco);
+  }, [monaco]);
 
   if (!monaco) return null;
 

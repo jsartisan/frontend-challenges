@@ -318,3 +318,7 @@
   display: none;
   /* Chrome, Safari and Opera */
 }
+
+.flex > * {
+  min-height: 0;
+}

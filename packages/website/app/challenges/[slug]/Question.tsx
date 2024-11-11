@@ -84,7 +84,7 @@ function QuestionChallenge(props: QuestionProps) {
           </div>
           <div className="min-h-0 w-full flex-grow">
             <ResizableLayout>
-              <Card className="h-full min-h-0 overflow-hidden">
+              <Card className="h-full min-h-0 overflow-hidden" key="description">
                 <Tabs defaultValue="description" className="flex h-full flex-col">
                   <TabsList>
                     <TabsTrigger value="description">Description</TabsTrigger>
@@ -103,6 +103,7 @@ function QuestionChallenge(props: QuestionProps) {
                 </Tabs>
               </Card>
               <CodeEditor
+                key="editor"
                 path={`/challenges/${question.path}`}
                 exclude={["/package.json"]}
                 className="min-h-0"
@@ -112,8 +113,8 @@ function QuestionChallenge(props: QuestionProps) {
                   ...question.templateFiles[template],
                 }}
               />
-              <Preview className="min-h-0" template={template} />
-              <Console />
+              <Preview key="preview" className="min-h-0" template={template} />
+              <Console key="console" />
             </ResizableLayout>
           </div>
         </div>

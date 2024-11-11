@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ImperativePanelHandle } from "react-resizable-panels";
+import { useState } from "react";
 import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
 
 import Preview from "../../components/editor/Preview";
@@ -11,7 +10,7 @@ import { CodeEditor } from "../../components/editor/CodeEditor";
 import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../components/ui/resizable";
+import { DynamicResizableLayout, LayoutGroup } from "../../components/editor/DynamicResizableLayout";
 
 const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -73,8 +72,6 @@ export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTemplateFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template as SupportedTemplates));
-  const consoleRef = useRef<ImperativePanelHandle>();
-  const [consoleCollapsed, setConsoleCollapsed] = useState(false);
 
   const onChangeTemplate = (template: SupportedTemplates) => {
     setTemplate(() => {
@@ -84,6 +81,50 @@ export default function Client() {
     });
 
     setFiles(getFilesFromLocalStorage(template));
+  };
+
+  const layout: LayoutGroup = {
+    id: "root",
+    direction: "horizontal",
+    children: [
+      {
+        defaultSizePercentage: 15,
+        id: crypto.randomUUID(),
+        children: (
+          <div className="flex flex-col gap-3">
+            <TemplateChanger template={template} setTemplate={onChangeTemplate} key={template} />
+            <FileExplorer />
+          </div>
+        ),
+      },
+      {
+        id: crypto.randomUUID(),
+        children: (
+          <CodeEditor
+            path={CURRENT_EDITOR_PATH}
+            template={template}
+            originalFiles={{
+              ...TEMPLATES[template].files,
+            }}
+          />
+        ),
+      },
+      {
+        id: crypto.randomUUID(),
+        direction: "vertical",
+        children: [
+          {
+            defaultSizePercentage: 100,
+            id: crypto.randomUUID(),
+            children: <Preview key="preview" template={template} />,
+          },
+          {
+            id: crypto.randomUUID(),
+            children: <Console />,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -103,52 +144,7 @@ export default function Client() {
           </div>
         </div>
         <div className="w-full flex-grow">
-          <ResizablePanelGroup direction="horizontal" className="w-full gap-1">
-            <ResizablePanel defaultSizePercentage={15}>
-              <div className="flex flex-col gap-3">
-                <TemplateChanger template={template} setTemplate={onChangeTemplate} />
-                <FileExplorer />
-              </div>
-            </ResizablePanel>
-            <ResizableHandle className="w-2" />
-            <ResizablePanel defaultSizePercentage={50}>
-              <CodeEditor
-                path={CURRENT_EDITOR_PATH}
-                template={template}
-                originalFiles={{
-                  ...TEMPLATES[template].files,
-                }}
-              />
-            </ResizablePanel>
-            <ResizableHandle className="w-2" />
-            <ResizablePanel defaultSizePercentage={35}>
-              <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
-                <ResizablePanel defaultSizePercentage={100}>
-                  <Preview template={template} />
-                </ResizablePanel>
-                <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-                <ResizablePanel
-                  collapsible
-                  collapsedSizePixels={40}
-                  minSizePixels={200}
-                  className="sm:min-h-0"
-                  ref={consoleRef}
-                  onCollapse={() => {
-                    setConsoleCollapsed(true);
-                  }}
-                  onExpand={() => {
-                    setConsoleCollapsed(false);
-                  }}
-                >
-                  <Console
-                    consoleRef={consoleRef}
-                    consoleCollapsed={consoleCollapsed}
-                    setConsoleCollapsed={setConsoleCollapsed}
-                  />
-                </ResizablePanel>
-              </ResizablePanelGroup>
-            </ResizablePanel>
-          </ResizablePanelGroup>
+          <DynamicResizableLayout layout={layout} />
         </div>
       </div>
     </SandpackRoot>

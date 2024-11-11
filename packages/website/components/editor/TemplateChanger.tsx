@@ -17,7 +17,6 @@ const TemplateChanger = (props: TemplateChangerProps) => {
         setTemplate(value as SupportedTemplates);
       }}
       value={template}
-      defaultValue="react"
     >
       <SelectTrigger>
         <SelectValue placeholder="Select template" />

@@ -19,15 +19,16 @@ type Props = {
 export default function SandpackRoot(props: Props) {
   const { resolvedTheme } = useTheme();
   const { children, className, files, path, template, originalFiles } = props;
+  const isStatic = template === "static";
 
   return (
     <SandpackProvider
       files={files}
-      customSetup={{}}
+      customSetup={isStatic ? undefined : {}}
+      template={isStatic ? "static" : undefined}
       key={`${Object.keys(files).join("-")}-${resolvedTheme}`}
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
-        bundlerURL: "https://bundler.frontend-challenges.com",
         classes: {
           "sp-code-editor": "!bg-[var(--color-bg)] h-full",
           "sp-wrapper": "!h-auto sm:!h-[calc(100vh_-_var(--nav-top-offset))]",
