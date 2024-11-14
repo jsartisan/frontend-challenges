@@ -65,7 +65,7 @@ export async function getAnswersOfQuestion(
         });
       }
     }
-  } catch (e) {
+  } catch {
     console.error("Failed at fetching answers");
   }
 

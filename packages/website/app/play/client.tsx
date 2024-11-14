@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
+import { SupportedTemplates, TEMPLATES } from "@frontend-challenges/shared";
 
 import Preview from "../../components/editor/Preview";
 import Console from "../../components/editor/Console";
@@ -11,63 +11,10 @@ import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
 import { DynamicResizableLayout, LayoutGroup } from "../../components/editor/DynamicResizableLayout";
-
-const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
-  const template = searchParams.get("template");
-
-  if (template && SUPPORTED_TEMPLATES.includes(template as SupportedTemplates)) {
-    return template as SupportedTemplates;
-  }
-
-  if (
-    localStorage.getItem("playground-template") &&
-    SUPPORTED_TEMPLATES.includes(localStorage.getItem("playground-template") as SupportedTemplates)
-  ) {
-    return localStorage.getItem("playground-template") as SupportedTemplates;
-  }
-
-  return "vanilla";
-};
-
-const getFilesFromURL = (searchParams: URLSearchParams, template: SupportedTemplates) => {
-  const files = searchParams.get("code");
-
-  if (files) {
-    try {
-      const parsedFiles = JSON.parse(files);
-
-      return {
-        ...TEMPLATES[template].files,
-        ...parsedFiles,
-      };
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  if (localStorage.getItem(`/playground-${template}`)) {
-    return getFilesFromLocalStorage(template);
-  }
-
-  return TEMPLATES[template].files;
-};
-
-const getFilesFromLocalStorage = (template: SupportedTemplates) => {
-  try {
-    const parsedFiles = JSON.parse(localStorage.getItem(`/playground-${template}`) as string);
-
-    return {
-      ...TEMPLATES[template].files,
-      ...parsedFiles,
-    };
-  } catch (e) {
-    console.error(e);
-
-    return TEMPLATES[template].files;
-  }
-};
+import { getTemplateFromURL, getFilesFromURL, getFilesFromLocalStorage } from "./utils";
 
 const CURRENT_EDITOR_PATH = "/playground";
+
 export default function Client() {
   const searchParams = new URLSearchParams(window.location.search);
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTemplateFromURL(searchParams));
@@ -88,7 +35,7 @@ export default function Client() {
     direction: "horizontal",
     children: [
       {
-        defaultSizePercentage: 15,
+        defaultSize: 15,
         id: crypto.randomUUID(),
         children: (
           <div className="flex flex-col gap-3">
@@ -114,11 +61,11 @@ export default function Client() {
         direction: "vertical",
         children: [
           {
-            defaultSizePercentage: 100,
             id: crypto.randomUUID(),
             children: <Preview key="preview" template={template} />,
           },
           {
+            defaultCollapsed: true,
             id: crypto.randomUUID(),
             children: <Console />,
           },

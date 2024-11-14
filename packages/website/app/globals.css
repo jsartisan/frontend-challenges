@@ -322,3 +322,7 @@
 .flex > * {
   min-height: 0;
 }
+
+nextjs-portal {
+  display: none;
+}

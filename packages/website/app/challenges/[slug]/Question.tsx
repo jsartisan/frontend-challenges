@@ -114,7 +114,7 @@ function QuestionChallenge(props: QuestionProps) {
                 }}
               />
               <Preview key="preview" className="min-h-0" template={template} />
-              <Console key="console" />
+              <Console />
             </ResizableLayout>
           </div>
         </div>

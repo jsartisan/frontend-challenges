@@ -8,7 +8,7 @@ type SolutionProps = {
   solution: string;
 };
 
-function Solution(props: SolutionProps) {
+export function Solution(props: SolutionProps) {
   const { solution } = props;
   const [showSolution, setShowSolution] = useState(false);
 
@@ -37,5 +37,3 @@ function Solution(props: SolutionProps) {
     </Card>
   );
 }
-
-export { Solution };
