@@ -2,7 +2,7 @@ import React from "react";
 import { TEMPLATES, SupportedTemplates } from "@frontend-challenges/shared";
 import { SandpackFile } from "@codesandbox/sandpack-react";
 
-import { CodeEditor } from "../editor/CodeEditor";
+import CodeEditor from "../editor/CodeEditor";
 import SandpackRoot from "../editor/SandpackRoot";
 
 type SandpackProps = {
@@ -76,7 +76,7 @@ function Sandpack(props: SandpackProps) {
   return (
     <div className="not-prose">
       <SandpackRoot files={allFiles}>
-        <CodeEditor template={template} showTabs={false} />
+        <CodeEditor template={template} showTabs={false} originalFiles={allFiles} />
       </SandpackRoot>
     </div>
   );

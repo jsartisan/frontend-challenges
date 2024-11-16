@@ -2,7 +2,7 @@
 
 import { Console as ConsoleFeed } from "console-feed";
 import { ImperativePanelHandle } from "react-resizable-panels";
-import { ComponentPropsWithRef, forwardRef, MutableRefObject, useState } from "react";
+import { ComponentPropsWithRef, MutableRefObject, useState } from "react";
 import { useSandpackConsole } from "@codesandbox/sandpack-react";
 import {
   Icon,
@@ -28,34 +28,33 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 type Props = {
   className?: string;
-  collapsed?: boolean;
-  setCollapsed?: (collapsed: boolean) => void;
+  panelRef?: MutableRefObject<ImperativePanelHandle>;
 } & ComponentPropsWithRef<"div">;
 
-function _Console(props: Props, ref: MutableRefObject<ImperativePanelHandle>) {
-  const { className, collapsed, ...rest } = props;
+function Console(props: Props) {
+  const { className, panelRef } = props;
   const [filterType, setFilterType] = useState<"warn" | "error" | "info" | "debug" | "all">("all");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const { logs, reset } = useSandpackConsole({ resetOnPreviewRestart: false });
   const [consoleFontSize, setConsoleFontSize] = useState(13);
 
   const onClickConsolePanel = () => {
-    if (ref?.current) {
-      if (collapsed) {
-        ref.current.expand();
+    if (panelRef?.current) {
+      if (panelRef?.current.isCollapsed()) {
+        panelRef.current.expand();
       } else {
-        ref.current.collapse();
+        panelRef.current.collapse();
       }
     }
   };
 
   return (
-    <div className="flex h-full flex-grow" data-is-collpased={collapsed}>
-      <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)} {...rest}>
+    <div className="flex h-full flex-grow">
+      <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
         <div className="flex items-center justify-between" style={{ minHeight: 38 }} onClick={onClickConsolePanel}>
           <div className="pl-3 text-base">Console</div>
           <IconButton variant="tertiary" size="sm" className="mx-1">
-            <Icon name={collapsed ? "chevron-up" : "chevron-down"} />
+            <Icon name={"chevron-down"} />
           </IconButton>
         </div>
         <div className="flex items-center gap-2 overflow-hidden border-y border-y-[var(--color-bd)] px-2 py-2">
@@ -185,7 +184,5 @@ function _Console(props: Props, ref: MutableRefObject<ImperativePanelHandle>) {
     </div>
   );
 }
-
-const Console = forwardRef(_Console);
 
 export default Console;

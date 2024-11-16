@@ -2,7 +2,7 @@ import { SupportedTemplates } from "@frontend-challenges/shared";
 import { SUPPORTED_TEMPLATES, TEMPLATES } from "@frontend-challenges/shared";
 
 import Preview from "../../../components/editor/Preview";
-import { CodeEditor } from "../../../components/editor/CodeEditor";
+import CodeEditor from "../../../components/editor/CodeEditor";
 import { FileExplorer } from "../../../components/editor/FileExplorer";
 import {
   FormControl,
@@ -30,7 +30,7 @@ function Step2Fields(props: Step2FieldsProps) {
 
   return (
     <ResizablePanelGroup direction="horizontal" className="mt-6 grid flex-grow gap-1">
-      <ResizablePanel defaultSizePercentage={20} className="flex flex-col gap-4">
+      <ResizablePanel defaultSize={20} className="flex flex-col gap-4">
         <FormField
           control={form.control}
           name="template"
@@ -66,7 +66,7 @@ function Step2Fields(props: Step2FieldsProps) {
         <FileExplorer />
       </ResizablePanel>
       <ResizableHandle className="w-2" />
-      <ResizablePanel defaultSizePercentage={50}>
+      <ResizablePanel defaultSize={50}>
         <FormField
           control={form.control}
           name="files"
@@ -74,7 +74,7 @@ function Step2Fields(props: Step2FieldsProps) {
         />
       </ResizablePanel>
       <ResizableHandle className="w-2" />
-      <ResizablePanel defaultSizePercentage={30}>
+      <ResizablePanel defaultSize={30}>
         <Preview template={form.getValues("template") as SupportedTemplates} />
       </ResizablePanel>
     </ResizablePanelGroup>

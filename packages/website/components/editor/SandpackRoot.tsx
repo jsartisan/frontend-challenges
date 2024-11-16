@@ -31,7 +31,7 @@ export default function SandpackRoot(props: Props) {
       options={{
         classes: {
           "sp-code-editor": "!bg-[var(--color-bg)] h-full",
-          "sp-wrapper": "!h-auto sm:!h-[calc(100vh_-_var(--nav-top-offset))]",
+          "sp-wrapper": "!h-auto sm:!h-[calc(100vh_-_var(--nav-top-offset))] !text-[length:inherit]",
           "sp-layout": cn("!bg-inherit !border-none h-full", className),
           "sp-navigator": "!h-10 !border-b-[var(--color-bd)]",
           "sp-input": "!h-6 !rounded",

@@ -10,10 +10,10 @@ import Description from "../../../components/editor/Description";
 import SandpackRoot from "../../../components/editor/SandpackRoot";
 import { AnswerList } from "../../../components/questions/AnswerList";
 import { LayoutChanger } from "../../../components/questions/LayoutChanger";
-import { ResizableLayout } from "../../../components/editor/ResizableLayout";
 import { ShareSolutionButton } from "../../../components/editor/ShareSolutionButton";
 import { useLocalStorageChallengeFiles } from "../../../hooks/useLocalStorageChallengeFiles";
 import { Tabs, TabsContent, TabsList, TabsTrigger, Separator, Skeleton } from "../../../components/ui";
+import { DynamicResizableLayout, LayoutGroup } from "packages/website/components/editor/DynamicResizableLayout";
 
 const MarkCompleteButton = dynamic(() => import("../../../components/editor/MarkCompleteButton"), {
   ssr: false,
@@ -60,6 +60,67 @@ function QuestionChallenge(props: QuestionProps) {
     ...savedChallengeFiles,
   };
 
+  const layout: LayoutGroup = {
+    id: "root",
+    direction: "horizontal",
+    children: [
+      {
+        id: crypto.randomUUID(),
+        children: (
+          <Card className="h-full min-h-0 overflow-hidden" key="description">
+            <Tabs defaultValue="description" className="flex h-full flex-col">
+              <TabsList>
+                <TabsTrigger value="description">Description</TabsTrigger>
+                <TabsTrigger value="solutions">Submissions</TabsTrigger>
+                <TabsTrigger value="notes">Notes</TabsTrigger>
+              </TabsList>
+              <TabsContent value="description" className="flex-grow overflow-y-auto">
+                <Description challenge={question} />
+              </TabsContent>
+              <TabsContent value="solutions">
+                <AnswerList challenge={question} />
+              </TabsContent>
+              <TabsContent value="notes" className="p-0">
+                <Notes path={`/challenges/${question.path}`} />
+              </TabsContent>
+            </Tabs>
+          </Card>
+        ),
+      },
+      {
+        id: crypto.randomUUID(),
+        direction: "vertical",
+        children: [
+          {
+            id: crypto.randomUUID(),
+            children: (
+              <CodeEditor
+                key="editor"
+                path={`/challenges/${question.path}`}
+                exclude={["/package.json"]}
+                className="min-h-0"
+                template={template}
+                originalFiles={{
+                  ...TEMPLATES[template].files,
+                  ...question.templateFiles[template],
+                }}
+              />
+            ),
+          },
+          {
+            id: crypto.randomUUID(),
+            children: <Preview key="preview" className="min-h-0" template={template} />,
+          },
+          {
+            id: crypto.randomUUID(),
+            defaultCollapsed: true,
+            children: <Console />,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
       <SandpackRoot
@@ -83,39 +144,7 @@ function QuestionChallenge(props: QuestionProps) {
             </div>
           </div>
           <div className="min-h-0 w-full flex-grow">
-            <ResizableLayout>
-              <Card className="h-full min-h-0 overflow-hidden" key="description">
-                <Tabs defaultValue="description" className="flex h-full flex-col">
-                  <TabsList>
-                    <TabsTrigger value="description">Description</TabsTrigger>
-                    <TabsTrigger value="solutions">Submissions</TabsTrigger>
-                    <TabsTrigger value="notes">Notes</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="description" className="flex-grow overflow-y-auto">
-                    <Description challenge={question} />
-                  </TabsContent>
-                  <TabsContent value="solutions">
-                    <AnswerList challenge={question} />
-                  </TabsContent>
-                  <TabsContent value="notes" className="p-0">
-                    <Notes path={`/challenges/${question.path}`} />
-                  </TabsContent>
-                </Tabs>
-              </Card>
-              <CodeEditor
-                key="editor"
-                path={`/challenges/${question.path}`}
-                exclude={["/package.json"]}
-                className="min-h-0"
-                template={template}
-                originalFiles={{
-                  ...TEMPLATES[template].files,
-                  ...question.templateFiles[template],
-                }}
-              />
-              <Preview key="preview" className="min-h-0" template={template} />
-              <Console key="console" />
-            </ResizableLayout>
+            <DynamicResizableLayout layout={layout} />
           </div>
         </div>
       </SandpackRoot>

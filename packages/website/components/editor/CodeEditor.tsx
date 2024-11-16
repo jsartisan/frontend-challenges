@@ -38,7 +38,7 @@ type Props = {
   template: SupportedTemplates;
 };
 
-export function CodeEditor(props: Props) {
+function _CodeEditor(props: Props) {
   const { className, showTabs = true, exclude, path, template, originalFiles } = props;
   const { sandpack } = useSandpack();
   const { resetFiles } = useSandpackLocal();
@@ -277,6 +277,6 @@ export function CodeEditor(props: Props) {
   );
 }
 
-const MemoizedCodeEditor = memo(CodeEditor);
+const MemoizedCodeEditor = memo(_CodeEditor);
 
 export default MemoizedCodeEditor;

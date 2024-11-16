@@ -9,7 +9,9 @@ import { LayoutManager } from "./LayoutManager";
 type Direction = "horizontal" | "vertical";
 
 // Define specific types for our layout structure
-export type LayoutItem = { children: React.ReactNode } & React.ComponentProps<typeof ResizablePanel>;
+export type LayoutItem = { children: React.ReactNode; defaultCollapsed?: boolean } & React.ComponentProps<
+  typeof ResizablePanel
+>;
 export type LayoutGroup = {
   id: string;
   direction: Direction;
@@ -37,7 +39,7 @@ export const DynamicResizableLayout = (props: DynamicResizableLayoutProps) => {
 
     const newLayout = layoutManager.current.updateLayout(sourceItemPath, targetItemPath, dropZone);
 
-    console.log("## newLayout", newLayout);
+    console.log("prev layout", layout, "## newLayout", newLayout);
 
     setLayout(newLayout);
 
@@ -62,8 +64,8 @@ export const DynamicResizableLayout = (props: DynamicResizableLayoutProps) => {
               updateLayout={updateLayout}
               sourceItemPath={sourceItemPath}
               setSourceItemPath={setSourceItemPath}
-              {...child}
               path={[...path, index]}
+              {...child}
               draggable={isLayoutGroup(child) === false}
               direction={item.direction}
             >

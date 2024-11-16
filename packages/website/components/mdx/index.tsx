@@ -1,6 +1,14 @@
-import { Sandpack } from "./Sandpack";
-import { SandpackCodeViewer, SandpackProvider } from "@codesandbox/sandpack-react";
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
+import { SandpackCodeViewer, SandpackProvider } from "@codesandbox/sandpack-react";
+
+import { Skeleton } from "../ui";
+import { Suspense } from "react";
+
+const Sandpack = dynamic(() => import("./Sandpack").then((mod) => mod.Sandpack), {
+  ssr: false,
+  loading: () => <Skeleton className="h-20" />,
+});
 
 export const components = {
   Sandpack,
@@ -11,24 +19,26 @@ export const components = {
     const filename = meta?.split(" ")[0];
 
     return (
-      <SandpackProvider
-        options={{
-          classes: {
-            "sp-code-editor": "!border !border-[var(--color-bd)] !rounded",
-            "sp-editor-viewer": "!rounded",
-          },
-        }}
-        theme={resolvedTheme === "dark" ? "dark" : "light"}
-        template="vanilla"
-        files={{
-          [filename]: {
-            code: code ? code.trim() : "",
-            active: true,
-          },
-        }}
-      >
-        <SandpackCodeViewer />
-      </SandpackProvider>
+      <Suspense fallback={<pre className="h-20">{code}</pre>}>
+        <SandpackProvider
+          options={{
+            classes: {
+              "sp-code-editor": "!border !border-[var(--color-bd)] !rounded",
+              "sp-editor-viewer": "!rounded",
+            },
+          }}
+          theme={resolvedTheme === "dark" ? "dark" : "light"}
+          template="vanilla"
+          files={{
+            [filename]: {
+              code: code ? code.trim() : "",
+              active: true,
+            },
+          }}
+        >
+          <SandpackCodeViewer />
+        </SandpackProvider>
+      </Suspense>
     );
   },
   h2: (props: any) => <h2 className="mb-3 mt-6 text-2xl font-bold" {...props} />,

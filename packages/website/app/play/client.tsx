@@ -6,7 +6,7 @@ import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@frontend-ch
 import Preview from "../../components/editor/Preview";
 import Console from "../../components/editor/Console";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
-import { CodeEditor } from "../../components/editor/CodeEditor";
+import CodeEditor from "../../components/editor/CodeEditor";
 import SandpackRoot from "../../components/editor/SandpackRoot";
 import { FileExplorer } from "../../components/editor/FileExplorer";
 import { TemplateChanger } from "../../components/editor/TemplateChanger";
@@ -88,7 +88,7 @@ export default function Client() {
     direction: "horizontal",
     children: [
       {
-        defaultSizePercentage: 15,
+        defaultSize: 15,
         id: crypto.randomUUID(),
         children: (
           <div className="flex flex-col gap-3">
@@ -114,11 +114,11 @@ export default function Client() {
         direction: "vertical",
         children: [
           {
-            defaultSizePercentage: 100,
             id: crypto.randomUUID(),
             children: <Preview key="preview" template={template} />,
           },
           {
+            defaultCollapsed: true,
             id: crypto.randomUUID(),
             children: <Console />,
           },

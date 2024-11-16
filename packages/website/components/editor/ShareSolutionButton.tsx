@@ -11,7 +11,7 @@ type ShareSolutionProps = {
   template?: SupportedTemplates;
 };
 
-function ShareSolutionButton(props: ShareSolutionProps) {
+export function ShareSolutionButton(props: ShareSolutionProps) {
   const { challenge, template } = props;
   const { sandpack } = useSandpack();
   const { files } = sandpack;
@@ -34,5 +34,3 @@ function ShareSolutionButton(props: ShareSolutionProps) {
     </Button>
   );
 }
-
-export { ShareSolutionButton };

@@ -79,7 +79,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "react-markdown": "^9.0.1",
-    "react-resizable-panels": "^0.0.63",
+    "react-resizable-panels": "^2.1.6",
     "react-stately": "^3.31.0",
     "remark-html": "^16.0.1",
     "remark-parse": "^11.0.0",

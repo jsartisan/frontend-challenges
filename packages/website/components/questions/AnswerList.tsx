@@ -1,6 +1,6 @@
-"use client";
-
+import dynamic from "next/dynamic";
 import { Question, TEMPLATES } from "@frontend-challenges/shared";
+
 import {
   Sheet,
   SheetContent,
@@ -17,8 +17,12 @@ import {
 
 import Preview from "../editor/Preview";
 import SandpackRoot from "../editor/SandpackRoot";
-import { CodeEditor } from "../editor/CodeEditor";
 import { useAnswers } from "packages/website/hooks/useAnswers";
+
+const CodeEditor = dynamic(() => import("../editor/CodeEditor"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-full w-full" />,
+});
 
 type QuestionListProps = {
   challenge: Question;
@@ -119,10 +123,13 @@ export function AnswerList(props: QuestionListProps) {
                   <div className="grid h-[calc(100%-theme(spacing.20))] flex-grow grid-cols-1 grid-rows-2 gap-3">
                     <CodeEditor
                       path={`/answers/${answer.no}`}
-                      exclude={["/package.json"]}
                       className="flex-grow"
                       files={answer.files || {}}
                       template={answer.template}
+                      originalFiles={{
+                        ...TEMPLATES[answer.template].files,
+                        ...answer.files,
+                      }}
                     />
                     <Preview template={answer.template} className="" />
                   </div>
