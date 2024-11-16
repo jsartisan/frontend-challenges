@@ -90,6 +90,7 @@ export default function Client() {
       {
         defaultSize: 15,
         id: crypto.randomUUID(),
+        title: "Files",
         children: (
           <div className="flex flex-col gap-3">
             <TemplateChanger template={template} setTemplate={onChangeTemplate} key={template} />

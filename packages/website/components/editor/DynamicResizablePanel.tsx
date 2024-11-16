@@ -1,4 +1,4 @@
-import React, { cloneElement, ComponentProps, useRef } from "react";
+import React, { cloneElement, ComponentProps, useRef, useState } from "react";
 import { ResizablePanel } from "../ui/resizable";
 import { ImperativePanelHandle } from "react-resizable-panels";
 import { cn } from "packages/website/utils/helpers";
@@ -27,6 +27,7 @@ export function DynamicResizablePanel(props: DragAndDropProps) {
     direction,
     defaultCollapsed,
   } = props;
+  const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   const ref = useRef<ImperativePanelHandle>();
   const dragManager = useRef(new DragManager());
@@ -72,7 +73,11 @@ export function DynamicResizablePanel(props: DragAndDropProps) {
       collapsedSize={0}
       minSize={15}
       defaultSize={defaultCollapsed ? 0 : props.defaultSize}
-      className="!basis-10"
+      className="!min-h-[200px] !basis-10 sm:!min-h-0"
+      onCollapse={() => setCollapsed(true)}
+      onExpand={() => setCollapsed(false)}
+      data-panel-collapsed={collapsed ? "true" : "false"}
+      data-panel-direction={direction}
     >
       {content}
     </ResizablePanel>

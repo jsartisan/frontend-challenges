@@ -138,6 +138,7 @@ export class LayoutManager {
   private convertGroupToItem(group: LayoutGroup) {
     delete group.direction;
     group.children = (group.children[0] as LayoutGroup).children;
+    group.direction = (group.children[0] as LayoutGroup).direction;
   }
 
   private removeSourceItem(sourcePath: Path, targetPath: Path, dropZone: DropZone) {
