@@ -1,15 +1,10 @@
 import path from "path";
 import fs from "fs-extra";
-import {
-  getDifficultyPlainText,
-  getDifficultyBadgeInverted,
-  getBadge,
-  getChallengeBadge,
-} from "@frontend-challenges/shared";
-import { Challenge } from "@frontend-challenges/shared";
+import { getDifficultyPlainText, getDifficultyBadgeInverted, getBadge, getChallengeBadge } from "@/shared";
+import { Challenge } from "@/shared";
 import { insertInfoReadme } from "@frontend-challenges/backend";
-import { getFileNameByLocale } from "@frontend-challenges/shared";
-import { DIFFICULTY_RANK, SUPPORTED_LOCALES } from "@frontend-challenges/shared";
+import { getFileNameByLocale } from "@/shared";
+import { DIFFICULTY_RANK, SUPPORTED_LOCALES } from "@/shared";
 import { getAllTags, getChallengesByTag, getChallenges } from "@frontend-challenges/backend";
 
 /**

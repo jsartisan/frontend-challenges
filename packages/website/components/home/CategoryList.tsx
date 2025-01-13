@@ -1,6 +1,6 @@
 import { Card, Icon, Link } from "../ui";
 
-import { getCategoriesWithChallengesCount } from "../../utils/categories";
+import { getCategoriesWithChallengesCount } from "@/web/utils/categories";
 
 type CategoryListProps = {
   categories: ReturnType<typeof getCategoriesWithChallengesCount>;

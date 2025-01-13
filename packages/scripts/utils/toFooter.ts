@@ -1,6 +1,6 @@
-import { translate } from "@frontend-challenges/shared";
-import { Question, SupportedLocales } from "@frontend-challenges/shared";
-import { getShareAnswerURL, getSolutionsURL, getRepoREADMEUrl } from "@frontend-challenges/shared";
+import { translate } from "@/shared";
+import { Question, SupportedLocales } from "@/shared";
+import { getShareAnswerURL, getSolutionsURL, getRepoREADMEUrl } from "@/shared";
 
 export const toFooter = function (quiz: Question, locale: SupportedLocales) {
   return (

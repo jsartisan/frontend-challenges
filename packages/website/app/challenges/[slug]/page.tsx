@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DOMAIN } from "@frontend-challenges/shared";
+import { DOMAIN } from "@/shared";
 import { getChallengeByPath, getChallenges } from "@frontend-challenges/backend";
 
 import Client from "./client";
@@ -8,7 +8,13 @@ export const revalidate = 3600;
 export const dynamicParams = false;
 export const dynamic = "force-static";
 
-export async function generateMetadata(props: any): Promise<Metadata> {
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const question = await getChallengeByPath(props.params.slug);
 
   return {
@@ -28,10 +34,8 @@ export async function generateStaticParams() {
   }));
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function Page(props: any) {
-  const challenges = await getChallenges();
+export default async function Page(props: PageProps) {
   const challenge = await getChallengeByPath(props.params.slug);
 
-  return <Client challenge={challenge} challenges={challenges} />;
+  return <Client challenge={challenge} />;
 }

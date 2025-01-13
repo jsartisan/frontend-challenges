@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { REPO, ChallengeSlim } from "@frontend-challenges/shared";
+import { REPO, ChallengeSlim } from "@/shared";
 
 import { Logo } from "../common/Logo";
 import { Skeleton } from "../ui/skeleton";

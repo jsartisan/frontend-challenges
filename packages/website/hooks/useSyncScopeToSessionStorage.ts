@@ -1,6 +1,6 @@
 "use client";
 
-import { STORAGE_KEY } from "@frontend-challenges/shared";
+import { STORAGE_KEY } from "@/shared";
 import { useEffect } from "react";
 
 /**

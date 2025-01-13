@@ -1,5 +1,5 @@
-import { Challenge, REPO, TEMPLATES } from "@frontend-challenges/shared";
-import { DEFAULT_LOCALE, DIFFICULTY_RANK } from "@frontend-challenges/shared";
+import { Challenge, REPO, TEMPLATES } from "@/shared";
+import { DEFAULT_LOCALE, DIFFICULTY_RANK } from "@/shared";
 
 import { FormValues } from "../app/submit/question/client";
 

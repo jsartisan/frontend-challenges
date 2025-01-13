@@ -1,5 +1,5 @@
 import React from "react";
-import { TEMPLATES, SupportedTemplates } from "@frontend-challenges/shared";
+import { TEMPLATES, SupportedTemplates } from "@/shared";
 import { SandpackFile } from "@codesandbox/sandpack-react";
 
 import CodeEditor from "../editor/CodeEditor";

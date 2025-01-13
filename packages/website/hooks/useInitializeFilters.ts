@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { CATEGORIES, Category, Difficulty, DIFFICULTY_RANK, STORAGE_KEY } from "@frontend-challenges/shared";
+import { CATEGORIES, Category, Difficulty, DIFFICULTY_RANK, STORAGE_KEY } from "@/shared";
 
 import { ChallengeFilterState } from "./useFilteredChallenges";
 import { getSessionStorageItem } from "../utils/sessionStorage";

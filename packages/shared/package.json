@@ -1,5 +1,5 @@
 {
-  "name": "@frontend-challenges/shared",
+  "name": "@/shared",
   "version": "0.1.0",
   "private": true,
   "author": "Pawan Kumar <pawankumar2901@hotmail.com>",

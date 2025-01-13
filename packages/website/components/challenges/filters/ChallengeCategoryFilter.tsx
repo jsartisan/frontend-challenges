@@ -1,5 +1,5 @@
-import { CATEGORIES } from "@frontend-challenges/shared";
-import type { Category } from "@frontend-challenges/shared";
+import { CATEGORIES } from "@/shared";
+import type { Category } from "@/shared";
 
 import { MultiSelect } from "../../ui/multi-select";
 import { ChallengeFilterDispatch, ChallengeFilterState } from "../../../hooks/useFilteredChallenges";

@@ -1,5 +1,5 @@
 import { Root, RootContent } from "mdast";
-import { CodeFile } from "@frontend-challenges/shared";
+import { CodeFile } from "@/shared";
 
 /**
  * creates a map of file paths to file contents from a markdown AST

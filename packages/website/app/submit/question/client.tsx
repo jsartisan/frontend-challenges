@@ -4,9 +4,9 @@ import * as z from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TEMPLATES } from "@frontend-challenges/shared";
-import type { Difficulty, SupportedTemplates } from "@frontend-challenges/shared";
-import { DIFFICULTY_RANK } from "@frontend-challenges/shared";
+import { TEMPLATES } from "@/shared";
+import type { Difficulty, SupportedTemplates } from "@/shared";
+import { DIFFICULTY_RANK } from "@/shared";
 
 import { Description } from "./Description";
 import { Step1Fields } from "./Step1Fields";

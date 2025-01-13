@@ -1,6 +1,6 @@
 "use client";
 
-import { Challenge } from "@frontend-challenges/shared";
+import { Challenge } from "@/shared";
 
 import CompletionStats from "./CompletionStats";
 import Footer from "../../components/layout/Footer";

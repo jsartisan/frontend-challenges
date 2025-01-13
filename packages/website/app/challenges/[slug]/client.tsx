@@ -1,31 +1,24 @@
 "use client";
 
-import { useEffect } from "react";
-import { Challenge } from "@frontend-challenges/shared";
-
-import { mixpanel } from "../../../utils/mixpanel";
+import { Challenge } from "@/shared";
+import { useEventTracking } from "@/web/hooks/useAnalytics";
 
 import { Quiz } from "./Quiz";
 import { Question } from "./Question";
 
 type ClientProps = {
   challenge: Challenge;
-  challenges: Challenge[];
 };
 
 export default function Client(props: ClientProps) {
-  const { challenge, challenges } = props;
+  const { challenge } = props;
 
-  useEffect(() => {
-    mixpanel.track("Challenge Viewed", {
-      challenge: challenge.no,
-      title: challenge.info?.en?.title,
-    });
-  }, [challenge]);
+  const eventData = {
+    challenge: challenge.no,
+    title: challenge.info?.en?.title,
+  };
 
-  if (challenge.type === "question") {
-    return <Question question={challenge} challenges={challenges} />;
-  }
+  useEventTracking("Challenge Viewed", eventData, [challenge]);
 
-  return <Quiz challenge={challenge} challenges={challenges} />;
+  return challenge.type === "quiz" ? <Quiz challenge={challenge} /> : <Question challenge={challenge} />;
 }

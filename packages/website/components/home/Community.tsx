@@ -1,5 +1,5 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { DISCUSSIONS, REPO } from "@frontend-challenges/shared";
+import { DISCUSSIONS, REPO } from "@/shared";
 
 import { Button } from "../ui/button";
 
@@ -8,7 +8,7 @@ export function Community() {
     <div className="bg-[var(--color-bg-secondary)] py-12 text-left sm:text-center md:py-16">
       <div className="container flex !max-w-[600px] flex-col gap-4">
         <p className="flex h-[1cap] items-center justify-center text-2xl font-bold sm:text-5xl">Community</p>{" "}
-        <p className="text-center text-sm leading-relaxed text-[var(--color-fg-subtle)] sm:text-lg  md:text-start">
+        <p className="text-center text-sm leading-relaxed text-[var(--color-fg-subtle)] sm:text-lg">
           frontend-challenges.com is an{" "}
           <a
             href={REPO}

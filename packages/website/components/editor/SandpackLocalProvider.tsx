@@ -1,6 +1,6 @@
+import { SupportedTemplates } from "@/shared";
 import { createContext, useContext, useMemo } from "react";
 import { SandpackFiles, useSandpack } from "@codesandbox/sandpack-react";
-import { SupportedTemplates } from "packages/shared/src";
 
 type SandpackLocalContextType = {
   updateFile: (pathOrFiles: string | SandpackFiles, code?: string, shouldUpdatePreview?: boolean) => void;

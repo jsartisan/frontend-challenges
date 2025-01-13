@@ -1,4 +1,4 @@
-import { ResizableHandle } from "../ui/resizable";
+import { ResizableHandle } from "@/web/components/ui/resizable";
 
 type DynamicResizableHandleProps = {
   direction: "horizontal" | "vertical";

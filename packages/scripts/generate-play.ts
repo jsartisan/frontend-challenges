@@ -4,9 +4,9 @@ import c from "picocolors";
 import prompts from "prompts";
 import { fileURLToPath } from "node:url";
 import { getChallenges } from "@frontend-challenges/backend";
-import { ROOT_PATH, SUPPORTED_LOCALES } from "@frontend-challenges/shared";
+import { ROOT_PATH, SUPPORTED_LOCALES } from "@/shared";
 import { copy, createDir, writeFile } from "@frontend-challenges/backend";
-import type { Question, SupportedTemplates } from "@frontend-challenges/shared";
+import type { Question, SupportedTemplates } from "@/shared";
 
 // type Snapshot = Record<string, string>;
 

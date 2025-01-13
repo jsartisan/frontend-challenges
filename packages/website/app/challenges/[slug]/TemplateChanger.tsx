@@ -1,17 +1,18 @@
-import { Question, SupportedTemplates } from "@frontend-challenges/shared";
-import { ToggleGroup, Icon, IconProps, ToggleGroupItem } from "../../../components/ui";
+import { Question, Challenge, SupportedTemplates } from "@/shared";
+import { ToggleGroup, Icon, IconProps, ToggleGroupItem } from "@/web/components/ui";
 
 type TemplateChangerProps = {
-  question: Question;
+  challenge: Challenge;
   template: SupportedTemplates;
   setTemplate: React.Dispatch<React.SetStateAction<SupportedTemplates>>;
 };
 
 export function TemplateChanger(props: TemplateChangerProps) {
-  const { question, template, setTemplate } = props;
+  const { template, setTemplate } = props;
+  const challenge = props.challenge as Question;
 
   return (
-    Object.keys(question.templateFiles).length > 1 && (
+    Object.keys(challenge.templateFiles).length > 1 && (
       <ToggleGroup
         variant="outline"
         size="icon"
@@ -21,7 +22,7 @@ export function TemplateChanger(props: TemplateChangerProps) {
           setTemplate(value as SupportedTemplates);
         }}
       >
-        {Object.keys(question.templateFiles).map((template) => {
+        {Object.keys(challenge.templateFiles).map((template) => {
           return (
             <ToggleGroupItem key={template} value={template}>
               <Icon name={`${template}-color` as IconProps["name"]} />

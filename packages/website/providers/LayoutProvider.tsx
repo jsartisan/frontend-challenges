@@ -1,4 +1,5 @@
 "use client";
+import { STORAGE_KEY } from "packages/shared/src";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type Layout = "layout-1" | "layout-2" | "layout-3";
@@ -21,14 +22,9 @@ export function LayoutProvider(props: LayoutProviderProps) {
   const { children } = props;
   const [layout, setLayout] = useState<Layout>("layout-1");
 
-  useEffect(() => {
-    setLayout(layout);
-  }, [layout]);
-
   const change = (layout: Layout) => {
-    if (layout) {
-      setLayout(layout);
-    }
+    setLayout(layout);
+    localStorage.setItem(`${STORAGE_KEY}:layout`, layout);
   };
 
   return <LayoutContext.Provider value={{ layout, setLayout: change }}>{children}</LayoutContext.Provider>;

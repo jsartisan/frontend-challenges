@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { Question, TEMPLATES } from "@frontend-challenges/shared";
+import { Question, TEMPLATES } from "@/shared";
 
 import {
   Sheet,
@@ -18,23 +18,25 @@ import {
 import Preview from "../editor/Preview";
 import SandpackRoot from "../editor/SandpackRoot";
 import { useAnswers } from "packages/website/hooks/useAnswers";
+import { ComponentPropsWithoutRef } from "react";
+import { cn } from "packages/website/utils/helpers";
 
 const CodeEditor = dynamic(() => import("../editor/CodeEditor"), {
   ssr: false,
   loading: () => <Skeleton className="h-full w-full" />,
 });
 
-type QuestionListProps = {
+type AnswerListProps = ComponentPropsWithoutRef<"div"> & {
   challenge: Question;
 };
 
-export function AnswerList(props: QuestionListProps) {
-  const { challenge } = props;
+export function AnswerList(props: AnswerListProps) {
+  const { challenge, className, ...rest } = props;
   const { isLoading, answers } = useAnswers(challenge);
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-4">
+      <div className={cn("flex flex-col gap-4", className)} {...rest}>
         {[...Array(3)].map((_, index) => (
           <div className="flex items-center gap-4" key={index}>
             <Skeleton className="flex h-9 w-9 shrink-0 overflow-hidden rounded-full" />
@@ -53,7 +55,7 @@ export function AnswerList(props: QuestionListProps) {
 
   if ((answers || []).length === 0) {
     return (
-      <div className="flex h-full flex-col justify-center gap-2 text-center">
+      <div className={cn("flex h-full flex-col justify-center gap-2 text-center", className)} {...rest}>
         <p className="text-3xl">📋</p>
         <p className="text-lg font-semibold">No answers yet.</p>
         <p className="text-muted-foreground text-sm">Be the first to answer this question!</p>
@@ -62,7 +64,7 @@ export function AnswerList(props: QuestionListProps) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className={cn("flex flex-col gap-4", className)} {...rest}>
       {(answers || []).map((answer, index) => (
         <div className="flex items-center" key={index}>
           <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full">

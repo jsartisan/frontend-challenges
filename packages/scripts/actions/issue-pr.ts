@@ -1,11 +1,11 @@
 import YAML from "js-yaml";
 import slug from "limax";
 import { PushCommit } from "@type-challenges/octokit-create-pull-request";
-import type { Question, SupportedTemplates } from "@frontend-challenges/shared";
+import type { Question, SupportedTemplates } from "@/shared";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-import { createFileMap } from "@frontend-challenges/shared";
-import { DEFAULT_LOCALE } from "@frontend-challenges/shared";
+import { createFileMap } from "@/shared";
+import { DEFAULT_LOCALE } from "@/shared";
 
 import { Action, Context, Github } from "../types";
 

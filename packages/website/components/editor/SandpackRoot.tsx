@@ -5,7 +5,8 @@ import { SandpackProvider } from "@codesandbox/sandpack-react";
 
 import { cn } from "../../utils/helpers";
 import { SandpackLocalProvider } from "./SandpackLocalProvider";
-import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
+import { CodeFile, SupportedTemplates } from "@/shared";
+import { useLayout } from "packages/website/providers/LayoutProvider";
 
 type Props = {
   path?: string;
@@ -16,7 +17,7 @@ type Props = {
   originalFiles?: Record<string, CodeFile>;
 };
 
-export default function SandpackRoot(props: Props) {
+export function SandpackRoot(props: Props) {
   const { resolvedTheme } = useTheme();
   const { children, className, files, path, template, originalFiles } = props;
   const isStatic = template === "static";
@@ -26,7 +27,7 @@ export default function SandpackRoot(props: Props) {
       files={files}
       customSetup={isStatic ? undefined : {}}
       template={isStatic ? "static" : undefined}
-      key={`${Object.keys(files).join("-")}-${resolvedTheme}`}
+      key={`${Object.keys(files).join("-")}-${resolvedTheme}}`}
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
         classes: {

@@ -6,6 +6,7 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import { useLayout } from "../../providers/LayoutProvider";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../ui/resizable";
 import { ImperativePanelHandle } from "react-resizable-panels";
+import { cn } from "packages/website/utils/helpers";
 
 type ResizableLayoutProps = {
   children: React.ReactNode;
@@ -38,7 +39,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
     if (layout === "layout-1") {
       return (
         <>
-          <ResizablePanel defaultSize={100 / 2} minSize={100 / 3}>
+          <ResizablePanel collapsible collapsedSize={0} defaultSize={100 / 2} minSize={100 / 3}>
             {description}
           </ResizablePanel>
           <ResizableHandle className="hidden w-2 sm:block" />
@@ -52,24 +53,8 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
                 {preview}
               </ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              <ResizablePanel
-                collapsible
-                collapsedSize={40}
-                minSize={200}
-                className="sm:min-h-0"
-                ref={consoleRef}
-                onCollapse={() => {
-                  setConsoleCollapsed(true);
-                }}
-                onExpand={() => {
-                  setConsoleCollapsed(false);
-                }}
-              >
-                {cloneElement(consoleElement as React.ReactElement, {
-                  consoleRef,
-                  consoleCollapsed,
-                  setConsoleCollapsed,
-                })}
+              <ResizablePanel collapsible collapsedSize={0} minSize={15} defaultSize={0}>
+                {consoleElement}
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
@@ -101,11 +86,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
                   setConsoleCollapsed(false);
                 }}
               >
-                {cloneElement(consoleElement as React.ReactElement, {
-                  consoleRef,
-                  consoleCollapsed,
-                  setConsoleCollapsed,
-                })}
+                {consoleElement}
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
@@ -141,11 +122,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
                   setConsoleCollapsed(false);
                 }}
               >
-                {cloneElement(consoleElement as React.ReactElement, {
-                  consoleRef,
-                  consoleCollapsed,
-                  setConsoleCollapsed,
-                })}
+                {consoleElement}
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>

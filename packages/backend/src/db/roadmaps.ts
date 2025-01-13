@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import YAML from "js-yaml";
-import { DEFAULT_LOCALE, STUDY_PLANS_ROOT, Roadmap, RoadmapInfo } from "@frontend-challenges/shared";
+import { DEFAULT_LOCALE, STUDY_PLANS_ROOT, Roadmap, RoadmapInfo } from "@/shared";
 
 import { getLocaleVariations } from "./locales";
 import { getChallengeByPath } from "./challenges";

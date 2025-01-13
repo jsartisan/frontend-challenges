@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { DOMAIN } from "@frontend-challenges/shared";
+import { DOMAIN } from "@/shared";
 import { getChallenges } from "@frontend-challenges/backend";
 
 import { cn } from "../utils/helpers";
@@ -31,7 +31,7 @@ export default async function RootLayout(params) {
           "flex min-h-screen flex-col overflow-x-clip bg-[var(--color-bg-secondary)] font-sans text-sm antialiased",
         )}
       >
-        <Provider>
+        <Provider challenges={challenges}>
           <Header
             challenges={challenges.map((c) => ({
               no: c.no,

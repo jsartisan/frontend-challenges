@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Category, Challenge, Difficulty, STORAGE_KEY } from "@frontend-challenges/shared";
+import { Category, Challenge, Difficulty, STORAGE_KEY } from "@/shared";
 import { sortChallengesByDate, sortChallengesByDifficulty } from "../utils/challenges";
 
 export interface ChallengeFilterState {

@@ -20,7 +20,7 @@
     "remark-parse": "^11.0.0"
   },
   "devDependencies": {
-    "@frontend-challenges/shared": "workspace:*",
+    "@/shared": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.54.0",

@@ -1,4 +1,4 @@
-import { DIFFICULTY_RANK } from "@frontend-challenges/shared";
+import { DIFFICULTY_RANK } from "@/shared";
 import {
   FormControl,
   FormDescription,

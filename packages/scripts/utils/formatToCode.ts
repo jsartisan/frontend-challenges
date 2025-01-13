@@ -1,6 +1,6 @@
-import { translate } from "@frontend-challenges/shared";
-import { DEFAULT_LOCALE } from "@frontend-challenges/shared";
-import { Question, SupportedLocales } from "@frontend-challenges/shared";
+import { translate } from "@/shared";
+import { DEFAULT_LOCALE } from "@/shared";
+import { Question, SupportedLocales } from "@/shared";
 
 import { toCommentBlock } from "./toCommentBlock";
 import { toInfoHeader } from "./toInfoHeader";

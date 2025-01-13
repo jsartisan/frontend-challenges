@@ -9,7 +9,7 @@ import {
   SupportedTemplates,
   TEMPLATES,
   createFileMap,
-} from "@frontend-challenges/shared";
+} from "@/shared";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { SandpackState } from "@codesandbox/sandpack-react";

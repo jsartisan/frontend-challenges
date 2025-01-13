@@ -1,4 +1,4 @@
-import { Roadmap } from "@frontend-challenges/shared";
+import { Roadmap } from "@/shared";
 
 import { Card, Link } from "../ui";
 

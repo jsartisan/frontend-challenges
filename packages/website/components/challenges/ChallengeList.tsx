@@ -1,6 +1,6 @@
 "use client";
 
-import { Challenge } from "@frontend-challenges/shared";
+import { Challenge } from "@/shared";
 
 import { cn } from "../../utils/helpers";
 import { ChallengeListItem } from "./ChallengeListItem";

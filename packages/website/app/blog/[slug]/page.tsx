@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Blog } from "@frontend-challenges/shared";
+import { Blog } from "@/shared";
 import { getAllBlogs, getBlogBySlug } from "@frontend-challenges/backend";
 
 import Client from "./client";

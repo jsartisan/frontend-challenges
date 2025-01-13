@@ -1,6 +1,6 @@
-import { translate } from "@frontend-challenges/shared";
+import { translate } from "@/shared";
 import { getChallengeInfoByLocale } from "@frontend-challenges/backend";
-import { Question, SupportedLocales } from "@frontend-challenges/shared";
+import { Question, SupportedLocales } from "@/shared";
 
 export const toInfoHeader = function toInfoHeader(quiz: Question, locale: SupportedLocales) {
   const info = getChallengeInfoByLocale(quiz, locale);

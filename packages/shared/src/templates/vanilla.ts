@@ -21,6 +21,7 @@ export const VANILLA_TEMPLATE = {
       code: `import "./styles.css";`,
     },
     "/package.json": {
+      hidden: true,
       code: JSON.stringify({
         dependencies: {},
         main: "/index.js",

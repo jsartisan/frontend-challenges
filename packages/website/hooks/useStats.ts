@@ -1,4 +1,4 @@
-import { ChallengeSlim, DIFFICULTY_RANK } from "@frontend-challenges/shared";
+import { ChallengeSlim, DIFFICULTY_RANK } from "@/shared";
 import { useCompletions } from "./useCompletions";
 
 export const useStats = (props: { challenges: ChallengeSlim[] }) => {

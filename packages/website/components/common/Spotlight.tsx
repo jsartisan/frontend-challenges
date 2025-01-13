@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { ChallengeSlim } from "@frontend-challenges/shared";
-import { REPO } from "@frontend-challenges/shared/src/constants";
+import { ChallengeSlim } from "@/shared";
+import { REPO } from "@/shared/src/constants";
 
 import {
   CommandDialog,

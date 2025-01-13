@@ -1,19 +1,19 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Challenge, SupportedTemplates } from "@frontend-challenges/shared";
+import { Challenge, SupportedTemplates } from "@/shared";
 
-import { cn } from "../../utils/helpers";
-import { useCompletions } from "../../hooks/useCompletions";
-import { createCompletion, deleteCompletion } from "../../db/completions";
-import { Button, Icon, Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "../ui";
+import { cn } from "@/web/utils/helpers";
+import { useCompletions } from "@/web/hooks/useCompletions";
+import { createCompletion, deleteCompletion } from "@/web/db/completions";
+import { Button, Icon, Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/web/components/ui";
 
 type ShareSolutionProps = {
   challenge: Challenge;
   template?: SupportedTemplates;
 };
 
-export default function MarkCompleteButton(props: ShareSolutionProps) {
+export function MarkCompleteButton(props: ShareSolutionProps) {
   const { challenge } = props;
   const queryClient = useQueryClient();
   const { completions } = useCompletions();

@@ -16,7 +16,7 @@ import {
   getQuestionURL,
   getShareAnswerURL,
   getSolutionsURL,
-} from "@frontend-challenges/shared";
+} from "@/shared";
 
 import { getChallengeInfoByLocale } from "../db/challenges";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@frontend-challenges/website",
+  "name": "@/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "@codesandbox/sandpack-react": "^2.19.9",
     "@excalidraw/excalidraw": "^0.17.6",
     "@frontend-challenges/backend": "workspace:*",
-    "@frontend-challenges/shared": "workspace:*",
+    "@/shared": "workspace:*",
     "@hookform/resolvers": "^3.3.2",
     "@monaco-editor/react": "^4.6.0",
     "@next/bundle-analyzer": "^14.2.5",
@@ -87,6 +87,7 @@
     "tailwind-merge": "^2.0.0",
     "tailwind-variants": "^0.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-logical": "^3.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {

@@ -28,6 +28,7 @@ describe('add', () => {
 });`,
     },
     "/package.json": {
+      hidden: true,
       code: JSON.stringify({
         dependencies: {},
         main: "/index.ts",

@@ -1,6 +1,6 @@
-import { ChallengeFilterState, useFilteredChallenges } from "packages/website/hooks/useFilteredChallenges";
-import { ChallengeList } from "packages/website/components/challenges/ChallengeList";
-import { CATEGORIES, Challenge, DIFFICULTY_RANK, STORAGE_KEY } from "@frontend-challenges/shared";
+import { ChallengeFilterState, useFilteredChallenges } from "@/web/hooks/useFilteredChallenges";
+import { ChallengeList } from "@/web/components/challenges/ChallengeList";
+import { CATEGORIES, Challenge, DIFFICULTY_RANK, STORAGE_KEY } from "@/shared";
 
 import {
   CheckboxButton,
@@ -13,25 +13,26 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Breadcrumb as BreadcrumRoot,
-} from "../../../components/ui";
+} from "@/web/components/ui";
 import { useRouter } from "next/navigation";
-import { cn } from "packages/website/utils/helpers";
-import { getSessionStorageItem } from "packages/website/utils/sessionStorage";
+import { cn } from "@/web/utils/helpers";
+import { getSessionStorageItem } from "@/web/utils/sessionStorage";
 import { useEffect } from "react";
+import { useChallenges } from "packages/website/providers/ChallengesProvider";
 
 type BreadcrumbProps = {
-  challenges: Challenge[];
-  currentChallenge: Challenge;
+  challenge: Challenge;
   className?: string;
 };
 
-export default function Breadcrumb(props: BreadcrumbProps) {
-  const { challenges, currentChallenge, className } = props;
+export function Breadcrumb(props: BreadcrumbProps) {
+  const { challenge, className } = props;
+  const { challenges } = useChallenges();
   const router = useRouter();
   const scope = sessionStorage.getItem(`${STORAGE_KEY}:scope`) || "all";
   const { state, dispatch, filtered } = useFilteredChallenges(challenges, scope);
-  const nextChallenge = filtered[filtered.findIndex((challenge) => challenge.path === currentChallenge.path) + 1];
-  const previousChallenge = filtered[filtered.findIndex((challenge) => challenge.path === currentChallenge.path) - 1];
+  const nextChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) + 1];
+  const previousChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) - 1];
 
   useEffect(() => {
     dispatch({

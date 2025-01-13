@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { DOMAIN } from "@frontend-challenges/shared";
+import { DOMAIN } from "@/shared";
 import { getRoadmapByPath, getRoadmaps } from "@frontend-challenges/backend";
 
 import Footer from "../../../components/layout/Footer";

@@ -36,3 +36,7 @@ export { VerticalDotsIcon } from "./VerticalDotsIcon";
 export { LinkedinIcon } from "./LinkedinIcon";
 export { XIcon } from "./XIcon";
 export { BugIcon } from "./BugIcon";
+export { ExpandHorizontalIcon } from "./ExpandHorizontalIcon";
+export { CollapseHorizontalIcon } from "./CollapseHorizontalIcon";
+export { ExpandVerticalIcon } from "./ExpandVerticalIcon";
+export { CollapseVerticalIcon } from "./CollapseVerticalIcon";

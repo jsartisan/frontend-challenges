@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { DOMAIN } from "@frontend-challenges/shared";
+import { DOMAIN } from "@/shared";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import { TEMPLATES } from "@frontend-challenges/shared";
-import type { SupportedTemplates } from "@frontend-challenges/shared";
+import { TEMPLATES } from "@/shared";
+import type { SupportedTemplates } from "@/shared";
 
 import { Button } from "../../components/ui";
 

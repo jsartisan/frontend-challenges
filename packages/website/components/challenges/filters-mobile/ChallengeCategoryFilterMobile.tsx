@@ -1,5 +1,5 @@
 import { CheckboxButton } from "../../ui/checkbox-button";
-import { CATEGORIES, Category } from "@frontend-challenges/shared";
+import { CATEGORIES, Category } from "@/shared";
 import { ChallengeFilterState } from "../../../hooks/useFilteredChallenges";
 
 type ChallengeCategoryFilterMobileProps = {

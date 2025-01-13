@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import glob from "fast-glob";
 import matter from "gray-matter";
-import { Blog, CONTENT_PATH } from "@frontend-challenges/shared";
+import { Blog, CONTENT_PATH } from "@/shared";
 
 export const getAllBlogs = (): Blog[] => {
   const PATH = path.join(CONTENT_PATH, "blog");

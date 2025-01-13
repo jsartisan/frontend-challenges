@@ -1,8 +1,30 @@
 type Path = number[];
 type DropZone = "top" | "right" | "bottom" | "left" | null;
 
+type DragDropItem = {
+  type: "panel" | "tab";
+  path: Path;
+};
+
 export class DragManager {
-  constructor() {}
+  // Can't we store all this variables in dataTransfer.getData?
+  // There is a limiation of dataTransfer.setData that data set on dragStart is not available on dragOver
+  // So we need to store drag data here, we can use this data on dragOver event with getDragData method
+  public source: DragDropItem | null = null;
+  public target: DragDropItem | null = null;
+  public dropZone: DropZone | null = null;
+
+  setSource(source: DragDropItem) {
+    this.source = source;
+  }
+
+  setTarget(target: DragDropItem) {
+    this.target = target;
+  }
+
+  setDropZone(dropZone: DropZone) {
+    this.dropZone = dropZone;
+  }
 
   /**
    * Determines if source and target items are adjacent in the same row/column
@@ -31,30 +53,30 @@ export class DragManager {
   }
 
   /**
-   * Calculates which drop zone the cursor is in based on mouse position
+   * Calculates drop zone from drag event
    */
-  public getDropZone(x: number, y: number, width: number, height: number): DropZone {
+  public getDropZoneFromEvent(e: React.DragEvent<HTMLElement>, type: "panel" | "tab" = "panel"): DropZone {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    const width = rect.width;
+    const height = rect.height;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
     const centerX = width / 2;
     const centerY = height / 2;
     const relativeX = x - centerX;
     const relativeY = y - centerY;
+
+    if (type === "tab") {
+      return relativeX < 0 ? "left" : "right";
+    }
 
     if (Math.abs(relativeX) > Math.abs(relativeY)) {
       return relativeX < 0 ? "left" : "right";
     } else {
       return relativeY < 0 ? "top" : "bottom";
     }
-  }
-
-  /**
-   * Calculates drop zone from drag event
-   */
-  public getDropZoneFromEvent(e: React.DragEvent<HTMLDivElement>): DropZone {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    return this.getDropZone(x, y, rect.width, rect.height);
   }
 
   /**

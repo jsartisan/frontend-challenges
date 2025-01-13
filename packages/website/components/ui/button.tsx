@@ -24,10 +24,10 @@ const buttonVariants = cva(
         github: "bg-black text-white hover:bg-black/90",
       },
       size: {
-        default: "h-8 px-3 py-2 [&_img]:h-5 [&_img]:w-5 gap-2",
-        sm: "h-7 rounded-sm px-2 text-xs [&_svg]:h-4 [&_svg]:w-4 gap-1",
-        xs: "h-6 rounded-sm px-2 text-xs gap-1",
-        lg: "h-9 px-3 gap-2",
+        default: "bs-8 px-3 py-2 [&_img]:bs-5 [&_img]:is-5 gap-2",
+        sm: "bs-7 rounded-sm px-2 text-xs [&_svg]:bs-4 [&_svg]:is-4 gap-1",
+        xs: "bs-6 rounded-sm px-2 text-xs gap-1",
+        lg: "bs-9 px-3 gap-2",
       },
     },
     defaultVariants: {

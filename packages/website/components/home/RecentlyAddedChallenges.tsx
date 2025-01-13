@@ -1,4 +1,4 @@
-import { Challenge } from "@frontend-challenges/shared";
+import { Challenge } from "@/shared";
 
 import { ChallengeList } from "../challenges/ChallengeList";
 

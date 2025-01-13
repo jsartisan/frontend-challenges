@@ -1,4 +1,4 @@
-import { CATEGORIES, Challenge } from "@frontend-challenges/shared";
+import { CATEGORIES, Challenge } from "@/shared";
 
 export function getCategoriesWithChallengesCount(challenges: Challenge[]) {
   return CATEGORIES.map((category) => ({

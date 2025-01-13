@@ -1,7 +1,7 @@
 "use client";
 
-import type { SupportedLocales } from "@frontend-challenges/shared";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@frontend-challenges/shared";
+import type { SupportedLocales } from "@/shared";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/shared";
 
 import { Select, SelectValue, SelectGroup, SelectItem, SelectTrigger, SelectContent } from "../ui";
 

@@ -1,4 +1,4 @@
-import { REPO } from "@frontend-challenges/shared";
+import { REPO } from "@/shared";
 
 import { Icon, Link } from "../ui";
 import { HeroImage } from "./HeroImage";

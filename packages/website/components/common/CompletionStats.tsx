@@ -1,7 +1,7 @@
 "use client";
 
 import React, { CSSProperties } from "react";
-import { ChallengeSlim } from "@frontend-challenges/shared";
+import { ChallengeSlim } from "@/shared";
 import { useCompletions } from "packages/website/hooks/useCompletions";
 
 import { Icon, IconButton } from "../ui";

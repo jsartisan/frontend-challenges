@@ -1,4 +1,4 @@
-import { Difficulty, DIFFICULTY_RANK } from "@frontend-challenges/shared";
+import { Difficulty, DIFFICULTY_RANK } from "@/shared";
 import { CheckboxButton } from "../../../components/ui/checkbox-button";
 import { ChallengeFilterState } from "../../../hooks/useFilteredChallenges";
 

@@ -1,5 +1,5 @@
-import { SupportedTemplates } from "@frontend-challenges/shared";
-import { SUPPORTED_TEMPLATES, TEMPLATES } from "@frontend-challenges/shared";
+import { SupportedTemplates } from "@/shared";
+import { SUPPORTED_TEMPLATES, TEMPLATES } from "@/shared";
 
 import Preview from "../../../components/editor/Preview";
 import CodeEditor from "../../../components/editor/CodeEditor";

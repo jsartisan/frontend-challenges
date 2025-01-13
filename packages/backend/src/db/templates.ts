@@ -3,8 +3,8 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 
 import { loadFile } from "./fs";
-import { CodeFile, SupportedTemplates } from "@frontend-challenges/shared";
-import { createFileMap, SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
+import { CodeFile, SupportedTemplates } from "@/shared";
+import { createFileMap, SUPPORTED_TEMPLATES } from "@/shared";
 
 /**
  * get code files group by template (vanilla, react, vue, etc)

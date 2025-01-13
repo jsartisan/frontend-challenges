@@ -1,6 +1,6 @@
 import path from "path";
-import { pipe } from "@frontend-challenges/shared";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@frontend-challenges/shared";
+import { pipe } from "@/shared";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/shared";
 
 import { loadFile } from "./fs";
 

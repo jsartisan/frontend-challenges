@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { type Challenge } from "@frontend-challenges/shared";
+import { type Challenge } from "@/shared";
 
 import { ChallengeList } from "./ChallengeList";
 import { ChallengeListSort } from "./ChallengeListSort";

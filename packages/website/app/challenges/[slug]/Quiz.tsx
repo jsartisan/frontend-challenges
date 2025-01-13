@@ -1,8 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { Challenge, Quiz } from "@frontend-challenges/shared";
-import { DEFAULT_LOCALE } from "@frontend-challenges/shared";
+import type { Quiz } from "@/shared";
 
 import { Solution } from "./Solution";
 // import { Breadcrumb } from "./ChallengesNavigator";
@@ -11,30 +10,29 @@ import { Skeleton } from "../../../components/ui/skeleton";
 import Description from "../../../components/editor/Description";
 import { Tabs, TabsContent, TabsList, TabsTrigger, Button, Icon } from "../../../components/ui";
 
-const MarkCompleteButton = dynamic(() => import("../../../components/editor/MarkCompleteButton"), {
+const MarkCompleteButton = dynamic(() => import("./MarkCompleteButton").then((mod) => mod.MarkCompleteButton), {
   ssr: false,
   loading: () => <Skeleton className="h-8 w-20" />,
 });
 
-const Breadcrumb = dynamic(() => import("./Breadcrumb"), {
+const Breadcrumb = dynamic(() => import("./Breadcrumb").then((mod) => mod.Breadcrumb), {
   ssr: false,
   loading: () => <Skeleton className="h-8 w-28" />,
 });
 
-type QuizProps = {
-  challenge: Challenge;
-  challenges: Challenge[];
+type QuizChallengeProps = {
+  challenge: Quiz;
 };
 
-export function Quiz(props: QuizProps) {
-  const { challenge, challenges } = props;
+export function Quiz(props: QuizChallengeProps) {
+  const { challenge } = props;
 
   return (
     <>
       <div className="h-[calc(100vh_-_var(--nav-top-offset))]">
         <div className="flex h-full w-full flex-col gap-4 p-4">
           <div className="relative flex w-full justify-between">
-            <Breadcrumb challenges={challenges} currentChallenge={challenge} />
+            <Breadcrumb challenge={challenge} />
             <div className="flex items-center gap-2">
               <MarkCompleteButton challenge={challenge} />
             </div>
@@ -44,14 +42,6 @@ export function Quiz(props: QuizProps) {
               <Tabs defaultValue="description" className="h-full">
                 <TabsList>
                   <TabsTrigger value="description">Description</TabsTrigger>
-                  {challenge.info[DEFAULT_LOCALE]?.discussionNo && (
-                    <Button variant="tertiary" size="sm" asChild>
-                      <a href={challenge.discussionURL} target="_blank" rel="noopener noreferrer">
-                        Discussion
-                        <Icon name="external-link" />
-                      </a>
-                    </Button>
-                  )}
                 </TabsList>
                 <TabsContent value="description" className="overflow-y-auto">
                   <Description challenge={challenge} />

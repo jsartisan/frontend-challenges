@@ -1,5 +1,5 @@
-import { SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
-import type { SupportedTemplates } from "@frontend-challenges/shared";
+import { SUPPORTED_TEMPLATES } from "@/shared";
+import type { SupportedTemplates } from "@/shared";
 
 import { Select, SelectValue, SelectGroup, SelectItem, SelectTrigger, SelectContent } from "../../components/ui";
 

@@ -1,5 +1,5 @@
-import { DIFFICULTY_RANK } from "@frontend-challenges/shared";
-import type { Difficulty } from "@frontend-challenges/shared";
+import { DIFFICULTY_RANK } from "@/shared";
+import type { Difficulty } from "@/shared";
 
 import { MultiSelect } from "../../ui/multi-select";
 import { ChallengeFilterDispatch, ChallengeFilterState } from "../../../hooks/useFilteredChallenges";

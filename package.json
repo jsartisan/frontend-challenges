@@ -7,8 +7,8 @@
   "license": "MIT",
   "repository": "https://github.com/jsartisan/frontend-challenges.git",
   "scripts": {
-    "build": "pnpm run --filter=@frontend-challenges/website build",
-    "dev": "pnpm run --filter=@frontend-challenges/website dev",
+    "build": "pnpm run --filter=@/web build",
+    "dev": "pnpm run --filter=@/web dev",
     "generate": "esno ./packages/scripts/generate-play.ts",
     "lint": "next lint",
     "readme": "esno ./packages/scripts/readme.ts",
@@ -26,8 +26,8 @@
   "devDependencies": {
     "@frontend-challenges/backend": "workspace:*",
     "@frontend-challenges/scripts": "workspace:*",
-    "@frontend-challenges/shared": "workspace:*",
-    "@frontend-challenges/website": "workspace:*",
+    "@/shared": "workspace:*",
+    "@/web": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.54.0",

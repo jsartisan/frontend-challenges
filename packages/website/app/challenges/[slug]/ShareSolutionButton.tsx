@@ -1,10 +1,7 @@
-"use client";
-
+import { Button } from "@/web/components/ui";
+import { getShareAnswerURL } from "@/web/utils/answers";
 import { useSandpack } from "@codesandbox/sandpack-react";
-import { Challenge, SupportedTemplates } from "@frontend-challenges/shared";
-
-import { Button } from "../ui";
-import { getShareAnswerURL } from "../../utils/answers";
+import { Challenge, SupportedTemplates } from "@/shared";
 
 type ShareSolutionProps = {
   challenge: Challenge;

@@ -2,9 +2,9 @@ import { unified } from "unified";
 import { Octokit } from "octokit";
 import remarkParse from "remark-parse";
 
-import { createFileMap } from "@frontend-challenges/shared";
-import { SUPPORTED_TEMPLATES } from "@frontend-challenges/shared";
-import { CodeFile, Question, SupportedTemplates } from "@frontend-challenges/shared";
+import { createFileMap } from "@/shared";
+import { SUPPORTED_TEMPLATES } from "@/shared";
+import { CodeFile, Question, SupportedTemplates } from "@/shared";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_PAT,

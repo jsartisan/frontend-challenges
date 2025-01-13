@@ -1,6 +1,6 @@
 "use client";
 
-import { Blog } from "@frontend-challenges/shared";
+import { Blog } from "@/shared";
 
 import { Card, Link } from "../ui";
 

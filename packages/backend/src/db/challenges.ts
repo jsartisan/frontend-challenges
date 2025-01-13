@@ -1,9 +1,9 @@
 import path from "path";
 import fg from "fast-glob";
 
-import { parseMetaInfo, cleanUpReadme } from "@frontend-challenges/shared";
-import type { Category, Challenge, QuestionMetaInfo } from "@frontend-challenges/shared";
-import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@frontend-challenges/shared";
+import { parseMetaInfo, cleanUpReadme } from "@/shared";
+import type { Category, Challenge, QuestionMetaInfo } from "@/shared";
+import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@/shared";
 
 import { getLocaleVariations } from "./locales";
 import { getCodeFilesByTemplate } from "./templates";

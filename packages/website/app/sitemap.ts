@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { DOMAIN } from "@frontend-challenges/shared";
+import { DOMAIN } from "@/shared";
 import { getAllBlogs } from "@frontend-challenges/backend";
 import { getChallenges } from "@frontend-challenges/backend";
 

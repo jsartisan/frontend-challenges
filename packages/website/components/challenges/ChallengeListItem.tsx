@@ -1,4 +1,4 @@
-import { Challenge } from "@frontend-challenges/shared";
+import { Challenge } from "@/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {

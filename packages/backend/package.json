@@ -7,7 +7,7 @@
   "repository": "https://github.com/jsartisan/frontend-challenges.git",
   "main": "src/index.ts",
   "dependencies": {
-    "@frontend-challenges/shared": "workspace:*",
+    "@/shared": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",

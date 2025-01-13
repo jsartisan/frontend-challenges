@@ -1,4 +1,4 @@
-import { CATEGORIES } from "@frontend-challenges/shared";
+import { CATEGORIES } from "@/shared";
 import { getChallenges } from "@frontend-challenges/backend";
 import { filterChallengesByCategory } from "../../../utils/challenges";
 

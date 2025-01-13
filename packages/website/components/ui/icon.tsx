@@ -38,6 +38,10 @@ import {
   LinkedinIcon,
   XIcon,
   BugIcon,
+  ExpandHorizontalIcon,
+  CollapseHorizontalIcon,
+  ExpandVerticalIcon,
+  CollapseVerticalIcon,
 } from "../icons";
 import { TidyIcon } from "../icons/TidyIcon";
 import { cn } from "../../utils/helpers";
@@ -106,7 +110,11 @@ export type IconProps = {
     | "x"
     | "bug"
     | "settings"
-    | "static-color";
+    | "static-color"
+    | "expand-horizontal"
+    | "collapse-horizontal"
+    | "expand-vertical"
+    | "collapse-vertical";
   className?: string;
 } & VariantProps<typeof iconVariants>;
 
@@ -304,6 +312,18 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       break;
     case "static-color":
       icon = VanillaColorIcon;
+      break;
+    case "expand-horizontal":
+      icon = ExpandHorizontalIcon;
+      break;
+    case "collapse-horizontal":
+      icon = CollapseHorizontalIcon;
+      break;
+    case "expand-vertical":
+      icon = ExpandVerticalIcon;
+      break;
+    case "collapse-vertical":
+      icon = CollapseVerticalIcon;
       break;
     default:
       icon = RadixIcon.Pencil1Icon;

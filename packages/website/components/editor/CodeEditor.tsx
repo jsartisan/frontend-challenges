@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { useEffect, useState } from "react";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
-import { CodeFile, STORAGE_KEY, SupportedTemplates } from "@frontend-challenges/shared";
+import { CodeFile, STORAGE_KEY, SupportedTemplates } from "@/shared";
 
 import { Card } from "../ui/card";
 import {
@@ -36,10 +36,11 @@ type Props = {
   exclude?: string[];
   path?: string;
   template: SupportedTemplates;
+  file?: string;
 };
 
 function _CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, originalFiles } = props;
+  const { className, showTabs = true, exclude, path, template, originalFiles, file } = props;
   const { sandpack } = useSandpack();
   const { resetFiles } = useSandpackLocal();
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ function _CodeEditor(props: Props) {
 
     return stored ? parseInt(stored) : 2;
   });
-  const { setActiveFile, activeFile, files, updateFile } = sandpack;
+  const { files, updateFile } = sandpack;
 
   const onChange = (files: SandpackState["files"]) => {
     if (path) {
@@ -97,12 +98,6 @@ function _CodeEditor(props: Props) {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
-
   const prettify = usePrettify();
 
   const onPrettify = (options: { tabSize?: number }) => {
@@ -113,167 +108,20 @@ function _CodeEditor(props: Props) {
     });
   };
 
-  const { contentRef, wrapperRef, shadowStartRef, shadowEndRef, scrollbarRef } = useScrollableTabs();
-
   return (
-    <Card className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
-      {showTabs && (
-        <Tabs
-          defaultValue={activeFile}
-          onValueChange={(value) => {
-            setActiveFile(value);
-          }}
-          value={activeFile}
-          className="sticky top-0 z-10"
-        >
-          <TabsList className="group flex items-center gap-0 p-0">
-            <div className="relative h-full flex-grow overflow-x-hidden" ref={wrapperRef}>
-              <div
-                className="absolute left-0 top-0 h-full w-4 bg-gradient-to-r from-black/10 to-transparent opacity-0"
-                ref={shadowStartRef}
-              />
-              <div
-                className="absolute right-0 top-0 h-full w-4 bg-gradient-to-l from-black/10 to-transparent opacity-0"
-                ref={shadowEndRef}
-              />
-              <div
-                ref={scrollbarRef}
-                className="absolute bottom-0 z-10 h-[2px] w-4 bg-[var(--color-bd-subtle)] opacity-0 hover:h-[4px] hover:bg-[var(--color-bd-subtle)] active:h-[4px] active:opacity-100 group-hover:opacity-100"
-              />
-              <div className="scrollbar-hide h-full overflow-x-auto" ref={contentRef}>
-                <div className="flex h-full w-max flex-nowrap items-center gap-2 px-1">
-                  {Object.keys(files)
-                    .filter((file) => {
-                      const isHidden = files[file].hidden;
-                      const excluded = exclude?.includes(file);
-                      const or = isHidden || excluded;
-
-                      return !or;
-                    })
-                    .map((file) => {
-                      return (
-                        <TabsTrigger key={file} value={file}>
-                          {files[file].readOnly && (
-                            <Icon name="lock" className="text-[var(--color-ic-neutral-subtle)]" />
-                          )}{" "}
-                          {file.replace("/", "")}
-                        </TabsTrigger>
-                      );
-                    })}
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-1 px-1">
-              <Button variant="tertiary" size="sm" onClick={() => onPrettify({ tabSize: editorTabSize })} type="button">
-                <Icon name="tidy" />
-                Tidy
-              </Button>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <IconButton variant="tertiary" size="sm" type="button">
-                    <Icon name="settings" />
-                  </IconButton>
-                </PopoverTrigger>
-                <PopoverContent align="end">
-                  <div className="font-bold">Editor Settings</div>
-                  <div className="mt-2 flex flex-col gap-2">
-                    <div className="flex flex-col gap-2">
-                      <Label>Font Size</Label>
-                      <Select
-                        onValueChange={(value: string) => setEditorFontSize(parseInt(value))}
-                        value={editorFontSize.toString()}
-                        defaultValue={editorFontSize.toString()}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select locale" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            {[...Array(9)]
-                              .map((v, i) => i + 12)
-                              .map((fontSize) => (
-                                <SelectItem key={fontSize} value={fontSize.toString()}>
-                                  {fontSize}px
-                                </SelectItem>
-                              ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <Label>Tab Size</Label>
-                      <Select
-                        onValueChange={(value: string) => setEditorTabSize(parseInt(value))}
-                        value={editorTabSize.toString()}
-                        defaultValue={editorTabSize.toString()}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select locale" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            {[2, 4].map((tabSize) => (
-                              <SelectItem key={tabSize} value={tabSize.toString()}>
-                                {tabSize}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                </PopoverContent>
-              </Popover>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <IconButton variant="tertiary" size="sm" type="button">
-                    <Icon name="vertical-dots" />
-                  </IconButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem
-                    onClick={typeof onResetCurrentFile === "function" ? onResetCurrentFile : () => {}}
-                    className="flex-col items-start"
-                  >
-                    <div>Reset Current File</div>
-                    <div className="text-xs text-[var(--color-fg-neutral-subtle)]">
-                      Reset the current file to the initial state
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={typeof resetFiles === "function" ? resetFiles : () => {}}
-                    className="flex-col items-start"
-                  >
-                    <div>Reset Files</div>
-                    <div className="text-xs text-[var(--color-fg-neutral-subtle)]">
-                      Reset all files to the initial state
-                    </div>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </TabsList>
-        </Tabs>
-      )}
-      <div className="flex-grow overflow-hidden">
-        {loading ? (
-          <div className="flex h-full flex-col justify-center gap-2 text-center">
-            <p className="animate-spin text-3xl">⚙️</p>
-            <p className="text-lg font-semibold">Booting up the editor...</p>
-            <p className="text-muted-foreground text-sm">Please wait while we load the editor.</p>
-          </div>
-        ) : (
-          <MonacoEditor
-            fontSize={editorFontSize}
-            tabSize={editorTabSize}
-            onChange={onChange}
-            template={template}
-            path={path}
-            key={Object.keys(files).join("-")}
-          />
-        )}
+    <>
+      <div className="h-full w-full flex-grow overflow-hidden">
+        <MonacoEditor
+          fontSize={editorFontSize}
+          tabSize={editorTabSize}
+          onChange={onChange}
+          template={template}
+          path={path}
+          file={file}
+          key={path}
+        />
       </div>
-    </Card>
+    </>
   );
 }
 
