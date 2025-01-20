@@ -7,6 +7,12 @@ import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { SandpackRoot } from "@/web/components/editor/SandpackRoot";
 import { DynamicLayout } from "../../components/editor/DynamicLayout";
 import { usePlaygroundLayout } from "./usePlaygroundLayout";
+import { ResizableLayout } from "packages/website/components/editor/ResizableLayout";
+import { ResizableLayoutTab } from "packages/website/components/editor/ResizableLayoutTab";
+import Description from "packages/website/components/editor/Description";
+import { ResizablePanel, ResizablePanelGroup } from "packages/website/components/ui";
+import Console from "packages/website/components/editor/Console";
+import MemoizedPreview from "packages/website/components/editor/Preview";
 
 const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -100,7 +106,14 @@ export function Client() {
           </div>
         </div>
         <div className="w-full flex-grow">
-          <DynamicLayout layout={layout} componentsMap={componentsMap} setLayout={setLayout} />
+          <ResizablePanelGroup direction="horizontal">
+            <ResizablePanel>
+              <Console />
+            </ResizablePanel>
+            <ResizablePanel>
+              <MemoizedPreview template={template} />
+            </ResizablePanel>
+          </ResizablePanelGroup>
         </div>
       </div>
     </SandpackRoot>

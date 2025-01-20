@@ -481,6 +481,9 @@ importers:
       mixpanel-browser:
         specifier: ^2.54.0
         version: 2.56.0
+      monaco-vim:
+        specifier: ^0.4.2
+        version: 0.4.2(monaco-editor@0.52.0)
       negotiator:
         specifier: ^0.6.3
         version: 0.6.4
@@ -5664,6 +5667,11 @@ packages:
 
   monaco-editor@0.52.0:
     resolution: {integrity: sha512-OeWhNpABLCeTqubfqLMXGsqf6OmPU6pHM85kF3dhy6kq5hnhuVS1p3VrEW/XhWHc71P2tHyS5JFySD8mgs1crw==}
+
+  monaco-vim@0.4.2:
+    resolution: {integrity: sha512-rdbQC3O2rmpwX2Orzig/6gZjZfH7q7TIeB+uEl49sa+QyNm3jCKJOw5mwxBdFzTqbrPD+URfg6A2lEkuL5kymw==}
+    peerDependencies:
+      monaco-editor: '*'
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -13940,6 +13948,10 @@ snapshots:
       rrweb: 2.0.0-alpha.13
 
   monaco-editor@0.52.0: {}
+
+  monaco-vim@0.4.2(monaco-editor@0.52.0):
+    dependencies:
+      monaco-editor: 0.52.0
 
   mri@1.2.0: {}
 

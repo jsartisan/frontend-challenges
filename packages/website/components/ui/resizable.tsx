@@ -1,24 +1,66 @@
 "use client";
 
+import { cloneElement, useRef, useState } from "react";
 import { DragHandleDots2Icon } from "@radix-ui/react-icons";
 import * as ResizablePrimitive from "react-resizable-panels";
+import { ImperativePanelGroupHandle, ImperativePanelHandle } from "react-resizable-panels";
 
 import { cn } from "../../utils/helpers";
 
-const ResizablePanelGroup = ({ className, ...props }: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (
-  <ResizablePrimitive.PanelGroup className={cn("flex h-full w-full", className)} {...props} />
-);
+const ResizablePanelGroup = (props: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => {
+  const { className, children, ...rest } = props;
+  const groupRef = useRef<ResizablePrimitive.ImperativePanelGroupHandle>();
 
-const ResizablePanel = ({ className, ...props }: React.ComponentProps<typeof ResizablePrimitive.Panel>) => (
-  <ResizablePrimitive.Panel
-    className={cn(
-      "group/panel sm:!min-bs-0 !min-bs-[200px] !basis-[calc(theme(spacing.9)+2px)]",
-      "&[[data-panel-size='0.0']:[writing-mode:tb] [[data-panel-size='0.0']_&]:[writing-mode:tb]",
-      className,
-    )}
-    {...props}
-  />
-);
+  return (
+    <ResizablePrimitive.PanelGroup className={cn("flex h-full w-full", className)} {...rest}>
+      {Array.isArray(children)
+        ? children.map((child) => cloneElement(child, { groupDirection: rest.direction, groupRef }))
+        : cloneElement(children as React.ReactElement, { groupDirection: rest.direction, groupRef })}
+    </ResizablePrimitive.PanelGroup>
+  );
+};
+
+const ResizablePanel = (
+  props: React.ComponentProps<typeof ResizablePrimitive.Panel> & {
+    groupDirection?: "horizontal" | "vertical";
+    groupRef?: React.RefObject<ImperativePanelGroupHandle>;
+  },
+) => {
+  const {
+    className,
+    children,
+    collapsible = true,
+    collapsedSize = 0,
+    minSize = 15,
+    defaultSize = 100,
+    ...rest
+  } = props;
+  const ref = useRef<ImperativePanelHandle>();
+  const [, setIsCollapsed] = useState(collapsedSize === 0);
+
+  return (
+    <ResizablePrimitive.Panel
+      className={cn(
+        "group/panel sm:!min-bs-0 !min-bs-[200px] !basis-[calc(theme(spacing.9)+2px)]",
+        "&[[data-panel-size='0.0']:[writing-mode:tb] [[data-panel-size='0.0']_&]:[writing-mode:tb]",
+        className,
+      )}
+      collapsible={collapsible}
+      minSize={minSize}
+      defaultSize={defaultSize}
+      onCollapse={() => setIsCollapsed(true)}
+      onExpand={() => setIsCollapsed(false)}
+      ref={ref}
+      {...rest}
+    >
+      {cloneElement(children as React.ReactElement, {
+        panelRef: ref,
+        groupDirection: rest.groupDirection,
+        groupRef: rest.groupRef,
+      })}
+    </ResizablePrimitive.Panel>
+  );
+};
 
 const ResizableHandle = ({
   withHandle,

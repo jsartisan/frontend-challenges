@@ -6,7 +6,6 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import { useLayout } from "../../providers/LayoutProvider";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../ui/resizable";
 import { ImperativePanelHandle } from "react-resizable-panels";
-import { cn } from "packages/website/utils/helpers";
 
 type ResizableLayoutProps = {
   children: React.ReactNode;
@@ -45,17 +44,11 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
           <ResizableHandle className="hidden w-2 sm:block" />
           <ResizablePanel defaultSize={100 / 2}>
             <ResizablePanelGroup direction="vertical" className="!grid gap-4 sm:!flex sm:gap-1">
-              <ResizablePanel defaultSize={100 / 2} className="min-h-[200px] sm:min-h-0">
-                {editor}
-              </ResizablePanel>
+              <ResizablePanel>{editor}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              <ResizablePanel defaultSize={100 / 2} minSize={40} className="min-h-[200px] sm:min-h-0">
-                {preview}
-              </ResizablePanel>
+              <ResizablePanel>{preview}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              <ResizablePanel collapsible collapsedSize={0} minSize={15} defaultSize={0}>
-                {consoleElement}
-              </ResizablePanel>
+              <ResizablePanel defaultSize={0}>{consoleElement}</ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
         </>
@@ -70,24 +63,10 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
           <ResizablePanel defaultSize={100 / 3}>{editor}</ResizablePanel>
           <ResizableHandle className="hidden w-2 sm:block" />
           <ResizablePanel defaultSize={100 / 3}>
-            <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
+            <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4">
               <ResizablePanel defaultSize={100}>{preview}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              <ResizablePanel
-                collapsible
-                collapsedSize={40}
-                minSize={200}
-                className="min-h-[200px] sm:min-h-0"
-                ref={consoleRef}
-                onCollapse={() => {
-                  setConsoleCollapsed(true);
-                }}
-                onExpand={() => {
-                  setConsoleCollapsed(false);
-                }}
-              >
-                {consoleElement}
-              </ResizablePanel>
+              <ResizablePanel>{consoleElement}</ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
         </>
@@ -109,21 +88,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
             <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
               <ResizablePanel defaultSize={100}>{editor}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
-              <ResizablePanel
-                collapsible
-                collapsedSize={40}
-                minSize={200}
-                className="min-h-[200px] sm:min-h-0"
-                ref={consoleRef}
-                onCollapse={() => {
-                  setConsoleCollapsed(true);
-                }}
-                onExpand={() => {
-                  setConsoleCollapsed(false);
-                }}
-              >
-                {consoleElement}
-              </ResizablePanel>
+              <ResizablePanel defaultSize={100}>{consoleElement}</ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
         </>

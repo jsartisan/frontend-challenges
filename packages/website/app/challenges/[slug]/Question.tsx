@@ -13,11 +13,12 @@ import { useChallengeLayout } from "./useChallengeLayout";
 import { TemplateChanger } from "./TemplateChanger";
 import { MarkCompleteButton } from "./MarkCompleteButton";
 import { ShareSolutionButton } from "./ShareSolutionButton";
-import { Card, Separator, Skeleton, TabsList, TabsTrigger, TabsContent } from "packages/website/components/ui";
+import { Card, Separator, Skeleton, TabsList, TabsTrigger, TabsContent, Tabs } from "packages/website/components/ui";
 import { LayoutChanger } from "packages/website/components/questions/LayoutChanger";
 import { ResizableLayout } from "packages/website/components/editor/ResizableLayout";
 import Description from "packages/website/components/editor/Description";
-import { ResizableLayoutTab as Tabs } from "packages/website/components/editor/ResizableLayoutTab";
+import { ResizableLayoutTab } from "packages/website/components/editor/ResizableLayoutTab";
+import { useLayout } from "packages/website/providers/LayoutProvider";
 
 const Breadcrumb = dynamic(() => import("./Breadcrumb").then((mod) => mod.Breadcrumb), {
   ssr: false,
@@ -50,11 +51,13 @@ type QuestionChallengeProps = {
 
 function QuestionChallenge(props: QuestionChallengeProps) {
   const { challenge } = props;
+  const { layout, setLayout } = useLayout();
   const [template, setTemplate] = useState(Object.keys(props.challenge.templateFiles)[0] as SupportedTemplates);
   const { allFiles, availableFiles } = useChallengeFiles(challenge, template);
   // we need original files to be able to reset the files to the original state.
   const originalFiles = { ...TEMPLATES[template].files, ...challenge.templateFiles[template] };
-  const { layout, setLayout, componentsMap } = useChallengeLayout(challenge, template, allFiles);
+
+  console.log("@@ allFiles", allFiles);
 
   return (
     <SandpackRoot
@@ -76,53 +79,60 @@ function QuestionChallenge(props: QuestionChallengeProps) {
         </div>
         <div className="w-full flex-grow">
           <ResizableLayout>
-            <Tabs defaultValue="description">
-              <TabsList>
-                <TabsTrigger value="description">Description</TabsTrigger>
-                <TabsTrigger value="submissions">Submissions</TabsTrigger>
-                <TabsTrigger value="notes">Notes</TabsTrigger>
-              </TabsList>
-              <TabsContent value="description">
-                <Description challenge={challenge} />
-              </TabsContent>
-              <TabsContent value="submissions">
-                <AnswerList challenge={challenge} className="p-3" />
-              </TabsContent>
-              <TabsContent value="notes">
-                <Notes path={`/challenges/${challenge.path}`} />
-              </TabsContent>
-            </Tabs>
+            <ResizableLayoutTab defaultValue="description">
+              {[
+                {
+                  title: "Description",
+                  value: "description",
+                  children: <Description challenge={challenge} />,
+                },
+                {
+                  title: "Submissions",
+                  value: "submissions",
+                  children: <AnswerList challenge={challenge} className="p-3" />,
+                },
+                {
+                  title: "Notes",
+                  value: "notes",
+                  children: <Notes path={`/challenges/${challenge.path}`} />,
+                },
+              ]}
+            </ResizableLayoutTab>
 
-            <Tabs defaultValue={Object.keys(availableFiles)[0]}>
-              <TabsList>
-                {Object.keys(availableFiles).map((file) => (
-                  <TabsTrigger key={file} value={file}>
-                    {file}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {Object.keys(availableFiles).map((file) => (
-                <TabsContent key={file} value={file}>
-                  <CodeEditor path={`/challenges/${challenge.path}`} template={template} file={file} />
-                </TabsContent>
-              ))}
-            </Tabs>
-            <Tabs defaultValue="preview">
-              <TabsList>
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-              </TabsList>
-              <TabsContent value="preview">
-                <Preview template={template} />
-              </TabsContent>
-            </Tabs>
-            <Tabs defaultValue="console">
-              <TabsList>
-                <TabsTrigger value="console">Console</TabsTrigger>
-              </TabsList>
-              <TabsContent value="console">
-                <Console />
-              </TabsContent>
-            </Tabs>
+            <ResizableLayoutTab
+              defaultValue={
+                Object.keys(availableFiles).find((file) => availableFiles[file].active) ||
+                Object.keys(availableFiles)[0]
+              }
+            >
+              {Object.keys(availableFiles).map((file) => ({
+                title: file,
+                value: file,
+                children: (
+                  <CodeEditor path={`/challenges/${challenge.path}`} template={template} file={file} key={file} />
+                ),
+              }))}
+            </ResizableLayoutTab>
+
+            <ResizableLayoutTab defaultValue="preview">
+              {[
+                {
+                  title: "Preview",
+                  value: "preview",
+                  children: <Preview template={template} />,
+                },
+              ]}
+            </ResizableLayoutTab>
+
+            <ResizableLayoutTab defaultValue="console">
+              {[
+                {
+                  title: "Console",
+                  value: "console",
+                  children: <Console />,
+                },
+              ]}
+            </ResizableLayoutTab>
           </ResizableLayout>
         </div>
       </div>

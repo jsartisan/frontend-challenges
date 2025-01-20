@@ -14,10 +14,11 @@ type MonacoEditorProps = {
   onChange?: (files: SandpackState["files"]) => void;
   fontSize?: number;
   tabSize?: number;
+  vimMode?: boolean;
 };
 
 export function MonacoEditor(props: MonacoEditorProps) {
-  const { path = "", file, template, onChange, fontSize, tabSize } = props;
+  const { path = "", file, template, onChange, fontSize, tabSize, vimMode } = props;
   const monaco = useMonaco();
   const { sandpack } = useSandpack();
   const { files, updateFile } = sandpack;
@@ -64,7 +65,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
         },
       });
     }
-  }, [monaco, template]);
+  }, [monaco, template, vimMode]);
 
   useEffect(() => {
     if (!monaco) return;
@@ -73,6 +74,24 @@ export function MonacoEditor(props: MonacoEditorProps) {
     emmetCSS(monaco);
   }, [monaco]);
 
+  function handleEditorDidMount(editor) {
+    // @ts-expect-error window.require is not defined
+    window.require.config({
+      paths: {
+        "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
+      },
+    });
+
+    // @ts-expect-error window.require is not defined
+    window.require(["monaco-vim"], function (MonacoVim) {
+      const statusNode = document.querySelector(".vim-status-node");
+
+      if (vimMode) {
+        MonacoVim.initVimMode(editor, statusNode);
+      }
+    });
+  }
+
   if (!monaco) return null;
 
   return (
@@ -80,9 +99,11 @@ export function MonacoEditor(props: MonacoEditorProps) {
       width="100%"
       height="100%"
       path={file}
+      onMount={handleEditorDidMount}
       language={setLanguage(file)}
       theme={`vs-${resolvedTheme}`}
       value={files[file].code}
+      key={vimMode ? "vim" : "normal"}
       options={{
         readOnly: files[file]?.readOnly,
         minimap: { enabled: false },

@@ -3,12 +3,11 @@
 import { Icon } from "../ui/icon";
 import { cn } from "../../utils/helpers";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import { LayoutGroup } from "../editor/DynamicLayout/types";
 import { STORAGE_KEY } from "packages/shared/src";
 
 type LayoutChangerProps = {
   className?: string;
-  layout: LayoutGroup | "layout-1" | "layout-2" | "layout-3";
+  layout: "layout-1" | "layout-2" | "layout-3";
   setLayout: (layout: LayoutChangerProps["layout"]) => void;
 };
 
@@ -21,13 +20,12 @@ export const LayoutChanger = (props: LayoutChangerProps) => {
         size="icon"
         variant="outline"
         type="single"
-        value={["layout-1", "layout-2", "layout-3"].includes(layout as any) ? (layout as any) : undefined}
+        value={layout}
         onValueChange={(value) => {
           if (value) {
-            if (["layout-1", "layout-2", "layout-3"].includes(value)) {
-              localStorage.setItem(`${STORAGE_KEY}:layout`, value);
-              setLayout(value as "layout-1" | "layout-2" | "layout-3");
-            }
+            localStorage.setItem(`${STORAGE_KEY}:layout`, value);
+
+            setLayout(value as "layout-1" | "layout-2" | "layout-3");
           }
         }}
       >

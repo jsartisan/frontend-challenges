@@ -17,7 +17,7 @@
 
 ```
 
-```css styles.css 
+```css styles.css active 
 .parent {
   height: 200px;
   width: 200px;
