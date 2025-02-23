@@ -15,7 +15,7 @@ import {
 } from "../ui";
 import { useCompletions } from "../..//hooks/useCompletions";
 import { createCompletion, deleteCompletion } from "../../db/completions";
-
+import { useAuth } from "../../hooks/useAuth";
 export type ChallengeListItemProps = {
   challenge: Challenge;
   showTypeIcon?: boolean;
@@ -26,6 +26,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   const { challenge, showTypeIcon = true, variant } = props;
   const queryClient = useQueryClient();
   const { completions } = useCompletions();
+  const { user } = useAuth();
   const isCompleted = completions.includes(`challenge-${challenge.no}`);
 
   const mutation = useMutation({
@@ -38,7 +39,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   const onMarkComplete = () => {
     if (mutation.isPending) return;
 
-    mutation.mutate({ challenge_id: challenge.no });
+    mutation.mutate({ challenge_id: challenge.no, user_id: user.user_id });
   };
 
   if (variant === "compact") {

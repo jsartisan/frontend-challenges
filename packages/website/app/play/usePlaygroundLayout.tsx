@@ -1,13 +1,9 @@
 import dynamic from "next/dynamic";
 
-import { Question, SupportedTemplates } from "packages/shared/src/types";
-import Description from "@/web/components/editor/Description";
-import { AnswerList } from "@/web/components/questions/AnswerList";
-import { LayoutGroup, LayoutItem, LayoutPanel } from "@/web/components/editor/DynamicLayout/types";
+import { SupportedTemplates } from "packages/shared/src/types";
 import { Skeleton } from "packages/website/components/ui";
 import { STORAGE_KEY } from "packages/shared/src";
-import { useEffect, useMemo, useState } from "react";
-import { TemplateChanger } from "../challenges/[slug]/TemplateChanger";
+import { useEffect, useState } from "react";
 import { FileExplorer } from "packages/website/components/editor/FileExplorer";
 
 const CodeEditor = dynamic(() => import("@/web/components/editor/CodeEditor"), {
@@ -96,9 +92,9 @@ export function usePlaygroundLayout(template: SupportedTemplates, files: any) {
         ],
       },
     ],
-  } as LayoutGroup;
+  };
 
-  const [layout, setLayout] = useState<LayoutGroup>(DEFAULT_LAYOUT);
+  const [layout, setLayout] = useState(DEFAULT_LAYOUT);
 
   useEffect(() => {
     const layout = localStorage.getItem(`${STORAGE_KEY}:layout`);

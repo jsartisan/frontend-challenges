@@ -8,7 +8,7 @@ import { Solution } from "./Solution";
 import { Card } from "../../../components/ui/card";
 import { Skeleton } from "../../../components/ui/skeleton";
 import Description from "../../../components/editor/Description";
-import { Tabs, TabsContent, TabsList, TabsTrigger, Button, Icon } from "../../../components/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui";
 
 const MarkCompleteButton = dynamic(() => import("./MarkCompleteButton").then((mod) => mod.MarkCompleteButton), {
   ssr: false,

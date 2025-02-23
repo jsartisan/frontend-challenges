@@ -41,7 +41,7 @@
 }
 ```
 
-```css demo.css 
+```css demo.css hidden 
 html, body {
   height: 100%;
   width: 100%;

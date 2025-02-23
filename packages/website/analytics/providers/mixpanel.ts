@@ -1,5 +1,5 @@
 import mixpanel from "mixpanel-browser";
-import { AnalyticsEvent, AnalyticsService } from "./types";
+import { AnalyticsEvent, AnalyticsService } from "../types";
 
 export class MixpanelProvider implements AnalyticsService {
   constructor(token: string) {

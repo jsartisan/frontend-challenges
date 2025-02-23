@@ -3,22 +3,20 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useChallengeFiles } from "@/web/hooks/useChallengeFiles";
-import { SandpackRoot } from "@/web/components/editor/SandpackRoot";
-import { DynamicLayout } from "@/web/components/editor/DynamicLayout";
-import { TEMPLATES, Question, SupportedTemplates, STORAGE_KEY } from "@/shared";
+import { TEMPLATES, Question, SupportedTemplates } from "@/shared";
 
 import { AnswerList } from "@/web/components/questions/AnswerList";
-import { useChallengeLayout } from "./useChallengeLayout";
 
 import { TemplateChanger } from "./TemplateChanger";
 import { MarkCompleteButton } from "./MarkCompleteButton";
 import { ShareSolutionButton } from "./ShareSolutionButton";
-import { Card, Separator, Skeleton, TabsList, TabsTrigger, TabsContent, Tabs } from "packages/website/components/ui";
+import { Separator, Skeleton } from "packages/website/components/ui";
+import { useLayout } from "packages/website/providers/LayoutProvider";
+import Description from "packages/website/components/editor/Description";
+import { SandpackRoot } from "packages/website/components/editor/SandpackRoot";
 import { LayoutChanger } from "packages/website/components/questions/LayoutChanger";
 import { ResizableLayout } from "packages/website/components/editor/ResizableLayout";
-import Description from "packages/website/components/editor/Description";
 import { ResizableLayoutTab } from "packages/website/components/editor/ResizableLayoutTab";
-import { useLayout } from "packages/website/providers/LayoutProvider";
 
 const Breadcrumb = dynamic(() => import("./Breadcrumb").then((mod) => mod.Breadcrumb), {
   ssr: false,
@@ -57,8 +55,6 @@ function QuestionChallenge(props: QuestionChallengeProps) {
   // we need original files to be able to reset the files to the original state.
   const originalFiles = { ...TEMPLATES[template].files, ...challenge.templateFiles[template] };
 
-  console.log("@@ allFiles", allFiles);
-
   return (
     <SandpackRoot
       files={allFiles}
@@ -94,7 +90,7 @@ function QuestionChallenge(props: QuestionChallengeProps) {
                 {
                   title: "Notes",
                   value: "notes",
-                  children: <Notes path={`/challenges/${challenge.path}`} />,
+                  children: <Notes path={`challenges/${challenge.path}`} />,
                 },
               ]}
             </ResizableLayoutTab>
@@ -105,13 +101,22 @@ function QuestionChallenge(props: QuestionChallengeProps) {
                 Object.keys(availableFiles)[0]
               }
             >
-              {Object.keys(availableFiles).map((file) => ({
-                title: file,
-                value: file,
-                children: (
-                  <CodeEditor path={`/challenges/${challenge.path}`} template={template} file={file} key={file} />
-                ),
-              }))}
+              {Object.keys(availableFiles)
+                .filter((file) => {
+                  return !(availableFiles[file].hidden || file === "/package.json");
+                })
+                .map((file) => ({
+                  title: file,
+                  value: file,
+                  children: (
+                    <CodeEditor
+                      path={`/challenges/${challenge.path}`}
+                      template={template}
+                      file={file}
+                      key={`${challenge.path}-${file}`}
+                    />
+                  ),
+                }))}
             </ResizableLayoutTab>
 
             <ResizableLayoutTab defaultValue="preview">

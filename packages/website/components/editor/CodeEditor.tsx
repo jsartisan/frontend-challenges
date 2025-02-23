@@ -1,35 +1,15 @@
 "use client";
 
 import { memo } from "react";
-import { useEffect, useState } from "react";
-import { initVimMode } from "monaco-vim";
+import { useState } from "react";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 import { CodeFile, STORAGE_KEY, SupportedTemplates } from "@/shared";
 
-import { Card } from "../ui/card";
-import {
-  Button,
-  Checkbox,
-  FormLabel,
-  Icon,
-  IconButton,
-  Label,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  ToggleGroup,
-  ToggleGroupItem,
-} from "../ui";
-import { cn } from "../../utils/helpers";
+import { Button, Checkbox, Icon, IconButton, Label, ToggleGroup, ToggleGroupItem } from "../ui";
 import { MonacoEditor } from "./MonacoEditor";
-import { Tabs, TabsList, TabsTrigger } from "../ui";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 import { useSandpackLocal } from "./SandpackLocalProvider";
-import { useScrollableTabs } from "packages/website/hooks/useScrollableTabs";
 import { usePrettify } from "../../hooks/usePrettify";
 import { Slider } from "../ui/slider";
 
@@ -46,10 +26,9 @@ type Props = {
 };
 
 function _CodeEditor(props: Props) {
-  const { className, showTabs = true, exclude, path, template, originalFiles, file } = props;
+  const { path, template, originalFiles, file } = props;
   const { sandpack } = useSandpack();
   const { resetFiles } = useSandpackLocal();
-  const [loading, setLoading] = useState(true);
   const [editorFontSize, _setEditorFontSize] = useState(() => {
     const stored = localStorage.getItem(`${STORAGE_KEY}:editor-font-size`);
 
@@ -108,7 +87,6 @@ function _CodeEditor(props: Props) {
   const prettify = usePrettify();
 
   const onPrettify = (options: { tabSize?: number }) => {
-    console.log("@@ code", sandpack.activeFile);
     prettify(options).then((updatedFiles) => {
       if (updatedFiles) {
         onChange(updatedFiles);
@@ -206,6 +184,7 @@ function _CodeEditor(props: Props) {
           </div>
         </div>
         <MonacoEditor
+          key={vimMode ? "vim" : "normal"}
           fontSize={editorFontSize}
           tabSize={editorTabSize}
           onChange={onChange}
@@ -213,7 +192,6 @@ function _CodeEditor(props: Props) {
           vimMode={vimMode}
           path={path}
           file={file}
-          key={path}
         />
       </div>
     </>

@@ -27,13 +27,13 @@ export function MonacoEditor(props: MonacoEditorProps) {
   useEffect(() => {
     if (monaco) {
       Object.keys(files).forEach((file) => {
-        if (monaco.editor.getModel(monaco.Uri.parse(file))) {
-          monaco.editor.getModel(monaco.Uri.parse(file))?.setValue(files[file].code);
+        if (monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))) {
+          monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))?.setValue(files[file].code);
 
           return;
         }
 
-        monaco.editor.createModel(files[file].code, setLanguage(file), monaco.Uri.parse(file));
+        monaco.editor.createModel(files[file].code, setLanguage(file), monaco.Uri.parse(`${path}${file}`));
       });
 
       monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
@@ -52,10 +52,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
 
       monaco.editor.registerEditorOpener({
         openCodeEditor(source, resource) {
-          const models = monaco.editor.getModels();
-          const model = monaco.editor.getModel(monaco.Uri.parse(resource.path));
-
-          console.log({ model, models, path });
+          const model = monaco.editor.getModel(monaco.Uri.parse(`${path}${resource.path}`));
 
           if (!model) return false;
 
@@ -65,7 +62,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
         },
       });
     }
-  }, [monaco, template, vimMode]);
+  }, [monaco, template]);
 
   useEffect(() => {
     if (!monaco) return;
@@ -84,10 +81,10 @@ export function MonacoEditor(props: MonacoEditorProps) {
 
     // @ts-expect-error window.require is not defined
     window.require(["monaco-vim"], function (MonacoVim) {
-      const statusNode = document.querySelector(".vim-status-node");
-
       if (vimMode) {
-        MonacoVim.initVimMode(editor, statusNode);
+        MonacoVim.initVimMode(editor, document.querySelector(".vim-status-node"));
+
+        return;
       }
     });
   }
@@ -98,12 +95,11 @@ export function MonacoEditor(props: MonacoEditorProps) {
     <Editor
       width="100%"
       height="100%"
-      path={file}
+      path={`${path}${file}`}
       onMount={handleEditorDidMount}
       language={setLanguage(file)}
       theme={`vs-${resolvedTheme}`}
       value={files[file].code}
-      key={vimMode ? "vim" : "normal"}
       options={{
         readOnly: files[file]?.readOnly,
         minimap: { enabled: false },

@@ -14,7 +14,7 @@ const ResizablePanelGroup = (props: React.ComponentProps<typeof ResizablePrimiti
   return (
     <ResizablePrimitive.PanelGroup className={cn("flex h-full w-full", className)} {...rest}>
       {Array.isArray(children)
-        ? children.map((child) => cloneElement(child, { groupDirection: rest.direction, groupRef }))
+        ? children.map((child, index) => cloneElement(child, { groupDirection: rest.direction, groupRef, key: index }))
         : cloneElement(children as React.ReactElement, { groupDirection: rest.direction, groupRef })}
     </ResizablePrimitive.PanelGroup>
   );

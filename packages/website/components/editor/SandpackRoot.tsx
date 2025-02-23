@@ -6,7 +6,6 @@ import { SandpackProvider } from "@codesandbox/sandpack-react";
 import { cn } from "../../utils/helpers";
 import { SandpackLocalProvider } from "./SandpackLocalProvider";
 import { CodeFile, SupportedTemplates } from "@/shared";
-import { useLayout } from "packages/website/providers/LayoutProvider";
 
 type Props = {
   path?: string;

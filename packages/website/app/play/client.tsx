@@ -5,14 +5,13 @@ import { SupportedTemplates, TEMPLATES, SUPPORTED_TEMPLATES } from "@/shared";
 
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { SandpackRoot } from "@/web/components/editor/SandpackRoot";
-import { DynamicLayout } from "../../components/editor/DynamicLayout";
-import { usePlaygroundLayout } from "./usePlaygroundLayout";
-import { ResizableLayout } from "packages/website/components/editor/ResizableLayout";
 import { ResizableLayoutTab } from "packages/website/components/editor/ResizableLayoutTab";
-import Description from "packages/website/components/editor/Description";
-import { ResizablePanel, ResizablePanelGroup } from "packages/website/components/ui";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "packages/website/components/ui";
 import Console from "packages/website/components/editor/Console";
-import MemoizedPreview from "packages/website/components/editor/Preview";
+import Preview from "packages/website/components/editor/Preview";
+import CodeEditor from "packages/website/components/editor/CodeEditor";
+import { FileExplorer } from "packages/website/components/editor/FileExplorer";
+import { TemplateChanger } from "packages/website/components/editor/TemplateChanger";
 
 const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -85,9 +84,6 @@ export function Client() {
 
     setFiles(getFilesFromLocalStorage(template));
   };
-  const { layout, componentsMap, setLayout } = usePlaygroundLayout(template, files);
-
-  console.log("@@ layout", layout);
 
   return (
     <SandpackRoot
@@ -106,12 +102,62 @@ export function Client() {
           </div>
         </div>
         <div className="w-full flex-grow">
-          <ResizablePanelGroup direction="horizontal">
-            <ResizablePanel>
-              <Console />
+          <ResizablePanelGroup direction="horizontal" className="!grid gap-4 sm:!flex sm:gap-1">
+            <ResizablePanel defaultSize={20}>
+              <ResizableLayoutTab defaultValue="fileExplorer" tabless>
+                {[
+                  {
+                    title: "File Explorer",
+                    value: "fileExplorer",
+                    children: (
+                      <div className="flex flex-col gap-3 p-1">
+                        <TemplateChanger template={template} setTemplate={onChangeTemplate} />
+                        <FileExplorer />
+                      </div>
+                    ),
+                  },
+                ]}
+              </ResizableLayoutTab>
             </ResizablePanel>
+            <ResizableHandle className="hidden w-2 sm:block" />
             <ResizablePanel>
-              <MemoizedPreview template={template} />
+              <ResizableLayoutTab
+                defaultValue={Object.keys(files).find((file) => files[file].active) || Object.keys(files)[0]}
+              >
+                {Object.keys(files).map((file) => ({
+                  title: file,
+                  value: file,
+                  children: <CodeEditor path={`/playground`} template={template} file={file} key={file} />,
+                }))}
+              </ResizableLayoutTab>
+            </ResizablePanel>
+            <ResizableHandle className="hidden w-2 sm:block" />
+            <ResizablePanel>
+              <ResizablePanelGroup direction="vertical" className="!grid gap-4 sm:!flex sm:gap-1">
+                <ResizablePanel>
+                  <ResizableLayoutTab defaultValue="preview">
+                    {[
+                      {
+                        title: "Preview",
+                        value: "preview",
+                        children: <Preview template={template} />,
+                      },
+                    ]}
+                  </ResizableLayoutTab>
+                </ResizablePanel>
+                <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
+                <ResizablePanel defaultSize={0}>
+                  <ResizableLayoutTab defaultValue="console">
+                    {[
+                      {
+                        title: "Console",
+                        value: "console",
+                        children: <Console />,
+                      },
+                    ]}
+                  </ResizableLayoutTab>
+                </ResizablePanel>
+              </ResizablePanelGroup>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>

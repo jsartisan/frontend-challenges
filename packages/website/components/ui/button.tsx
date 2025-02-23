@@ -2,13 +2,15 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
+import { Icon } from "./icon";
 import { cn } from "../../utils/helpers";
 
 const buttonVariants = cva(
   cn(
-    "inline-flex items-center justify-center border border-transparent whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-[var(--color-bd-accent)] focus-visible:ring-2 focus-visible:ring-offset-1",
+    "relative inline-flex items-center justify-center overflow-hidden border border-transparent whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-[var(--color-bd-accent)] focus-visible:ring-2 focus-visible:ring-offset-1",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&>svg]:size-[1.3em]",
+    "[&:has(+_[data-loader])_*]:opacity-0 [&:has(+_[data-loader])]:text-transparent",
   ),
   {
     variants: {
@@ -41,12 +43,26 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, isLoading = false, asChild = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
-    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+
+    return (
+      <div data-wrapper className={cn("relative inline-flex")}>
+        <Comp ref={ref} {...props} className={cn(buttonVariants({ variant, size, className }), className)}>
+          {children}
+        </Comp>
+        {isLoading && (
+          <span data-loader className="absolute inset-0 flex items-center justify-center bg-inherit">
+            <Icon name="spinner" className="animate-spin" />
+          </span>
+        )}
+        <div className="[&:has(+_[data-loader])_::target-text]:opacity-0"> </div>
+      </div>
+    );
   },
 );
 Button.displayName = "Button";

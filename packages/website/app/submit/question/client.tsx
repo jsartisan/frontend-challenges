@@ -14,7 +14,7 @@ import { Step2Fields } from "./Step2Fields";
 import { Step1Header } from "./Step1Header";
 import { Step2Header } from "./Step2Header";
 import { Tabs, TabsContent, Form } from "../../../components/ui";
-import SandpackRoot from "../../../components/editor/SandpackRoot";
+import { SandpackRoot } from "../../../components/editor/SandpackRoot";
 
 export const formSchema = z.object({
   title: z.string().min(2).max(50),

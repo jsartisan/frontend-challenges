@@ -13,13 +13,16 @@ import {
   Button,
   Link,
   Skeleton,
+  ResizablePanelGroup,
+  ResizablePanel,
 } from "../ui";
 
 import Preview from "../editor/Preview";
-import SandpackRoot from "../editor/SandpackRoot";
+import { SandpackRoot } from "../editor/SandpackRoot";
 import { useAnswers } from "packages/website/hooks/useAnswers";
 import { ComponentPropsWithoutRef } from "react";
 import { cn } from "packages/website/utils/helpers";
+import { ResizableLayoutTab } from "../editor/ResizableLayoutTab";
 
 const CodeEditor = dynamic(() => import("../editor/CodeEditor"), {
   ssr: false,
@@ -122,18 +125,45 @@ export function AnswerList(props: AnswerListProps) {
                       </div>
                     </SheetDescription>
                   </SheetHeader>
-                  <div className="grid h-[calc(100%-theme(spacing.20))] flex-grow grid-cols-1 grid-rows-2 gap-3">
-                    <CodeEditor
-                      path={`/answers/${answer.no}`}
-                      className="flex-grow"
-                      files={answer.files || {}}
-                      template={answer.template}
-                      originalFiles={{
-                        ...TEMPLATES[answer.template].files,
-                        ...answer.files,
-                      }}
-                    />
-                    <Preview template={answer.template} className="" />
+                  <div className="grid h-[calc(100%-theme(spacing.20))]">
+                    <ResizablePanelGroup direction="vertical" className="flex flex-col gap-3">
+                      <ResizablePanel>
+                        <ResizableLayoutTab
+                          defaultValue={
+                            Object.keys(answer.files).find((file) => answer.files[file].active) ||
+                            Object.keys(answer.files)[0]
+                          }
+                        >
+                          {Object.keys(answer.files).map((file) => ({
+                            title: file,
+                            value: file,
+                            children: (
+                              <CodeEditor
+                                path={`/answers/${answer.no}`}
+                                template={answer.template}
+                                file={file}
+                                key={`${answer.no}-${file}`}
+                                originalFiles={{
+                                  ...TEMPLATES[answer.template].files,
+                                  ...answer.files,
+                                }}
+                              />
+                            ),
+                          }))}
+                        </ResizableLayoutTab>
+                      </ResizablePanel>
+                      <ResizablePanel>
+                        <ResizableLayoutTab defaultValue="preview">
+                          {[
+                            {
+                              title: "Preview",
+                              value: "preview",
+                              children: <Preview template={answer.template} />,
+                            },
+                          ]}
+                        </ResizableLayoutTab>
+                      </ResizablePanel>
+                    </ResizablePanelGroup>
                   </div>
                 </SandpackRoot>
               </SheetContent>

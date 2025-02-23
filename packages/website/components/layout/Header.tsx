@@ -3,9 +3,9 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { REPO, ChallengeSlim } from "@/shared";
 
 import { Logo } from "../common/Logo";
+import UserNav from "../auth/UserNav";
 import { Skeleton } from "../ui/skeleton";
 import { Icon, IconButton, Link, Separator } from "../ui";
-import { SubmissionNavigator } from "../common/SubmissionNavigator";
 
 const SpotLight = dynamic(() => import("../../components/common/Spotlight"), {
   ssr: false,
@@ -54,7 +54,7 @@ export async function Header(props: HeaderProps) {
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
               <CompletionStats challenges={challenges} />
-              <SubmissionNavigator />
+              <UserNav />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <IconButton asChild variant="tertiary">
                 <a href={REPO} target="_blank" rel="noreferrer">

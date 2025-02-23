@@ -3,7 +3,7 @@ import { TEMPLATES, SupportedTemplates } from "@/shared";
 import { SandpackFile } from "@codesandbox/sandpack-react";
 
 import CodeEditor from "../editor/CodeEditor";
-import SandpackRoot from "../editor/SandpackRoot";
+import { SandpackRoot } from "../editor/SandpackRoot";
 
 type SandpackProps = {
   codeOnly?: boolean;

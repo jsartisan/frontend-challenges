@@ -22,7 +22,6 @@ import {
   SelectGroup,
   SelectItem,
 } from "../ui";
-import { Card } from "../ui/card";
 import { cn } from "../../utils/helpers";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
