@@ -19,9 +19,9 @@ import {
 
 import Preview from "../editor/Preview";
 import { SandpackRoot } from "../editor/SandpackRoot";
-import { useAnswers } from "packages/website/hooks/useAnswers";
+import { useAnswers } from "~/hooks/useAnswers";
 import { ComponentPropsWithoutRef } from "react";
-import { cn } from "packages/website/utils/helpers";
+import { cn } from "~/utils/helpers";
 import { ResizableLayoutTab } from "../editor/ResizableLayoutTab";
 
 const CodeEditor = dynamic(() => import("../editor/CodeEditor"), {

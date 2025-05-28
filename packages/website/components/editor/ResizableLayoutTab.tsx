@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Card } from "../ui";
 
-import { cn } from "packages/website/utils/helpers";
-import { ImperativePanelGroupHandle, ImperativePanelHandle } from "react-resizable-panels";
+import { cn } from "~/utils/helpers";
 import { useSandpack } from "@codesandbox/sandpack-react";
+import { ImperativePanelGroupHandle, ImperativePanelHandle } from "react-resizable-panels";
 
 type ResizableLayoutTabProps = {
   children: {

@@ -73,6 +73,7 @@
     "next": "^14.2.2",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
+    "nuqs": "^2.4.3",
     "octokit": "^3.1.2",
     "prompts": "^2.4.2",
     "react": "^18.2.0",

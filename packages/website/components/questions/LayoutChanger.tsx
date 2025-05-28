@@ -1,9 +1,9 @@
 "use client";
 
-import { Icon } from "../ui/icon";
-import { cn } from "../../utils/helpers";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import { STORAGE_KEY } from "packages/shared/src";
+import { STORAGE_KEY } from "@/shared";
+import { Icon } from "~/components/ui/icon";
+import { cn } from "~/utils/helpers";
+import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 
 type LayoutChangerProps = {
   className?: string;

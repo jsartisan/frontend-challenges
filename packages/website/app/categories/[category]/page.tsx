@@ -2,7 +2,7 @@ import { CATEGORIES } from "@/shared";
 import { getChallenges } from "@frontend-challenges/backend";
 import { filterChallengesByCategory } from "../../../utils/challenges";
 
-import Client from "../../challenges/client";
+import Client from "../../(editor)/challenges/client";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;

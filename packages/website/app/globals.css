@@ -60,7 +60,7 @@
     --color-fg-accent: var(--ramp-blue-500);
     --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent), black 20%);
     --color-fg-neutral: var(--ramp-grey-900);
-    --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
+    --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 40%);
     --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral-subtle), black 30%);
     --color-fg-invert: var(--ramp-white-1000);
     --color-fg-on-assistive: var(--ramp-white-1000);

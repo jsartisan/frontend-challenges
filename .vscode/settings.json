@@ -1,0 +1,3 @@
+{
+  "tailwindCSS.experimental.configFile": "packages/website/app/globals.css"
+}

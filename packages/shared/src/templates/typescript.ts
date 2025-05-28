@@ -1,6 +1,6 @@
 export const TYPESCRIPT_TEMPLATE = {
   files: {
-    "tsconfig.json": {
+    "/tsconfig.json": {
       hidden: true,
       code: `{
   "include": [

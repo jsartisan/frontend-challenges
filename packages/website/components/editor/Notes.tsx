@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { STORAGE_KEY } from "packages/shared/src/constants";
+import { STORAGE_KEY } from "@/shared";
 import { Editor, HistoryEntry, TLDocument, TLRecord, TLStoreSnapshot, Tldraw, getSnapshot, loadSnapshot } from "tldraw";
-import { useAuth } from "packages/website/hooks/useAuth";
-import { getNote, updateNote } from "packages/website/db/notes";
-import { useDebounce } from "packages/website/hooks/useDebounce";
+import { useAuth } from "~/hooks/useAuth";
+import { getNote, updateNote } from "~/db/notes";
+import { useDebounce } from "~/hooks/useDebounce";
 
 import "tldraw/tldraw.css";
-import { getLocalStorageItem } from "packages/website/utils/localStorage";
+import { getLocalStorageItem } from "~/utils/localStorage";
 
 type NotesProps = {
   path?: string;

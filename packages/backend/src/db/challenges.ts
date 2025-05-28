@@ -7,7 +7,7 @@ import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@/shared";
 
 import { getLocaleVariations } from "./locales";
 import { getCodeFilesByTemplate } from "./templates";
-import { bundleMarkdown } from "packages/website/utils/markdown";
+import { bundleMarkdown } from "~/utils/markdown";
 
 export async function getChallenges(): Promise<Challenge[]> {
   const folders = await fg("{0..9}*-*", {

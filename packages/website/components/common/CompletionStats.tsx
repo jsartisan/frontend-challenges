@@ -2,7 +2,7 @@
 
 import React, { CSSProperties } from "react";
 import { ChallengeSlim } from "@/shared";
-import { useCompletions } from "packages/website/hooks/useCompletions";
+import { useCompletions } from "~/hooks/useCompletions";
 
 import { Icon, IconButton } from "../ui";
 import { cn } from "../../utils/helpers";

@@ -6,7 +6,6 @@ import { getChallenges } from "@frontend-challenges/backend";
 
 import { cn } from "../utils/helpers";
 import { Provider } from "../providers";
-import { Header } from "../components/layout/Header";
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN),
@@ -31,17 +30,7 @@ export default async function RootLayout(params) {
           "flex min-h-screen flex-col overflow-x-clip bg-[var(--color-bg-secondary)] font-sans text-sm antialiased",
         )}
       >
-        <Provider challenges={challenges}>
-          <Header
-            challenges={challenges.map((c) => ({
-              no: c.no,
-              path: c.path,
-              title: c.info.en?.title,
-              difficulty: c.difficulty,
-            }))}
-          />
-          {children}
-        </Provider>
+        <Provider challenges={challenges}>{children}</Provider>
       </body>
     </html>
   );

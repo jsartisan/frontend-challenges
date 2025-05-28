@@ -1,11 +1,12 @@
 import dynamic from "next/dynamic";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { REPO, ChallengeSlim } from "@/shared";
 
-import { Logo } from "../common/Logo";
-import UserNav from "../auth/UserNav";
-import { Skeleton } from "../ui/skeleton";
-import { Icon, IconButton, Link, Separator } from "../ui";
+import { REPO } from "@/shared";
+import { Logo } from "~/components/common/Logo";
+import UserNav from "~/components/interfaces/auth/UserNav";
+import { Skeleton } from "~/components/ui/skeleton";
+import { getChallenges } from "@frontend-challenges/backend";
+import { Icon, IconButton, Link, Separator } from "~/components/ui";
 
 const SpotLight = dynamic(() => import("../../components/common/Spotlight"), {
   ssr: false,
@@ -17,12 +18,14 @@ const CompletionStats = dynamic(() => import("../common/CompletionStats"), {
   loading: () => <Skeleton className="size-8" />,
 });
 
-type HeaderProps = {
-  challenges: ChallengeSlim[];
-};
-
-export async function Header(props: HeaderProps) {
-  const { challenges } = props;
+export async function Header() {
+  const challenges = await getChallenges();
+  const challengesSlim = challenges.map((challenge) => ({
+    no: challenge.no,
+    path: challenge.path,
+    title: challenge.info.en?.title ?? "",
+    difficulty: challenge.difficulty,
+  }));
 
   return (
     <>
@@ -31,7 +34,7 @@ export async function Header(props: HeaderProps) {
           <div className="flex h-[var(--navbar-height)] items-center justify-between md:justify-start md:gap-4">
             <div className="flex items-center justify-start gap-3">
               <Logo />
-              <SpotLight items={challenges} />
+              <SpotLight items={challengesSlim} />
               <div className="hidden items-center gap-4 md:flex">
                 <Link href="/challenges" className="font-medium">
                   Challenges
@@ -53,7 +56,7 @@ export async function Header(props: HeaderProps) {
               </div>
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
-              <CompletionStats challenges={challenges} />
+              <CompletionStats challenges={challengesSlim} />
               <UserNav />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <IconButton asChild variant="tertiary">

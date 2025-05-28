@@ -1,6 +1,6 @@
 "use client";
-import { STORAGE_KEY } from "packages/shared/src";
-import { createContext, useContext, useEffect, useState } from "react";
+import { STORAGE_KEY } from "@/shared";
+import { createContext, useContext, useState } from "react";
 
 type Layout = "layout-1" | "layout-2" | "layout-3";
 

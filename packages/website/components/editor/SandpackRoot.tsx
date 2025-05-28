@@ -5,7 +5,7 @@ import { SandpackProvider } from "@codesandbox/sandpack-react";
 
 import { cn } from "../../utils/helpers";
 import { SandpackLocalProvider } from "./SandpackLocalProvider";
-import { CodeFile, SupportedTemplates } from "@/shared";
+import { SupportedTemplates, TEMPLATES } from "@/shared";
 
 type Props = {
   path?: string;
@@ -13,12 +13,12 @@ type Props = {
   children: React.ReactNode;
   files?: Record<string, string>;
   className?: string;
-  originalFiles?: Record<string, CodeFile>;
 };
 
 export function SandpackRoot(props: Props) {
   const { resolvedTheme } = useTheme();
-  const { children, className, files, path, template, originalFiles } = props;
+  const { children, className, files, path, template } = props;
+  const originalFiles = { ...TEMPLATES[template].files, ...files };
   const isStatic = template === "static";
 
   return (

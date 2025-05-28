@@ -99,7 +99,15 @@ export function MonacoEditor(props: MonacoEditorProps) {
       onMount={handleEditorDidMount}
       language={setLanguage(file)}
       theme={`vs-${resolvedTheme}`}
-      value={files[file].code}
+      value={(function () {
+        if (files[file]) {
+          return files[file].code;
+        }
+
+        // console.log("failing file", file, files);
+
+        return "";
+      })()}
       options={{
         readOnly: files[file]?.readOnly,
         minimap: { enabled: false },

@@ -1,4 +1,5 @@
 import { Challenge } from "@/shared";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { ThemeProvider } from "./ThemeProvider";
 import { QueryProvider } from "./QueryProvider";
@@ -20,7 +21,7 @@ export function Provider(props: ProviderProps) {
         <ChallengesProvider challenges={challenges}>
           <TooltipProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-              {children}
+              <NuqsAdapter>{children}</NuqsAdapter>
             </ThemeProvider>
           </TooltipProvider>
         </ChallengesProvider>
