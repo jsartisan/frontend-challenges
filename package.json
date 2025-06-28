@@ -25,7 +25,7 @@
     "prettier": "^3.1.0"
   },
   "devDependencies": {
-    "@frontend-challenges/backend": "workspace:*",
+    "@/backend": "workspace:*",
     "@frontend-challenges/scripts": "workspace:*",
     "@/shared": "workspace:*",
     "@/web": "workspace:*",

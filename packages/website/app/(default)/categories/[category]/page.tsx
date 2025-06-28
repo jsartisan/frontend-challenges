@@ -1,13 +1,21 @@
+import { CATEGORIES } from "@/shared";
 import { getChallenges } from "@/backend";
-
+import { filterChallengesByCategory } from "~/utils/challenges";
 import CompletionStats from "~/components/interfaces/completions/CompletionStats";
 import { ChallengeListWithFilters } from "~/components/interfaces/challenges/ChallengesListWithFilters";
-import { Suspense } from "react";
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
-export default async function Page() {
+export async function generateStaticParams() {
+  return CATEGORIES.map((category) => ({
+    category,
+  }));
+}
+
+export default async function Page(props: any) {
   const challenges = await getChallenges();
+  const challengesByCategory = filterChallengesByCategory(challenges, props.params.category);
 
   return (
     <>
@@ -19,11 +27,9 @@ export default async function Page() {
             prepare for frontend interviews. It&apos;s free and open source.
           </p>
         </div>
-        <CompletionStats challenges={challenges} />
+        <CompletionStats challenges={challengesByCategory} />
       </header>
-      <Suspense fallback={<>Loading...</>}>
-        <ChallengeListWithFilters challenges={challenges} />
-      </Suspense>
+      <ChallengeListWithFilters challenges={challengesByCategory} />
     </>
   );
 }

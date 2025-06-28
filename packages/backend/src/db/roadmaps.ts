@@ -21,6 +21,10 @@ export async function getRoadmapByPath(dir: string): Promise<Roadmap> {
     throw new Error(`Roadmap not found: ${dir}`);
   }
 
+  if (!info[DEFAULT_LOCALE]) {
+    throw new Error(`Roadmap not found: ${dir}`);
+  }
+
   const topics = await Promise.all(
     info[DEFAULT_LOCALE].topics.map(async (topic) => {
       return {

@@ -3,9 +3,9 @@ import fs from "fs-extra";
 import c from "picocolors";
 import prompts from "prompts";
 import { fileURLToPath } from "node:url";
-import { getChallenges } from "@frontend-challenges/backend";
+import { getChallenges } from "@/backend";
 import { ROOT_PATH, SUPPORTED_LOCALES } from "@/shared";
-import { copy, createDir, writeFile } from "@frontend-challenges/backend";
+import { copy, createDir, writeFile } from "@/backend";
 import type { Question, SupportedTemplates } from "@/shared";
 
 // type Snapshot = Record<string, string>;

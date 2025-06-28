@@ -1,4 +1,4 @@
-import { getRoadmaps } from "@frontend-challenges/backend";
+import { getRoadmaps } from "@/backend";
 
 import { RoadmapListItem } from "~/components/roadmaps/RoadmapListItem";
 

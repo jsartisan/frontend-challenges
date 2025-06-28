@@ -13,7 +13,7 @@
     "@/shared": "workspace:*",
     "@codesandbox/sandpack-react": "^2.19.9",
     "@excalidraw/excalidraw": "^0.17.6",
-    "@frontend-challenges/backend": "workspace:*",
+    "@/backend": "workspace:*",
     "@hookform/resolvers": "^3.3.2",
     "@monaco-editor/react": "^4.6.0",
     "@next/bundle-analyzer": "^14.2.5",

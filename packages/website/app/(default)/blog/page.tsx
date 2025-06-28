@@ -1,4 +1,4 @@
-import { getAllBlogs } from "@frontend-challenges/backend";
+import { getAllBlogs } from "@/backend";
 
 import { BlogList } from "~/components/interfaces/challenges/BlogList";
 

@@ -1,4 +1,4 @@
-import { Challenge } from "packages/shared/src";
+import { Challenge } from "@/shared";
 import { Icon, IconButton } from "../ui";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 

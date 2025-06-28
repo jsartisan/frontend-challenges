@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { DOMAIN } from "@/shared";
-import { getChallengeByPath, getChallenges } from "@frontend-challenges/backend";
+import { getChallengeByPath, getChallenges } from "@/backend";
 
 import { Quiz } from "./Quiz";
 import { Question } from "./Question";

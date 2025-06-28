@@ -1,6 +1,6 @@
 // hooks/useAnalytics.ts
 import { useEffect } from "react";
-import { analytics } from "packages/website/analytics";
+import { analytics } from "~/analytics";
 import { AnalyticsEventName } from "../analytics/events";
 
 export function useEventTracking(

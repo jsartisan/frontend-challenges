@@ -1,4 +1,4 @@
-import { getChallenges } from "@frontend-challenges/backend";
+import { getChallenges } from "@/backend";
 
 import { Hero } from "~/components/interfaces/home/Hero";
 import { getSortedChallengesByDate } from "~/utils/challenges";

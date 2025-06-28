@@ -1,10 +1,8 @@
 import * as React from "react";
 import { Blog } from "@/shared";
-import { getAllBlogs, getBlogBySlug } from "@frontend-challenges/backend";
-
-import { bundleMarkdown } from "~/utils/markdown";
-import { MDXComponent } from "~/components/common/MDXComponent";
 import { Card } from "~/components/ui";
+import { MDXComponent } from "~/components/common/MDXComponent";
+import { bundleMarkdown, getAllBlogs, getBlogBySlug } from "@/backend";
 
 export async function generateStaticParams() {
   const posts = await getAllBlogs();

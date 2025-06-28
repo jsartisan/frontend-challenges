@@ -2,7 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { DOMAIN } from "@/shared";
-import { getChallenges } from "@frontend-challenges/backend";
+import { getChallenges } from "@/backend";
 
 import { cn } from "../utils/helpers";
 import { Provider } from "../providers";

@@ -1,13 +1,13 @@
 import path from "path";
 import fg from "fast-glob";
 
+import { bundleMarkdown } from "@/backend";
 import { parseMetaInfo, cleanUpReadme } from "@/shared";
 import type { Category, Challenge, QuestionMetaInfo } from "@/shared";
 import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@/shared";
 
 import { getLocaleVariations } from "./locales";
 import { getCodeFilesByTemplate } from "./templates";
-import { bundleMarkdown } from "~/utils/markdown";
 
 export async function getChallenges(): Promise<Challenge[]> {
   const folders = await fg("{0..9}*-*", {

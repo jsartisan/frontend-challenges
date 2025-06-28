@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { DOMAIN } from "@/shared";
-import { getRoadmapByPath, getRoadmaps } from "@frontend-challenges/backend";
+import { getRoadmapByPath, getRoadmaps } from "@/backend";
 
 import { ChallengeList } from "~/components/interfaces/challenges/ChallengeList";
 

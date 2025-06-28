@@ -5,7 +5,7 @@ import { REPO } from "@/shared";
 import { Logo } from "~/components/common/Logo";
 import UserNav from "~/components/interfaces/auth/UserNav";
 import { Skeleton } from "~/components/ui/skeleton";
-import { getChallenges } from "@frontend-challenges/backend";
+import { getChallenges } from "@/backend";
 import { Icon, IconButton, Link, Separator } from "~/components/ui";
 
 const SpotLight = dynamic(() => import("../../components/common/Spotlight"), {

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { DOMAIN } from "@/shared";
-import { getAllBlogs } from "@frontend-challenges/backend";
-import { getChallenges } from "@frontend-challenges/backend";
+import { getAllBlogs } from "@/backend";
+import { getChallenges } from "@/backend";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const challenges = await getChallenges();

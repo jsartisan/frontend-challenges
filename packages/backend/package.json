@@ -1,5 +1,5 @@
 {
-  "name": "@frontend-challenges/backend",
+  "name": "@/backend",
   "version": "0.1.0",
   "private": true,
   "author": "Pawan Kumar <pawankumar2901@hotmail.com>",
@@ -14,8 +14,10 @@
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "mdast": "^3.0.0",
+    "mdx-bundler": "^10.0.1",
     "octokit": "^3.1.2",
-    "remark-parse": "^11.0.0"
+    "remark-parse": "^11.0.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
