@@ -70,14 +70,14 @@ export default function Client() {
           }}
         >
           <Tabs className="h-full w-full p-0 " value={activeTab || "description"} onValueChange={setActiveTab}>
-            <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
+            <TabsContent value="description" className="h-full flex-col border-none p-0 [&:not([hidden])]:flex">
               <Step1Header form={form} setActiveTab={setActiveTab} />
               <div className="mt-6 grid flex-grow grid-cols-2 grid-rows-1 gap-6">
                 <Step1Fields form={form} />
                 <Description form={form} />
               </div>
             </TabsContent>
-            <TabsContent value="code" className="h-full w-full flex-col p-0 px-0 [&:not([hidden])]:flex">
+            <TabsContent value="code" className="h-full w-full flex-col border-none p-0 px-0 [&:not([hidden])]:flex">
               <Step2Header setActiveTab={setActiveTab} form={form} />
               <Step2Fields form={form} />
             </TabsContent>

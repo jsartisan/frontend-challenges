@@ -13,6 +13,7 @@ type ResizableLayoutTabProps = {
     children: React.ReactNode;
   }[];
   defaultValue?: string;
+  value?: string;
   panelRef?: React.RefObject<ImperativePanelHandle>;
   groupDirection?: "horizontal" | "vertical";
   groupRef?: React.RefObject<ImperativePanelGroupHandle>;
@@ -20,9 +21,9 @@ type ResizableLayoutTabProps = {
 };
 
 export const ResizableLayoutTab = (props: ResizableLayoutTabProps) => {
-  const { children, defaultValue, panelRef, tabless } = props;
+  const { children, defaultValue, panelRef, tabless, value } = props;
   const { sandpack } = useSandpack();
-  const [activeFile, setActiveFile] = useState(defaultValue);
+  const [activeFile, setActiveFile] = useState(value || defaultValue);
 
   // Clean up effect when component unmounts
   useEffect(() => {
@@ -59,6 +60,12 @@ export const ResizableLayoutTab = (props: ResizableLayoutTabProps) => {
     };
   }, [children]);
 
+  useEffect(() => {
+    if (value) {
+      setActiveFile(value);
+    }
+  }, [value]);
+
   return (
     <Card
       className={cn(
@@ -86,7 +93,7 @@ export const ResizableLayoutTab = (props: ResizableLayoutTabProps) => {
               key={child.value}
               value={child.value}
               onClick={() => {
-                panelRef.current?.isCollapsed() ? panelRef.current?.expand() : undefined;
+                panelRef?.current?.isCollapsed() ? panelRef?.current?.expand() : undefined;
               }}
             >
               {child.title}

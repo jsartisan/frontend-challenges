@@ -11,8 +11,8 @@ import { formSchema } from "../question/client";
 import { Description } from "../question/Description";
 import { Step1Fields } from "../question/Step1Fields";
 import { Step1Header } from "../question/Step1Header";
-import { getSubmitChallengeURL } from "../../../utils/challenges";
-import { Tabs, TabsContent, Form } from "../../../components/ui";
+import { getSubmitChallengeURL } from "~/utils/challenges";
+import { Tabs, TabsContent, Form } from "~/components/ui";
 // import { Step2Header } from "../question/Step2Header";
 
 const DEFAULT_README = `Describe the question here. Markdown is supported.

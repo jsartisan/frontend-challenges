@@ -1,9 +1,9 @@
 import { useSandpack } from "@codesandbox/sandpack-react";
-import { Icon, IconButton } from "../ui";
+import { Icon, IconButton } from "~/components/ui";
 import { useContext } from "react";
 import { SandpackLocalContext } from "./SandpackLocalProvider";
 
-function FileExplorer() {
+export function FileExplorer() {
   const { sandpack } = useSandpack();
   const { deleteFile, addFile } = useContext(SandpackLocalContext);
   const { files, setActiveFile, activeFile } = sandpack;
@@ -67,5 +67,3 @@ function FileExplorer() {
     </div>
   );
 }
-
-export { FileExplorer };
