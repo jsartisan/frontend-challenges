@@ -326,8 +326,8 @@ importers:
         specifier: workspace:*
         version: link:../shared
       '@codesandbox/sandpack-react':
-        specifier: ^2.19.9
-        version: 2.19.9(@lezer/common@1.2.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.20.0
+        version: 2.20.0(@lezer/common@1.2.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@excalidraw/excalidraw':
         specifier: ^0.17.6
         version: 0.17.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -867,11 +867,11 @@ packages:
   '@codesandbox/sandpack-client@2.19.8':
     resolution: {integrity: sha512-CMV4nr1zgKzVpx4I3FYvGRM5YT0VaQhALMW9vy4wZRhEyWAtJITQIqZzrTGWqB1JvV7V72dVEUCUPLfYz5hgJQ==}
 
-  '@codesandbox/sandpack-react@2.19.9':
-    resolution: {integrity: sha512-a5uXWYdg5Wtz6VHwXIegdS7C63foCofFa/eHO9crtPp1Yf5/npKimds0S3kKJL7jpOmMAascEvAOqOy5S9e6qQ==}
+  '@codesandbox/sandpack-react@2.20.0':
+    resolution: {integrity: sha512-takd1YpW/PMQ6KPQfvseWLHWklJovGY8QYj8MtWnskGKbjOGJ6uZfyZbcJ6aCFLQMpNyjTqz9AKNbvhCOZ1TUQ==}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
-      react-dom: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
+      react-dom: ^16.8.0 || ^17 || ^18 || ^19
 
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
@@ -7988,7 +7988,7 @@ snapshots:
       outvariant: 1.4.0
       static-browser-server: 1.0.3
 
-  '@codesandbox/sandpack-react@2.19.9(@lezer/common@1.2.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@codesandbox/sandpack-react@2.20.0(@lezer/common@1.2.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.2)(@lezer/common@1.2.3)
       '@codemirror/commands': 6.7.1

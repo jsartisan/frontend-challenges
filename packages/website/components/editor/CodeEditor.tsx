@@ -45,7 +45,7 @@ function _CodeEditor(props: Props) {
   const onChange = (files: SandpackState["files"]) => {
     if (path) {
       localStorage.setItem(
-        `${path}-${template}`,
+        `${STORAGE_KEY}:${path}-${template}`,
         JSON.stringify({
           ...files,
         }),

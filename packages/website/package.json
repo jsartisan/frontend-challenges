@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@/shared": "workspace:*",
-    "@codesandbox/sandpack-react": "^2.19.9",
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@excalidraw/excalidraw": "^0.17.6",
     "@/backend": "workspace:*",
     "@hookform/resolvers": "^3.3.2",
