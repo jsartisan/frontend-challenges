@@ -28,3 +28,18 @@ export async function getCodeFilesByTemplate(filepath: string) {
 
   return data;
 }
+
+export async function getTemplatesAvailable(filepath: string): Promise<SupportedTemplates[]> {
+  const { ext, dir, name } = path.parse(filepath);
+  const data = [] as SupportedTemplates[];
+
+  for (const template of SUPPORTED_TEMPLATES) {
+    const file = await loadFile(path.join(dir, `${name}.${template}${ext}`));
+
+    if (file) {
+      data.push(template);
+    }
+  }
+
+  return data;
+}

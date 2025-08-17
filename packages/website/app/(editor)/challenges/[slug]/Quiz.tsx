@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { Challenge, Quiz } from "@/shared";
+import type { Quiz } from "@/shared";
 
 import { Solution } from "../../../../components/interfaces/challenges/Solution";
 import { Card } from "~/components/ui/card";
@@ -27,18 +27,17 @@ const Breadcrumb = dynamic(
 
 type QuizChallengeProps = {
   challenge: Quiz;
-  challenges: Challenge[];
 };
 
 export function Quiz(props: QuizChallengeProps) {
-  const { challenge, challenges } = props;
+  const { challenge } = props;
 
   return (
     <>
       <div className="h-[calc(100vh_-_var(--nav-top-offset))]">
         <div className="flex h-full w-full flex-col gap-4 p-4">
           <div className="relative flex w-full justify-between">
-            <Breadcrumb challenge={challenge} challenges={challenges} />
+            <Breadcrumb challenge={challenge} />
             <div className="flex items-center gap-2">
               <MarkCompleteButton challenge={challenge} />
             </div>

@@ -20,12 +20,6 @@ const CompletionStats = dynamic(() => import("../common/CompletionStats"), {
 
 export async function Header() {
   const challenges = await getChallenges();
-  const challengesSlim = challenges.map((challenge) => ({
-    no: challenge.no,
-    path: challenge.path,
-    title: challenge.info.en?.title ?? "",
-    difficulty: challenge.difficulty,
-  }));
 
   return (
     <>
@@ -34,7 +28,7 @@ export async function Header() {
           <div className="flex h-[var(--navbar-height)] items-center justify-between md:justify-start md:gap-4">
             <div className="flex items-center justify-start gap-3">
               <Logo />
-              <SpotLight items={challengesSlim} />
+              <SpotLight items={challenges} />
               <div className="hidden items-center gap-4 md:flex">
                 <Link href="/challenges" className="font-medium">
                   Challenges
@@ -56,7 +50,7 @@ export async function Header() {
               </div>
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
-              <CompletionStats challenges={challengesSlim} />
+              <CompletionStats challenges={challenges} />
               <UserNav />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <IconButton asChild variant="tertiary">

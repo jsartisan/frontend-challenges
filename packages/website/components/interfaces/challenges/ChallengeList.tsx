@@ -1,19 +1,18 @@
 "use client";
 
-import { Challenge } from "@/shared";
-
 import { cn } from "~/utils/helpers";
 import { ChallengeListItem } from "./ChallengeListItem";
 import type { ChallengeListItemProps } from "./ChallengeListItem";
+import { type ChallengeList as ChallengeListType } from "@/shared";
 
 type ChallengeListProps = {
-  challenges: Challenge[];
   showTypeIcon?: boolean;
+  challenges: ChallengeListType;
   variant?: ChallengeListItemProps["variant"];
 };
 
 export function ChallengeList(props: ChallengeListProps) {
-  const { challenges, variant = "default" } = props;
+  const { variant = "default", challenges } = props;
 
   return (
     <div className={cn("flex flex-col", variant === "compact" ? "gap-2" : "gap-3")}>

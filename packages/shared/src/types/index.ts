@@ -5,8 +5,9 @@ export type Difficulty = "easy" | "medium" | "hard" | "extreme";
 export type Importance = "hight" | "medium" | "low";
 
 export type Challenge = Question | Quiz;
-export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path"> & {
-  title?: string;
+export type ChallengeList = ChallengeSlim[];
+export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path" | "category" | "info" | "type"> & {
+  templatesAvailable: SupportedTemplates[];
 };
 
 interface BaseChallengeProps {
@@ -90,7 +91,7 @@ export type Roadmap = {
   path?: string;
   topics: {
     title: string;
-    challenges: Challenge[];
+    challenges: ChallengeList;
   }[];
   info: Record<string, DeepPartial<RoadmapInfo> | undefined>;
 };

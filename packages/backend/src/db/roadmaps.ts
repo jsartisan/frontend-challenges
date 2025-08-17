@@ -4,7 +4,7 @@ import YAML from "js-yaml";
 import { DEFAULT_LOCALE, STUDY_PLANS_ROOT, Roadmap, RoadmapInfo } from "@/shared";
 
 import { getLocaleVariations } from "./locales";
-import { getChallengeByPath } from "./challenges";
+import { getChallengeByPathSlim } from "./challenges";
 
 export async function getRoadmaps(): Promise<Roadmap[]> {
   const folders = fs.readdirSync(STUDY_PLANS_ROOT);
@@ -31,7 +31,7 @@ export async function getRoadmapByPath(dir: string): Promise<Roadmap> {
         ...topic,
         challenges: await Promise.all(
           topic.challenges.map(async (challengePath: string) => {
-            const challenge = await getChallengeByPath(challengePath);
+            const challenge = await getChallengeByPathSlim(challengePath);
 
             return challenge;
           }),

@@ -1,8 +1,8 @@
-import { Challenge } from "@/shared";
+import { type ChallengeList as ChallengeListType } from "@/shared";
 import { ChallengeList } from "~/components/interfaces/challenges/ChallengeList";
 
 type RecentlyAddedChallengesProps = {
-  challenges: Challenge[];
+  challenges: ChallengeListType;
 };
 
 export function RecentlyAddedChallenges(props: RecentlyAddedChallengesProps) {

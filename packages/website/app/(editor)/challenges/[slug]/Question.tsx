@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { Question, SupportedTemplates, Challenge } from "@/shared";
+import { Question, SupportedTemplates } from "@/shared";
 
 import { Separator, Skeleton } from "~/components/ui";
 import { useLayout } from "~/providers/LayoutProvider";
@@ -47,11 +47,10 @@ const Console = dynamic(() => import("~/components/editor/Console"), {
 
 type QuestionChallengeProps = {
   challenge: Question;
-  challenges: Challenge[];
 };
 
 function QuestionChallenge(props: QuestionChallengeProps) {
-  const { challenge, challenges } = props;
+  const { challenge } = props;
   const { layout, setLayout } = useLayout();
   const [template, setTemplate] = useState(Object.keys(props.challenge.templateFiles)[0] as SupportedTemplates);
   const { allFiles, availableFiles } = useChallengeFiles(challenge, template);
@@ -60,7 +59,7 @@ function QuestionChallenge(props: QuestionChallengeProps) {
     <SandpackRoot files={allFiles} template={template} path={`/challenges/${challenge.path}`}>
       <div className="flex h-full w-full flex-col gap-4 p-4">
         <div className="relative flex !min-h-[auto] w-full justify-between">
-          <Breadcrumb challenge={challenge} challenges={challenges} />
+          <Breadcrumb challenge={challenge} />
           <LayoutChanger className="absolute left-[calc(50%-125px)] w-[250px]" layout={layout} setLayout={setLayout} />
           <div className="ms-auto hidden items-center gap-2 md:flex">
             <TemplateChanger template={template} setTemplate={setTemplate} challenge={challenge} />

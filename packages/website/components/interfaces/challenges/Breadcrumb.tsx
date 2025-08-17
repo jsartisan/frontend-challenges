@@ -17,16 +17,17 @@ import { getSessionStorageItem } from "@/web/utils/sessionStorage";
 import { CATEGORIES, Challenge, DIFFICULTY_RANK, STORAGE_KEY } from "@/shared";
 import { ChallengeList } from "~/components/interfaces/challenges/ChallengeList";
 import { ChallengeFilterState, useFilteredChallenges } from "@/web/hooks/useFilteredChallenges";
+import { useChallenges } from "~/providers/ChallengesProvider";
 
 type BreadcrumbProps = {
   challenge: Challenge;
-  challenges: Challenge[];
   className?: string;
 };
 
 export function Breadcrumb(props: BreadcrumbProps) {
-  const { challenge, challenges, className } = props;
+  const { challenge, className } = props;
   const router = useRouter();
+  const { challenges } = useChallenges();
   const scope = sessionStorage.getItem(`${STORAGE_KEY}:scope`) || "all";
   const { state, dispatch, filtered } = useFilteredChallenges(challenges, scope);
   const nextChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) + 1];
@@ -133,7 +134,7 @@ export function Breadcrumb(props: BreadcrumbProps) {
                     </div>
                   </div>
                   <div className="mt-6">
-                    <ChallengeList variant="compact" challenges={filtered} />
+                    <ChallengeList variant="compact" challenges={challenges} />
                   </div>
                 </SheetContent>
               </Sheet>

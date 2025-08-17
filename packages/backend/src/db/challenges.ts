@@ -3,21 +3,47 @@ import fg from "fast-glob";
 
 import { bundleMarkdown } from "@/backend";
 import { parseMetaInfo, cleanUpReadme } from "@/shared";
-import type { Category, Challenge, QuestionMetaInfo } from "@/shared";
+import type { Category, Challenge, ChallengeSlim, ChallengeList, QuestionMetaInfo } from "@/shared";
 import { CATEGORIES, CHALLENGES_ROOT, DEFAULT_LOCALE, REPO } from "@/shared";
 
 import { getLocaleVariations } from "./locales";
-import { getCodeFilesByTemplate } from "./templates";
+import { getCodeFilesByTemplate, getTemplatesAvailable } from "./templates";
 
-export async function getChallenges(): Promise<Challenge[]> {
+export async function getChallenges(): Promise<ChallengeList> {
   const folders = await fg("{0..9}*-*", {
     onlyDirectories: true,
     cwd: CHALLENGES_ROOT,
   });
 
-  const challenges = await Promise.all(folders.map(async (path: string) => getChallengeByPath(path)));
+  const challenges = await Promise.all(
+    folders.map(async (dir: string) => {
+      const challenge = await getChallengeByPathSlim(dir);
+
+      return challenge;
+    }),
+  );
 
   return challenges;
+}
+
+export async function getChallengeByPathSlim(dir: string): Promise<ChallengeSlim> {
+  const no = Number(dir.replace(/^(\d+)-.*/, "$1"));
+  const info = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "info.yml"), [parseMetaInfo]);
+  const category = (() => {
+    return CATEGORIES.find((category) => {
+      return info?.en?.tags?.includes(category) || info?.en?.related?.includes(category);
+    });
+  })() as Category;
+
+  return {
+    no,
+    difficulty: info?.[DEFAULT_LOCALE]?.difficulty,
+    path: dir,
+    category,
+    info,
+    type: info?.[DEFAULT_LOCALE]?.type,
+    templatesAvailable: await getTemplatesAvailable(path.join(CHALLENGES_ROOT, dir, "template.md")),
+  };
 }
 
 export async function getChallengeByPath(dir: string): Promise<Challenge> {

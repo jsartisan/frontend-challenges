@@ -1,4 +1,4 @@
-import { Challenge } from "@/shared";
+import { ChallengeList } from "@/shared";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { ThemeProvider } from "./ThemeProvider";
@@ -9,7 +9,7 @@ import { ChallengesProvider } from "./ChallengesProvider";
 
 type ProviderProps = {
   children: React.ReactNode;
-  challenges: Challenge[];
+  challenges: ChallengeList;
 };
 
 export function Provider(props: ProviderProps) {

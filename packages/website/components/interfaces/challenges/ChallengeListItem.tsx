@@ -1,4 +1,4 @@
-import { Challenge } from "@/shared";
+import { ChallengeSlim } from "@/shared";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
@@ -18,7 +18,7 @@ import { useCompletions } from "~/hooks/useCompletions";
 import { createCompletion, deleteCompletion } from "~/db/completions";
 
 export type ChallengeListItemProps = {
-  challenge: Challenge;
+  challenge: ChallengeSlim;
   showTypeIcon?: boolean;
   variant?: "default" | "compact";
 };
@@ -96,7 +96,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
           </div>
           {challenge.type === "question" && (
             <div className="flex items-center gap-1">
-              {Object.keys(challenge.templateFiles).map((framework) => {
+              {challenge.templatesAvailable.map((framework) => {
                 return (
                   <Tooltip key={framework} delayDuration={300}>
                     <TooltipTrigger asChild>

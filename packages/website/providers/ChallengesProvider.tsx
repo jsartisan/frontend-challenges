@@ -2,15 +2,15 @@
 
 import { createContext, useContext } from "react";
 
-import { Challenge } from "@/shared";
+import { ChallengeList } from "@/shared";
 
-export const ChallengesContext = createContext<{ challenges: Challenge[] }>({
+export const ChallengesContext = createContext<{ challenges: ChallengeList }>({
   challenges: [],
 });
 
 type ChallengeProviderProps = {
   children: React.ReactNode;
-  challenges: Challenge[];
+  challenges: ChallengeList;
 };
 
 export function ChallengesProvider(props: ChallengeProviderProps) {

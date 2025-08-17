@@ -1,9 +1,9 @@
-import { Challenge, REPO, TEMPLATES } from "@/shared";
+import { ChallengeList, REPO, TEMPLATES } from "@/shared";
 import { DEFAULT_LOCALE, DIFFICULTY_RANK } from "@/shared";
 
 import { FormValues } from "../app/submit/question/client";
 
-export function sortChallengesByDate(challenges: Challenge[], sort_order?: "asc" | "desc") {
+export function sortChallengesByDate(challenges: ChallengeList, sort_order?: "asc" | "desc") {
   return challenges.sort((a, b) => {
     const aDate = new Date(a.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
     const bDate = new Date(b.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
@@ -12,14 +12,14 @@ export function sortChallengesByDate(challenges: Challenge[], sort_order?: "asc"
   });
 }
 
-export function sortChallengesByDifficulty(challenges: Challenge[], sort_order?: "asc" | "desc") {
+export function sortChallengesByDifficulty(challenges: ChallengeList, sort_order?: "asc" | "desc") {
   return challenges.sort(
     (a, b) =>
       (DIFFICULTY_RANK.indexOf(a.difficulty) - DIFFICULTY_RANK.indexOf(b.difficulty)) * (sort_order === "asc" ? 1 : -1),
   );
 }
 
-export function getChallengesWithFilters(challenges: Challenge[], searchParams: URLSearchParams) {
+export function getChallengesWithFilters(challenges: ChallengeList, searchParams: URLSearchParams) {
   const search = searchParams.get("search") ?? "";
   const sortBy = searchParams.get("sort_by") ?? "published_date";
   const sortOrder = (searchParams.get("sort_order") ?? "asc") as "asc" | "desc";
@@ -152,7 +152,7 @@ type: ${type}\n`;
  * @param limit - The number of challenges to return
  * @returns The challenges sorted by date
  */
-export function getSortedChallengesByDate(challenges: Challenge[], limit?: number) {
+export function getSortedChallengesByDate(challenges: ChallengeList, limit?: number) {
   const sorted = challenges.sort((a, b) => {
     const aDate = new Date(a.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
     const bDate = new Date(b.info[DEFAULT_LOCALE]?.published_date || "1970-01-01");
@@ -171,6 +171,6 @@ export function getSortedChallengesByDate(challenges: Challenge[], limit?: numbe
  * @param category - The category to filter by
  * @returns The challenges filtered by category
  */
-export function filterChallengesByCategory(challenges: Challenge[], category: string) {
+export function filterChallengesByCategory(challenges: ChallengeList, category: string) {
   return challenges.filter((challenge) => challenge.info?.en?.tags?.includes(category));
 }

@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { ChallengeSlim } from "@/shared";
-import { REPO } from "@/shared/src/constants";
+import { ChallengeList } from "@/shared";
+import { DEFAULT_LOCALE, REPO } from "@/shared/src/constants";
 
 import {
   CommandDialog,
@@ -17,7 +17,7 @@ import {
 import { Badge, Button, Icon } from "../ui";
 
 interface SpotlightProps {
-  items: ChallengeSlim[];
+  items: ChallengeList;
 }
 
 export default function SpotLight(props: SpotlightProps) {
@@ -98,7 +98,7 @@ export default function SpotLight(props: SpotlightProps) {
                   setOpen(false);
                 }}
               >
-                <span>{item.title}</span>
+                <span>{item.info[DEFAULT_LOCALE]?.title}</span>
                 <Badge variant={item.difficulty}>{item.difficulty}</Badge>
               </CommandItem>
             ))}
