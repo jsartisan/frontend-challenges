@@ -1,0 +1,1 @@
+We have a sidebar component along with a slow component. The problem is when click button to expand/collapse, it take good amount of time to actually expand/collapse. How to fix this performance issue?
