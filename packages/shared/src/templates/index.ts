@@ -5,6 +5,7 @@ import { SVELTE_TEMPLATE } from "./svelte";
 import { STATIC_TEMPLATE } from "./static";
 import { VANILLA_TEMPLATE } from "./vanilla";
 import { TYPESCRIPT_TEMPLATE } from "./typescript";
+import { REACT_TYPESCRIPT_TEMPLATE } from "./react-typescript";
 
 export const TEMPLATES = {
   static: STATIC_TEMPLATE,
@@ -14,4 +15,5 @@ export const TEMPLATES = {
   react: REACT_TEMPLATE,
   vue: VUE_TEMPLATE,
   svelte: SVELTE_TEMPLATE,
+  "react-ts": REACT_TYPESCRIPT_TEMPLATE,
 };

@@ -1,6 +1,9 @@
 title: JavaScript
 description: Challenges includes basic to advanced JavaScript concepts, including ES6, Objects, Arrays, Functions, and more.
 topics:
+  - title: "Execution Context"
+    challenges:
+      - 356-hoisting
   - title: "Objects"
     challenges:
       - 66-this
@@ -15,6 +18,9 @@ topics:
       - 121-f-prototype
   - title: "Promises"
     challenges:
+      - 350-promise-chain-output
+      - 346-promise-order
+      - 348-promise-resolution-order
       - 35-promise-all
       - 37-promise-race
       - 43-promise-any

@@ -4,6 +4,7 @@ import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { SupportedTemplates } from "@/shared";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
+// Import React types to use in Monaco
 
 import { setLanguage } from "../../utils/helpers";
 
@@ -42,6 +43,11 @@ export function MonacoEditor(props: MonacoEditorProps) {
         esModuleInterop: true,
         strict: true,
         target: monaco.languages.typescript.ScriptTarget.ESNext,
+        // Use the modern React JSX transform
+        jsx: monaco.languages.typescript.JsxEmit.ReactJSX,
+        types: ["react", "react-dom"],
+        allowSyntheticDefaultImports: true,
+        moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
       });
 
       // add jest types to the monaco editor
@@ -49,6 +55,41 @@ export function MonacoEditor(props: MonacoEditorProps) {
         `declare const test: any;declare const expect: any;declare const describe: any;declare const it: any;`,
         "jest.d.ts",
       );
+
+      // Load React type definitions from @types/react and @types/react-dom via unpkg and add them to Monaco
+      async function loadReactTypeDefinitions() {
+        const reactVersion = "18"; // keep this in sync with the version in package.json
+        const reactDomVersion = "18";
+
+        const reactBase = `https://unpkg.com/@types/react@${reactVersion}/`;
+        const reactDomBase = `https://unpkg.com/@types/react-dom@${reactDomVersion}/`;
+
+        // Known important files we need besides index.d.ts
+        const reactFiles = ["index.d.ts", "global.d.ts", "jsx-runtime.d.ts", "experimental.d.ts"];
+        const reactDomFiles = ["client.d.ts", "index.d.ts"];
+
+        try {
+          const reactPromises = reactFiles.map(async (f) => {
+            const txt = await fetch(reactBase + f).then((r) => r.text());
+            return [`file:///node_modules/@types/react/${f}`, txt] as const;
+          });
+
+          const reactDomPromises = reactDomFiles.map(async (f) => {
+            const txt = await fetch(reactDomBase + f).then((r) => r.text());
+            return [`file:///node_modules/@types/react-dom/${f}`, txt] as const;
+          });
+
+          const files = await Promise.all([...reactPromises, ...reactDomPromises]);
+
+          files.forEach(([path, contents]) => {
+            monaco.languages.typescript.typescriptDefaults.addExtraLib(contents, path);
+          });
+        } catch (error) {
+          console.error("Failed to load React type definitions for Monaco", error);
+        }
+      }
+
+      loadReactTypeDefinitions();
 
       monaco.editor.registerEditorOpener({
         openCodeEditor(source, resource) {

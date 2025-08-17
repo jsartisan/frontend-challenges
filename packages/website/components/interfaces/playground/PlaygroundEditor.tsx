@@ -13,6 +13,7 @@ import { FileExplorer } from "~/components/editor/FileExplorer";
 import { TemplateChanger } from "~/components/editor/TemplateChanger";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { formatFileName, getFilesFromLocalStorage, getFilesFromURL, getTemplateFromURL } from "~/utils/playground";
+import { useSandpack } from "@codesandbox/sandpack-react";
 
 const CURRENT_EDITOR_PATH = "/playground";
 
@@ -31,10 +32,26 @@ export function PlaygroundEditor() {
     setFiles(getFilesFromLocalStorage(template));
   };
 
+  return (
+    <SandpackRoot files={files} template={template} path={CURRENT_EDITOR_PATH}>
+      <PlaygroundInner template={template} onChangeTemplate={onChangeTemplate} />
+    </SandpackRoot>
+  );
+}
+
+type PlaygroundInnerProps = {
+  template: SupportedTemplates;
+  onChangeTemplate: (template: SupportedTemplates) => void;
+};
+
+export function PlaygroundInner({ template, onChangeTemplate }: PlaygroundInnerProps) {
+  const { sandpack } = useSandpack();
+  const { activeFile, files } = sandpack;
+
   const visibleFiles = Object.keys(files).filter((file) => !files[file].hidden);
 
   return (
-    <SandpackRoot files={files} template={template} path={CURRENT_EDITOR_PATH}>
+    <>
       <div className="flex h-full w-full flex-col gap-4 p-4">
         <div className="relative flex !min-h-max w-full justify-between">
           <div className="flex items-center">
@@ -64,7 +81,10 @@ export function PlaygroundEditor() {
             </ResizablePanel>
             <ResizableHandle className="hidden w-2 sm:block" />
             <ResizablePanel>
-              <ResizableLayoutTab defaultValue={visibleFiles.find((file) => files[file].active) || visibleFiles[0]}>
+              <ResizableLayoutTab
+                value={activeFile}
+                defaultValue={visibleFiles.find((file) => files[file].active) || visibleFiles[0]}
+              >
                 {visibleFiles.map((file) => ({
                   title: formatFileName(file),
                   value: file,
@@ -103,6 +123,6 @@ export function PlaygroundEditor() {
           </ResizablePanelGroup>
         </div>
       </div>
-    </SandpackRoot>
+    </>
   );
 }
