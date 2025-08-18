@@ -4,7 +4,7 @@ import { CATEGORIES, SUPPORTED_LOCALES, SUPPORTED_TEMPLATES } from "../constants
 export type Difficulty = "easy" | "medium" | "hard" | "extreme";
 export type Importance = "hight" | "medium" | "low";
 
-export type Challenge = Question | Quiz;
+export type Challenge = Question | Quiz | Theory;
 export type ChallengeList = ChallengeSlim[];
 export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path" | "category" | "info" | "type"> & {
   templatesAvailable: SupportedTemplates[];

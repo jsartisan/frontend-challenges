@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DOMAIN } from "@/shared";
 import { getChallengeByPath, getChallenges } from "@/backend";
 
+import { TheoryChallenge } from "./TheoryChallenge";
+
 import { Quiz } from "./Quiz";
 import { Question } from "./Question";
 
@@ -40,6 +42,10 @@ export default async function Page(props: PageProps) {
 
   if (challenge.type === "quiz") {
     return <Quiz challenge={challenge} />;
+  }
+
+  if (challenge.type === "theory") {
+    return <TheoryChallenge challenge={challenge} />;
   }
 
   return <Question challenge={challenge} />;

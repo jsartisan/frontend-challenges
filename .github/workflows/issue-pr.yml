@@ -19,8 +19,5 @@ jobs:
           cache-dependency-path: |
             pnpm-lock.yaml
             **/pnpm-lock.yaml
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 9.6.0
-          run_install: true
+      - run: pnpm install --frozen-lockfile 
       - run: cd packages/scripts/actions && npx esno ./loader.ts ${{github.token}} issue-pr
