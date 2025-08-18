@@ -69,6 +69,7 @@ export type IconProps = {
     | "eye"
     | "book"
     | "react-color"
+    | "react-ts-color"
     | "plus"
     | "cross"
     | "delete"
@@ -179,6 +180,7 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ className, name, size
       icon = RadixIcon.ReaderIcon;
       break;
     case "react-color":
+    case "react-ts-color":
       icon = ReactColorIcon;
       break;
     case "plus":
