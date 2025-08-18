@@ -16,5 +16,11 @@ jobs:
         with:
           node-version: 18.x
           cache: pnpm
-      - run: pnpm i
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            **/pnpm-lock.yaml
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9.6.0
+          run_install: true
       - run: cd packages/scripts/actions && npx esno ./loader.ts ${{github.token}} issue-pr

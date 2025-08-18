@@ -153,8 +153,16 @@ const action: Action = async (github, context, core) => {
 
     const files: Record<string, string> = {
       [resolveFilePath(dir, "info", "yml", locale)]: `${YAML.dump(info)}\n`,
-      [resolveFilePath(dir, "README", "md", locale)]: `${question}\n`,
     };
+
+    if (type === "question" || type === "quiz") {
+      files[resolveFilePath(dir, "README", "md", locale)] = `${question}\n`;
+    }
+
+    // If the type is theory, we dump the solution in readme itself
+    if (type === "theory") {
+      files[resolveFilePath(dir, "README", "md", locale)] = `${question}\n`;
+    }
 
     if (type === "question" && templateFiles) {
       files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileContent(templateFiles)}\n`;
