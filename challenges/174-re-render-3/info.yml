@@ -2,7 +2,7 @@ difficulty: easy
 title: re-render 3
 type: question
 template: react
-tags: css, html, javascript
+tags: react
 author:
   github: jsartisan
   name: Pawan Kumar

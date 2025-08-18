@@ -7,7 +7,7 @@ import { cn } from "../../utils/helpers";
 
 const buttonVariants = cva(
   cn(
-    "relative inline-flex items-center justify-center overflow-hidden border border-transparent whitespace-nowrap rounded text-sm font-medium focus-visible:outline-hidden focus-visible:ring-(--color-bd-accent) focus-visible:ring-2 focus-visible:ring-offset-1",
+    "relative inline-flex items-center justify-center overflow-hidden border border-transparent whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-[var(--color-bd-accent)] focus-visible:ring-2 focus-visible:ring-offset-1",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&>svg]:size-[1.3em]",
     "[&:has(+_[data-loader])_*]:opacity-0 [&:has(+_[data-loader])]:text-transparent",
@@ -16,10 +16,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "shadow-sm bg-(--color-bg-accent) text-(--color-fg-onaccent) hover:bg-(--color-bg-accent-hover) active:bg-(--color-bg-accent-active)",
+          "shadow bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
         secondary:
-          "shadow-(--shadow-bg) bg-(--color-bg) text-(--color-fg) border-(--color-bd) hover:bg-(--color-bg-hover) active:bg-(--color-bg-active)",
-        tertiary: "hover:bg-(--color-bg-hover) active:bg-(--color-bg-active)",
+          "shadow-sm bg-[var(--color-bg)] text-[var(--color-fg)] border-[var(--color-bd)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+        tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
         discord: "bg-social-discord text-white hover:bg-discord/90",

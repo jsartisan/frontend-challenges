@@ -23,33 +23,40 @@
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
   }
+
   @keyframes accordion-up {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
   }
+
   @keyframes fade-in {
     0% {
       transform: scale(0.95);
       opacity: 0;
     }
+
     100% {
       transform: scale(1);
       opacity: 1;
     }
   }
+
   @keyframes fade-out {
     0% {
       transform: scale(1);
       opacity: 1;
     }
+
     100% {
       transform: scale(0.95);
       opacity: 0;
@@ -60,10 +67,12 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
+
+  @media (width >=--theme(--breakpoint-sm)) {
     max-width: none;
   }
-  @media (width >= 1400px) {
+
+  @media (width >=1400px) {
     max-width: 1400px;
   }
 }
@@ -164,6 +173,7 @@
     --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
     --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
     --color-bd-accent: var(--ramp-blue-500);
+    --color-bd-accent-strong: color-mix(in srgb, var(--color-bd-accent), black 20%);
     --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
     --color-bd-positive: var(--ramp-green-500);
     --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive), transparent 50%);
