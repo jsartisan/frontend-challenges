@@ -96,8 +96,8 @@ function _CodeEditor(props: Props) {
 
   return (
     <>
-      <div className="  h-full w-full flex-grow flex-col overflow-hidden">
-        <div className="flex min-h-[auto] items-center gap-2 border-b border-[var(--color-bd)] p-1">
+      <div className="  h-full w-full grow flex-col overflow-hidden">
+        <div className="min-h-auto border-(--color-bd) flex items-center gap-2 border-b p-1">
           <div className="flex items-center gap-2 px-2">
             <Checkbox
               onCheckedChange={(value) => setVimMode(value === "indeterminate" ? false : value)}
@@ -166,7 +166,7 @@ function _CodeEditor(props: Props) {
                   className="flex-col items-start"
                 >
                   <div>Reset Current File</div>
-                  <div className="text-xs text-[var(--color-fg-neutral-subtle)]">
+                  <div className="text-(--color-fg-neutral-subtle) text-xs">
                     Reset the current file to the initial state
                   </div>
                 </DropdownMenuItem>
@@ -175,9 +175,7 @@ function _CodeEditor(props: Props) {
                   className="flex-col items-start"
                 >
                   <div>Reset Files</div>
-                  <div className="text-xs text-[var(--color-fg-neutral-subtle)]">
-                    Reset all files to the initial state
-                  </div>
+                  <div className="text-(--color-fg-neutral-subtle) text-xs">Reset all files to the initial state</div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

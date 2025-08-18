@@ -20,18 +20,18 @@ function Step2Fields(props: Step2FieldsProps) {
   const { form } = props;
 
   return (
-    <div className="mt-6 grid flex-grow grid-cols-2 gap-3">
+    <div className="mt-6 grid grow grid-cols-2 gap-3">
       <Card className="flex h-full p-4">
         <FormField
           control={form.control}
           name="answer"
           render={({ field }) => (
-            <FormItem className="flex flex-grow flex-col">
+            <FormItem className="flex grow flex-col">
               <FormLabel>Answer</FormLabel>
-              <FormControl className="flex-grow">
+              <FormControl className="grow">
                 <Textarea
                   placeholder="Write your answer. We encourage to add some resources too for everyone to understand the answer."
-                  className="flex-grow resize-none"
+                  className="grow resize-none"
                   {...field}
                 />
               </FormControl>

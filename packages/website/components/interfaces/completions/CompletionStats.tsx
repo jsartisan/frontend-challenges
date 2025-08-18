@@ -17,10 +17,10 @@ export default function CompletionStats(props: CompletionStatsProps) {
     <div className="flex flex-col justify-center gap-3">
       <div className="flex items-end gap-1">
         <div className="flex h-[1cap] items-center text-3xl font-bold">{completionsByCategory.length}</div>
-        <div className="flex h-[1cap] items-center text-[var(--color-fg-neutral-subtle)]">/</div>
-        <div className="flex h-[1cap] items-center text-[var(--color-fg-neutral-subtle)]">{challenges.length}</div>
+        <div className="text-(--color-fg-neutral-subtle) flex h-[1cap] items-center">/</div>
+        <div className="text-(--color-fg-neutral-subtle) flex h-[1cap] items-center">{challenges.length}</div>
       </div>
-      <div className="flex h-[1cap] w-max items-center text-[var(--color-fg-subtle)]">Challenges Solved</div>
+      <div className="text-(--color-fg-subtle) flex h-[1cap] w-max items-center">Challenges Solved</div>
     </div>
   );
 }

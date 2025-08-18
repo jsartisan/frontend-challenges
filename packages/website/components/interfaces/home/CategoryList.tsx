@@ -9,7 +9,7 @@ export function CategoryList(props: CategoryListProps) {
   const { categories } = props;
 
   return (
-    <div className="mb-10 mt-4 grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-4">
+    <div className="mb-10 mt-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
       {categories.map((category) => (
         <Link
           prefetch={false}
@@ -17,11 +17,11 @@ export function CategoryList(props: CategoryListProps) {
           className="rounded "
           key={`category-${category.name}`}
         >
-          <Card className="flex items-center gap-3 p-3 hover:bg-[var(--color-bg-hover)]">
+          <Card className="hover:bg-(--color-bg-hover) flex items-center gap-3 p-3">
             <Icon name={`${category.name}-color`} size="lg" />
             <div>
               <h3 className="text-lg font-bold capitalize">{category.name === "css" ? "CSS" : category.name}</h3>
-              <p className="text-[var(--color-fg-subtle)]">{category.challengesCount} Challenges</p>
+              <p className="text-(--color-fg-subtle)">{category.challengesCount} Challenges</p>
             </div>
           </Card>
         </Link>

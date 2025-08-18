@@ -27,17 +27,17 @@ const Breadcrumb = dynamic(
 
 const Notes = dynamic(() => import("~/components/editor/Notes"), {
   ssr: false,
-  loading: () => <Skeleton className="h-full w-full flex-grow rounded-none" />,
+  loading: () => <Skeleton className="h-full w-full grow rounded-none" />,
 });
 
 const CodeEditor = dynamic(() => import("~/components/editor/CodeEditor"), {
   ssr: false,
-  loading: () => <Skeleton className="h-full w-full flex-grow" />,
+  loading: () => <Skeleton className="h-full w-full grow" />,
 });
 
 const Preview = dynamic(() => import("~/components/editor/Preview"), {
   ssr: false,
-  loading: () => <Skeleton className="h-full w-full flex-grow" />,
+  loading: () => <Skeleton className="h-full w-full grow" />,
 });
 
 const Console = dynamic(() => import("~/components/editor/Console"), {
@@ -58,7 +58,7 @@ function QuestionChallenge(props: QuestionChallengeProps) {
   return (
     <SandpackRoot files={allFiles} template={template} path={`/challenges/${challenge.path}`}>
       <div className="flex h-full w-full flex-col gap-4 p-4">
-        <div className="relative flex !min-h-[auto] w-full justify-between">
+        <div className="min-h-auto! relative flex w-full justify-between">
           <Breadcrumb challenge={challenge} />
           <LayoutChanger className="absolute left-[calc(50%-125px)] w-[250px]" layout={layout} setLayout={setLayout} />
           <div className="ms-auto hidden items-center gap-2 md:flex">
@@ -68,7 +68,7 @@ function QuestionChallenge(props: QuestionChallengeProps) {
             <ShareSolutionButton template={template} challenge={challenge} />
           </div>
         </div>
-        <div className="w-full flex-grow">
+        <div className="w-full grow">
           <ResizableLayout>
             <ResizableLayoutTab defaultValue="description">
               {[

@@ -4,23 +4,23 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/helpers";
 
 const badgeVariants = cva(
-  "inline-flex items-center w-max rounded-md border px-2.5 py-0.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center w-max rounded-md border px-2.5 py-0.5 text-xs font-semibold focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
-        default: "border-transparent bg-[var(--color-bg-neutral)] text-[var(--color-fg-neutral)]",
-        secondary: "border-transparent bg-[var(--color-bg-neutral)] text-[var(--color-fg-neutral)]",
-        tertiary: "border-transparent text-[var(--color-fg-neutral)]",
-        destructive: "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+        default: "border-transparent bg-(--color-bg-neutral) text-(--color-fg-neutral)",
+        secondary: "border-transparent bg-(--color-bg-neutral) text-(--color-fg-neutral)",
+        tertiary: "border-transparent text-(--color-fg-neutral)",
+        destructive: "border-transparent bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/80",
         outline: "text-foreground",
-        warm: "border-transparent bg-[var(--color-bg-warm)] text-[var(--color-fg-warm)]",
-        easy: "border-transparent bg-[var(--color-bg-easy-subtle)] text-[var(--color-fg-easy)]",
-        medium: "border-transparent bg-[var(--color-bg-medium-subtle)] text-[var(--color-fg-medium)]",
-        hard: "border-transparent bg-[var(--color-bg-hard-subtle)] text-[var(--color-fg-hard)]",
-        question: "border-transparent bg-[var(--color-bg-question)] text-[var(--color-fg-question)]",
-        quiz: "border-transparent bg-[var(--color-bg-quiz)] text-[var(--color-fg-quiz)]",
-        extreme: "border-transparent bg-[var(--color-bg-extreme-subtle)] text-[var(--color-fg-extreme)]",
-        pending: "border-transparent bg-[var(--color-bg-pending)] text-[var(--color-fg-pending)]",
+        warm: "border-transparent bg-(--color-bg-warm) text-(--color-fg-warm)",
+        easy: "border-transparent bg-(--color-bg-easy-subtle) text-(--color-fg-easy)",
+        medium: "border-transparent bg-(--color-bg-medium-subtle) text-(--color-fg-medium)",
+        hard: "border-transparent bg-(--color-bg-hard-subtle) text-(--color-fg-hard)",
+        question: "border-transparent bg-(--color-bg-question) text-(--color-fg-question)",
+        quiz: "border-transparent bg-(--color-bg-quiz) text-(--color-fg-quiz)",
+        extreme: "border-transparent bg-(--color-bg-extreme-subtle) text-(--color-fg-extreme)",
+        pending: "border-transparent bg-(--color-bg-pending) text-(--color-fg-pending)",
       },
     },
     defaultVariants: {

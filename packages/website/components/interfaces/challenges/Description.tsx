@@ -26,7 +26,7 @@ export default function Description(props: DescriptionProps) {
       <div className="flex flex-col gap-2">
         <header className="flex h-7 items-center gap-3">
           <h1 className="flex h-[1cap] items-center gap-2 text-2xl font-bold">
-            <span className="text-[var(--color-fg-neutral-subtle)]">#{challenge.no}</span> {challenge.info["en"]?.title}
+            <span className="text-(--color-fg-neutral-subtle)">#{challenge.no}</span> {challenge.info["en"]?.title}
           </h1>
           <div className="ms-auto flex gap-2">
             <EditDropdown challenge={challenge} />

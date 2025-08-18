@@ -43,7 +43,7 @@ export function AnswerList(props: AnswerListProps) {
         {[...Array(3)].map((_, index) => (
           <div className="flex items-center gap-4" key={index}>
             <Skeleton className="flex h-9 w-9 shrink-0 overflow-hidden rounded-full" />
-            <div className="flex flex-grow flex-col gap-2">
+            <div className="flex grow flex-col gap-2">
               <Skeleton className="h-4 w-1/2 rounded-sm" />
               <Skeleton className="h-4 w-3/4 rounded-sm" />
             </div>
@@ -74,15 +74,15 @@ export function AnswerList(props: AnswerListProps) {
             <img className="aspect-square h-full w-full" alt="Avatar" src={answer.author_avatar_url} />
           </span>
           <div className="ml-4 space-y-1">
-            <p className="text-sm font-medium leading-none text-[var(--color-fg-subtle)]">{answer.author}</p>
+            <p className="text-(--color-fg-subtle) text-sm font-medium leading-none">{answer.author}</p>
             <Link
               href={answer.url}
               target="_blank"
-              className="group flex items-center gap-1 underline decoration-[var(--color-bd)] underline-offset-4 hover:decoration-[var(--color-bd-hover)]"
+              className="decoration-(--color-bd) hover:decoration-(--color-bd-hover) group flex items-center gap-1 underline underline-offset-4"
             >
               <div className="flex items-center gap-2">
                 <p className="text-muted-foreground text-sm">{answer.title}</p>
-                <p className="text-[var(--color-fg-subtle)]">#{answer.no}</p>
+                <p className="text-(--color-fg-subtle)">#{answer.no}</p>
               </div>
             </Link>
           </div>
@@ -100,7 +100,7 @@ export function AnswerList(props: AnswerListProps) {
                     ...answer.files,
                   }}
                   template={answer.template}
-                  className="flex !h-full flex-col"
+                  className="h-full! flex flex-col"
                 >
                   <SheetHeader className="h-20">
                     <SheetTitle>{answer.title}</SheetTitle>
@@ -125,7 +125,7 @@ export function AnswerList(props: AnswerListProps) {
                       </div>
                     </SheetDescription>
                   </SheetHeader>
-                  <div className="grid h-[calc(100%-theme(spacing.20))]">
+                  <div className="grid h-[calc(100%-(--spacing(20)))]">
                     <ResizablePanelGroup direction="vertical" className="flex flex-col gap-3">
                       <ResizablePanel>
                         <ResizableLayoutTab

@@ -32,7 +32,7 @@ function Logo(props: LogoProps) {
         />
       </svg>
       {isTextVisible && (
-        <div className={`font-nunito ml-3 hidden text-lg font-semibold text-[var(--color-fg)] md:block`}>
+        <div className={`font-nunito text-(--color-fg) ml-3 hidden text-lg font-semibold md:block`}>
           FrontendChallenges
         </div>
       )}

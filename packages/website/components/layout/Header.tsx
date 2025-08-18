@@ -23,9 +23,9 @@ export async function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-30 w-full border-b border-[var(--color-bd)] bg-[var(--color-bg)] bg-opacity-5 backdrop-blur-md transition-[background-color]">
+      <div className="border-(--color-bd) bg-(--color-bg) sticky top-0 z-30 w-full border-b bg-opacity-5 backdrop-blur-md transition-[background-color]">
         <div className="mx-auto px-4">
-          <div className="flex h-[var(--navbar-height)] items-center justify-between md:justify-start md:gap-4">
+          <div className="h-(--navbar-height) flex items-center justify-between md:justify-start md:gap-4">
             <div className="flex items-center justify-start gap-3">
               <Logo />
               <SpotLight items={challenges} />
@@ -45,7 +45,7 @@ export async function Header() {
                   className="flex items-center gap-1 font-medium"
                 >
                   Feedback
-                  <Icon name="external-link" size="sm" className="text-[var(--color-fg-neutral-subtle)]" />
+                  <Icon name="external-link" size="sm" className="text-(--color-fg-neutral-subtle)" />
                 </Link>
               </div>
             </div>

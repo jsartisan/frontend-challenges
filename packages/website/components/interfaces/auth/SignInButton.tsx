@@ -38,7 +38,7 @@ export function SignInButton() {
             <div className="flex flex-col gap-4">
               <div className="space-y-1 text-center">
                 <h5 className="font-medium">Sign Up / In</h5>
-                <p className=" text-sm text-[var(--color-fg-subtle)]">Sign in to save and track your progress.</p>
+                <p className=" text-(--color-fg-subtle) text-sm">Sign in to save and track your progress.</p>
               </div>
               <div className=" relative flex flex-col items-center justify-center space-y-2 overflow-hidden rounded px-5 py-6 shadow-md">
                 <button onClick={onLoginWithGithub} className="group block cursor-pointer">
@@ -48,7 +48,7 @@ export function SignInButton() {
                   ></span>
                   <div
                     data-size="tiny"
-                    className="font-regular hover:text-border-stronger focus-visible:text-border-control border-foreground-light hover:border-foreground-lighter focus-visible:outline-border-strong data-[state=open]:border-foreground-lighter data-[state=open]:outline-border-strong text-forground relative inline-flex h-[26px] cursor-pointer items-center justify-center space-x-2 rounded-md border bg-white px-2.5 py-1 text-center text-xs shadow-sm outline-none outline-0 transition-all duration-200 ease-out focus-visible:outline-4 focus-visible:outline-offset-1"
+                    className="font-regular hover:text-border-stronger focus-visible:text-border-control border-foreground-light hover:border-foreground-lighter focus-visible:outline-border-strong data-[state=open]:border-foreground-lighter data-[state=open]:outline-border-strong text-forground shadow-xs outline-hidden relative inline-flex h-[26px] cursor-pointer items-center justify-center space-x-2 rounded-md border bg-white px-2.5 py-1 text-center text-xs outline-0 transition-all duration-200 ease-out focus-visible:outline-4 focus-visible:outline-offset-1"
                   >
                     <Icon name="github" size="sm" />
                     <span className="truncate">Login with Github</span>

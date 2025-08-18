@@ -51,14 +51,14 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
           onClick={onClick}
           className={cn({
             "hidden md:flex": true,
-            "border-[var(--color-bd-positive)] bg-[var(--color-bg-positive-subtle)]": isCompleted,
-            "hover:text-foreground-neutral-subtle-hover text-[var(--color-fg)]": !isCompleted,
+            "border-(--color-bd-positive) bg-(--color-bg-positive-subtle)": isCompleted,
+            "hover:text-foreground-neutral-subtle-hover text-(--color-fg)": !isCompleted,
           })}
         >
           <Icon
             name="check-circle"
             className={cn({
-              "text-[var(--color-fg-positive)]": isCompleted,
+              "text-(--color-fg-positive)": isCompleted,
             })}
           />
           {isCompleted ? "Completed" : "Mark as complete"}

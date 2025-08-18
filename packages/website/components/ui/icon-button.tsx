@@ -6,17 +6,17 @@ import { cn } from "../../utils/helpers";
 
 const iconButtonVariants = cva(
   cn(
-    "relative inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    "relative inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
     "[&[data-loading=true]>*]:invisible data-[loading=true]:after:content-[''] data-[loading=true]:after:absolute data-[loading=true]:after:top-1/2 data-[loading=true]:after:left-1/2 data-[loading=true]:after:w-4 data-[loading=true]:after:h-4 data-[loading=true]:after:-mt-2 data-[loading=true]:after:-ml-2 data-[loading=true]:after:rounded-full data-[loading=true]:after:border data-[loading=true]:after:border-t-black data-[loading=true]:after:animate-spin data-[loading=true]:after:absolute",
   ),
   {
     variants: {
       variant: {
         primary:
-          "bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
+          "bg-(--color-bg-accent) text-(--color-fg-onaccent) hover:bg-(--color-bg-accent-hover) active:bg-(--color-bg-accent-active)",
         secondary:
-          "bg-[var(--color-bg)] text-[var(--color-fg)] border border-[var(--color-bd)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
-        tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+          "bg-(--color-bg) text-(--color-fg) border border-(--color-bd) hover:bg-(--color-bg-hover) active:bg-(--color-bg-active)",
+        tertiary: "hover:bg-(--color-bg-hover) active:bg-(--color-bg-active)",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       },
       size: {

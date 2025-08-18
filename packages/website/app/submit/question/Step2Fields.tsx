@@ -33,7 +33,7 @@ function Step2Fields(props: Step2FieldsProps) {
   const { files, activeFile } = sandpack;
 
   return (
-    <ResizablePanelGroup direction="horizontal" className="mt-6 grid flex-grow gap-1">
+    <ResizablePanelGroup direction="horizontal" className="mt-6 grid grow gap-1">
       <ResizablePanel defaultSize={20}>
         <ResizableLayoutTab tabless defaultValue="file-explorer">
           {[

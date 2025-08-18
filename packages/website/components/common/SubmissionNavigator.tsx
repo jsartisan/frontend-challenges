@@ -30,7 +30,7 @@ export function SubmissionNavigator() {
             </Badge>
             <div className="flex flex-col gap-1">
               <div>Submit Question</div>
-              <p className="text-xs text-[var(--color-fg-neutral-subtle)]">Challenges that tests codig skills</p>
+              <p className="text-(--color-fg-neutral-subtle) text-xs">Challenges that tests codig skills</p>
             </div>
           </div>
         </DropdownMenuItem>
@@ -41,7 +41,7 @@ export function SubmissionNavigator() {
             </Badge>
             <div className="flex flex-col gap-1">
               <div>Submit Quiz</div>
-              <p className="text-xs text-[var(--color-fg-neutral-subtle)]">Challenges that tests concepts</p>
+              <p className="text-(--color-fg-neutral-subtle) text-xs">Challenges that tests concepts</p>
             </div>
           </div>
         </DropdownMenuItem>

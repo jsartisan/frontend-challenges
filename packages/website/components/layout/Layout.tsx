@@ -10,7 +10,7 @@ export function Layout(props: LayoutProps) {
 
   return (
     <main className={cn("h-full grow", className)}>
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6">{children}</div>
+      <div className="max-w-(--breakpoint-xl) mx-auto px-4 sm:px-6">{children}</div>
     </main>
   );
 }

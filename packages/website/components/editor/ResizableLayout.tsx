@@ -40,7 +40,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
           </ResizablePanel>
           <ResizableHandle className="hidden w-2 sm:block" />
           <ResizablePanel defaultSize={100 / 2}>
-            <ResizablePanelGroup direction="vertical" className="!grid gap-4 sm:!flex sm:gap-1">
+            <ResizablePanelGroup direction="vertical" className="sm:flex! !grid gap-4 sm:gap-1">
               <ResizablePanel>{editor}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
               <ResizablePanel>{preview}</ResizablePanel>
@@ -60,7 +60,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
           <ResizablePanel defaultSize={100 / 3}>{editor}</ResizablePanel>
           <ResizableHandle className="hidden w-2 sm:block" />
           <ResizablePanel defaultSize={100 / 3}>
-            <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
+            <ResizablePanelGroup direction="vertical" className="sm:flex! !grid grid-rows-2 gap-4 sm:gap-1">
               <ResizablePanel defaultSize={100}>{preview}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
               <ResizablePanel defaultSize={0}>{consoleElement}</ResizablePanel>
@@ -74,7 +74,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
       return (
         <>
           <ResizablePanel defaultSize={100 / 2}>
-            <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
+            <ResizablePanelGroup direction="vertical" className="sm:flex! !grid grid-rows-2 gap-4 sm:gap-1">
               <ResizablePanel defaultSize={100 / 2}>{description}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
               <ResizablePanel defaultSize={100 / 2}>{preview}</ResizablePanel>
@@ -82,7 +82,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
           </ResizablePanel>
           <ResizableHandle className="hidden w-2 sm:block" />
           <ResizablePanel defaultSize={100 / 2}>
-            <ResizablePanelGroup direction="vertical" className="!grid grid-rows-2 gap-4 sm:!flex sm:gap-1">
+            <ResizablePanelGroup direction="vertical" className="sm:flex! !grid grid-rows-2 gap-4 sm:gap-1">
               <ResizablePanel defaultSize={100}>{editor}</ResizablePanel>
               <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
               <ResizablePanel defaultSize={0}>{consoleElement}</ResizablePanel>
@@ -95,7 +95,7 @@ export const ResizableLayout = (props: ResizableLayoutProps) => {
 
   return (
     <>
-      <ResizablePanelGroup direction="horizontal" className="!grid gap-4 sm:!flex sm:gap-1" key={layout}>
+      <ResizablePanelGroup direction="horizontal" className="sm:flex! !grid gap-4 sm:gap-1" key={layout}>
         {renderChildren()}
       </ResizablePanelGroup>
     </>

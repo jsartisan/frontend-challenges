@@ -85,10 +85,10 @@ function Step1Fields(props: Step1FieldsProps) {
         control={form.control}
         name="readme"
         render={({ field }) => (
-          <FormItem className="flex flex-grow flex-col">
+          <FormItem className="flex grow flex-col">
             <FormLabel>Readme</FormLabel>
-            <FormControl className="flex-grow">
-              <Textarea placeholder="shadcn" className="flex-grow resize-none" {...field} />
+            <FormControl className="grow">
+              <Textarea placeholder="shadcn" className="grow resize-none" {...field} />
             </FormControl>
             <FormDescription className="flex items-center gap-2">
               <Icon name="markdown" /> Markdown is supported

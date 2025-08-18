@@ -10,7 +10,7 @@ export default async function DefaultLayoutWrapper(props: PropsWithChildren) {
     <>
       <Header />
       <main className="h-full grow">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:py-12">{children}</div>
+        <div className="max-w-(--breakpoint-xl) mx-auto px-4 py-8 sm:px-6 md:py-12">{children}</div>
       </main>
       <Footer />
     </>

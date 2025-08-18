@@ -34,7 +34,7 @@ export function TheoryChallenge(props: TheoryChallengeProps) {
   return (
     <>
       <main className="h-full grow">
-        <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 md:py-6">
+        <div className="max-w-(--breakpoint-xl) mx-auto px-4 py-4 sm:px-6 md:py-6">
           <div className="flex h-full w-full flex-col gap-4">
             <div className="relative flex w-full justify-between">
               <Breadcrumb challenge={challenge} />
@@ -45,8 +45,7 @@ export function TheoryChallenge(props: TheoryChallengeProps) {
 
             <header className="flex h-7 items-center gap-3">
               <h1 className="flex items-center gap-2 text-2xl font-bold">
-                <span className="text-[var(--color-fg-neutral-subtle)]">#{challenge.no}</span>{" "}
-                {challenge.info["en"]?.title}
+                <span className="text-(--color-fg-neutral-subtle)">#{challenge.no}</span> {challenge.info["en"]?.title}
               </h1>
               <div className="ms-auto flex gap-2">
                 <EditDropdown challenge={challenge} />

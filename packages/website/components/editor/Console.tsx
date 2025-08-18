@@ -39,7 +39,7 @@ function Console(props: Props) {
 
   return (
     <div className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
-      <div className={cn("flex items-center gap-2 overflow-hidden border-b border-b-[var(--color-bd)] px-2 py-2")}>
+      <div className={cn("border-b-(--color-bd) flex items-center gap-2 overflow-hidden border-b px-2 py-2")}>
         <Tooltip delayDuration={1}>
           <TooltipTrigger asChild>
             <IconButton variant="tertiary" size="sm" onClick={reset}>

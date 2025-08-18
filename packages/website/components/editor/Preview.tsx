@@ -44,13 +44,13 @@ function Preview(props: PreviewProps) {
         </div>
       ) : (
         <>
-          {showTestsOnly && <SandpackTests className={cn("!absolute !inset-0 z-10")} />}
+          {showTestsOnly && <SandpackTests className={cn("absolute! inset-0! z-10")} />}
           {showPreviewOnly && (
             <SandpackPreview
               showOpenNewtab
               showNavigator
               showOpenInCodeSandbox={false}
-              className={cn("!absolute !inset-0", showPreviewOnly ? "z-10" : "z-0")}
+              className={cn("absolute! inset-0!", showPreviewOnly ? "z-10" : "z-0")}
             />
           )}
         </>

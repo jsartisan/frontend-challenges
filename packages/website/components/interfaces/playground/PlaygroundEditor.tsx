@@ -53,7 +53,7 @@ export function PlaygroundInner({ template, onChangeTemplate }: PlaygroundInnerP
   return (
     <>
       <div className="flex h-full w-full flex-col gap-4 p-4">
-        <div className="relative flex !min-h-max w-full justify-between">
+        <div className="min-h-max! relative flex w-full justify-between">
           <div className="flex items-center">
             <h1 className="text-2xl font-semibold">Playground</h1>
           </div>
@@ -61,8 +61,8 @@ export function PlaygroundInner({ template, onChangeTemplate }: PlaygroundInnerP
             <SharePlaygroundButton template={template} />
           </div>
         </div>
-        <div className="w-full flex-grow">
-          <ResizablePanelGroup direction="horizontal" className="!grid gap-4 sm:!flex sm:gap-1">
+        <div className="w-full grow">
+          <ResizablePanelGroup direction="horizontal" className="sm:flex! !grid gap-4 sm:gap-1">
             <ResizablePanel defaultSize={20}>
               <ResizableLayoutTab defaultValue="fileExplorer" tabless>
                 {[
@@ -94,7 +94,7 @@ export function PlaygroundInner({ template, onChangeTemplate }: PlaygroundInnerP
             </ResizablePanel>
             <ResizableHandle className="hidden w-2 sm:block" />
             <ResizablePanel>
-              <ResizablePanelGroup direction="vertical" className="!grid gap-4 sm:!flex sm:gap-1">
+              <ResizablePanelGroup direction="vertical" className="sm:flex! !grid gap-4 sm:gap-1">
                 <ResizablePanel>
                   <ResizableLayoutTab defaultValue="preview">
                     {[

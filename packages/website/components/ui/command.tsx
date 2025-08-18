@@ -14,7 +14,7 @@ const Command = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive
     ref={ref}
-    className={cn("flex h-full w-full flex-col rounded bg-[var(--color-bg)] text-[var(--color-fg)]", className)}
+    className={cn("bg-(--color-bg) text-(--color-fg) flex h-full w-full flex-col rounded", className)}
     {...props}
   />
 ));
@@ -39,12 +39,12 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   // eslint-disable-next-line
-  <div className="flex items-center px-3 border-b border-[var(--color-bd)]" cmdk-input-wrapper="">
+  <div className="flex items-center px-3 border-b border-(--color-bd)" cmdk-input-wrapper="">
     <MagnifyingGlassIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        "placeholder:text-muted-foreground flex h-8 w-full rounded bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50",
+        "placeholder:text-muted-foreground outline-hidden flex h-8 w-full rounded bg-transparent py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
       {...props}
@@ -94,7 +94,7 @@ const CommandSeparator = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive.Separator ref={ref} className={cn("-mx-1 h-px bg-[var(--color-bd)]", className)} {...props} />
+  <CommandPrimitive.Separator ref={ref} className={cn("bg-(--color-bd) -mx-1 h-px", className)} {...props} />
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
@@ -105,7 +105,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-sm bg-transparent px-2 py-1.5 text-sm outline-none aria-selected:bg-[var(--color-bg-hover)] aria-selected:hover:bg-[var(--color-bg-selected)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "outline-hidden aria-selected:bg-(--color-bg-hover) aria-selected:hover:bg-(--color-bg-selected) data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-default select-none items-center gap-2 rounded-sm bg-transparent px-2 py-1.5 text-sm",
       className,
     )}
     {...props}

@@ -26,7 +26,7 @@ export default function EditDropdown(props: EditDropdownProps) {
           <DropdownMenuItem asChild className="flex-col items-start">
             <a href={`${challenge.editURL}/README.md`} target="_blank" rel="noopener noreferrer" className="block">
               <div>Edit on Github</div>
-              <div className="text-xs text-[var(--color-fg-neutral-subtle)]">Edit description and info</div>
+              <div className="text-(--color-fg-neutral-subtle) text-xs">Edit description and info</div>
             </a>
           </DropdownMenuItem>
         </DropdownMenuContent>

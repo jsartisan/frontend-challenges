@@ -11,14 +11,14 @@ function RoadmapListItem(props: { studyPlan: Roadmap }) {
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Link
-              className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
+              className="text-(--color-fg-accent) text-base font-medium hover:underline"
               href={`/roadmaps/${studyPlan.path}`}
             >
               {studyPlan.info.en?.title}
             </Link>
           </div>
         </div>
-        <p className="text-sm text-[var(--color-fg-neutral-subtle)]">{studyPlan.info.en?.description}</p>
+        <p className="text-(--color-fg-neutral-subtle) text-sm">{studyPlan.info.en?.description}</p>
       </div>
     </Card>
   );

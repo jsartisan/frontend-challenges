@@ -61,7 +61,7 @@ export default function Client() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex h-[calc(100vh_-_var(--nav-top-offset))] flex-col p-4 text-sm"
+        className="flex h-[calc(100vh-var(--nav-top-offset))] flex-col p-4 text-sm"
       >
         <div className="relative flex w-full items-end justify-between gap-3">
           <div className="flex flex-col gap-3">
@@ -72,7 +72,7 @@ export default function Client() {
             <Button type="submit">Submit Challenge</Button>
           </div>
         </div>
-        <div className="mt-6 grid flex-grow grid-cols-2 gap-3">
+        <div className="mt-6 grid grow grid-cols-2 gap-3">
           <Card className="flex h-full flex-col gap-4 p-4">
             {/* Title Field */}
             <FormField
@@ -140,12 +140,12 @@ export default function Client() {
               control={form.control}
               name="answer"
               render={({ field }) => (
-                <FormItem className="flex flex-grow flex-col">
+                <FormItem className="flex grow flex-col">
                   <FormLabel>Answer</FormLabel>
-                  <FormControl className="flex-grow">
+                  <FormControl className="grow">
                     <Textarea
                       placeholder="Write your answer. We encourage to add some resources too for everyone to understand the answer."
-                      className="flex-grow resize-none"
+                      className="grow resize-none"
                       {...field}
                     />
                   </FormControl>

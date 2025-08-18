@@ -21,25 +21,20 @@ export default function CompletionStats(props: CompletionStatsProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <IconButton
-          variant="tertiary"
-          className="rounded-full bg-[var(--color-bg-neutral)] text-[var(--color-fg-positive)]"
-        >
+        <IconButton variant="tertiary" className="bg-(--color-bg-neutral) text-(--color-fg-positive) rounded-full">
           <Icon name="check-circle" size="sm" />
         </IconButton>
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0" align="center">
         <div className="flex flex-col gap-4 p-3">
-          <div className="flex h-[1cap] items-center text-lg font-bold text-[var(--color-fg-neutral)]">Completions</div>
+          <div className="text-(--color-fg-neutral) flex h-[1cap] items-center text-lg font-bold">Completions</div>
           <div className="flex flex-col gap-3">
             <div className="flex items-end gap-1">
               <div className="flex h-[1cap] items-center text-3xl font-bold">{completions.length}</div>
-              <div className="flex h-[1cap] items-center text-[var(--color-fg-neutral-subtle)]">/</div>
-              <div className="flex h-[1cap] items-center text-[var(--color-fg-neutral-subtle)]">
-                {challenges.length}
-              </div>
+              <div className="text-(--color-fg-neutral-subtle) flex h-[1cap] items-center">/</div>
+              <div className="text-(--color-fg-neutral-subtle) flex h-[1cap] items-center">{challenges.length}</div>
             </div>
-            <div className="flex h-[1cap] items-center text-[var(--color-fg-subtle)]">Challenges Solved</div>
+            <div className="text-(--color-fg-subtle) flex h-[1cap] items-center">Challenges Solved</div>
           </div>
 
           <div className="flex gap-2">
@@ -53,20 +48,20 @@ export default function CompletionStats(props: CompletionStatsProps) {
                 <div
                   key={difficulty}
                   className={cn({
-                    "relative h-2 flex-grow overflow-hidden rounded-sm ": true,
-                    "bg-[var(--color-bg-easy-subtle)]": difficulty === "easy",
-                    "bg-[var(--color-bg-medium-subtle)]": difficulty === "medium",
-                    "bg-[var(--color-bg-hard-subtle)]": difficulty === "hard",
-                    "bg-[var(--color-bg-extreme-subtle)]": difficulty === "extreme",
+                    "relative h-2 grow overflow-hidden rounded-sm ": true,
+                    "bg-(--color-bg-easy-subtle)": difficulty === "easy",
+                    "bg-(--color-bg-medium-subtle)": difficulty === "medium",
+                    "bg-(--color-bg-hard-subtle)": difficulty === "hard",
+                    "bg-(--color-bg-extreme-subtle)": difficulty === "extreme",
                   })}
                 >
                   <div
                     className={cn({
                       "h-full": true,
-                      "bg-[var(--color-bg-easy)]": difficulty === "easy",
-                      "bg-[var(--color-bg-medium)]": difficulty === "medium",
-                      "bg-[var(--color-bg-hard)]": difficulty === "hard",
-                      "bg-[var(--color-bg-extreme)]": difficulty === "extreme",
+                      "bg-(--color-bg-easy)": difficulty === "easy",
+                      "bg-(--color-bg-medium)": difficulty === "medium",
+                      "bg-(--color-bg-hard)": difficulty === "hard",
+                      "bg-(--color-bg-extreme)": difficulty === "extreme",
                     })}
                     style={style}
                   ></div>

@@ -22,7 +22,7 @@ function Solution(props: SolutionProps) {
     >
       {!showSolution && (
         <button
-          className="absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center gap-2 bg-[var(--color-bg)] hover:bg-[var(--color-bg-hover)]"
+          className="bg-(--color-bg) hover:bg-(--color-bg-hover) absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center gap-2"
           onClick={() => {
             setShowSolution(true);
           }}

@@ -34,7 +34,7 @@ export default async function Page(props: any) {
         <h1 className="text-3xl font-bold">{post.title}</h1>
       </div>
       <div className="overflow-y-auto">
-        <Card className="mb-10 mt-6 max-w-screen-lg p-6">
+        <Card className="max-w-(--breakpoint-lg) mb-10 mt-6 p-6">
           <MDXComponent code={code} />
         </Card>
       </div>

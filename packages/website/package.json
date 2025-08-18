@@ -10,10 +10,10 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@/backend": "workspace:*",
     "@/shared": "workspace:*",
     "@codesandbox/sandpack-react": "^2.20.0",
     "@excalidraw/excalidraw": "^0.17.6",
-    "@/backend": "workspace:*",
     "@hookform/resolvers": "^3.3.2",
     "@monaco-editor/react": "^4.6.0",
     "@next/bundle-analyzer": "^14.2.5",
@@ -99,6 +99,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.10",
     "@types/fs-extra": "^11.0.4",
     "@types/mixpanel-browser": "^2.49.1",
@@ -106,11 +107,10 @@
     "@types/prompts": "^2.4.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
     "esbuild": "^0.23.0",
     "postcss": "^8",
-    "prettier-plugin-tailwindcss": "^0.5.9",
-    "tailwindcss": "^3.3.0",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5"
   }
 }

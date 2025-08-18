@@ -47,11 +47,11 @@ export default function Client() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="h-[calc(100vh_-_var(--nav-top-offset))] p-4 text-sm">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="h-[calc(100vh-var(--nav-top-offset))] p-4 text-sm">
         <Tabs className="h-full w-full p-0 " value={activeTab || "description"} onValueChange={setActiveTab}>
           <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
             <Step1Header form={form} setActiveTab={setActiveTab} />
-            <div className="mt-6 grid flex-grow grid-cols-2 grid-rows-1 gap-6">
+            <div className="mt-6 grid grow grid-cols-2 grid-rows-1 gap-6">
               <Step1Fields form={form} />
               <Description form={form} />
             </div>

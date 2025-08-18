@@ -46,7 +46,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   if (variant === "compact") {
     return (
       <Link href={`/challenges/${challenge.path}`} key={challenge.path}>
-        <Card className="flex items-center justify-between gap-2 p-2 hover:bg-[var(--color-bg-hover)]">
+        <Card className="hover:bg-(--color-bg-hover) flex items-center justify-between gap-2 p-2">
           <span className="font-semibold">{challenge.info.en?.title}</span>
           <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
         </Card>
@@ -65,7 +65,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
           <div className="flex items-center space-x-2">
             <Link
               prefetch={false}
-              className="text-base font-medium text-[var(--color-fg-accent)] hover:underline"
+              className="text-(--color-fg-accent) text-base font-medium hover:underline"
               href={`/challenges/${challenge.path}`}
             >
               {challenge.info.en?.title}
@@ -73,7 +73,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-[var(--color-fg-subtle)]">#{challenge.no}</span>
+          <span className="text-(--color-fg-subtle) text-xs">#{challenge.no}</span>
           {showTypeIcon && (
             <Tooltip delayDuration={300}>
               <TooltipTrigger>
@@ -111,18 +111,18 @@ function ChallengeListItem(props: ChallengeListItemProps) {
             </div>
           )}
         </div>
-        {/* <p className="text-sm text-[var(--color-fg-neutral-subtle)]">{challenge.info.en?.excerpt}</p> */}
+        {/* <p className="text-sm text-(--color-fg-neutral-subtle)">{challenge.info.en?.excerpt}</p> */}
       </div>
       <div className="hidden items-center sm:flex">
         <IconButton
           onClick={onMarkComplete}
           variant="tertiary"
-          className="text-[var(--color-fg-neutral-subtle)] hover:bg-transparent active:bg-transparent"
+          className="text-(--color-fg-neutral-subtle) hover:bg-transparent active:bg-transparent"
           size="lg"
         >
           <Icon
             name={isCompleted ? "check" : "check-circle"}
-            className="rounded-full group-[[data-completed]]/challenge:bg-[var(--color-bg-positive)] group-[[data-completed]]/challenge:text-[var(--color-fg-on-positive)]"
+            className="group-data-completed/challenge:bg-(--color-bg-positive) group-data-completed/challenge:text-(--color-fg-on-positive) rounded-full"
           />
         </IconButton>
       </div>

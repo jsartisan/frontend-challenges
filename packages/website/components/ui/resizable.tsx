@@ -41,8 +41,8 @@ const ResizablePanel = (
   return (
     <ResizablePrimitive.Panel
       className={cn(
-        "group/panel sm:!min-bs-0 !min-bs-[200px] !basis-[calc(theme(spacing.9)+2px)]",
-        "&[[data-panel-size='0.0']:[writing-mode:tb] [[data-panel-size='0.0']_&]:[writing-mode:tb]",
+        "group/panel sm:min-bs-0! min-bs-[200px]! basis-[calc(--spacing(9)+2px)]!",
+        "&[[data-panel-size='0.0']:[writing-mode:tb] in-data-[panel-size='0.0']:[writing-mode:tb]",
         className,
       )}
       collapsible={collapsible}
@@ -71,8 +71,8 @@ const ResizableHandle = ({
 }) => (
   <ResizablePrimitive.PanelResizeHandle
     className={cn(
-      "focus-visible:ring-ring relative flex w-px items-center  justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:translate-x-0 data-[panel-group-direction=vertical]:after:translate-y-1/2 [&[data-panel-group-direction=vertical]>div]:rotate-90",
-      "hover:after:bg-[var(--color-bg-accent)]",
+      "focus-visible:ring-ring focus-visible:outline-hidden relative flex w-px  items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:translate-x-0 data-[panel-group-direction=vertical]:after:translate-y-1/2 [&[data-panel-group-direction=vertical]>div]:rotate-90",
+      "hover:after:bg-(--color-bg-accent)",
       className,
     )}
     {...props}
