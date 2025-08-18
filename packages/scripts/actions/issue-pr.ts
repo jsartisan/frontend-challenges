@@ -73,7 +73,7 @@ const action: Action = async (github, context, core) => {
     core.info(JSON.stringify(context.payload, null, 2));
 
     // check if if there is something missing in the issue
-    if (!question || !info) {
+    if ((type === "question" || type === "quiz") && (!question || !info)) {
       let culprit = !question ? "question" : "info";
       let valueOfCulprit = !question ? question : info;
 
