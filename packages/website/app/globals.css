@@ -322,3 +322,15 @@
 .flex > * {
   min-height: 0;
 }
+
+:root {
+  --shadow-bg-none: 0 0 0 0px var(--color-bd), 0 0px 0 0px var(--color-bd);
+  --shadow-bg: 0 0 0 1px var(--color-bd), 0 3px 0 0px var(--color-bd);
+  --shadow-bg-hover: 0 0 0 1px var(--color-bd), 0 4px 0 0px var(--color-bd);
+  --shadow-bg-pressed: 0 0 0 1px var(--color-bd), inset 0 1px 2px 0px var(--color-bd), 0 0px 0 0px var(--color-bd);
+
+  --shadow-bg-accent: 0 0 0 1px var(--color-bd-accent-strong), 0 3px 0 0px var(--color-bd-accent-strong);
+  --shadow-bg-accent-hover: 0 0 0 1px var(--color-bd-accent-strong), 0 4px 0 0px var(--color-bd-accent-strong);
+
+  --shadow-bg-negative: 0 0 0 1px var(--color-bd-negative), 0 3px 0 0px var(--color-bd-negative);
+}

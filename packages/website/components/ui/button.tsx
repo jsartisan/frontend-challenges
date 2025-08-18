@@ -18,7 +18,7 @@ const buttonVariants = cva(
         primary:
           "shadow bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
         secondary:
-          "shadow-sm bg-[var(--color-bg)] text-[var(--color-fg)] border-[var(--color-bd)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+          "shadow-[var(--shadow-bg)] bg-[var(--color-bg)] text-[var(--color-fg)] border-[var(--color-bd)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
