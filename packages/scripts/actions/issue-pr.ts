@@ -161,7 +161,7 @@ const action: Action = async (github, context, core) => {
 
     // If the type is theory, we dump the solution in readme itself
     if (type === "theory") {
-      files[resolveFilePath(dir, "README", "md", locale)] = `${question}\n`;
+      files[resolveFilePath(dir, "README", "md", locale)] = `${solution}\n`;
     }
 
     if (type === "question" && templateFiles) {
