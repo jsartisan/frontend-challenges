@@ -31,7 +31,7 @@ function reducer(state, action) {
 }
 
 export function Counter() {
-  const [state, dispatch] = useReducer(reducer);
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
 
   return (
     <div style={{ textAlign: "center", marginTop: "40px" }}>
