@@ -22,7 +22,7 @@ export const formSchema = z.object({
   readme: z.string(),
   tags: z.string(),
   files: z.any().optional(),
-  type: z.enum(["question", "quiz"]),
+  type: z.enum(["question", "quiz", "theory"]),
   answer: z.string().optional(),
   difficulty: z.enum(DIFFICULTY_RANK as [Difficulty]),
 });

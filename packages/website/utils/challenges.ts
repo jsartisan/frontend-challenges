@@ -73,12 +73,14 @@ type: ${type}\n`;
   body += `tags: ${tags}
 \`\`\`\n\n`;
 
-  body += `## Question\n\n`;
-  body += `<!--question-start-->\n\n`;
+  if (type === "question" || type === "quiz") {
+    body += `## Question\n\n`;
+    body += `<!--question-start-->\n\n`;
 
-  body += readme;
+    body += readme;
 
-  body += `\n\n<!--question-end-->\n\n`;
+    body += `\n\n<!--question-end-->\n\n`;
+  }
 
   if (type === "question" && files && Object.keys(files).length > 0) {
     body += `## Template\n\n`;
@@ -127,7 +129,7 @@ type: ${type}\n`;
     body += `\n\n<!--template-end-->\n\n`;
   }
 
-  if (type === "quiz") {
+  if (type === "quiz" || type === "theory") {
     body += `## Solution\n\n`;
 
     body += `<!--solution-start-->\n\n`;

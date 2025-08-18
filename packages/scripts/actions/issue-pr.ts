@@ -67,7 +67,7 @@ const action: Action = async (github, context, core) => {
     const question = getCommentRange(body, "question");
     const solution = getCommentRange(body, "solution");
     const template = info.template as SupportedTemplates;
-    const type = info.type === "quiz" ? "quiz" : "question";
+    const type = info.type ? info.type : "question";
 
     core.info("-----Payload-----");
     core.info(JSON.stringify(context.payload, null, 2));
@@ -85,6 +85,11 @@ const action: Action = async (github, context, core) => {
       if (type === "quiz" && !solution) {
         culprit = !solution ? "solution" : culprit;
         valueOfCulprit = !solution ? solution : valueOfCulprit;
+      }
+
+      if (type === "theory" && !info.answer) {
+        culprit = !info.answer ? "answer" : culprit;
+        valueOfCulprit = !info.answer ? info.answer : valueOfCulprit;
       }
 
       core.info("-----Invalid Issue-----");

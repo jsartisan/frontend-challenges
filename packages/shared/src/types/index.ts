@@ -45,6 +45,11 @@ export interface Quiz extends BaseChallengeProps {
   solution: Record<string, string>;
 }
 
+export interface Theory extends BaseChallengeProps {
+  type: "theory";
+  content: string;
+}
+
 export interface QuestionMetaInfo {
   title: string;
   difficulty: Difficulty;
@@ -59,7 +64,7 @@ export interface QuestionMetaInfo {
   related?: string[];
   excerpt: string;
   published_date: string;
-  type: "question" | "quiz";
+  type: "question" | "quiz" | "theory";
   discussionNo: string;
 }
 
