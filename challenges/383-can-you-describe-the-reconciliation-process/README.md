@@ -1,40 +1,46 @@
-**Reconciliation** in React is the internal process that determines how React updates the Document Object Model (DOM) efficiently when the state of a component changes.
+**Reconciliation** is the algorithm React uses to figure out what *real* DOM changes are needed after a component’s state or props change.
 
-### What is Reconciliation?
-- When you update a component’s state or props, React re-renders that component.
-- React holds a virtual representation of the DOM called the **Virtual DOM**.
-- The reconciliation algorithm compares the newly rendered virtual DOM tree with the previous one.
-- The differences between the previous and current trees are called **diffs**.
+### 1. Triggering a re-render
+Calling `setState` (or its Hook equivalent) makes React call the component function again, producing a new virtual-DOM tree in memory. No DOM work happens yet.
 
-### How React Decides What to Re-render
+Consider the following code:
 
-1. **Tree Comparison (Diffing Algorithm):**
-   - React builds a new virtual DOM tree based on updated state/props.
-   - It then compares this new tree with the previous one.
+```jsx
+import { useState } from "react";
 
-2. **Efficient Updates:**
-   - It identifies which nodes (components/elements) have changed, been added, or removed.
-   - React tries to minimize the number of actual DOM operations, because these are costly in terms of performance.
+export default function App() {
+  const [showTextarea, setShowTextarea] = useState(false);
+  return showTextarea ? <textarea /> : <input />;
+}
+```
 
-3. **Key Attributes Role:**
-   - In lists, the `key` prop helps React distinguish between elements, allowing it to efficiently update or move list items.
+### 2. Building “before” and “after” trees
+After the first render React has a *previous* virtual-DOM (Fiber) tree. When state changes it produces a *next* tree, e.g.
 
-4. **Applying Changes:**
-   - After figuring out the minimum set of changes, React updates only the affected parts of the real DOM.
-   - This process ensures UI stays fast and responsive.
+**Before**
 
-### Example
+```json
+{ "type": "input", "props": {} }
+```
 
-Suppose you have a list, and one item changes:
+**After**
 
-- React re-renders the list in the virtual DOM.
-- Compares new vs. previous list items.
-- Only updates the changed list item in the real DOM, not the entire list.
+```json
+{ "type": "textarea", "props": {} }
+```
 
-### Summary Points
+### 3. React’s reconciliation heuristics
+1. **Same element type & key**  
+   Reuse the existing DOM node and update its props and children.
+2. **Different element type or key**  
+   Unmount the old node (running cleanup effects), then create and mount a brand-new DOM node.
 
-- **Virtual DOM:** React keeps a lightweight copy of the actual DOM to optimize updates.
-- **Diffing:** React calculates the difference between the old and new virtual DOMs.
-- **Efficient Re-render:** Only the changed components/elements are updated in the real DOM, reducing unnecessary work.
+Because “input” and “textarea” are different types React chooses the second path: it removes the `<input>` and mounts a new `<textarea>`.
 
-This process makes React applications **fast, predictable, and efficient** when updating UI in response to data changes.
+### 4. Lists and keys
+For arrays of children React matches elements by their `key` prop first and then by index. Supplying stable keys (`id`, not `array.index`) prevents unwanted unmounts and preserves user input.
+
+### 5. Why this matters
+These simple rules give React an O(n) diffing algorithm, allowing large UIs to update quickly without a full page reload.
+
+That entire decision-making process is called **reconciliation**.
