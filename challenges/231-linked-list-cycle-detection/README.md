@@ -9,6 +9,7 @@ The implementation uses an internal `index` value that specifies where the cycle
 Important: The `index` value is used internally and is not passed to your function.
 
 **Constraints:**
+
 - 1 ≤ Length of the list ≤ 1000
 - -1000 ≤ Node.val ≤ 1000
 - index is -1 or a valid index in the linked list
@@ -31,6 +32,5 @@ console.log(hasCycle(head2));
 // Output: false
 // Explanation: No cycle exists
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,231,undefined&title=231%20-%20Linked%20List%20Cycle%20Detection%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A231+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

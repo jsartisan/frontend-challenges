@@ -7,6 +7,7 @@ You can assume that none of the multiplication results will exceed the maximum v
 **Follow-up:** Could you solve it in O(n) time without using the division operation?
 
 **Constraints:**
+
 - 2 ≤ nums.length ≤ 1000
 - -20 ≤ nums[i] ≤ 20
 
@@ -23,6 +24,5 @@ const nums2 = [-1, 0, 1, 2, 3];
 console.log(productExceptSelf(nums2));
 // Output: [0, -6, 0, 0, 0]
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,199,undefined&title=199%20-%20Products%20of%20Array%20Excluding%20Self%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A199+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

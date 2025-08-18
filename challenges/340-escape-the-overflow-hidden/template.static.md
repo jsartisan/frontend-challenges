@@ -1,4 +1,4 @@
-```html index.html 
+```html index.html
 <!doctype html>
 <html>
   <head>
@@ -14,10 +14,9 @@
     </div>
   </body>
 </html>
-
 ```
 
-```css styles.css active 
+```css styles.css active
 .parent {
   height: 200px;
   width: 200px;
@@ -33,7 +32,7 @@
 }
 ```
 
-```json package.json 
+```json package.json
 {
   "dependencies": {},
   "main": "/index.html",
@@ -41,8 +40,9 @@
 }
 ```
 
-```css demo.css hidden 
-html, body {
+```css demo.css hidden
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -54,5 +54,3 @@ body {
   justify-content: center;
 }
 ```
-
-

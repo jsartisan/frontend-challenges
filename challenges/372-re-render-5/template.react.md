@@ -8,27 +8,26 @@ export default function App() {
 
 const Form = () => {
   const [value, setValue] = useState("");
-  
+
   const onClick = () => {
     console.log("Submitted value: " + value);
-  }
+  };
 
   return (
     <>
-      <input onChange={e => setValue(e.target.value)} value={value} />
+      <input onChange={(e) => setValue(e.target.value)} value={value} />
       <SlowButton label="Submit" onClick={onClick} />
     </>
   );
-}
+};
 ```
 
-```json sandbox.config.json 
+```json sandbox.config.json
 {
   "infiniteLoopProtection": false,
   "hardReloadOnChange": false,
   "view": "browser"
 }
-
 ```
 
 ```jsx SlowButton.jsx hidden
@@ -45,7 +44,5 @@ export const SlowButton = (props) => {
   wait(100);
 
   return <button onClick={onClick}>{label}</button>;
-}
+};
 ```
-
-

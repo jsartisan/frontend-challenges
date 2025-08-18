@@ -4,18 +4,20 @@ Solution:
 Here are a few ways to fix this issue:
 
 **1. Using bind:**
+
 ```js
 let user = {
   firstName: "John",
   sayHi() {
     alert(`Hello, ${this.firstName}!`);
-  }
+  },
 };
 
 setTimeout(user.sayHi.bind(user), 1000); // Hello, John!
 ```
 
 **2. Using an arrow function:**
+
 ```
 let user = {
   firstName: "John",
@@ -34,11 +36,10 @@ let user = {
   firstName: "John",
   sayHi() {
     alert(`Hello, ${this.firstName}!`);
-  }
+  },
 };
 
-setTimeout(function() {
+setTimeout(function () {
   user.sayHi();
 }, 1000); // Hello, John!
-
 ```

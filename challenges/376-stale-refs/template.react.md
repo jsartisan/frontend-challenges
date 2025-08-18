@@ -1,4 +1,4 @@
-```jsx App.jsx 
+```jsx App.jsx
 import { useState, useRef } from "react";
 
 export default function App() {
@@ -15,7 +15,4 @@ export default function App() {
     </>
   );
 }
-
 ```
-
-

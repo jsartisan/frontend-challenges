@@ -3,15 +3,18 @@
 Given a string `s`, find the longest substring that is a palindrome.
 
 Rules:
+
 - A palindrome reads the same forwards and backwards
 - If multiple palindromes have same length, return any one
 - String contains only letters and digits
 
 **Constraints:**
+
 - 1 ≤ s.length ≤ 1000
 - s contains only digits and English letters
 
 **Examples:**
+
 ```typescript
 // Example 1:
 console.log(longestPalindrome("ababd"));
@@ -23,6 +26,5 @@ console.log(longestPalindrome("abbc"));
 // Output: "bb"
 // Explanation: Only palindrome of length 2
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,289,undefined&title=289%20-%20Longest%20Palindromic%20Substring%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A289+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

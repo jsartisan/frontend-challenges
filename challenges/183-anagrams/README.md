@@ -5,9 +5,11 @@ Create a function that accepts two string parameters `s` and `t`. The function s
 Two strings are considered anagrams if you can shuffle the letters of one to create the other. For instance, "listen" and "silent" are anagrams because they use exactly the same letters the same number of times, just arranged differently.
 
 **Constraints:**
+
 - Both `s` and `t` consist of lowercase English letters.
 
 **Requirements:**
+
 1. The function should take two arguments:
    - A string `s`.
    - A string `t`.
@@ -28,6 +30,5 @@ const s2 = "jar";
 const t2 = "jam";
 console.log(areAnagrams(s2, t2)); // Output: false
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,183,undefined&title=183%20-%20Anagrams%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A183+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

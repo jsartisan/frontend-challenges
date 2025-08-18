@@ -1,5 +1,5 @@
-```jsx App.jsx 
-import { useEffect, useState } from 'react';
+```jsx App.jsx
+import { useEffect, useState } from "react";
 
 const Input = ({ onChange, label, placeholder, id }) => {
   useEffect(() => {
@@ -41,7 +41,4 @@ export default function App() {
     </div>
   );
 }
-
 ```
-
-

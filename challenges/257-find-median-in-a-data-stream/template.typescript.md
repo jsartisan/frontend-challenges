@@ -1,4 +1,4 @@
-```ts index.ts 
+```ts index.ts
 export class MedianFinder {
   constructor() {}
 
@@ -6,10 +6,9 @@ export class MedianFinder {
 
   findMedian(): number {}
 }
-
 ```
 
-```ts index.test.ts 
+```ts index.test.ts
 import { MedianFinder } from "./index";
 
 describe("MedianFinder", () => {
@@ -76,7 +75,4 @@ describe("MedianFinder", () => {
     expect(medianFinder.findMedian()).toBe(3.0);
   });
 });
-
 ```
-
-

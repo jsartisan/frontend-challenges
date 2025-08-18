@@ -6,12 +6,12 @@ The following code creates an array of functions. Every function is meant to out
 function createFunctions() {
   let functions = [];
 
- let i = 0;
+  let i = 0;
   while (i < 10) {
-    let func = function() {
+    let func = function () {
       console.log(i);
     };
-    functions.push(func); 
+    functions.push(func);
     i++;
   }
 
@@ -29,6 +29,5 @@ funcs[2](); // 10 ...and so on.
 Why do all of the functions show the same value?
 
 Fix the code so that they work as intended.
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,99,undefined&title=99%20-%20Closure%202%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A99+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

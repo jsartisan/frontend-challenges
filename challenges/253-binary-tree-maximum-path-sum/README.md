@@ -3,6 +3,7 @@
 Given the root of a non-empty binary tree, find the maximum path sum of any non-empty path.
 
 A path in a binary tree:
+
 - Is a sequence of nodes where each pair of adjacent nodes is connected
 - Each node can appear only once
 - Does not need to pass through the root
@@ -11,10 +12,12 @@ A path in a binary tree:
 The path sum is the sum of all node values in the path.
 
 **Constraints:**
+
 - 1 ≤ Number of nodes ≤ 1000
 - -1000 ≤ Node values ≤ 1000
 
 **Examples:**
+
 ```typescript
 // Example 1:
 //     1
@@ -38,6 +41,5 @@ console.log(maxPathSum(root2));
 // Output: 40
 // Explanation: Path 15 -> 20 -> 5 gives sum 15 + 20 + 5 = 40
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,253,undefined&title=253%20-%20Binary%20Tree%20Maximum%20Path%20Sum%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A253+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

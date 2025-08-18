@@ -5,6 +5,7 @@ Given a binary search tree (BST) where all node values are unique, and two nodes
 The lowest common ancestor of two nodes is defined as the deepest node in the tree that has both nodes as descendants. A node can be considered a descendant of itself.
 
 **Constraints:**
+
 - 2 ≤ Number of nodes in the tree ≤ 100
 - -100 ≤ Node values ≤ 100
 - p ≠ q
@@ -42,6 +43,5 @@ console.log(lowestCommonAncestor(root2, p2, q2)?.val);
 // Output: 3
 // Explanation: Node 3 is the LCA since it's the parent of 4
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,243,undefined&title=243%20-%20Lowest%20Common%20Ancestor%20in%20Binary%20Search%20Tree%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A243+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

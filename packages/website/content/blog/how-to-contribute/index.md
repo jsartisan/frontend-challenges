@@ -1,21 +1,23 @@
 ---
-title: How to Contribute to FrontendChallenges 
+title: How to Contribute to FrontendChallenges
 excerpt: Getting involved in the development of FrontendChallenges, an open source project, may seem overwhelming, but discover how you can contribute to make it less intimidating.
 published_at: 01/19/2023
 emoji: 🫵
 ---
+
 Contributing to FrontendChallenges is a great way to get involved in the open source community, but it can be very daunting. This guide will help you get started with contributing to FrontendChallenges.
 
 ## Found a Bug?
 
 If you notice something that does not work how it should, whether that be:
+
 - Spelling
 - Accessibility
 - SEO
 
 or anything else, then please do [create an issue](https://github.com/jsartisan/frontend-challenges/issues/new/choose).
 
-Once an issue has been created, We will review it and then pick it up as soon as possible. 
+Once an issue has been created, We will review it and then pick it up as soon as possible.
 
 ## Want to add a Question?
 

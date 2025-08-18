@@ -4,7 +4,6 @@ Implement a function chunk that splits an array into groups of a specified size.
 
 Use the following example to understand how the chunk function should work:
 
-
 ```js index.js
 function chunk(array, size) {
   // Your implementation here
@@ -13,9 +12,8 @@ function chunk(array, size) {
 const arr = [1, 2, 3, 4, 5, 6, 7];
 const result = chunk(arr, 3);
 
-console.log(result); 
+console.log(result);
 // Output: [[1, 2, 3], [4, 5, 6], [7]]
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,86,undefined&title=86%20-%20Chunk%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A86+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

@@ -9,13 +9,12 @@ let user = {
   firstName: "John",
   sayHi() {
     alert(`Hello, ${this.firstName}!`);
-  }
+  },
 };
 
 setTimeout(user.sayHi, 1000); // Hello, undefined!
 ```
 
 Explain why the output of the above code is undefined instead of "John". Also, Explain what can we do to ensure that `this` inside sayHi refers to the user object, even when passed to setTimeout.
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,113,quiz&title=113%20-%20Losing%20this%20-%20undefined" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A113+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

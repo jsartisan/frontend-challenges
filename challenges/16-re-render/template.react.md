@@ -1,10 +1,10 @@
 ```jsx App.jsx active
-import { useState } from 'react';
+import { useState } from "react";
 
-import { Button } from './components/button';
-import { ModalDialog } from './components/basic-modal-dialog';
-import { VerySlowComponent } from './components/very-slow-component';
-import { BunchOfStuff, OtherStuffAlsoComplicated } from './components/mocks';
+import { Button } from "./components/button";
+import { ModalDialog } from "./components/basic-modal-dialog";
+import { VerySlowComponent } from "./components/very-slow-component";
+import { BunchOfStuff, OtherStuffAlsoComplicated } from "./components/mocks";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,7 @@ export default function App() {
 ```
 
 ```jsx components/basic-modal-dialog.jsx hidden
-import { Button } from './button';
+import { Button } from "./button";
 
 export const ModalDialog = ({ onClose }) => {
   return (
@@ -37,7 +37,6 @@ export const ModalDialog = ({ onClose }) => {
 ```
 
 ```jsx components/button.jsx hidden
-
 export const Button = ({ onClick, children }) => {
   return (
     <button onClick={onClick} className="button">
@@ -95,7 +94,12 @@ body {
   font-size: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 1rem 0;
 }
 
@@ -129,7 +133,7 @@ h3 {
 .button {
   padding: 0.5rem;
   background: rgba(grey, 0.2);
-  border:1px solid grey;
+  border: 1px solid grey;
   font-size: 1rem;
   display: inline-flex;
   gap: 0.5rem;
@@ -138,7 +142,7 @@ h3 {
   cursor: pointer;
 
   &:hover {
-    background: rgba(grey, 0.3)
+    background: rgba(grey, 0.3);
   }
 
   &.secondary {
@@ -146,16 +150,16 @@ h3 {
     border: 1px solid lightgrey;
 
     &:hover {
-      background: rgba(lightgrey, 0.1)
+      background: rgba(lightgrey, 0.1);
     }
   }
 
   &.dark {
     background: darkgray;
-    border:1px solid gray;
+    border: 1px solid gray;
 
     &:hover {
-      background: rgba(grey, 0.9)
+      background: rgba(grey, 0.9);
     }
   }
 }
@@ -167,9 +171,9 @@ h3 {
   margin-left: -15rem;
   width: 30rem;
   background: white;
-  border:1px solid rgba(grey,0.5);
+  border: 1px solid rgba(grey, 0.5);
   border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
   .content {
     padding: 2rem 1rem;
@@ -178,7 +182,7 @@ h3 {
   .footer {
     padding: 1rem;
     background: rgba(lightgrey, 0.2);
-    border-top:1px solid gray;
+    border-top: 1px solid gray;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
@@ -188,7 +192,7 @@ input[type="text"] {
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   border-radius: 5px;
-  border: 1px solid rgba(grey,0.5);
+  border: 1px solid rgba(grey, 0.5);
   width: 100%;
 }
 ```
@@ -204,8 +208,8 @@ input[type="text"] {
 ```jsx index.jsx hidden
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import './styles.scss';
-import './global.scss';
+import "./styles.scss";
+import "./global.scss";
 
 import App from "./App";
 
@@ -213,9 +217,10 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );
 ```
 
 ```css styles.css hidden
+
 ```

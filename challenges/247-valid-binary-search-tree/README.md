@@ -3,15 +3,18 @@
 Given the root of a binary tree, determine if it's a valid binary search tree (BST).
 
 A binary search tree is valid if:
+
 - All nodes in the left subtree have values less than the current node
 - All nodes in the right subtree have values greater than the current node
 - Both left and right subtrees are also valid BSTs
 
 **Constraints:**
+
 - 1 ≤ Number of nodes ≤ 1000
 - -1000 ≤ Node values ≤ 1000
 
 **Examples:**
+
 ```typescript
 // Example 1:
 //     2
@@ -30,6 +33,5 @@ console.log(isValidBST(root2));
 // Output: false
 // Explanation: Left child (2) is greater than root (1)
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,247,undefined&title=247%20-%20Valid%20Binary%20Search%20Tree%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A247+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

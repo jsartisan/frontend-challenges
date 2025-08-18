@@ -14,6 +14,7 @@ The pattern follows this rule: take nodes from the start and end alternately. Fo
 Important: This reorganization must be done by changing the links between nodes, not by modifying the values stored in each node.
 
 **Constraints:**
+
 - 1 ≤ Length of the list ≤ 1000
 - 1 ≤ Node.val ≤ 1000
 
@@ -30,6 +31,5 @@ const head2 = [2, 4, 6, 8, 10];
 console.log(reorderList(head2));
 // Output: [2, 10, 4, 8, 6]
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,227,undefined&title=227%20-%20Reorder%20Linked%20List%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A227+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

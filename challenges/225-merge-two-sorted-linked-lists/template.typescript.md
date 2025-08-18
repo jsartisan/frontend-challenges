@@ -1,4 +1,4 @@
-```ts index.ts 
+```ts index.ts
 export class ListNode {
   val: number;
   next: ListNode | null;
@@ -8,15 +8,13 @@ export class ListNode {
   }
 }
 
-export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
-  
-}
+export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {}
 ```
 
-```ts index.test.ts 
-import { ListNode, mergeTwoLists } from './index';
+```ts index.test.ts
+import { ListNode, mergeTwoLists } from "./index";
 
-describe('mergeTwoLists', () => {
+describe("mergeTwoLists", () => {
   // Helper function to create linked list from array
   function createList(arr: number[]): ListNode | null {
     if (!arr.length) return null;
@@ -40,42 +38,40 @@ describe('mergeTwoLists', () => {
     return result;
   }
 
-  test('Example 1: Regular merge', () => {
+  test("Example 1: Regular merge", () => {
     const list1 = createList([1, 2, 4]);
     const list2 = createList([1, 3, 5]);
     expect(listToArray(mergeTwoLists(list1, list2))).toEqual([1, 1, 2, 3, 4, 5]);
   });
 
-  test('Example 2: One empty list', () => {
+  test("Example 2: One empty list", () => {
     const list1 = createList([]);
     const list2 = createList([1, 2]);
     expect(listToArray(mergeTwoLists(list1, list2))).toEqual([1, 2]);
   });
 
-  test('Example 3: Both empty lists', () => {
+  test("Example 3: Both empty lists", () => {
     const list1 = createList([]);
     const list2 = createList([]);
     expect(mergeTwoLists(list1, list2)).toBeNull();
   });
 
-  test('Lists of different lengths', () => {
+  test("Lists of different lengths", () => {
     const list1 = createList([1, 2, 3, 4]);
     const list2 = createList([2, 5]);
     expect(listToArray(mergeTwoLists(list1, list2))).toEqual([1, 2, 2, 3, 4, 5]);
   });
 
-  test('Negative numbers', () => {
+  test("Negative numbers", () => {
     const list1 = createList([-2, 1, 3]);
     const list2 = createList([-1, 0, 2]);
     expect(listToArray(mergeTwoLists(list1, list2))).toEqual([-2, -1, 0, 1, 2, 3]);
   });
 
-  test('One single-node list', () => {
+  test("One single-node list", () => {
     const list1 = createList([1]);
     const list2 = createList([]);
     expect(listToArray(mergeTwoLists(list1, list2))).toEqual([1]);
   });
 });
 ```
-
-

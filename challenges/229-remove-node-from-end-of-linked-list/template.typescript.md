@@ -1,4 +1,4 @@
-```ts index.ts 
+```ts index.ts
 export class ListNode {
   val: number;
   next: ListNode | null;
@@ -8,15 +8,13 @@ export class ListNode {
   }
 }
 
-export function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-  
-}
+export function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {}
 ```
 
-```ts index.test.ts 
-import { ListNode, removeNthFromEnd } from './index';
+```ts index.test.ts
+import { ListNode, removeNthFromEnd } from "./index";
 
-describe('removeNthFromEnd', () => {
+describe("removeNthFromEnd", () => {
   // Helper function to create linked list from array
   function createList(arr: number[]): ListNode | null {
     if (!arr.length) return null;
@@ -40,36 +38,34 @@ describe('removeNthFromEnd', () => {
     return result;
   }
 
-  test('Example 1: Remove from middle', () => {
+  test("Example 1: Remove from middle", () => {
     const head = createList([1, 2, 3, 4]);
     expect(listToArray(removeNthFromEnd(head, 2))).toEqual([1, 2, 4]);
   });
 
-  test('Example 2: Remove single node', () => {
+  test("Example 2: Remove single node", () => {
     const head = createList([5]);
     expect(removeNthFromEnd(head, 1)).toBeNull();
   });
 
-  test('Example 3: Remove first node', () => {
+  test("Example 3: Remove first node", () => {
     const head = createList([1, 2]);
     expect(listToArray(removeNthFromEnd(head, 2))).toEqual([2]);
   });
 
-  test('Remove last node', () => {
+  test("Remove last node", () => {
     const head = createList([1, 2, 3]);
     expect(listToArray(removeNthFromEnd(head, 1))).toEqual([1, 2]);
   });
 
-  test('Long list', () => {
+  test("Long list", () => {
     const head = createList([1, 2, 3, 4, 5, 6]);
     expect(listToArray(removeNthFromEnd(head, 3))).toEqual([1, 2, 3, 5, 6]);
   });
 
-  test('Remove second to last', () => {
+  test("Remove second to last", () => {
     const head = createList([1, 2, 3, 4]);
     expect(listToArray(removeNthFromEnd(head, 2))).toEqual([1, 2, 4]);
   });
 });
 ```
-
-

@@ -15,7 +15,5 @@ export default App;
 ```
 
 ```js useFocusTrap.js active
-export function useFocusTrap() {
-
-}
+export function useFocusTrap() {}
 ```

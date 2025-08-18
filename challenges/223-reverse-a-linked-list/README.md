@@ -3,6 +3,7 @@
 Write a function that accepts the head node of a singly linked list as input. Your task is to flip the order of the list so that it goes from end to start, then return the new head node that begins the reversed list.
 
 **Constraints:**
+
 - 0 ≤ The length of the list ≤ 1000
 - -1000 ≤ Node.val ≤ 1000
 
@@ -19,6 +20,5 @@ const head2 = [];
 console.log(reverseList(head2));
 // Output: []
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,223,undefined&title=223%20-%20Reverse%20a%20Linked%20List%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A223+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

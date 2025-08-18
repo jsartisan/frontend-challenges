@@ -1,15 +1,12 @@
 ```js index.js
-export function memo(func) {
-  
-}
-
+export function memo(func) {}
 ```
 
 ```js index.test.js
-import { memo } from './index';
+import { memo } from "./index";
 
-describe('memo function', () => {
-  it('should memoize function calls', () => {
+describe("memo function", () => {
+  it("should memoize function calls", () => {
     const expensiveFunction = jest.fn((x, y) => x + y);
 
     const memoizedFunction = memo(expensiveFunction);
@@ -22,11 +19,11 @@ describe('memo function', () => {
     expect(expensiveFunction).toHaveBeenCalledTimes(1);
   });
 
-  it('should memoize function calls with different arguments', () => {
+  it("should memoize function calls with different arguments", () => {
     const expensiveFunction = jest.fn((x, y) => x + y);
 
     const memoizedFunction = memo(expensiveFunction);
-    
+
     memoizedFunction(2, 3);
     memoizedFunction(3, 4);
     memoizedFunction(2, 3);
@@ -36,5 +33,3 @@ describe('memo function', () => {
   });
 });
 ```
-
-

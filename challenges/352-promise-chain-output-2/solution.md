@@ -10,6 +10,7 @@ undefined
 ```
 
 Here's why:
+
 1. `1` - First promise resolves with 1
 2. `2` - Second .then gets 1+1
 3. `undefined` - Third .then gets undefined (since previous .then had no return)
@@ -20,6 +21,7 @@ Here's why:
 8. `undefined` - Last .then gets undefined (finally's return value is ignored)
 
 Key points:
+
 - If a .then doesn't return anything, the next .then receives `undefined`
 - finally() always receives `undefined` and its return value is ignored
 - The chain continues after catch() with undefined

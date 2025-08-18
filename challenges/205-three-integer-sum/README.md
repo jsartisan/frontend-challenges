@@ -5,6 +5,7 @@ Write a function that finds all unique combinations of three different numbers i
 For example, if the array contains numbers that can form multiple triplets summing to 0, return all such triplets without duplicates. The order of the triplets and numbers within them doesn't matter.
 
 **Constraints:**
+
 - 3 ≤ nums.length ≤ 1000
 - -10⁵ ≤ nums[i] ≤ 10⁵
 
@@ -33,6 +34,5 @@ console.log(threeSum(nums3));
 // Output: [[0,0,0]]
 // Explanation: The only possible triplet sums up to 0.
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,205,undefined&title=205%20-%20Three%20Integer%20Sum%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A205+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

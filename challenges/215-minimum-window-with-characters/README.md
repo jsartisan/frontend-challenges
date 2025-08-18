@@ -5,6 +5,7 @@ Write a function that takes two strings `s` and `t` as input. Find and return th
 The problem guarantees that there will be exactly one valid answer when a solution exists.
 
 **Constraints:**
+
 - 1 ≤ s.length ≤ 1000
 - 1 ≤ t.length ≤ 1000
 - s and t consist of uppercase and lowercase English letters
@@ -31,6 +32,5 @@ const t3 = "xy";
 console.log(minWindow(s3, t3));
 // Output: ""
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,215,undefined&title=215%20-%20Minimum%20Window%20With%20Characters%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A215+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

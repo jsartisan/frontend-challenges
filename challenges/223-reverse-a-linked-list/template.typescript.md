@@ -1,4 +1,4 @@
-```ts index.ts 
+```ts index.ts
 export class ListNode {
   val: number;
   next: ListNode | null;
@@ -8,15 +8,13 @@ export class ListNode {
   }
 }
 
-export function reverseList(head: ListNode | null): ListNode | null {
-  
-}
+export function reverseList(head: ListNode | null): ListNode | null {}
 ```
 
-```ts index.test.ts 
-import { ListNode, reverseList } from './index';
+```ts index.test.ts
+import { ListNode, reverseList } from "./index";
 
-describe('reverseList', () => {
+describe("reverseList", () => {
   // Helper function to create linked list from array
   function createList(arr: number[]): ListNode | null {
     if (!arr.length) return null;
@@ -40,36 +38,34 @@ describe('reverseList', () => {
     return result;
   }
 
-  test('Example 1: Regular list', () => {
+  test("Example 1: Regular list", () => {
     const head = createList([0, 1, 2, 3]);
     expect(listToArray(reverseList(head))).toEqual([3, 2, 1, 0]);
   });
 
-  test('Example 2: Empty list', () => {
+  test("Example 2: Empty list", () => {
     expect(reverseList(null)).toBeNull();
   });
 
-  test('Single node', () => {
+  test("Single node", () => {
     const head = createList([1]);
     expect(listToArray(reverseList(head))).toEqual([1]);
   });
 
-  test('Two nodes', () => {
+  test("Two nodes", () => {
     const head = createList([1, 2]);
     expect(listToArray(reverseList(head))).toEqual([2, 1]);
   });
 
-  test('List with negative numbers', () => {
+  test("List with negative numbers", () => {
     const head = createList([-1, -2, -3]);
     expect(listToArray(reverseList(head))).toEqual([-3, -2, -1]);
   });
 
-  test('Long list', () => {
-    const arr = Array.from({length: 10}, (_, i) => i);
+  test("Long list", () => {
+    const arr = Array.from({ length: 10 }, (_, i) => i);
     const head = createList(arr);
     expect(listToArray(reverseList(head))).toEqual(arr.reverse());
   });
 });
 ```
-
-

@@ -22,9 +22,7 @@ export default App;
 ```js useClickOutside.js active
 import { useEffect } from "react";
 
-const useClickOutside = (ref, callback) => {
-  
-};
+const useClickOutside = (ref, callback) => {};
 
 export default useClickOutside;
 ```

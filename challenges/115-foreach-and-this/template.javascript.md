@@ -4,19 +4,19 @@ let group = {
   students: ["John", "Pete", "Alice"],
 
   showList() {
-    this.students.forEach(function(student) {
-      console.log(this.title + ': ' + student);
+    this.students.forEach(function (student) {
+      console.log(this.title + ": " + student);
     });
-  }
+  },
 };
 
 export { group };
 ```
 
 ```js index.test.js
-import { group } from './index';
+import { group } from "./index";
 
-describe('group.showList', () => {
+describe("group.showList", () => {
   let originalLog;
 
   beforeAll(() => {
@@ -28,7 +28,7 @@ describe('group.showList', () => {
     console.log = originalLog;
   });
 
-  test('should output the correct titles and student names', () => {
+  test("should output the correct titles and student names", () => {
     // Capture the output
     group.showList();
 
@@ -47,5 +47,3 @@ describe('group.showList', () => {
   "devDependencies": {}
 }
 ```
-
-

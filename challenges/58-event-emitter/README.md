@@ -9,27 +9,26 @@ Use the following example to understand how the EventEmitter class should work:
 ```js
 const emitter = new EventEmitter();
 
-const callback1 = () => console.log('Callback 1 called');
-const callback2 = () => console.log('Callback 2 called');
+const callback1 = () => console.log("Callback 1 called");
+const callback2 = () => console.log("Callback 2 called");
 
 // Subscribe to the 'event1' event
-emitter.on('event1', callback1);
-emitter.on('event1', callback2);
+emitter.on("event1", callback1);
+emitter.on("event1", callback2);
 
 // Emit the 'event1' event
-emitter.emit('event1');
+emitter.emit("event1");
 // Output:
 // Callback 1 called
 // Callback 2 called
 
 // Unsubscribe callback1 from the 'event1' event
-emitter.off('event1', callback1);
+emitter.off("event1", callback1);
 
 // Emit the 'event1' event again
-emitter.emit('event1');
+emitter.emit("event1");
 // Output:
 // Callback 2 called
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,58,undefined&title=58%20-%20Event%20Emitter%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A58+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

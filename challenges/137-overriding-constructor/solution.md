@@ -19,6 +19,6 @@ class Student extends Person {
 
 // Works correctly now
 let student = new Student("Pawan Kumar", 1);
-console.log(student.name);      // Output: Pawan Kumar
+console.log(student.name); // Output: Pawan Kumar
 console.log(student.studentId); // Output: 1
 ```

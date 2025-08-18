@@ -1,28 +1,20 @@
-```ts index.ts 
+```ts index.ts
 export class PrefixTree {
-  constructor() {
-    
-  }
+  constructor() {}
 
-  insert(word: string): void {
-    
-  }
+  insert(word: string): void {}
 
-  search(word: string): boolean {
-    
-  }
+  search(word: string): boolean {}
 
-  startsWith(prefix: string): boolean {
-    
-  }
+  startsWith(prefix: string): boolean {}
 }
 ```
 
-```ts index.test.ts 
-import { PrefixTree } from './index';
+```ts index.test.ts
+import { PrefixTree } from "./index";
 
-describe('PrefixTree', () => {
-  test('Example 1: Basic operations', () => {
+describe("PrefixTree", () => {
+  test("Example 1: Basic operations", () => {
     const trie = new PrefixTree();
     trie.insert("dog");
     expect(trie.search("dog")).toBe(true);
@@ -32,14 +24,14 @@ describe('PrefixTree', () => {
     expect(trie.search("do")).toBe(true);
   });
 
-  test('Empty string', () => {
+  test("Empty string", () => {
     const trie = new PrefixTree();
     trie.insert("");
     expect(trie.search("")).toBe(true);
     expect(trie.startsWith("")).toBe(true);
   });
 
-  test('Nested prefixes', () => {
+  test("Nested prefixes", () => {
     const trie = new PrefixTree();
     trie.insert("app");
     trie.insert("apple");
@@ -52,14 +44,14 @@ describe('PrefixTree', () => {
     expect(trie.startsWith("appl")).toBe(true);
   });
 
-  test('Case sensitivity', () => {
+  test("Case sensitivity", () => {
     const trie = new PrefixTree();
     trie.insert("hello");
     expect(trie.search("Hello")).toBe(false);
     expect(trie.startsWith("HELL")).toBe(false);
   });
 
-  test('Non-existent words', () => {
+  test("Non-existent words", () => {
     const trie = new PrefixTree();
     trie.insert("cat");
     expect(trie.search("cats")).toBe(false);
@@ -67,7 +59,7 @@ describe('PrefixTree', () => {
     expect(trie.startsWith("dog")).toBe(false);
   });
 
-  test('Multiple words with same prefix', () => {
+  test("Multiple words with same prefix", () => {
     const trie = new PrefixTree();
     trie.insert("car");
     trie.insert("cat");
@@ -80,5 +72,3 @@ describe('PrefixTree', () => {
   });
 });
 ```
-
-

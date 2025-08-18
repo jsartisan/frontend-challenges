@@ -5,6 +5,7 @@ Write a function that takes a string `s` and returns the length of the longest p
 A substring refers to any continuous part of the original string, formed by taking a sequence of consecutive characters.
 
 **Constraints:**
+
 - 0 ≤ s.length ≤ 5 × 10⁴
 - s consists of English letters, digits, symbols and spaces
 
@@ -30,6 +31,5 @@ console.log(lengthOfLongestSubstring(s3));
 // Explanation: The answer is "wke", with the length of 3.
 // Note that "pwke" is a subsequence and not a substring.
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,211,undefined&title=211%20-%20Longest%20Substring%20Without%20Repeating%20Characters%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A211+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

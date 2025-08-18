@@ -1,9 +1,9 @@
 ---
 name: Feedback
 about: Provide feedback on the site
-title: '[Feedback]: ...'
+title: "[Feedback]: ..."
 labels: feedback
-assignees: jsartisan 
+assignees: jsartisan
 ---
 
 ### 💡 Site Feedback

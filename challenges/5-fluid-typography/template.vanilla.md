@@ -11,7 +11,7 @@ body {
 }
 
 h1 {
-  font-size: /* write your answer here */;
+  font-size:  /* write your answer here *;
 }
 ```
 
@@ -20,21 +20,18 @@ import "./styles.css";
 ```
 
 ```html index.html
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <title>Parcel Sandbox</title>
-  <meta charset="UTF-8" />
-</head>
+  <body>
+    <h1>Hello World</h1>
 
-<body>
-  <h1>Hello World</h1>
-
-  <script type="module" src="index.js">
-  </script>
-</body>
-
+    <script type="module" src="index.js"></script>
+  </body>
 </html>
 ```
 
@@ -45,5 +42,3 @@ import "./styles.css";
   "devDependencies": {}
 }
 ```
-
-

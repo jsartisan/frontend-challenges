@@ -2,9 +2,8 @@
 
 You are given a container with 6 children divs. Implement the layout as shown in the video:
 
-<video src="https://github.com/jsartisan/frontend-challenges/assets/6636360/b837567c-66b5-45f5-b289-d6167c849af9" controls></video> 
+<video src="https://github.com/jsartisan/frontend-challenges/assets/6636360/b837567c-66b5-45f5-b289-d6167c849af9" controls></video>
 
 The breakpoints are 400px, 600px, 800px.
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,40,undefined&title=40%20-%20Layout%201%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A40+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

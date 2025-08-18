@@ -19,12 +19,11 @@ const stack = new Stack();
 stack.push(1);
 stack.push(2);
 console.log(stack.peek()); // 2
-console.log(stack.pop());  // 2
+console.log(stack.pop()); // 2
 console.log(stack.size()); // 1
 console.log(stack.isEmpty()); // false
 stack.pop();
 console.log(stack.isEmpty()); // true
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,91,undefined&title=91%20-%20Stack%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A91+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

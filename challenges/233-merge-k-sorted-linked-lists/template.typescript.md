@@ -1,4 +1,4 @@
-```ts index.ts 
+```ts index.ts
 export class ListNode {
   val: number;
   next: ListNode | null;
@@ -8,15 +8,13 @@ export class ListNode {
   }
 }
 
-export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
-  
-}
+export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {}
 ```
 
-```ts index.test.ts 
-import { ListNode, mergeKLists } from './index';
+```ts index.test.ts
+import { ListNode, mergeKLists } from "./index";
 
-describe('mergeKLists', () => {
+describe("mergeKLists", () => {
   // Helper function to create linked list from array
   function createList(arr: number[]): ListNode | null {
     if (!arr.length) return null;
@@ -40,46 +38,32 @@ describe('mergeKLists', () => {
     return result;
   }
 
-  test('Example 1: Multiple non-empty lists', () => {
-    const lists = [
-      createList([1, 2, 4]),
-      createList([1, 3, 5]),
-      createList([3, 6])
-    ];
+  test("Example 1: Multiple non-empty lists", () => {
+    const lists = [createList([1, 2, 4]), createList([1, 3, 5]), createList([3, 6])];
     expect(listToArray(mergeKLists(lists))).toEqual([1, 1, 2, 3, 3, 4, 5, 6]);
   });
 
-  test('Example 2: Empty array of lists', () => {
+  test("Example 2: Empty array of lists", () => {
     expect(mergeKLists([])).toBeNull();
   });
 
-  test('Example 3: Array with empty list', () => {
+  test("Example 3: Array with empty list", () => {
     expect(mergeKLists([null])).toBeNull();
   });
 
-  test('Single list', () => {
+  test("Single list", () => {
     const lists = [createList([1, 2, 3])];
     expect(listToArray(mergeKLists(lists))).toEqual([1, 2, 3]);
   });
 
-  test('Lists with different lengths', () => {
-    const lists = [
-      createList([1]),
-      createList([1, 2, 3]),
-      createList([2])
-    ];
+  test("Lists with different lengths", () => {
+    const lists = [createList([1]), createList([1, 2, 3]), createList([2])];
     expect(listToArray(mergeKLists(lists))).toEqual([1, 1, 2, 2, 3]);
   });
 
-  test('Lists with negative numbers', () => {
-    const lists = [
-      createList([-2, 1, 4]),
-      createList([-1, 3, 4]),
-      createList([2])
-    ];
+  test("Lists with negative numbers", () => {
+    const lists = [createList([-2, 1, 4]), createList([-1, 3, 4]), createList([2])];
     expect(listToArray(mergeKLists(lists))).toEqual([-2, -1, 1, 2, 3, 4, 4]);
   });
 });
 ```
-
-

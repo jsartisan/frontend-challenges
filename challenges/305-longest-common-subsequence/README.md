@@ -3,16 +3,19 @@
 Given two strings `text1` and `text2`, find the length of their longest common subsequence.
 
 Rules:
+
 - Subsequence can skip characters (doesn't need to be contiguous)
 - Must maintain relative order of characters
 - Common subsequence must exist in both strings
 - Return 0 if no common subsequence exists
 
 **Constraints:**
+
 - 1 ≤ text1.length, text2.length ≤ 1000
 - Strings contain only lowercase English letters
 
 **Examples:**
+
 ```typescript
 // Example 1:
 console.log(longestCommonSubsequence("cat", "crabt"));
@@ -29,6 +32,5 @@ console.log(longestCommonSubsequence("abcd", "efgh"));
 // Output: 0
 // Explanation: No common subsequence
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,305,undefined&title=305%20-%20Longest%20Common%20Subsequence%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A305+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

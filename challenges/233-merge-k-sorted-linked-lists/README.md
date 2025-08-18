@@ -5,6 +5,7 @@ Write a function that accepts an array of k linked lists as input, where the nod
 Your task is to merge all the input lists into a single linked list, ensuring that all nodes remain in sorted ascending order, and return this combined result.
 
 **Constraints:**
+
 - 0 ≤ k (number of lists) ≤ 1000
 - 0 ≤ length of each list ≤ 100
 - -1000 ≤ value in each node ≤ 1000
@@ -13,11 +14,7 @@ Your task is to merge all the input lists into a single linked list, ensuring th
 
 ```typescript
 // Example 1:
-const lists1 = [
-  createList([1, 2, 4]),
-  createList([1, 3, 5]),
-  createList([3, 6])
-];
+const lists1 = [createList([1, 2, 4]), createList([1, 3, 5]), createList([3, 6])];
 console.log(mergeKLists(lists1));
 // Output: [1, 1, 2, 3, 3, 4, 5, 6]
 
@@ -31,6 +28,5 @@ const lists3 = [createList([])];
 console.log(mergeKLists(lists3));
 // Output: null
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,233,undefined&title=233%20-%20Merge%20K%20Sorted%20Linked%20Lists%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A233+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

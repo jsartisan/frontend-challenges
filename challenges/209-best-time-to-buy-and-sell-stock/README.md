@@ -7,6 +7,7 @@ Your task is to find the best possible profit by buying the stock on one day and
 Calculate and return the highest profit possible. If no profit can be made, return 0.
 
 **Constraints:**
+
 - 1 ≤ prices.length ≤ 10⁵
 - 0 ≤ prices[i] ≤ 10⁴
 
@@ -26,6 +27,5 @@ console.log(maxProfit(prices2));
 // Output: 0
 // Explanation: In this case, no transactions are done and the max profit = 0.
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,209,undefined&title=209%20-%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A209+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

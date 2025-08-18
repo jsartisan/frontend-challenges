@@ -1,13 +1,12 @@
-```ts index.ts 
+```ts index.ts
 export class Codec {
   encode(strs: string[]): string {}
 
   decode(s: string): string[] {}
 }
-
 ```
 
-```ts index.test.ts 
+```ts index.test.ts
 import { Codec } from "./index";
 
 describe("Codec", () => {
@@ -48,7 +47,4 @@ describe("Codec", () => {
     expect(decoded).toEqual(input);
   });
 });
-
 ```
-
-

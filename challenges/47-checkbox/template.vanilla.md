@@ -10,26 +10,21 @@ h1 {
 
 ```js index.js
 import "./styles.css";
-
 ```
 
 ```html index.html
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <title>Parcel Sandbox</title>
-  <meta charset="UTF-8" />
-</head>
-
-<body>
-  <label class="checkbox">
-    <input type="checkbox" checked="true" />
-    Label
-  </label>
-</body>
-
+  <body>
+    <label class="checkbox">
+      <input type="checkbox" checked="true" />
+      Label
+    </label>
+  </body>
 </html>
 ```
-
-

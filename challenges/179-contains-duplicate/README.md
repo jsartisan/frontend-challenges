@@ -3,6 +3,7 @@
 Given an array of integers `nums`, write a function that returns `true` if any value appears at least twice in the array, and returns `false` if every element is distinct.
 
 **Requirements:**
+
 1. The function should take one argument:
    - An array of integers, `nums`.
 2. The function should return:
@@ -20,6 +21,5 @@ console.log(hasDuplicate(nums1)); // Output: true
 const nums2 = [1, 2, 3, 4];
 console.log(hasDuplicate(nums2)); // Output: false
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,179,undefined&title=179%20-%20Contains%20Duplicate%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A179+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

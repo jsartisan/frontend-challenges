@@ -1,20 +1,19 @@
 ```js index.js
 export function createFunctions() {
   const functions = [];
-  
+
   let i = 0;
-  while(i < 10) {
+  while (i < 10) {
     let func = function () {
       console.log(i);
     };
-    
+
     functions.push(func);
     i++;
   }
 
   return functions;
 }
-
 ```
 
 ```js index.test.js
@@ -27,17 +26,15 @@ describe("createFunctions function", () => {
     funcs = createFunctions();
   });
 
-  test('should create an array of functions', () => {
+  test("should create an array of functions", () => {
     expect(funcs.length).toBe(10);
     funcs.forEach((func, index) => {
-      expect(typeof func).toBe('function');
+      expect(typeof func).toBe("function");
     });
   });
 
   test("each function should log its own number", () => {
-    const consoleLogSpy = jest
-      .spyOn(console, "log")
-      .mockImplementation(() => {});
+    const consoleLogSpy = jest.spyOn(console, "log").mockImplementation(() => {});
 
     funcs.forEach((func, index) => {
       func();
@@ -47,7 +44,6 @@ describe("createFunctions function", () => {
     consoleLogSpy.mockRestore();
   });
 });
-
 ```
 
 ```json package.json
@@ -57,5 +53,3 @@ describe("createFunctions function", () => {
   "devDependencies": {}
 }
 ```
-
-

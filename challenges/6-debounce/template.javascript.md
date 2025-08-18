@@ -2,25 +2,24 @@
 export function debounce(func, delay) {
   // write your code here
 }
-
 ```
 
-```js index.test.js 
-import { debounce } from './index';
+```js index.test.js
+import { debounce } from "./index";
 
 function wait(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-describe('Debounce Function', () => {
-  it('should not be invoked immediately', async () => {
+describe("Debounce Function", () => {
+  it("should not be invoked immediately", async () => {
     const originalFunction1 = jest.fn();
     const debouncedFunction1 = debounce(originalFunction1, 300);
     debouncedFunction1();
     expect(originalFunction1).not.toBeCalled();
   });
 
-  it('should be invoked after the specified delay', async () => {
+  it("should be invoked after the specified delay", async () => {
     const originalFunction2 = jest.fn();
     const debouncedFunction2 = debounce(originalFunction2, 500);
     debouncedFunction2();
@@ -30,7 +29,7 @@ describe('Debounce Function', () => {
     expect(originalFunction2).toBeCalled();
   });
 
-  it('should reset the delay timer on multiple invocations', async () => {
+  it("should reset the delay timer on multiple invocations", async () => {
     const originalFunction3 = jest.fn();
     const debouncedFunction3 = debounce(originalFunction3, 200);
     debouncedFunction3();
@@ -40,7 +39,7 @@ describe('Debounce Function', () => {
     expect(originalFunction3).toBeCalled();
   });
 
-  it('should receive the latest arguments', async () => {
+  it("should receive the latest arguments", async () => {
     const originalFunction4 = jest.fn();
     const debouncedFunction4 = debounce(originalFunction4, 300);
     debouncedFunction4(1);
@@ -53,5 +52,3 @@ describe('Debounce Function', () => {
   });
 });
 ```
-
-

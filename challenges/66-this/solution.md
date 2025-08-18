@@ -4,13 +4,13 @@ The result is an error.
 function createUser() {
   return {
     name: "John Doe",
-    ref: this
+    ref: this,
   };
 }
 
 let user = createUser();
 
-alert(user.ref.name); 
+alert(user.ref.name);
 // Error: Cannot read property 'name' of undefined
 ```
 
@@ -23,11 +23,11 @@ The value of `this` remains consistent throughout the entire function, unaffecte
 We can rewrite the function to explicitly return `this`:
 
 ```javascript
-function createUser(){
+function createUser() {
   return this; // In this version, there's no object literal
 }
 
-alert(createUser().name); 
+alert(createUser().name);
 // Error: Cannot read property 'name' of undefined
 ```
 
@@ -41,7 +41,7 @@ function createUser() {
     name: "John Doe",
     ref() {
       return this;
-    }
+    },
   };
 }
 

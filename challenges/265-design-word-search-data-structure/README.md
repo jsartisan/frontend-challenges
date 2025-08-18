@@ -3,26 +3,28 @@
 Design a data structure that supports adding words and searching with wildcards.
 
 The `WordDictionary` class should support:
+
 - `addWord(word)`: Adds a word to the dictionary
 - `search(word)`: Returns true if any stored word matches the pattern
   - Pattern can contain dots '.' that match any letter
 
 **Constraints:**
+
 - 1 ≤ word.length ≤ 20
 - addWord: word contains only lowercase letters
 - search: word contains only dots or lowercase letters
 
 **Examples:**
+
 ```typescript
 const dict = new WordDictionary();
 dict.addWord("day");
 dict.addWord("bay");
 dict.addWord("may");
-dict.search("say");   // returns false
-dict.search("day");   // returns true
-dict.search(".ay");   // returns true (matches day, bay, may)
-dict.search("b..");   // returns true (matches bay)
+dict.search("say"); // returns false
+dict.search("day"); // returns true
+dict.search(".ay"); // returns true (matches day, bay, may)
+dict.search("b.."); // returns true (matches bay)
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,265,undefined&title=265%20-%20Design%20Word%20Search%20Data%20Structure%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A265+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

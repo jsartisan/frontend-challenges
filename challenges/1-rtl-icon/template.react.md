@@ -1,17 +1,17 @@
 ```js App.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const App = () => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-     document.documentElement.dir = checked ? "rtl" : "ltr";
+    document.documentElement.dir = checked ? "rtl" : "ltr";
   }, [checked]);
-  
+
   return (
     <main className="wrapper">
       <label>
-        RTL <input type="checkbox" checked={checked} onChange={e => setChecked(e.target.checked)} />
+        RTL <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
       </label>
       <button>
         <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">

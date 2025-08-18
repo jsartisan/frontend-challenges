@@ -2,7 +2,6 @@
 export function spyOn(obj, methodName) {
   // your code here
 }
-
 ```
 
 ```js index.test.js
@@ -45,7 +44,6 @@ describe("spyOn", () => {
     expect(obj.greet("Alice")).toBe("Hello, Alice!");
   });
 });
-
 ```
 
 ```json package.json
@@ -55,5 +53,3 @@ describe("spyOn", () => {
   "devDependencies": {}
 }
 ```
-
-

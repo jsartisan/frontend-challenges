@@ -1,6 +1,5 @@
 ```css styles.css active
 .container {
- 
 }
 
 .item {
@@ -11,30 +10,25 @@
 
 ```js index.js hidden
 import "./styles.css";
-
 ```
 
 ```html index.html
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <title>Parcel Sandbox</title>
-  <meta charset="UTF-8" />
-</head>
-
-<body>
-  <div class="container">
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-  </div>
-</body>
-
+  <body>
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </body>
 </html>
 ```
-
-

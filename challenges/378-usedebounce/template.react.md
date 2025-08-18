@@ -1,4 +1,4 @@
-```jsx App.jsx 
+```jsx App.jsx
 import React, { useState } from "react";
 import { useDebounce } from "./useDebounce";
 
@@ -21,16 +21,13 @@ export default function App() {
     </>
   );
 }
-
 ```
 
 ```js useDebounce.js active
 import { useMemo } from "react";
 import { debounce } from "./debounce";
 
-export function useDebounce(callback, delay) {
-  
-}
+export function useDebounce(callback, delay) {}
 ```
 
 ```js debounce.js hidden
@@ -41,10 +38,8 @@ export function debounce(callback, delay) {
     if (timer) clearTimeout(timer);
 
     timer = setTimeout(() => {
-      callback.call(this, ...args)
-    }, delay)
-  }
+      callback.call(this, ...args);
+    }, delay);
+  };
 }
 ```
-
-

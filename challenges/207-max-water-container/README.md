@@ -5,6 +5,7 @@ Given an array of integers `heights`, where each value represents the height of 
 Each pair of bars, along with the x-axis, forms a container that can hold water. Calculate and return the largest possible container volume.
 
 **Constraints:**
+
 - 2 ≤ height.length ≤ 1000
 - 0 ≤ height[i] ≤ 1000
 
@@ -25,6 +26,5 @@ console.log(maxArea(height2));
 ```
 
 ![Container With Most Water](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,207,undefined&title=207%20-%20Max%20Water%20Container%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A207+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

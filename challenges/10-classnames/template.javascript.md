@@ -5,40 +5,37 @@ export const classNames = (...args) => {
 ```
 
 ```js index.test.js
-import { classNames } from './index';
+import { classNames } from "./index";
 
-describe('classNames utility function', () => {
-  it('should concatenate strings and numbers', () => {
-    expect(classNames('classname1', 'classname2', 100)).toBe('classname1 classname2 100');
+describe("classNames utility function", () => {
+  it("should concatenate strings and numbers", () => {
+    expect(classNames("classname1", "classname2", 100)).toBe("classname1 classname2 100");
   });
 
-  it('should filter out falsy values', () => {
-    expect(classNames(null, undefined, Symbol(), 1n, true, false)).toBe('');
+  it("should filter out falsy values", () => {
+    expect(classNames(null, undefined, Symbol(), 1n, true, false)).toBe("");
   });
 
-  it('should keep object keys if the key is string and the value is truthy', () => {
+  it("should keep object keys if the key is string and the value is truthy", () => {
     const obj = new Map();
-    obj.cool = '!';
+    obj.cool = "!";
 
-    expect(classNames({ class1: [], class2: true, class3: 3 }, obj)).toBe('class1 class2 class3 cool');
+    expect(classNames({ class1: [], class2: true, class3: 3 }, obj)).toBe("class1 class2 class3 cool");
   });
 
-  it('should flatten arrays and concatenate classNames', () => {
+  it("should flatten arrays and concatenate classNames", () => {
     const obj = new Map();
-    obj.cool = '!';
+    obj.cool = "!";
 
-    expect(classNames(['class1', [{ class2: true }, ['class3', [obj]]]])).toBe('class1 class2 class3 cool');
+    expect(classNames(["class1", [{ class2: true }, ["class3", [obj]]]])).toBe("class1 class2 class3 cool");
   });
 
-  it('should handle string and number inputs directly', () => {
-    expect(classNames('class1', 100)).toBe('class1 100');
+  it("should handle string and number inputs directly", () => {
+    expect(classNames("class1", 100)).toBe("class1 100");
   });
 
-  it('should return an empty string if no arguments are provided', () => {
-    expect(classNames()).toBe('');
+  it("should return an empty string if no arguments are provided", () => {
+    expect(classNames()).toBe("");
   });
 });
-
 ```
-
-

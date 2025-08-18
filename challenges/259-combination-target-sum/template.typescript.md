@@ -1,10 +1,8 @@
-```ts index.ts 
-export function combinationSum(nums: number[], target: number): number[][] {
-    
-}
+```ts index.ts
+export function combinationSum(nums: number[], target: number): number[][] {}
 ```
 
-```ts index.test.ts 
+```ts index.test.ts
 import { combinationSum } from "./index";
 
 describe("combinationSum", () => {
@@ -19,12 +17,8 @@ describe("combinationSum", () => {
   // Helper function to check if two arrays of arrays have same combinations
   function combinationsEqual(combs1: number[][], combs2: number[][]): boolean {
     if (combs1.length !== combs2.length) return false;
-    const sorted1 = combs1
-      .map((arr) => [...arr].sort((a, b) => a - b))
-      .sort((a, b) => a.length - b.length);
-    const sorted2 = combs2
-      .map((arr) => [...arr].sort((a, b) => a - b))
-      .sort((a, b) => a.length - b.length);
+    const sorted1 = combs1.map((arr) => [...arr].sort((a, b) => a - b)).sort((a, b) => a.length - b.length);
+    const sorted2 = combs2.map((arr) => [...arr].sort((a, b) => a - b)).sort((a, b) => a.length - b.length);
     return sorted1.every((arr, idx) => arraysEqual(arr, sorted2[idx]));
   }
 
@@ -77,5 +71,3 @@ describe("combinationSum", () => {
   });
 });
 ```
-
-

@@ -3,14 +3,17 @@
 Given an integer `n`, return an array where `output[i]` is the number of 1's in the binary representation of `i` for all numbers from 0 to n.
 
 Rules:
+
 - Return array of length n+1
 - Each element represents count of 1's in binary form of index
 - Array starts from 0 and goes up to n
 
 **Constraints:**
+
 - 0 ≤ n ≤ 1000
 
 **Examples:**
+
 ```typescript
 // Example 1:
 console.log(countBits(4));
@@ -22,6 +25,5 @@ console.log(countBits(4));
 // 3 -> 11    -> 2 ones
 // 4 -> 100   -> 1 one
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,329,undefined&title=329%20-%20Counting%20Bits%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A329+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

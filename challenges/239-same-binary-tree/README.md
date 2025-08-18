@@ -5,6 +5,7 @@ Given the roots of two binary trees `p` and `q`, return `true` if the trees are 
 Two binary trees are considered equivalent if they share the exact same structure and the nodes have the same values.
 
 **Constraints:**
+
 - 0 ≤ Number of nodes in both trees ≤ 100
 - -100 ≤ Node value ≤ 100
 
@@ -38,6 +39,5 @@ const q3 = createTree([1, 3, 2]);
 console.log(isSameTree(p3, q3));
 // Output: false
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,239,undefined&title=239%20-%20Same%20Binary%20Tree%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A239+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

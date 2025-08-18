@@ -2,14 +2,15 @@
 
 Implement a React component that fetches and displays stories from the [Hacker News API](https://github.com/HackerNews/API).
 
-* Use the endpoint:
+- Use the endpoint:
 
   ```
   https://hacker-news.firebaseio.com/v0/topstories.json
   ```
 
   to get a list of top story IDs.
-* For each story ID, fetch the story details from:
+
+- For each story ID, fetch the story details from:
 
   ```
   https://hacker-news.firebaseio.com/v0/item/{id}.json
@@ -27,8 +28,7 @@ Implement a React component that fetches and displays stories from the [Hacker N
 
 **Bonus:**
 
-* Disable the **“Load More”** button when no more stories are left.
-* Handle retries if a fetch request fails.
-
+- Disable the **“Load More”** button when no more stories are left.
+- Handle retries if a fetch request fails.
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,380,undefined&title=380%20-%20News%20Board%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A380+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

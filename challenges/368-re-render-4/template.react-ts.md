@@ -1,4 +1,4 @@
-```css styles.css 
+```css styles.css
 .three-layout {
   display: flex;
   gap: 1rem;
@@ -22,14 +22,13 @@
     min-height: 30rem;
   }
 }
-
 ```
 
 ```tsx App.tsx active
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from "react";
 
-import { AnotherVerySlowComponent, VerySlowComponent } from './very-slow-component';
-import './styles.css';
+import { AnotherVerySlowComponent, VerySlowComponent } from "./very-slow-component";
+import "./styles.css";
 
 const AdjustableColumnsBlock = ({ isNavExpanded }: { isNavExpanded: boolean }) => {
   return isNavExpanded ? <div>two block items here</div> : <div>three block items here</div>;
@@ -47,12 +46,12 @@ const MainPart = ({ isNavExpanded }: { isNavExpanded: boolean }) => {
 
 type ExpandProps = { isNavExpanded: boolean; toggleNav: () => void };
 const ExpandButton = ({ isNavExpanded, toggleNav }: ExpandProps) => (
-  <button onClick={toggleNav}>{isNavExpanded ? 'collapse <' : 'expand >'}</button>
+  <button onClick={toggleNav}>{isNavExpanded ? "collapse <" : "expand >"}</button>
 );
 
 const Sidebar = ({ isNavExpanded, toggleNav }: ExpandProps) => {
   return (
-    <div className="left" style={{ flexBasis: isNavExpanded ? '50%' : '20%' }}>
+    <div className="left" style={{ flexBasis: isNavExpanded ? "50%" : "20%" }}>
       {/* this one will control the expand/collapse */}
       <ExpandButton isNavExpanded={isNavExpanded} toggleNav={toggleNav} />
 
@@ -87,10 +86,9 @@ export default function App() {
     </>
   );
 }
-
 ```
 
-```tsx very-slow-component.tsx 
+```tsx very-slow-component.tsx
 const wait = (ms: number) => {
   const start = Date.now();
   let now = start;
@@ -107,16 +105,12 @@ export const AnotherVerySlowComponent = () => {
   wait(400);
   return null;
 };
-
 ```
 
-```json sandbox.config.json 
+```json sandbox.config.json
 {
   "infiniteLoopProtection": false,
   "hardReloadOnChange": false,
   "view": "browser"
 }
-
 ```
-
-

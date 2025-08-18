@@ -3,15 +3,18 @@
 Given the root of a binary search tree and an integer k, return the kth smallest value (1-indexed) in the tree.
 
 A binary search tree satisfies the following constraints:
+
 - Left subtree contains only values less than node's value
 - Right subtree contains only values greater than node's value
 - Both subtrees must also be valid BSTs
 
 **Constraints:**
+
 - 1 ≤ k ≤ Number of nodes in tree ≤ 1000
 - 0 ≤ Node values ≤ 1000
 
 **Examples:**
+
 ```typescript
 // Example 1:
 //     2
@@ -31,6 +34,5 @@ const root2 = createTree([4, 3, 5, 2]);
 console.log(kthSmallest(root2, 4));
 // Output: 5
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,249,undefined&title=249%20-%20Kth%20Smallest%20Integer%20in%20BST%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A249+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

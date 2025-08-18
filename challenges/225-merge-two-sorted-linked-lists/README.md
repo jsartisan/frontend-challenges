@@ -7,6 +7,7 @@ Your task is to return the head node of the resulting merged list, which should 
 The merged result should preserve the original nodes, just relinked in the correct order.
 
 **Constraints:**
+
 - 0 ≤ The length of each list ≤ 100
 - -100 ≤ Node.val ≤ 100
 - Both `list1` and `list2` are sorted in non-decreasing order
@@ -32,6 +33,5 @@ const list2 = [];
 console.log(mergeTwoLists(list1, list2));
 // Output: []
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,225,undefined&title=225%20-%20Merge%20Two%20Sorted%20Linked%20Lists%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A225+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

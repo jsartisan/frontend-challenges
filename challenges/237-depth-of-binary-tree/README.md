@@ -5,6 +5,7 @@ Given the root of a binary tree, return its depth.
 The depth of a binary tree is defined as the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 **Constraints:**
+
 - 0 ≤ Number of nodes in the tree ≤ 100
 - -100 ≤ Node value ≤ 100
 
@@ -36,6 +37,5 @@ const root3 = createTree([1, 2, 3, 4, 5, 6, 7]);
 console.log(maxDepth(root3));
 // Output: 3
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,237,undefined&title=237%20-%20Depth%20of%20Binary%20Tree%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A237+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

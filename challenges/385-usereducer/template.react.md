@@ -1,10 +1,9 @@
-```jsx App.jsx 
+```jsx App.jsx
 import { Counter } from "./Counter";
 
 export default function App() {
   return <Counter />;
 }
-
 ```
 
 ```js useReducer.js active
@@ -13,8 +12,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-```jsx Counter.jsx 
-
+```jsx Counter.jsx
 import { useReducer } from "./useReducer";
 
 function reducer(state, action) {
@@ -43,5 +41,3 @@ export function Counter() {
   );
 }
 ```
-
-

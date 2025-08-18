@@ -6,16 +6,15 @@ Consider the following code:
 function createUser() {
   return {
     name: "John Doe",
-    ref: this
+    ref: this,
   };
 }
 
 let user = createUser();
 
-alert( user.ref.name ); // What's the result?
+alert(user.ref.name); // What's the result?
 ```
 
 What is the result of accessing its ref? Why?
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,66,quiz&title=66%20-%20this%20-%20undefined" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A66+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

@@ -1,4 +1,4 @@
-```css styles.css 
+```css styles.css
 .block {
   padding: 1rem;
   border-radius: 10px;
@@ -8,20 +8,19 @@
 .block.active {
   background: yellow;
 }
-
 ```
 
-```jsx App.jsx 
-import { useState } from 'react';
+```jsx App.jsx
+import { useState } from "react";
 
 export default function App() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
-   const ComponentWithState = () => {
+  const ComponentWithState = () => {
     const [isActive, setIsActive] = useState(false);
 
     return (
-      <div className={`block ${isActive ? 'active' : ''}`}>
+      <div className={`block ${isActive ? "active" : ""}`}>
         <button onClick={() => setIsActive(!isActive)}>click to highlight</button>
       </div>
     );
@@ -34,10 +33,9 @@ export default function App() {
     </div>
   );
 }
-
 ```
 
-```jsx index.jsx 
+```jsx index.jsx
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -49,8 +47,6 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );
 ```
-
-

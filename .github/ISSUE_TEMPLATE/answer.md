@@ -2,11 +2,11 @@
 name: Answers
 about: Share answers/solutions to a question
 title: "no - "
-labels: answer, en 
+labels: answer, en
 ---
 
 <!--
-Notes: 
+Notes:
 
 🎉 Congrats on solving the challenge and we are happy to see you'd like to share your solutions!
 

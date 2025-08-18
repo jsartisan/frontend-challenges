@@ -3,11 +3,13 @@
 Given an unsigned integer `n`, return the number of '1' bits in its binary representation (also known as Hamming weight).
 
 Rules:
+
 - Input is a non-negative integer
 - Input fits within 32 bits
 - Count only the '1' bits in binary representation
 
 **Examples:**
+
 ```typescript
 // Example 1:
 console.log(hammingWeight(0b00000000000000000000000000010111));
@@ -21,6 +23,5 @@ console.log(hammingWeight(0b01111111111111111111111111111101));
 ```
 
 Note: In TypeScript/JavaScript, you can write binary literals with the `0b` prefix, but the function will receive a regular number.
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,327,undefined&title=327%20-%20Number%20of%20One%20Bits%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A327+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

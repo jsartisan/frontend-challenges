@@ -1,14 +1,11 @@
 ```css styles.css
 .holy-grail {
-  
 }
-
 ```
 
 ```js index.js hidden
 import "./demo.css";
 import "./styles.css";
-
 ```
 
 ```css demo.css hidden
@@ -46,32 +43,29 @@ main {
   border: 1px solid var(--yellow--b);
 }
 
-header, footer {
+header,
+footer {
   background-color: var(--coral);
   border: 1px dashed var(--coral--b);
 }
 ```
 
 ```html index.html
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <title>Parcel Sandbox</title>
-  <meta charset="UTF-8" />
-</head>
-
-<body>
-  <div class="holy-grail">
-    <header>Header</header>
-    <div class="left-side">Left Sidebar</div>
-    <main>Main Content</main>
-    <div class="right-side">Right Sidebar</div>
-    <footer>Footer</footer>
-  </div>
-</body>
-
+  <body>
+    <div class="holy-grail">
+      <header>Header</header>
+      <div class="left-side">Left Sidebar</div>
+      <main>Main Content</main>
+      <div class="right-side">Right Sidebar</div>
+      <footer>Footer</footer>
+    </div>
+  </body>
 </html>
 ```
-
-

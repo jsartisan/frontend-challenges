@@ -5,15 +5,14 @@ export function throttle(cb, delay = 250) {
 ```
 
 ```js index.test.js
-import { throttle } from './index';
+import { throttle } from "./index";
 
 function wait(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-describe('throttle function', () => {
-  it('should throttle function calls', async () => {
-
+describe("throttle function", () => {
+  it("should throttle function calls", async () => {
     const mockFunction = jest.fn();
 
     const throttledFunction = throttle(mockFunction, 500);
@@ -26,7 +25,7 @@ describe('throttle function', () => {
     expect(mockFunction).toHaveBeenCalledTimes(1);
   });
 
-  it('should pass arguments correctly', async () => {
+  it("should pass arguments correctly", async () => {
     const mockFunction = jest.fn();
 
     const throttledFunction = throttle(mockFunction, 500);
@@ -39,5 +38,3 @@ describe('throttle function', () => {
   });
 });
 ```
-
-

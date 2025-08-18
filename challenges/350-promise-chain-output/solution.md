@@ -8,5 +8,6 @@ The output will be: `6`
 6. `.then(console.log)` → Prints `6`
 
 **Key points**:
+
 - If `.then()` receives a non-function (like `3` or `Promise.resolve(4)`), it ignores that handler and passes the previous value through
 - Only function handlers are executed in the chain

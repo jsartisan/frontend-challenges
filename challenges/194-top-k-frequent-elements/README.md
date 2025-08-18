@@ -7,6 +7,7 @@ The problem guarantees that there will be only one valid solution - that is, the
 The elements can be returned in any sequence you prefer.
 
 **Constraints:**
+
 - 1 ≤ `nums.length` ≤ 10^4
 - -1000 ≤ `nums[i]` ≤ 1000
 - 1 ≤ `k` ≤ number of distinct elements in `nums`
@@ -17,7 +18,7 @@ The elements can be returned in any sequence you prefer.
 // Example 1
 const nums1 = [1, 2, 2, 3, 3, 3];
 const k1 = 2;
-console.log(topKFrequent(nums1, k1)); 
+console.log(topKFrequent(nums1, k1));
 // Output: [2, 3]
 
 // Example 2
@@ -26,6 +27,5 @@ const k2 = 1;
 console.log(topKFrequent(nums2, k2));
 // Output: [7]
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,194,undefined&title=194%20-%20Top%20K%20Frequent%20Elements%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A194+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

@@ -8,16 +8,16 @@ export { User };
 ```
 
 ```js index.test.js
-import { User } from './index';
+import { User } from "./index";
 
-describe('User constructor', () => {
-  test('should correctly calculate age', () => {
+describe("User constructor", () => {
+  test("should correctly calculate age", () => {
     const user = new User("Pawan Kumar", new Date(1993, 1, 29));
-   
+
     expect(user.age).toBe(31);
   });
 
-  test('should update age if birthday is updated', () => {
+  test("should update age if birthday is updated", () => {
     let person = new User("Pawan Kumar", new Date(1995, 6, 15)); // July 15, 1995
     expect(person.age).toBe(29);
 
@@ -27,5 +27,3 @@ describe('User constructor', () => {
   });
 });
 ```
-
-

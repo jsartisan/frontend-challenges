@@ -3,16 +3,16 @@
 Implement a function similar to `_.minBy` from the Lodash library. The function `minBy` takes an array of objects and an iteratee (a function that extracts the value to be compared from each object) and returns the object with the minimum value. If the array is empty, it should return `undefined`.
 
 **Example Usage**:
+
 ```js
 const users = [
-  { user: 'barney', age: 36 },
-  { user: 'fred', age: 40 },
-  { user: 'pebbles', age: 1 }
+  { user: "barney", age: 36 },
+  { user: "fred", age: 40 },
+  { user: "pebbles", age: 1 },
 ];
 
-const youngest = minBy(users, o => o.age);
+const youngest = minBy(users, (o) => o.age);
 console.log(youngest); // { user: 'pebbles', age: 1 }
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,145,undefined&title=145%20-%20minBy%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A145+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

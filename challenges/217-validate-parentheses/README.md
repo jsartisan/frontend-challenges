@@ -3,6 +3,7 @@
 Write a function that takes a string `s` containing bracket characters: '(', ')', '{', '}', '[', ']'.
 
 Determine if the string is valid by checking these rules:
+
 1. Each opening bracket must have a matching closing bracket of the same type
 2. Brackets must be closed in the proper nested order
 3. A closing bracket can only close a matching opening bracket
@@ -10,6 +11,7 @@ Determine if the string is valid by checking these rules:
 The function should return `true` for valid bracket strings, and `false` for invalid ones.
 
 **Constraints:**
+
 - 1 ≤ s.length ≤ 1000
 - s consists of parentheses only '()[]{}'
 
@@ -32,6 +34,5 @@ console.log(isValid(s3));
 // Output: false
 // Explanation: The brackets are not closed in the correct order.
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,217,undefined&title=217%20-%20Validate%20Parentheses%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A217+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

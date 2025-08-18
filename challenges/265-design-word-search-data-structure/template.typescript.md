@@ -1,24 +1,18 @@
-```ts index.ts 
+```ts index.ts
 export class WordDictionary {
-  constructor() {
-    
-  }
+  constructor() {}
 
-  addWord(word: string): void {
-    
-  }
+  addWord(word: string): void {}
 
-  search(word: string): boolean {
-    
-  }
+  search(word: string): boolean {}
 }
 ```
 
-```ts index.test.ts 
-import { WordDictionary } from './index';
+```ts index.test.ts
+import { WordDictionary } from "./index";
 
-describe('WordDictionary', () => {
-  test('Example 1: Basic operations', () => {
+describe("WordDictionary", () => {
+  test("Example 1: Basic operations", () => {
     const dict = new WordDictionary();
     dict.addWord("day");
     dict.addWord("bay");
@@ -29,14 +23,14 @@ describe('WordDictionary', () => {
     expect(dict.search("b..")).toBe(true);
   });
 
-  test('Empty string', () => {
+  test("Empty string", () => {
     const dict = new WordDictionary();
     dict.addWord("");
     expect(dict.search("")).toBe(true);
     expect(dict.search(".")).toBe(false);
   });
 
-  test('Single character words', () => {
+  test("Single character words", () => {
     const dict = new WordDictionary();
     dict.addWord("a");
     dict.addWord("b");
@@ -45,7 +39,7 @@ describe('WordDictionary', () => {
     expect(dict.search("c")).toBe(false);
   });
 
-  test('Multiple dots', () => {
+  test("Multiple dots", () => {
     const dict = new WordDictionary();
     dict.addWord("cat");
     expect(dict.search("...")).toBe(true);
@@ -55,7 +49,7 @@ describe('WordDictionary', () => {
     expect(dict.search("....")).toBe(false);
   });
 
-  test('Words of different lengths', () => {
+  test("Words of different lengths", () => {
     const dict = new WordDictionary();
     dict.addWord("cat");
     dict.addWord("cats");
@@ -68,7 +62,7 @@ describe('WordDictionary', () => {
     expect(dict.search(".....")).toBe(false);
   });
 
-  test('No matches', () => {
+  test("No matches", () => {
     const dict = new WordDictionary();
     dict.addWord("dog");
     expect(dict.search("cat")).toBe(false);
@@ -77,7 +71,7 @@ describe('WordDictionary', () => {
     expect(dict.search("..gs")).toBe(false);
   });
 
-  test('Multiple matches with dots', () => {
+  test("Multiple matches with dots", () => {
     const dict = new WordDictionary();
     dict.addWord("cat");
     dict.addWord("car");
@@ -89,5 +83,3 @@ describe('WordDictionary', () => {
   });
 });
 ```
-
-

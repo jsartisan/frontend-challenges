@@ -3,23 +3,26 @@
 Given a 2D board of characters and a word, determine if the word exists in the board.
 
 Rules for word existence:
+
 - Word can be constructed from letters of adjacent cells
 - Adjacent means horizontally or vertically neighboring
 - Same cell cannot be used more than once
 - Board contains only English letters (case-sensitive)
 
 **Constraints:**
+
 - 1 ≤ board dimensions ≤ 5
 - 1 ≤ word.length ≤ 10
 - Board and word contain only English letters
 
 **Examples:**
+
 ```typescript
 // Example 1:
 const board1 = [
-  ["A","B","C","D"],
-  ["S","A","A","T"],
-  ["A","C","A","E"]
+  ["A", "B", "C", "D"],
+  ["S", "A", "A", "T"],
+  ["A", "C", "A", "E"],
 ];
 console.log(exist(board1, "CAT"));
 // Output: true
@@ -27,14 +30,13 @@ console.log(exist(board1, "CAT"));
 
 // Example 2:
 const board2 = [
-  ["A","B","C","D"],
-  ["S","A","A","T"],
-  ["A","C","A","E"]
+  ["A", "B", "C", "D"],
+  ["S", "A", "A", "T"],
+  ["A", "C", "A", "E"],
 ];
 console.log(exist(board2, "BAT"));
 // Output: false
 // Explanation: Cannot form "BAT" using adjacent cells
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,261,undefined&title=261%20-%20Search%20for%20Word%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A261+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

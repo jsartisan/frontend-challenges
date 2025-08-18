@@ -12,6 +12,7 @@ Your task is to find the smallest number in this shifted array, given that all n
 While scanning the entire array would work in O(n) time, can you devise a more efficient solution that runs in O(log n)?
 
 **Constraints:**
+
 - 1 ≤ nums.length ≤ 1000
 - -1000 ≤ nums[i] ≤ 1000
 - All the integers of nums are unique
@@ -34,6 +35,5 @@ const nums3 = [4, 5, 6, 7];
 console.log(findMin(nums3));
 // Output: 4
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,219,undefined&title=219%20-%20Find%20Minimum%20in%20Rotated%20Sorted%20Array%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A219+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

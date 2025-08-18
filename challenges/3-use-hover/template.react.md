@@ -13,7 +13,5 @@ export default App;
 ```js useHover.js active
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export function useHover() {
-  
-}
+export function useHover() {}
 ```

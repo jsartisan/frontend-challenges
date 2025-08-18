@@ -5,6 +5,7 @@ You are given the root of a binary tree. Transform the tree by flipping it horiz
 To invert the tree, each node's left and right children should be swapped.
 
 **Constraints:**
+
 - 0 ≤ Number of nodes in the tree ≤ 100
 - -100 ≤ Node value ≤ 100
 
@@ -34,6 +35,5 @@ const root3 = createTree([]);
 console.log(invertTree(root3));
 // Output: []
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,235,undefined&title=235%20-%20Invert%20a%20Binary%20Tree%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A235+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

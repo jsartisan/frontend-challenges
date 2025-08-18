@@ -7,6 +7,7 @@ The input is guaranteed to contain exactly one valid solution where `i` and `j` 
 Return the indices in ascending order (smaller index before larger index).
 
 **Constraints:**
+
 - 2 ≤ `nums.length` ≤ 1000
 - -10,000,000 ≤ `nums[i]` ≤ 10,000,000
 - -10,000,000 ≤ `target` ≤ 10,000,000
@@ -29,6 +30,5 @@ const nums3 = [5, 5];
 const target3 = 10;
 console.log(twoSum(nums3, target3)); // Output: [0, 1]
 ```
-
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues/new?template=answer.md&labels=answer,188,undefined&title=188%20-%20Two%20Sums%20-%20undefined&body=" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://github.com/jsartisan/frontend-challenges/issues?q=label%3A188+label%3Aanswer+sort%3Areactions-%2B1-desc" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->

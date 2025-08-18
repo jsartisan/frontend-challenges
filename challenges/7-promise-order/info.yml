@@ -1,6 +1,6 @@
 difficulty: easy
 importance: high
-title: Promise Order 
+title: Promise Order
 tags: javascript, promise, event loop
 author:
   github: jsartisan
@@ -8,4 +8,3 @@ author:
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: 2024-02-02
 type: quiz
-

@@ -20,9 +20,7 @@ function App() {
     setQuery(searchTerm);
   };
 
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(query.toLowerCase()),
-  );
+  const filteredItems = items.filter((item) => item.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <div>
@@ -37,7 +35,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 ```jsx index.jsx
@@ -51,16 +48,16 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );
 ```
 
 ```html public/index.html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
@@ -70,21 +67,13 @@ root.render(
 ```
 
 ```jsx SearchBar.jsx
-import { memo } from 'react';
+import { memo } from "react";
 
 const SearchBar = memo(({ onSearch }) => {
-  console.log('SearchBar rendered');
-  
-  return (
-    <input 
-      type="text" 
-      placeholder="Search..." 
-      onChange={(e) => onSearch(e.target.value)} 
-    />
-  );
+  console.log("SearchBar rendered");
+
+  return <input type="text" placeholder="Search..." onChange={(e) => onSearch(e.target.value)} />;
 });
 
 export default SearchBar;
 ```
-
-
