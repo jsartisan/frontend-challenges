@@ -10,7 +10,7 @@ export function FileExplorer() {
 
   return (
     <div className="">
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center justify-between">
         <p className="text-(--color-fg-neutral-subtle)">Files</p>
         <IconButton
           size="sm"

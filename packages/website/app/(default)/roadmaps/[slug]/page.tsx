@@ -38,7 +38,7 @@ export default async function Page(props: any) {
         {studyPlan.topics.map((topic) => {
           return (
             <div className="flex flex-col gap-1" key={`topic-${topic.title}`}>
-              <h3 className="text-base font-semibold ">{topic.title}</h3>
+              <h3 className="text-base font-semibold">{topic.title}</h3>
               <ChallengeList challenges={topic.challenges} />
             </div>
           );

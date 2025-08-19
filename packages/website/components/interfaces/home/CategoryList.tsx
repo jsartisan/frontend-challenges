@@ -14,7 +14,7 @@ export function CategoryList(props: CategoryListProps) {
         <Link
           prefetch={false}
           href={`/categories/${category.name}`}
-          className="rounded "
+          className="rounded"
           key={`category-${category.name}`}
         >
           <Card className="hover:bg-(--color-bg-hover) flex items-center gap-3 p-3">

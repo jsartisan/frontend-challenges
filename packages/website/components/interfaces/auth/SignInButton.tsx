@@ -38,9 +38,9 @@ export function SignInButton() {
             <div className="flex flex-col gap-4">
               <div className="space-y-1 text-center">
                 <h5 className="font-medium">Sign Up / In</h5>
-                <p className=" text-(--color-fg-subtle) text-sm">Sign in to save and track your progress.</p>
+                <p className="text-(--color-fg-subtle) text-sm">Sign in to save and track your progress.</p>
               </div>
-              <div className=" relative flex flex-col items-center justify-center space-y-2 overflow-hidden rounded px-5 py-6 shadow-md">
+              <div className="relative flex flex-col items-center justify-center space-y-2 overflow-hidden rounded px-5 py-6 shadow-md">
                 <button onClick={onLoginWithGithub} className="group block cursor-pointer">
                   <span
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"

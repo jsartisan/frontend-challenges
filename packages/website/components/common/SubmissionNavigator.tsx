@@ -52,7 +52,7 @@ export function SubmissionNavigator() {
             target="_blank"
             rel="noreferrer"
             aria-label="Report a bug"
-            className="flex w-full items-center justify-center gap-2  text-center  "
+            className="flex w-full items-center justify-center gap-2 text-center"
           >
             <Icon name="bug" size="sm" />
             Report a bug

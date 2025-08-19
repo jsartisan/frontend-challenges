@@ -92,7 +92,6 @@
     "tailwind-merge": "^2.0.0",
     "tailwind-variants": "^0.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "tailwindcss-logical": "^3.0.1",
     "tldraw": "^3.8.1",
     "use-debounce": "^10.0.4",
     "zod": "^3.22.4",

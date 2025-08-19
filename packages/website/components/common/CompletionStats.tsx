@@ -48,7 +48,7 @@ export default function CompletionStats(props: CompletionStatsProps) {
                 <div
                   key={difficulty}
                   className={cn({
-                    "relative h-2 grow overflow-hidden rounded-sm ": true,
+                    "relative h-2 grow overflow-hidden rounded-sm": true,
                     "bg-(--color-bg-easy-subtle)": difficulty === "easy",
                     "bg-(--color-bg-medium-subtle)": difficulty === "medium",
                     "bg-(--color-bg-hard-subtle)": difficulty === "hard",

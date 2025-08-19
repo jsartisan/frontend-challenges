@@ -63,7 +63,7 @@ export function Breadcrumb(props: BreadcrumbProps) {
                     </IconButton>
                   </div>
                 </SheetTrigger>
-                <SheetContent side="left" className=" w-5/12  overflow-auto">
+                <SheetContent side="left" className="w-5/12 overflow-auto">
                   <h3 className="text-2xl font-bold">Challenges</h3>
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col gap-2">

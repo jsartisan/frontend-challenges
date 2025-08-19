@@ -96,7 +96,7 @@ function _CodeEditor(props: Props) {
 
   return (
     <>
-      <div className="  h-full w-full grow flex-col overflow-hidden">
+      <div className="h-full w-full grow flex-col overflow-hidden">
         <div className="min-h-auto border-(--color-bd) flex items-center gap-2 border-b p-1">
           <div className="flex items-center gap-2 px-2">
             <Checkbox
