@@ -21,3 +21,5 @@ function App() {
   return null
 }
 ```
+
+[Source](https://bigfrontend.dev/react-quiz/useeffect-timing-ii)
