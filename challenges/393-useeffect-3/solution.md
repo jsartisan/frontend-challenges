@@ -1,36 +1,24 @@
-### Initial Render
+On the **initial render**, the `App` function executes and logs `1`. The output includes `<Child />`, which itself doesn’t log during render.
 
-1. `App` function runs, logs `1`.
-2. Render includes ``.
+Once the DOM is committed, React runs effects in child-before-parent order. The `Child` effect (`useEffect([count])`) runs first, logging `5`. Then the parent’s effects run: the first logs `2`, and the second (with an empty dependency array) logs `4` and triggers a `setCount` update.
 
-**After DOM mounts (effects run, child before parent):**
+At this point, the console has:
 
-- `Child`’s `useEffect ([count])`: logs `5`.
-- `App`’s first `useEffect ([count])`: logs `2`.
-- `App`’s second `useEffect ([])`: logs `4`, calls `setCount(count => count + 1)` to increment count.
-
-**Console so far:**
 ```
 1
 5
 2
 4
 ```
-When state changes (`count` updates from 1 to 2), 
-- **Render runs again:**
-  - `App` function logs `1` (second render).
 
-React will cleanup the previous effects before running them again:
+Because state changed (`count: 1 → 2`), React schedules a re-render.
 
-- **Cleanup effects (child before parent):**
-  - `Child`’s cleanup: logs `6`.
-  - `App`’s cleanup: logs `3`.
+During the **second render**, `App` runs again and logs `1`. Before React can apply the new effects, it cleans up the old ones, again in child-before-parent order: `Child`’s cleanup logs `6`, and `App`’s cleanup logs `3`.
 
-- **Effects run (child before parent):**
-  - `Child`’s `useEffect ([count])`: logs `5`.
-  - `App`’s first `useEffect ([count])`: logs `2`.
+After cleanup, React runs the updated effects. `Child`’s effect runs first, logging `5`, followed by the parent’s first effect, which logs `2`.
 
-**Second render console:**
+The second render therefore produces:
+
 ```
 1
 6
@@ -39,9 +27,10 @@ React will cleanup the previous effects before running them again:
 2
 ```
 
-***
+---
 
-### **Full console output in order
+✅ **Final console output in order:**
+
 ```
 1
 5
@@ -53,3 +42,7 @@ React will cleanup the previous effects before running them again:
 5
 2
 ```
+
+---
+
+Do you want me to also mark **which phase** (render, commit, cleanup, effect) each log comes from, like a side annotation next to the numbers?

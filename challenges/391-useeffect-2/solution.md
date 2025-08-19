@@ -1,64 +1,14 @@
-#### 1. Initial render of `App`
+On the **initial render of `App`**, the state `show` is `true`, so React renders `<Child />`.
 
-* `show = true`.
-* So `<Child unmount={…} />` is rendered.
+Inside the **render of `Child`**, the `useIsMounted` hook creates a ref (`isMounted = useRef(false)`). During this render, `isMounted.current` is still `false`, and the hook returns that value. As a result, inside render, `isMounted === false`.
 
-#### 2. Render of `Child`
+When React enters the **commit phase**, it runs `Child`’s effect. At this point, the effect from `useIsMounted` (which would normally set `isMounted.current = true`) has not yet run, so the ref is still `false`. The first `console.log(isMounted)` therefore logs `false`. A `Promise.resolve().then(...)` schedules a microtask to log again later, and then `unmount()` is called, which triggers `setShow(false)` in the parent and schedules `Child` to unmount.
 
-* `useIsMounted()` runs:
+Still in the same commit, after React finishes running effects for mounted components, it proceeds to unmount `Child`. During cleanup, the `useIsMounted` effect’s cleanup runs and sets `isMounted.current = false`. But since the ref was never flipped to `true` in the first place, it simply remains `false`.
 
-  * Creates `isMounted = useRef(false)`.
-  * During render, `isMounted.current = false`.
-  * The hook **returns `false`** to the component.
-* So inside render, `isMounted === false`.
+Finally, when the **microtask from the Promise** runs after unmount, it logs the ref again. Because the component was removed before `isMounted.current` ever became `true`, the ref is still `false`.
 
-#### 3. Commit phase (after DOM update)
+✅ **Final console output, in order:**
 
-* React runs `Child`’s `useEffect`.
-
-  * At this moment:
-
-    * The `useIsMounted` effect hasn’t run yet.
-    * `isMounted.current` is still `false`.
-  * First `console.log(isMounted)` → logs **`false`**.
-  * Then `Promise.resolve(true).then(...)` schedules a microtask to log `isMounted` later.
-  * `unmount()` runs → calls `setShow(false)` in parent → schedules `Child` to unmount.
-
-So far logs:
-
-```
-false
-```
-
-#### 4. Still in the same commit phase
-
-* After running all effects of mounted components, React will **unmount Child** (because `App` rerenders with `show = false`).
-* On unmount, the cleanup of `useIsMounted` runs:
-
-  ```js
-  return () => isMounted.current = false;
-  ```
-
-  But note: `isMounted.current` was **never set to true** (because its effect didn’t get to run before unmount). So it remains `false`.
-
-#### 5. Microtask from the `Promise.then`
-
-* That callback runs after unmount.
-* It logs `isMounted` again.
-* Since the ref was never flipped to `true`, it’s still `false`.
-
-So logs:
-
-```
-false
-false
-```
-
-### ✅ Final Console Output:
-
-```
-false
-false
-```
-
-⚠️ Key subtlety: Your `useIsMounted` implementation only flips `isMounted.current = true` **in an effect**. But in this case, the component unmounts before that effect runs. So `isMounted.current` never becomes `true`.
+* `false` (first log in effect before unmount)
+* `false` (microtask after unmount)

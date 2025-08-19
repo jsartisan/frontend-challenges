@@ -14,7 +14,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "text-muted-foreground bs-9 inline-flex w-full items-center justify-start gap-2 rounded-none bg-transparent p-1",
+      "text-muted-foreground inline-flex h-9 w-full items-center justify-start gap-2 rounded-none bg-transparent p-1",
       className,
     )}
     {...props}
@@ -29,7 +29,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "focus-visible:ring-ring bs-7 pli-2 hover:bg-(--color-bg-hover) focus-visible:outline-hidden active:bg-(--color-bg-active) relative inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-sm text-xs font-medium transition-colors focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:h-4 [&_svg]:w-4",
+      "focus-visible:ring-ring hover:bg-(--color-bg-hover) focus-visible:outline-hidden active:bg-(--color-bg-active) relative inline-flex h-7 items-center justify-center gap-1 whitespace-nowrap rounded-sm px-2 text-xs font-medium transition-colors focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:h-4 [&_svg]:w-4",
       "data-[state=active]:before:bg-(--color-bg-accent) data-[state=active]:before:absolute data-[state=active]:before:-bottom-[calc(4px)] data-[state=active]:before:h-[2px] data-[state=active]:before:w-[calc(100%+4px)] data-[state=active]:before:content-['']",
       "[[data-panel-size='0.0']_&:before]:hidden",
 
