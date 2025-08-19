@@ -18,7 +18,7 @@ const buttonVariants = cva(
         primary:
           "shadow bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
         secondary:
-          "shadow-sm bg-[var(--color-bg)] text-[var(--color-fg)] border-[var(--color-bd)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+          "shadow-xs bg-[var(--color-bg)] text-[var(--color-fg)] border-[var(--color-bd)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
@@ -26,10 +26,10 @@ const buttonVariants = cva(
         github: "bg-black text-white hover:bg-black/90",
       },
       size: {
-        default: "bs-8 px-3 py-2 [&_img]:bs-5 [&_img]:is-5 gap-2",
-        sm: "bs-7 rounded-sm px-2 text-xs [&_svg]:bs-4 [&_svg]:is-4 gap-1",
-        xs: "bs-6 rounded-sm px-2 text-xs gap-1",
-        lg: "bs-9 px-3 gap-2",
+        default: "h-8 px-3 py-2 [&_img]:size-5 gap-2",
+        sm: "h-7 rounded-sm px-2 text-xs [&_svg]:size-4 gap-1",
+        xs: "h-6 rounded-sm px-2 text-xs gap-1",
+        lg: "h-9 px-3 gap-2",
       },
     },
     defaultVariants: {
