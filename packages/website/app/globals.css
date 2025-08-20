@@ -429,3 +429,27 @@
 
   --shadow-bg-negative: 0 0 0 1px var(--color-bd-negative), 0 3px 0 0px var(--color-bd-negative);
 }
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@theme {
+  --breakpoint-desktop: 1024px;
+}
+
+@keyframes revolve {
+  0% {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
+}
+
+.animate-revolve {
+  animation: revolve var(--duration, 50s) linear infinite;
+}

@@ -14,6 +14,7 @@ import { TemplateChanger } from "~/components/editor/TemplateChanger";
 import { SharePlaygroundButton } from "./SharePlaygroundButton";
 import { formatFileName, getFilesFromLocalStorage, getFilesFromURL, getTemplateFromURL } from "~/utils/playground";
 import { useSandpack } from "@codesandbox/sandpack-react";
+import { setLocalStorageItem } from "~/utils/localStorage";
 
 const CURRENT_EDITOR_PATH = "/playground";
 
@@ -24,7 +25,7 @@ export function PlaygroundEditor() {
 
   const onChangeTemplate = (template: SupportedTemplates) => {
     setTemplate(() => {
-      localStorage.setItem("playground-template", template);
+      setLocalStorageItem("playground-template", template);
 
       return template;
     });

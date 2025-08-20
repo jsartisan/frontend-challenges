@@ -25,11 +25,6 @@ const Breadcrumb = dynamic(
   },
 );
 
-const Notes = dynamic(() => import("~/components/editor/Notes"), {
-  ssr: false,
-  loading: () => <Skeleton className="h-full w-full grow rounded-none" />,
-});
-
 const CodeEditor = dynamic(() => import("~/components/editor/CodeEditor"), {
   ssr: false,
   loading: () => <Skeleton className="h-full w-full grow" />,
@@ -81,11 +76,6 @@ function QuestionChallenge(props: QuestionChallengeProps) {
                   title: "Submissions",
                   value: "submissions",
                   children: <AnswerList challenge={challenge} className="p-3" />,
-                },
-                {
-                  title: "Notes",
-                  value: "notes",
-                  children: <Notes path={`challenges/${challenge.path}`} />,
                 },
               ]}
             </ResizableLayoutTab>

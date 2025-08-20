@@ -1,4 +1,5 @@
 import { SUPPORTED_TEMPLATES, SupportedTemplates, TEMPLATES } from "@/shared";
+import { getLocalStorageItem } from "./localStorage";
 
 export const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemplates => {
   const template = searchParams.get("template");
@@ -8,10 +9,10 @@ export const getTemplateFromURL = (searchParams: URLSearchParams): SupportedTemp
   }
 
   if (
-    localStorage.getItem("playground-template") &&
-    SUPPORTED_TEMPLATES.includes(localStorage.getItem("playground-template") as SupportedTemplates)
+    getLocalStorageItem("playground-template", null) &&
+    SUPPORTED_TEMPLATES.includes(getLocalStorageItem("playground-template", null) as SupportedTemplates)
   ) {
-    return localStorage.getItem("playground-template") as SupportedTemplates;
+    return getLocalStorageItem("playground-template", "vanilla") as SupportedTemplates;
   }
 
   return "vanilla";
@@ -33,7 +34,7 @@ export const getFilesFromURL = (searchParams: URLSearchParams, template: Support
     }
   }
 
-  if (localStorage.getItem(`/playground-${template}`)) {
+  if (getLocalStorageItem(`/playground-${template}`, null)) {
     return getFilesFromLocalStorage(template);
   }
 
@@ -42,7 +43,7 @@ export const getFilesFromURL = (searchParams: URLSearchParams, template: Support
 
 export const getFilesFromLocalStorage = (template: SupportedTemplates) => {
   try {
-    const parsedFiles = JSON.parse(localStorage.getItem(`/playground-${template}`) as string);
+    const parsedFiles = getLocalStorageItem(`/playground-${template}`, null);
 
     return {
       ...TEMPLATES[template].files,
