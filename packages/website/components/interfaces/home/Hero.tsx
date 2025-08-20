@@ -17,7 +17,7 @@ export function Hero() {
       </a>
       <div className="flex">
         <div className="z-10 flex w-full flex-col gap-4 md:w-7/12">
-          <div className="text-3xl font-bold md:text-5xl">Prepare, Practice, Succeed</div>
+          <div className="text-4xl font-bold md:text-5xl">Prepare, Practice, Succeed</div>
           <div className="text-(--color-fg-subtle) leading-relaxed">
             FrontendChallenges is a collection of frontend interview questions and answers. It is designed to help you
             prepare for frontend interviews. It&apos;s free and open source.

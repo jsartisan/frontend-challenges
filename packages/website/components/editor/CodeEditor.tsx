@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { useState } from "react";
 import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
-import { CodeFile, STORAGE_KEY, SupportedTemplates } from "@/shared";
+import { CodeFile, SupportedTemplates } from "@/shared";
 
 import { Button, Checkbox, Icon, IconButton, Label, ToggleGroup, ToggleGroupItem } from "../ui";
 import { MonacoEditor } from "./MonacoEditor";
@@ -12,6 +12,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 import { useSandpackLocal } from "./SandpackLocalProvider";
 import { usePrettify } from "../../hooks/usePrettify";
 import { Slider } from "../ui/slider";
+import { getLocalStorageItem, setLocalStorageItem } from "~/utils/localStorage";
 
 type Props = {
   files?: Record<string, CodeFile>;
@@ -30,13 +31,13 @@ function _CodeEditor(props: Props) {
   const { sandpack } = useSandpack();
   const { resetFiles } = useSandpackLocal();
   const [editorFontSize, _setEditorFontSize] = useState(() => {
-    const stored = localStorage.getItem(`${STORAGE_KEY}:editor-font-size`);
+    const stored = getLocalStorageItem(`editor-font-size`, 14);
 
     return stored ? parseInt(stored) : 14;
   });
   const [vimMode, setVimMode] = useState(false);
   const [editorTabSize, _setEditorTabSize] = useState(() => {
-    const stored = localStorage.getItem(`${STORAGE_KEY}:editor-tab-size`);
+    const stored = getLocalStorageItem(`editor-tab-size`, 2);
 
     return stored ? parseInt(stored) : 2;
   });
@@ -44,22 +45,19 @@ function _CodeEditor(props: Props) {
 
   const onChange = (files: SandpackState["files"]) => {
     if (path) {
-      localStorage.setItem(
-        `${STORAGE_KEY}:${path}-${template}`,
-        JSON.stringify({
-          ...files,
-        }),
-      );
+      setLocalStorageItem(`${path}-${template}`, {
+        ...files,
+      });
     }
   };
 
   const setEditorFontSize = (size: number) => {
-    localStorage.setItem(`${STORAGE_KEY}:editor-font-size`, size.toString());
+    setLocalStorageItem(`:editor-font-size`, size.toString());
     _setEditorFontSize(size);
   };
 
   const setEditorTabSize = (size: number) => {
-    localStorage.setItem(`${STORAGE_KEY}:editor-tab-size`, size.toString());
+    setLocalStorageItem(`editor-tab-size`, size.toString());
     _setEditorTabSize(size);
     onPrettify({ tabSize: size });
   };

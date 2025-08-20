@@ -438,6 +438,7 @@
 
 @theme {
   --breakpoint-desktop: 1024px;
+  --breakpoint-mobile: 768px;
 }
 
 @keyframes revolve {

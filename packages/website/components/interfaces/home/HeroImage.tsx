@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Icon } from "~/components/ui";
-import * as logo from "../../../public/images/logo.svg";
+import logo from "../../../public/images/logo.svg";
 
 const levels = {
   1: 120,
@@ -10,7 +10,7 @@ const levels = {
 
 export function HeroImage() {
   return (
-    <div className="desktop:h-[20vh] desktop:gap-32 desktop:bg-none relative isolate -z-10 flex flex-grow flex-col items-center justify-center gap-8 bg-[length:200%_200%] bg-center bg-no-repeat">
+    <div className="desktop:h-[20vh] desktop:flex desktop:gap-32 desktop:bg-none relative isolate -z-10 hidden flex-grow flex-col items-center justify-center gap-8 bg-[length:200%_200%] bg-center bg-no-repeat">
       <Image src={logo} alt="Ragby" width={50} height={50} />
       <div className="desktop:opacity-100 absolute opacity-60">
         <div className="desktop:size-[980px] relative grid size-[450px] place-items-center">
