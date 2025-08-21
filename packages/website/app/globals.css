@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
 
 @source "../app/**/*.{js,ts,jsx,tsx}";
 
@@ -119,6 +119,7 @@
     --color-bg-accent-hover: color-mix(in srgb, var(--color-bg-accent), white 10%);
     --color-bg-accent-active: color-mix(in srgb, var(--color-bg-accent), black 10%);
     --color-bg-accent-subtle: color-mix(in srgb, var(--color-bg-accent), white 80%);
+    --color-bg-accent-strong: color-mix(in srgb, var(--color-bg-accent), black 20%);
     --color-bg-neutral: var(--ramp-grey-100);
     --color-bg-neutral-hover: color-mix(in srgb, var(--color-bg-neutral), black 5%);
     --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral), white 5%);
@@ -418,16 +419,22 @@
   min-height: 0;
 }
 
-:root {
+@theme {
   --shadow-bg-none: 0 0 0 0px var(--color-bd), 0 0px 0 0px var(--color-bd);
-  --shadow-bg: 0 0 0 1px var(--color-bd), 0 3px 0 0px var(--color-bd);
-  --shadow-bg-hover: 0 0 0 1px var(--color-bd), 0 4px 0 0px var(--color-bd);
+  --shadow-bg: 0px -1px 0px 0px var(--color-bd-strong) inset, 0px 1px 1px 0px var(--color-bd), 0 0 0 1px #cbcbcb inset;
+  --shadow-bg-hover: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
+    -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px #cbcbcb inset;
   --shadow-bg-pressed: 0 0 0 1px var(--color-bd), inset 0 1px 2px 0px var(--color-bd), 0 0px 0 0px var(--color-bd);
 
-  --shadow-bg-accent: 0 0 0 1px var(--color-bd-accent-strong), 0 3px 0 0px var(--color-bd-accent-strong);
+  --shadow-bg-accent: 0px -1px 0px 0px color-mix(in srgb, var(--color-bg-accent-strong), black 20%) inset,
+    0 2px 3px #00000021, 0 0 0 1px var(--color-bd-accent-strong) inset;
   --shadow-bg-accent-hover: 0 0 0 1px var(--color-bd-accent-strong), 0 4px 0 0px var(--color-bd-accent-strong);
 
   --shadow-bg-negative: 0 0 0 1px var(--color-bd-negative), 0 3px 0 0px var(--color-bd-negative);
+
+  --shadow-card: 0px 3px 2px -1px rgba(0, 0, 0, 0.12);
+  --shadow-input: 0px 1px 1px 0px rgba(0, 0, 0, 0.08) inset;
+  --shadow-popover: rgba(0, 0, 0, 0.16) 0px 4px 16px;
 }
 
 @property --angle {

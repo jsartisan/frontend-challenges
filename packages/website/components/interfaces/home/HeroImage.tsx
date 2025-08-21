@@ -31,7 +31,7 @@ export function HeroImage() {
         </div>
         <div className="absolute inset-0 grid place-items-center">
           <OrbitingItem level={1} angleOffset={0} icon={<Icon name="static-color" />} />
-          <OrbitingItem level={2} angleOffset={120} icon={<Icon name="css-color" />} />
+          <OrbitingItem level={2} angleOffset={60} icon={<Icon name="css-color" />} />
           <OrbitingItem level={3} angleOffset={0} icon={<Icon name="javascript-color" />} />
           <OrbitingItem level={3} angleOffset={120} icon={<Icon name="typescript-color" />} />
           <OrbitingItem level={3} angleOffset={240} icon={<Icon name="react-color" />} />

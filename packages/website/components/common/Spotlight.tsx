@@ -39,7 +39,12 @@ export default function SpotLight(props: SpotlightProps) {
 
   return (
     <>
-      <Button variant="secondary" className="hidden px-2 md:flex" onClick={() => setOpen(true)}>
+      <Button
+        variant="secondary"
+        size="sm"
+        className="shadow-input ring-(--color-bd) hidden ring-1 md:flex"
+        onClick={() => setOpen(true)}
+      >
         <span className="text-(--color-fg) hidden text-sm lg:inline-flex">Search...</span>
         <kbd className="border-(--color-bd) bg-(--color-bg-neutral) pointer-events-none ml-8 h-4 select-none items-center gap-1 rounded-sm px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
