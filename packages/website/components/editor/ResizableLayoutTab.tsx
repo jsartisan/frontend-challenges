@@ -69,9 +69,10 @@ export const ResizableLayoutTab = (props: ResizableLayoutTabProps) => {
   return (
     <Card
       className={cn(
-        "h-full w-full overflow-hidden",
+        "@container-[size] h-full w-full overflow-hidden shadow-none",
+        "before:shadow-card before:fixed before:z-[-1] before:h-[calc(100cqh+1px)] before:w-[calc(100cqw+1px)] before:rounded-[inherit] before:border before:border-transparent",
         tabless &&
-          "[[data-panel-group-direction=horizontal]_div:not([data-panel-size='0.0'])_&]:border-none [[data-panel-group-direction=horizontal]_div:not([data-panel-size='0.0'])_&]:bg-transparent",
+          "before:shadow-none [[data-panel-group-direction=horizontal]_div:not([data-panel-size='0.0'])_&]:border-none [[data-panel-group-direction=horizontal]_div:not([data-panel-size='0.0'])_&]:bg-transparent",
       )}
     >
       <Tabs

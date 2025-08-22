@@ -41,6 +41,7 @@ const ResizablePanel = (
   return (
     <ResizablePrimitive.Panel
       className={cn(
+        "relative",
         "group/panel sm:min-bs-0! min-bs-[200px]! basis-[calc(--spacing(9)+2px)]!",
         "&[[data-panel-size='0.0']:[writing-mode:tb] in-data-[panel-size='0.0']:[writing-mode:tb]",
         className,

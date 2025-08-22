@@ -7,7 +7,7 @@ import { cn } from "../../utils/helpers";
 
 const buttonVariants = cva(
   cn(
-    "relative active:[&>*]:translate-y-px inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-[var(--color-bd-accent)] focus-visible:ring-2 focus-visible:ring-offset-1",
+    "relative active:translate-y-px inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-[var(--color-bd-accent)] focus-visible:ring-2 focus-visible:ring-offset-1",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&>svg]:size-[1.3em]",
     "[&:has(+_[data-loader])_*]:opacity-0 [&:has(+_[data-loader])]:text-transparent",
@@ -18,7 +18,7 @@ const buttonVariants = cva(
         primary:
           "shadow-bg-accent bg-[var(--color-bg-accent)] text-[var(--color-fg-onaccent)] hover:bg-[var(--color-bg-accent-hover)] active:bg-[var(--color-bg-accent-active)]",
         secondary:
-          "shadow-bg active:shadow-bg-hover bg-[var(--color-bg)] text-[var(--color-fg)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
+          "shadow-bg active:shadow-bg-pressed bg-[var(--color-bg)] text-[var(--color-fg)] hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         tertiary: "hover:bg-[var(--color-bg-hover)] active:bg-[var(--color-bg-active)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         link: "text-primary underline-offset-4 hover:underline",
@@ -51,11 +51,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
 
     return (
-      <div
-        data-wrapper
-        className={cn("relative inline-flex", cn(buttonVariants({ variant, size, className }), className))}
-      >
-        <Comp ref={ref} {...props} className="inline-flex gap-2">
+      <div data-wrapper className={cn("relative inline-flex")}>
+        <Comp ref={ref} {...props} className={cn(buttonVariants({ variant, size, className }), className)}>
           {children}
         </Comp>
         {isLoading && (

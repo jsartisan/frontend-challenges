@@ -421,10 +421,12 @@
 
 @theme {
   --shadow-bg-none: 0 0 0 0px var(--color-bd), 0 0px 0 0px var(--color-bd);
-  --shadow-bg: 0px -1px 0px 0px var(--color-bd-strong) inset, 0px 1px 1px 0px var(--color-bd), 0 0 0 1px #cbcbcb inset;
+  --shadow-bg: 0px -1px 0px 0px var(--color-bd-strong) inset, 0px 1px 1px 0px var(--color-bd),
+    0 0 0 1px var(--color-bd) inset;
   --shadow-bg-hover: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
     -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px #cbcbcb inset;
-  --shadow-bg-pressed: 0 0 0 1px var(--color-bd), inset 0 1px 2px 0px var(--color-bd), 0 0px 0 0px var(--color-bd);
+  --shadow-bg-pressed: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
+    -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px var(--color-bd) inset;
 
   --shadow-bg-accent: 0px -1px 0px 0px color-mix(in srgb, var(--color-bg-accent-strong), black 20%) inset,
     0 2px 3px #00000021, 0 0 0 1px var(--color-bd-accent-strong) inset;

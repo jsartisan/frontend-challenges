@@ -27,7 +27,7 @@ export default async function RootLayout(params) {
       <link rel="icon" href="/favicon.ico" type="image/png" sizes="32x32" />
       <body
         className={cn(
-          "bg-(--color-bg-secondary) flex min-h-screen flex-col overflow-x-clip font-sans text-sm antialiased",
+          "bg-(--color-bg-secondary) flex min-h-screen flex-col overflow-x-clip font-sans text-sm antialiased [overscroll-behavior:none]",
         )}
       >
         <Provider challenges={challenges}>{children}</Provider>
