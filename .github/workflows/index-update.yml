@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: 18.x
           cache: pnpm
-      - run: pnpm i
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            **/pnpm-lock.yaml
       - run: npm run readme
       - uses: EndBug/add-and-commit@v9
         with:
