@@ -1,4 +1,4 @@
 {
-  "*.{js,ts,tsx}": ["eslint --fix --cache"],
+  "*.{js,ts,tsx}": ["eslint --fix --no-warn-ignored --cache"],
   "*.{css,json}": ["prettier --write --cache"]
 }

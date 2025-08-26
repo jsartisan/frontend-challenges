@@ -1,0 +1,19 @@
+import { getAllBlogs, getBlogBySlug } from "~/entities/blog/api";
+import { BlogDetailPage } from "~/screens/blog/ui/BlogDetailPage";
+
+export function generateStaticParams() {
+  const posts = getAllBlogs();
+
+  const transformedPosts = posts.map((p) => ({
+    slug: p.slug,
+  }));
+
+  return transformedPosts;
+}
+
+export async function generateMetadata({ params }: { params: any }) {
+  const blog = await getBlogBySlug(params.slug);
+  return { title: blog.title };
+}
+
+export default BlogDetailPage;
