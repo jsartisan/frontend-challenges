@@ -23,7 +23,7 @@ import {
 async function updateIndexREADME(challenges: ChallengeList) {
   // update index README
   for (const locale of SUPPORTED_LOCALES) {
-    const filepath = path.resolve(__dirname, "../..", getFileNameByLocale("README", locale, "md"));
+    const filepath = path.resolve(__dirname, "../../../", getFileNameByLocale("README", locale, "md"));
 
     let challengesREADME = "";
     let prev = "";

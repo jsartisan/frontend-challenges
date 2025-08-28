@@ -20,4 +20,4 @@ jobs:
             pnpm-lock.yaml
             **/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
-      - run: cd packages/scripts/actions && npx esno ./loader.ts ${{github.token}} issue-pr
+      - run: cd apps/www/scripts/actions && pnpm exec esno ./loader.ts ${{github.token}} issue-pr

@@ -12,7 +12,7 @@
     "dev": "pnpm run --filter=www dev",
     "generate": "esno ./apps/www/scripts/generate-play.ts",
     "lint": "next lint",
-    "readme": "esno ./apps/www/scripts/readme.ts",
+    "readme": "pnpm --filter=www exec esno ./scripts/update-index.ts",
     "start": "next start",
     "lint:fix": "eslint --fix .",
     "clean:workspaces": "rm -rf node_modules && pnpm -r exec rm -rf node_modules"
