@@ -4,10 +4,10 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { PushCommit } from "@type-challenges/octokit-create-pull-request";
 
-import type { Question, SupportedTemplates } from "~/entities/challenge/model/types";
+import type { Question, SupportedTemplates } from "../../entities/challenge/model/types";
 
-import { DEFAULT_LOCALE } from "~/shared/config/locale";
-import { createFileMap } from "~/features/code-editor/lib/createFileMap";
+import { DEFAULT_LOCALE } from "../../shared/config/locale";
+import { createFileMap } from "../../features/code-editor/lib/createFileMap";
 
 import { Action, Context, Github } from "./types";
 
