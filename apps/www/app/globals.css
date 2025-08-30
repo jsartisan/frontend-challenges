@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @import "tw-animate-css";
+@plugin "tailwindcss-logical";
 
-@source "../app/**/*.{js,ts,jsx,tsx}";
+@source "../**/*.{js,ts,jsx,tsx}";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -431,7 +432,9 @@
   --shadow-bg-accent: 0px -1px 0px 0px color-mix(in srgb, var(--color-bg-accent-strong), black 20%) inset,
     0 2px 3px #00000021, 0 0 0 1px var(--color-bd-accent-strong) inset;
   --shadow-bg-accent-hover: 0 0 0 1px var(--color-bd-accent-strong), 0 4px 0 0px var(--color-bd-accent-strong);
-
+  --shadow-bg-accent-pressed: 0px 2px 4px 0px color-mix(in srgb, var(--color-bd-accent-strong), black 30%) inset,
+    1px 0px 1px 0px var(--color-bd-accent-strong) inset, -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
+    0 0 0 1px var(--color-bd-accent-strong) inset;
   --shadow-bg-negative: 0 0 0 1px var(--color-bd-negative), 0 3px 0 0px var(--color-bd-negative);
 
   --shadow-card: 0px 3px 2px -1px rgba(0, 0, 0, 0.12);

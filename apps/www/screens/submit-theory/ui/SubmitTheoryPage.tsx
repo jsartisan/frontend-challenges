@@ -31,7 +31,7 @@ export function SubmitTheoryPage() {
   return (
     <Form {...form}>
       <form
-        onSubmit={() => form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="flex h-[calc(100vh-var(--nav-top-offset))] flex-col p-4 text-sm"
       >
         <FormHeader />

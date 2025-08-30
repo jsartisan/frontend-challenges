@@ -93,6 +93,7 @@
     "tailwind-merge": "^2.0.0",
     "tailwind-variants": "^0.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-logical": "^4.0.0",
     "tldraw": "^3.8.1",
     "tw-animate-css": "^1.3.7",
     "unist-util-visit": "^5.0.0",

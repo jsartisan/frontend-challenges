@@ -9,5 +9,10 @@ export async function getAuthUser() {
 
   if (!userData.data.user) return Promise.resolve(null);
 
-  return supabase.from("profiles").select("*").eq("id", userData.data.user.id);
+  const profileData = await supabase.from("profiles").select("*").eq("id", userData.data.user.id);
+
+  return {
+    ...userData.data.user,
+    ...profileData.data?.[0],
+  };
 }

@@ -339,6 +339,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.12)
+      tailwindcss-logical:
+        specifier: ^4.0.0
+        version: 4.0.0(tailwindcss@4.1.12)
       tldraw:
         specifier: ^3.8.1
         version: 3.8.1(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5821,6 +5824,11 @@ packages:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
+
+  tailwindcss-logical@4.0.0:
+    resolution: {integrity: sha512-9oD7tBWGqvEWwCIk5j53bgz+fY6lw0NWrOtMCSHkYECn/UG8pMnA6NwOpv0z8ExDsnOHNXlhOVB0+xgBEkn0Tg==}
+    peerDependencies:
+      tailwindcss: '>=4.0.0'
 
   tailwindcss@3.4.14:
     resolution: {integrity: sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==}
@@ -13078,6 +13086,10 @@ snapshots:
       tailwindcss: 4.1.12
 
   tailwindcss-animate@1.0.7(tailwindcss@4.1.12):
+    dependencies:
+      tailwindcss: 4.1.12
+
+  tailwindcss-logical@4.0.0(tailwindcss@4.1.12):
     dependencies:
       tailwindcss: 4.1.12
 

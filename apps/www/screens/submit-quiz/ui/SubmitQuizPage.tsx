@@ -47,7 +47,7 @@ export function SubmitQuizPage() {
 
   return (
     <Form {...form}>
-      <form onSubmit={() => form.handleSubmit(onSubmit)} className="h-[calc(100vh-var(--nav-top-offset))] p-4 text-sm">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="h-[calc(100vh-var(--nav-top-offset))] p-4 text-sm">
         <Tabs className="h-full w-full p-0" value={activeTab || "description"} onValueChange={setActiveTab}>
           <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
             <DescriptionHeader form={form} setActiveTab={setActiveTab} />

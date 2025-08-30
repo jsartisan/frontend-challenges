@@ -16,7 +16,7 @@ export function EditChallengeDropdown(props: EditDropdownProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <IconButton asChild variant="secondary" size="sm">
+      <IconButton asChild variant="tertiary" size="sm">
         <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
           <Icon name="github" />
         </a>
