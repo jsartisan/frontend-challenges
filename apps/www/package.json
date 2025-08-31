@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev -p 8080",
-    "lint": "next lint",
+    "lint": "eslint . --debug --ignore-pattern .",
     "start": "next start",
     "check-types": "tsc --noEmit"
   },

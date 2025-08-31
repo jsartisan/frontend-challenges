@@ -16,7 +16,7 @@ export function ChallengeList(props: ChallengeListProps) {
   const { challenges, variant = "default" } = props;
 
   return (
-    <div className={cn("flex flex-col", variant === "compact" ? "gap-2" : "gap-3.5")}>
+    <div className={cn("flex flex-col", variant === "compact" ? "gap-2" : "gap-4")}>
       {challenges.map((challenge) => (
         <ChallengeListItem variant={variant} key={challenge.path} challenge={challenge} />
       ))}

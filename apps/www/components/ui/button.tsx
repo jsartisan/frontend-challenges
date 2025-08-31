@@ -2,7 +2,6 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, tv } from "tailwind-variants";
 
-import { Icon } from "./icon";
 import { cn } from "../../utils/helpers";
 
 const buttonVariants = tv({
@@ -50,17 +49,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
 
     return (
-      <div data-wrapper className={cn("relative inline-flex")}>
-        <Comp ref={ref} {...props} className={cn(buttonVariants({ variant, size, className }), className)}>
-          {children}
-        </Comp>
-        {isLoading && (
-          <span data-loader className="absolute inset-0 flex items-center justify-center bg-inherit">
-            <Icon name="spinner" className="animate-spin" />
-          </span>
-        )}
-        {/* <div className="[&:has(+_[data-loader])_::target-text]:opacity-0"> </div> */}
-      </div>
+      <Comp
+        ref={ref}
+        {...props}
+        className={cn(buttonVariants({ variant, size, className }), className)}
+        data-loading={isLoading}
+      >
+        {children}
+      </Comp>
     );
   },
 );

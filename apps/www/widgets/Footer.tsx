@@ -46,9 +46,14 @@ export function Footer() {
             <Link className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)" href="/play">
               Playground
             </Link>
-            <Link className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)" href="/submit/question">
-              Submit
-            </Link>
+            <a
+              className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/jsartisan/frontend-challenges/issues/new?assignees=jsartisan&labels=feedback&template=feedback.md&title=%5BFeedback%5D%3A+..."
+            >
+              Feedback
+            </a>
             <Link className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)" href="/blog">
               Blog
             </Link>

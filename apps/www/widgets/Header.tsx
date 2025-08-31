@@ -5,8 +5,14 @@ import { Logo } from "~/shared/ui/Logo";
 import { REPO } from "~/shared/config/paths";
 import UserNav from "~/features/auth/ui/UserNav";
 import { Skeleton } from "~/components/ui/skeleton";
-import { Icon, IconButton, Link, Separator } from "~/components/ui";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
+import { Button, Icon, IconButton, Link, Separator } from "~/components/ui";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "~/components/ui/dropdown-menu";
 
 const SpotLight = dynamic(() => import("~/widgets/Spotlight").then((mod) => mod.Spotlight), {
   ssr: false,
@@ -39,14 +45,41 @@ export async function Header() {
                 <Link href="/play" className="font-medium">
                   Playground
                 </Link>
-                <Link
-                  href="https://github.com/jsartisan/frontend-challenges/issues/new?assignees=jsartisan&labels=feedback&template=feedback.md&title=%5BFeedback%5D%3A+..."
-                  target="_blank"
-                  className="flex items-center gap-1 font-medium"
-                >
-                  Feedback
-                  <Icon name="external-link" size="sm" className="text-(--color-fg-neutral-subtle)" />
-                </Link>
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="tertiary" size="sm" className="text-md -ml-2 ms-auto py-0 font-medium">
+                      Submit
+                      <Icon name="caret-down" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="center">
+                    <DropdownMenuItem asChild className="flex-col items-start">
+                      <Link href={`/submit/question`} className="block">
+                        <div>Question</div>
+                        <div className="text-(--color-fg-neutral-subtle) text-xs">
+                          Question are the challenges that require coding.
+                        </div>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild className="flex-col items-start">
+                      <Link href={`/submit/quiz`} className="block">
+                        <div>Quiz</div>
+                        <div className="text-(--color-fg-neutral-subtle) text-xs">
+                          Quiz tests the concepts but don't require coding.
+                        </div>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild className="flex-col items-start">
+                      <Link href={`/submit/theory`} className="block">
+                        <div>Theory</div>
+                        <div className="text-(--color-fg-neutral-subtle) text-xs">
+                          Theory challenge are just one-liner questions.
+                        </div>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
             <div className="ms-auto flex h-full items-center gap-3">

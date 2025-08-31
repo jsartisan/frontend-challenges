@@ -53,7 +53,7 @@ export async function getLeadboardUsersWithCount() {
         count: count.count,
         rank: i + 1,
         user: count.user,
-        html_url: `${REPO}/issues?q=author:${count.user.login}&labels=answer`,
+        html_url: `${REPO}/issues?q=${encodeURIComponent(`author:${count.user.login} label:answer is:issue`)}`,
       };
     });
 

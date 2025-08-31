@@ -81,8 +81,9 @@ function usePersistedChallengeFilters(
 
   let filtered = challenges.filter((question) => {
     return (
-      (state.category.length === 0 || state.category.includes(question.category)) &&
-      (state.difficulty.length === 0 || state.difficulty.includes(question.difficulty)) &&
+      state.category.length === 0 &&
+      state.category.includes(question?.category ?? "javascript") &&
+      (state.difficulty.length === 0 || state.difficulty.includes(question?.difficulty ?? "")) &&
       (state.type === "all" || state.type === question.type)
     );
   });

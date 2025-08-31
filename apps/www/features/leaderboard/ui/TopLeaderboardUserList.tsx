@@ -10,7 +10,7 @@ export function TopLeaderboardUserList() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-3.5">
+      <div className="flex flex-col gap-4">
         {[...Array(5)].map((_, index) => (
           <Skeleton className="h-20 w-full" key={index} />
         ))}
@@ -23,7 +23,7 @@ export function TopLeaderboardUserList() {
   }
 
   return (
-    <div className="flex flex-col gap-3.5">
+    <div className="flex flex-col gap-4">
       {data?.map((aggregatedUser) => (
         <Card className="group/leaderboard-user flex px-4 py-3 md:px-4" key={aggregatedUser.user.login} role="listitem">
           <div className="flex grow items-center gap-2">

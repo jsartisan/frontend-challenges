@@ -7,4 +7,6 @@ author:
   name: Pawan Kumar
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: '2025-08-29'
+resources:
+  - https://react.dev/learn/state-as-a-snapshot
 
