@@ -118,7 +118,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
         <IconButton
           onClick={onMarkComplete}
           variant="tertiary"
-          className="text-(--color-fg-neutral-subtle) hover:bg-transparent active:bg-transparent"
+          className="text-(--color-fg-neutral-subtle) hover:bg-transparent active:bg-transparent [&>svg]:size-6"
           size="lg"
         >
           <Icon

@@ -18,7 +18,7 @@ interface BaseChallengeProps {
   path: string;
   readme: Record<string, string>;
   info: Record<string, DeepPartial<QuestionMetaInfo> | undefined>;
-  category: Category;
+  category?: Category;
   discussionURL?: string;
   githubURL?: string;
   editURL?: string;
@@ -68,6 +68,7 @@ export interface QuestionMetaInfo {
   published_date: string;
   type: "question" | "quiz" | "theory";
   discussionNo: string;
+  resources?: string[];
 }
 
 export type SupportedTemplates = (typeof SUPPORTED_TEMPLATES)[number];

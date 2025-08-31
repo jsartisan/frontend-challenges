@@ -8,6 +8,7 @@ import { Card } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import { Solution } from "~/entities/challenge/ui/Solution";
 import { Description } from "~/entities/challenge/ui/Description";
+import { ResourceList } from "~/entities/resource/ui/ResourceList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui";
 
 const MarkCompleteButton = dynamic(
@@ -45,9 +46,13 @@ export function Quiz(props: QuizChallengeProps) {
               <Tabs defaultValue="description" className="h-full">
                 <TabsList>
                   <TabsTrigger value="description">Description</TabsTrigger>
+                  <TabsTrigger value="resources">Resources</TabsTrigger>
                 </TabsList>
                 <TabsContent value="description" className="overflow-y-auto">
                   <Description challenge={challenge} />
+                </TabsContent>
+                <TabsContent value="resources" className="overflow-y-auto">
+                  <ResourceList challenge={challenge} />
                 </TabsContent>
               </Tabs>
             </Card>

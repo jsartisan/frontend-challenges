@@ -15,7 +15,7 @@ export async function getChallengeByPathSlim(dir: string): Promise<ChallengeSlim
     return (
       CATEGORIES.find((category) => {
         return info?.en?.tags?.includes(category) || info?.en?.related?.includes(category);
-      }) ?? "javascript"
+      }) ?? undefined
     );
   })();
   const readme = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), []);

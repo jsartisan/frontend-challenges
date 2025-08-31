@@ -7,6 +7,7 @@ import { Separator, Skeleton } from "~/components/ui";
 import { AnswerList } from "~/entities/answer/ui/AnswerList";
 import { Description } from "~/entities/challenge/ui/Description";
 import { useLayout } from "~/features/code-editor/hooks/useLayout";
+import { ResourceList } from "~/entities/resource/ui/ResourceList";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
 import { LayoutChanger } from "~/features/code-editor/ui/LayoutChanger";
 import { ResizableLayout } from "~/features/code-editor/ui/ResizableLayout";
@@ -73,6 +74,11 @@ function QuestionChallenge(props: QuestionChallengeProps) {
                   title: "Submissions",
                   value: "submissions",
                   children: <AnswerList challenge={challenge} className="p-3" />,
+                },
+                {
+                  title: "Resources",
+                  value: "resources",
+                  children: <ResourceList challenge={challenge} />,
                 },
               ]}
             </ResizableLayoutTab>
