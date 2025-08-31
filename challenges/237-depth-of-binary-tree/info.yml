@@ -2,7 +2,7 @@ difficulty: easy
 title: Depth of Binary Tree
 type: question
 template: typescript
-tags: javascript, blind75, binary-tree, recursion
+tags: blind75, binary-tree, recursion
 author:
   github: jsartisan
   name: Pawan Kumar

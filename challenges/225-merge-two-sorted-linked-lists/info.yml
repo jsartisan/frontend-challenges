@@ -2,7 +2,7 @@ difficulty: easy
 title: Merge Two Sorted Linked Lists
 type: question
 template: typescript
-tags: javascript, blind75, linked-list
+tags: blind75, linked-list
 author:
   github: jsartisan
   name: Pawan Kumar

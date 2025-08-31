@@ -2,7 +2,7 @@ difficulty: medium
 title: Course Schedule
 type: question
 template: typescript
-tags: javascript, blind75, graph, topological-sort
+tags: blind75, graph, topological-sort
 author:
   github: jsartisan
   name: Pawan Kumar

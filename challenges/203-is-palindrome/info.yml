@@ -2,7 +2,7 @@ difficulty: easy
 title: Is Palindrome
 type: question
 template: typescript
-tags: javascript, blind75, string, two-pointers
+tags: blind75, string, two-pointers
 author:
   github: jsartisan
   name: Pawan Kumar

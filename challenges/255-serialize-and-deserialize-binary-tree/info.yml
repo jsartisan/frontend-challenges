@@ -2,7 +2,7 @@ difficulty: hard
 title: Serialize and Deserialize Binary Tree
 type: question
 template: typescript
-tags: javascript, blind75, binary-tree, serialization
+tags: blind75, binary-tree, serialization
 author:
   github: jsartisan
   name: Pawan Kumar

@@ -2,7 +2,7 @@ difficulty: easy
 title: Number of One Bits
 type: question
 template: typescript
-tags: javascript, blind75, bit-manipulation
+tags: blind75, bit-manipulation
 author:
   github: jsartisan
   name: Pawan Kumar

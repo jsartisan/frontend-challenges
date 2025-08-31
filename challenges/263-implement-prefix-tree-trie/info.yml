@@ -2,7 +2,7 @@ difficulty: medium
 title: Implement Prefix Tree (Trie)
 type: question
 template: typescript
-tags: javascript, blind75, trie, data-structure
+tags: blind75, trie, data-structure
 author:
   github: jsartisan
   name: Pawan Kumar

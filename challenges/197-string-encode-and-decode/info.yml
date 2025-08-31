@@ -2,7 +2,7 @@ difficulty: medium
 title: String encode and decode
 type: question
 template: typescript
-tags: javascript, blind75
+tags: blind75
 author:
   github: jsartisan
   name: Pawan Kumar

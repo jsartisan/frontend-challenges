@@ -2,7 +2,7 @@ difficulty: medium
 title: Maximum Product Subarray
 type: question
 template: typescript
-tags: javascript, blind75, dynamic-programming, array
+tags: blind75, dynamic-programming, array
 author:
   github: jsartisan
   name: Pawan Kumar

@@ -2,7 +2,7 @@ difficulty: easy
 title: Anagrams
 type: question
 template: typescript
-tags: javascrip,arrays,blind75
+tags: arrays,blind75
 author:
   github: jsartisan
   name: Pawan Kumar

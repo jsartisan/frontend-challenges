@@ -2,7 +2,7 @@ difficulty: medium
 title: Three Integer Sum
 type: question
 template: typescript
-tags: javascript, blind75, array, two-pointers
+tags: blind75, array, two-pointers
 author:
   github: jsartisan
   name: Pawan Kumar

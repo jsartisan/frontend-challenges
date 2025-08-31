@@ -2,7 +2,7 @@ difficulty: medium
 title: Merge Intervals
 type: question
 template: typescript
-tags: javascript, blind75, intervals
+tags: blind75, intervals
 author:
   github: jsartisan
   name: Pawan Kumar

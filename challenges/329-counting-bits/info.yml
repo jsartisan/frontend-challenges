@@ -2,7 +2,7 @@ difficulty: easy
 title: Counting Bits
 type: question
 template: typescript
-tags: javascript, blind75, bit-manipulation, dynamic-programming
+tags: blind75, bit-manipulation, dynamic-programming
 author:
   github: jsartisan
   name: Pawan Kumar

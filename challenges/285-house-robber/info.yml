@@ -2,7 +2,7 @@ difficulty: medium
 title: House Robber
 type: question
 template: typescript
-tags: javascript, blind75, dynamic-programming
+tags: blind75, dynamic-programming
 author:
   github: jsartisan
   name: Pawan Kumar

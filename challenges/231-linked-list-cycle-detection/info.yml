@@ -2,7 +2,7 @@ difficulty: easy
 title: Linked List Cycle Detection
 type: question
 template: typescript
-tags: javascript, blind75, linked-list, two-pointers
+tags: blind75, linked-list, two-pointers
 author:
   github: jsartisan
   name: Pawan Kumar

@@ -2,7 +2,7 @@ difficulty: medium
 title: Longest Consecutive Sequence
 type: question
 template: typescript
-tags: javascript, blind75, array, hash-set
+tags: blind75, array, hash-set
 author:
   github: jsartisan
   name: Pawan Kumar

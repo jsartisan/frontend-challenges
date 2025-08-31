@@ -2,7 +2,7 @@ difficulty: medium
 title: Search for Word
 type: question
 template: typescript
-tags: javascript, blind75, backtracking, matrix
+tags: blind75, backtracking, matrix
 author:
   github: jsartisan
   name: Pawan Kumar

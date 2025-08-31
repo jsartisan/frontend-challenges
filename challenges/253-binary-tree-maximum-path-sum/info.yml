@@ -2,7 +2,7 @@ difficulty: hard
 title: Binary Tree Maximum Path Sum
 type: question
 template: typescript
-tags: javascript, blind75, binary-tree, recursion
+tags: blind75, binary-tree, recursion
 author:
   github: jsartisan
   name: Pawan Kumar

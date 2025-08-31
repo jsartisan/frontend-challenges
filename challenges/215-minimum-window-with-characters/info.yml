@@ -2,7 +2,7 @@ difficulty: hard
 title: Minimum Window With Characters
 type: question
 template: typescript
-tags: javascript, blind75, string, sliding-window, hash-map
+tags: blind75, string, sliding-window, hash-map
 author:
   github: jsartisan
   name: Pawan Kumar

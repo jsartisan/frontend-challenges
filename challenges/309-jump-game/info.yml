@@ -2,7 +2,7 @@ difficulty: medium
 title: Jump Game
 type: question
 template: typescript
-tags: javascript, blind75, dynamic-programming, array, greedy
+tags: blind75, dynamic-programming, array, greedy
 author:
   github: jsartisan
   name: Pawan Kumar

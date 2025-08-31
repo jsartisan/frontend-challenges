@@ -2,7 +2,7 @@ difficulty: hard
 title: Search for Word II
 type: question
 template: typescript
-tags: javascript, blind75, trie, backtracking, matrix
+tags: blind75, trie, backtracking, matrix
 author:
   github: jsartisan
   name: Pawan Kumar

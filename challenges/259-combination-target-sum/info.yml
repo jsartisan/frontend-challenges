@@ -2,7 +2,7 @@ difficulty: medium
 title: Combination Target Sum
 type: question
 template: typescript
-tags: javascript, blind75, backtracking, recursion
+tags: blind75, backtracking, recursion
 author:
   github: jsartisan
   name: Pawan Kumar

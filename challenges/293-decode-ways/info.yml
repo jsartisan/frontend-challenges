@@ -2,7 +2,7 @@ difficulty: medium
 title: Decode Ways
 type: question
 template: typescript
-tags: javascript, blind75, dynamic-programming, string
+tags: blind75, dynamic-programming, string
 author:
   github: jsartisan
   name: Pawan Kumar

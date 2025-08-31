@@ -2,7 +2,7 @@ difficulty: medium
 title: Valid Tree
 type: question
 template: typescript
-tags: javascript, blind75, graph, union-find
+tags: blind75, graph, union-find
 author:
   github: jsartisan
   name: Pawan Kumar

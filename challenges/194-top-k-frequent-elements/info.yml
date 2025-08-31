@@ -2,7 +2,7 @@ difficulty: medium
 title: Top K Frequent Elements
 type: question
 template: typescript
-tags: javascript,blind75
+tags: blind 75
 author:
   github: jsartisan
   name: Pawan Kumar

@@ -2,7 +2,7 @@ difficulty: easy
 title: Meeting Schedule
 type: question
 template: typescript
-tags: javascript, blind75, intervals
+tags: blind75, intervals
 author:
   github: jsartisan
   name: Pawan Kumar

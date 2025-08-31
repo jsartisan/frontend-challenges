@@ -2,7 +2,7 @@ difficulty: easy
 title: Best Time to Buy and Sell Stock
 type: question
 template: typescript
-tags: javascript, blind75, array, dynamic-programming
+tags: blind75, array, dynamic-programming
 author:
   github: jsartisan
   name: Pawan Kumar

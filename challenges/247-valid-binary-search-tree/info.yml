@@ -2,7 +2,7 @@ difficulty: medium
 title: Valid Binary Search Tree
 type: question
 template: typescript
-tags: javascript, blind75, binary-search-tree, recursion
+tags: blind75, binary-search-tree, recursion
 author:
   github: jsartisan
   name: Pawan Kumar

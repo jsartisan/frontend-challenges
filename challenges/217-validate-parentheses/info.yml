@@ -2,7 +2,7 @@ difficulty: easy
 title: Validate Parentheses
 type: question
 template: typescript
-tags: javascript, blind75, string, stack
+tags: blind75, string, stack
 author:
   github: jsartisan
   name: Pawan Kumar

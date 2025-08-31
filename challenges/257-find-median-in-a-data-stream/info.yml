@@ -2,7 +2,7 @@ difficulty: hard
 title: Find Median in a Data Stream
 type: question
 template: typescript
-tags: javascript, blind75, heap, data-stream
+tags: blind75, heap, data-stream
 author:
   github: jsartisan
   name: Pawan Kumar

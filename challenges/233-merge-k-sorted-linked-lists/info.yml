@@ -2,7 +2,7 @@ difficulty: hard
 title: Merge K Sorted Linked Lists
 type: question
 template: typescript
-tags: javascript, blind75, linked-list, heap, divide-and-conquer
+tags: blind75, linked-list, heap, divide-and-conquer
 author:
   github: jsartisan
   name: Pawan Kumar

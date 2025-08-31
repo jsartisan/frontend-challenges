@@ -2,7 +2,7 @@ difficulty: medium
 title: Find Minimum in Rotated Sorted Array
 type: question
 template: typescript
-tags: javascript, blind75, array, binary-search
+tags: blind75, array, binary-search
 author:
   github: jsartisan
   name: Pawan Kumar
