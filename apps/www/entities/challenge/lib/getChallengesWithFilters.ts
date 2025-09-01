@@ -13,7 +13,7 @@ export function getChallengesWithFilters(challenges: ChallengeList, searchParams
     const difficulty = searchParams.get("difficulty")?.split(",") ?? [];
 
     return (
-      (category.length === 0 || category.includes(challenge?.category ?? "")) &&
+      (category.length === 0 || category.includes(challenge.category as any)) &&
       (difficulty.length === 0 || difficulty.includes(challenge.difficulty)) &&
       (type === "all" || type === challenge.type)
     );

@@ -47,7 +47,7 @@ export async function getLeadboardUsersWithCount() {
 
   const leaderboard = Object.entries(counts)
     .sort((a, b) => b[1].count - a[1].count)
-    .slice(0, 5)
+    .slice(0, 7)
     .map(([, count], i) => {
       return {
         count: count.count,

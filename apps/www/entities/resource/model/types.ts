@@ -1,4 +1,1 @@
-export type Resource = {
-  title: string;
-  url: string;
-};
+export type Resource = string;

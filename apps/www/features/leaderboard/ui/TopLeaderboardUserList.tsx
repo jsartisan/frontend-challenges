@@ -11,8 +11,8 @@ export function TopLeaderboardUserList() {
   if (isLoading) {
     return (
       <div className="flex flex-col gap-4">
-        {[...Array(5)].map((_, index) => (
-          <Skeleton className="h-20 w-full" key={index} />
+        {[...Array(7)].map((_, index) => (
+          <Skeleton className="h-14 w-full" key={index} />
         ))}
       </div>
     );
@@ -23,13 +23,17 @@ export function TopLeaderboardUserList() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col">
       {data?.map((aggregatedUser) => (
-        <Card className="group/leaderboard-user flex px-4 py-3 md:px-4" key={aggregatedUser.user.login} role="listitem">
+        <Card
+          className="group/leaderboard-user flex rounded-none border-x-0 border-b border-t-0 bg-transparent px-3 py-2 shadow-none md:px-4"
+          key={aggregatedUser.user.login}
+          role="listitem"
+        >
           <div className="flex grow items-center gap-2">
-            <div className="flex flex-col gap-3">
-              <div className="flex gap-2">
-                <Avatar className="size-6">
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Avatar className="size-5">
                   <AvatarImage src={aggregatedUser.user.avatar_url} />
                 </Avatar>
                 <a
@@ -40,7 +44,7 @@ export function TopLeaderboardUserList() {
                   {aggregatedUser.user.login}
                 </a>
               </div>
-              <div className="text-(--color-fg-neutral-subtle) text-sm"> {aggregatedUser.count} answers</div>
+              <div className="text-(--color-fg-neutral-subtle) text-sm">Solved {aggregatedUser.count} answers</div>
             </div>
             <div className="text-(--color-fg-neutral-subtle) ms-auto text-2xl font-bold opacity-50">
               #{aggregatedUser.rank}

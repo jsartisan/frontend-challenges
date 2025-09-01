@@ -18,13 +18,9 @@ export async function HomePage() {
     <>
       <Hero />
       <CategoryList categories={categories} />
-      <div className="flex gap-6 py-4">
-        <div className="flex-grow">
-          <RecentlyAddedChallenges challenges={sortedChallenges} />
-        </div>
-        <div className="min-w-1/3">
-          <Leaderboard />
-        </div>
+      <div className="flex gap-8 py-4">
+        <RecentlyAddedChallenges challenges={sortedChallenges} className="flex-grow" />
+        <Leaderboard className="w-4/12" />
       </div>
       <Community />
     </>

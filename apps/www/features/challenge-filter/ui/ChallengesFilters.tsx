@@ -65,6 +65,8 @@ export function ChallengesFilters() {
       <ToggleGroup
         className="hidden lg:flex"
         onValueChange={(value) => {
+          if (!value) return;
+
           setType(value as "all" | "question" | "quiz");
         }}
         type="single"

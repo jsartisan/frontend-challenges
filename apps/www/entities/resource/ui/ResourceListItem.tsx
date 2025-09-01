@@ -20,7 +20,7 @@ export const ResourceListItem = (props: ResourceListItemProps) => {
         className="bg-(--color-bg-neutral-subtle) h-6 w-6 rounded p-1"
       />
       <div className="flex flex-col">
-        <span className="text-(--color-fg-neutral-subtle) text-sm">{resource}</span>
+        <span className="text-(--color-fg-neutral) text-sm">{resource}</span>
       </div>
       <Icon
         name="external-link"
