@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 import { Separator, Skeleton } from "~/components/ui";
 import { AnswerList } from "~/entities/answer/ui/AnswerList";
+import { CommentList } from "~/entities/comment/ui/CommentList";
 import { Description } from "~/entities/challenge/ui/Description";
 import { useLayout } from "~/features/code-editor/hooks/useLayout";
 import { ResourceList } from "~/entities/resource/ui/ResourceList";
@@ -79,6 +80,11 @@ function QuestionChallenge(props: QuestionChallengeProps) {
                   title: "Resources",
                   value: "resources",
                   children: <ResourceList challenge={challenge} />,
+                },
+                {
+                  title: "Discussion",
+                  value: "discussion",
+                  children: <CommentList challenge={challenge} className="p-3" />,
                 },
               ]}
             </ResizableLayoutTab>

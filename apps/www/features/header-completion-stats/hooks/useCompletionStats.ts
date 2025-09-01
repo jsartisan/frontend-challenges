@@ -9,9 +9,7 @@ export const useCompletionStats = (props: { challenges: ChallengeSlim[] }) => {
   const stats = DIFFICULTY_RANK.reduce(
     (acc, difficulty) => {
       const difficultyChallenges = challenges.filter((challenge) => challenge.difficulty === difficulty);
-      const completedChallenges = difficultyChallenges.filter((challenge) =>
-        completions.includes(`challenge-${challenge.no}`),
-      );
+      const completedChallenges = difficultyChallenges.filter((challenge) => completions.includes(challenge.no));
       const totalCompletedPercentage = (completedChallenges.length / difficultyChallenges.length) * 100;
 
       return {

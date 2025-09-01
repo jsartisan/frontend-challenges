@@ -29,7 +29,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   const queryClient = useQueryClient();
   const { completions } = useCompletions();
   const { user } = useAuth();
-  const isCompleted = completions.includes(`challenge-${challenge.no}`);
+  const isCompleted = completions.includes(challenge.no);
 
   const mutation = useMutation({
     mutationFn: isCompleted ? deleteCompletion : createCompletion,
@@ -41,7 +41,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   const onMarkComplete = () => {
     if (mutation.isPending) return;
 
-    mutation.mutate({ challenge_id: challenge.no, user_id: user.user_id });
+    mutation.mutate({ challenge_id: challenge.no, user_id: user.id });
   };
 
   if (variant === "compact") {

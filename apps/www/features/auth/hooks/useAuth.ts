@@ -8,5 +8,5 @@ export function useAuth() {
     queryFn: getAuthUser,
   });
 
-  return { isLoading: profileQuery.isPending, user: profileQuery.data?.data?.[0] };
+  return { isLoading: profileQuery.isPending, user: profileQuery.data };
 }

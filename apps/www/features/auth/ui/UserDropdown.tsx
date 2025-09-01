@@ -25,7 +25,7 @@ export function UserDropdown() {
         <DropdownMenuTrigger asChild>
           <IconButton variant="tertiary" className="relative overflow-hidden">
             <Avatar className="h-full w-full rounded-none">
-              <AvatarImage src={auth.user?.avatar_url ?? undefined} alt="@shadcn" />
+              <AvatarImage className="h-full! w-full!" src={auth.user?.avatar_url ?? undefined} alt="@shadcn" />
             </Avatar>
           </IconButton>
         </DropdownMenuTrigger>

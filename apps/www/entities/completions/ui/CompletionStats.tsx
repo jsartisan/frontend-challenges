@@ -12,7 +12,7 @@ type CompletionStatsProps = {
 export default function CompletionStats(props: CompletionStatsProps) {
   const { completions } = useCompletions();
   const { challenges } = props;
-  const completionsByCategory = challenges.filter((challenge) => completions.includes(`challenge-${challenge.no}`));
+  const completionsByCategory = challenges.filter((challenge) => completions.includes(challenge.no));
 
   return (
     <div className="flex flex-col justify-center gap-3">
