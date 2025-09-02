@@ -31,8 +31,8 @@ export function CommentList(props: ResourceListProps) {
     return (
       <div className={cn("flex h-full flex-col items-center justify-center gap-2 text-center", className)} {...rest}>
         <p className="text-3xl">📋</p>
-        <p className="text-lg font-semibold">No comments yet.</p>
-        <p className="text-(--color-fg-neutral-subtle) text-sm">To add a comment, edit the info.yml and raise a PR!</p>
+        <p className="text-lg font-semibold">No discussions yet.</p>
+        <p className="text-(--color-fg-neutral-subtle) text-sm">Be the first to discuss this challenge!</p>
         <Button asChild size="xs" variant="secondary" className="mt-2">
           <a target="_blank" href={`${REPO}/issues/${challenge.no}`}>
             Add Comment

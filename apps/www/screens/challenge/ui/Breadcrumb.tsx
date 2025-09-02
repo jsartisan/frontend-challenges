@@ -4,9 +4,8 @@ import { useRouter } from "next/navigation";
 import type { Challenge } from "~/entities/challenge/model/types";
 
 import { cn } from "~/utils/helpers";
-import { STORAGE_KEY } from "~/shared/config/storage";
-import { getSessionStorageItem } from "~/shared/lib/storage";
 import { CATEGORIES } from "~/entities/category/model/constants";
+import { getSessionStorageItem } from "~/shared/lib/sessionStorage";
 import { ChallengeList } from "~/entities/challenge/ui/ChallengeList";
 import { DIFFICULTY_RANK } from "~/entities/challenge/model/constants";
 import { useChallenges } from "~/entities/challenge/context/ChallengeProvider";
@@ -36,17 +35,19 @@ export function Breadcrumb(props: BreadcrumbProps) {
   const { challenge, className } = props;
   const router = useRouter();
   const { challenges } = useChallenges();
-  const scope = sessionStorage.getItem(`${STORAGE_KEY}:scope`) || "all";
+  const scope = getSessionStorageItem(`scope`, "all");
+
   const { dispatch, filtered, state } = usePersistedChallengeFilters(challenges, scope);
   const nextChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) + 1];
   const previousChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) - 1];
 
   useEffect(() => {
     dispatch({
-      category: getSessionStorageItem(`${STORAGE_KEY}:${scope}:category`, []),
-      difficulty: getSessionStorageItem(`${STORAGE_KEY}:${scope}:difficulty`, []),
-      type: (sessionStorage.getItem(`${STORAGE_KEY}:${scope}:type`) || "all") as ChallengeFilterState["type"],
+      category: getSessionStorageItem(`${scope}:category`, []),
+      difficulty: getSessionStorageItem(`${scope}:difficulty`, []),
+      type: getSessionStorageItem(`${scope}:type`, "all") as ChallengeFilterState["type"],
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scope]);
 
   const shouldShowCategory = CATEGORIES.some((category) => category === scope) == false;

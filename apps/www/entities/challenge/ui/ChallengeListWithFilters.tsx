@@ -9,16 +9,17 @@ import { getChallengesWithFilters } from "~/entities/challenge/lib/getChallenges
 
 type ChallengeListWithFiltersProps = {
   challenges: ChallengeListType;
+  excludes?: ("category" | "difficulty" | "type")[];
 };
 
 export function ChallengeListWithFilters(props: ChallengeListWithFiltersProps) {
-  const { challenges } = props;
+  const { challenges, excludes = [] } = props;
   const searchParams = useSearchParams();
   const filtered = getChallengesWithFilters(challenges, searchParams as URLSearchParams);
 
   return (
     <div className="flex flex-col gap-3">
-      <ChallengesFilters />
+      <ChallengesFilters excludes={excludes} />
       <ChallengeList challenges={filtered} />
     </div>
   );

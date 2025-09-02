@@ -22,7 +22,13 @@ const categoryOptions = CATEGORIES.map((category) => ({ label: category, value: 
 const difficultyParser = parseAsArrayOf(parseAsStringEnum(DIFFICULTY_RANK)).withDefault([]);
 const categoryParser = parseAsArrayOf(parseAsStringLiteral(CATEGORIES)).withDefault([]);
 
-export function ChallengesFilters() {
+type ChallengesFiltersProps = {
+  excludes?: ("category" | "difficulty" | "type" | "sort")[];
+};
+
+export function ChallengesFilters(props: ChallengesFiltersProps) {
+  const { excludes = [] } = props;
+
   const [search, setSearch] = useQueryState("search", { defaultValue: "" });
   const [difficulty, setDifficulty] = useQueryState("difficulty", difficultyParser);
   const [category, setCategory] = useQueryState("category", categoryParser);
@@ -46,74 +52,83 @@ export function ChallengesFilters() {
           setSearch(e.target.value);
         }}
       />
-      <MultiSelect
-        title="Difficulty"
-        selectedValues={difficulty}
-        options={difficultyOptions}
-        setSelectedValues={(values) => {
-          setDifficulty(values as Difficulty[]);
-        }}
-      />
-      <MultiSelect
-        title="Category"
-        selectedValues={category}
-        options={categoryOptions}
-        setSelectedValues={(values) => {
-          setCategory(values as Category[]);
-        }}
-      />
-      <ToggleGroup
-        className="hidden lg:flex"
-        onValueChange={(value) => {
-          if (!value) return;
+      {!excludes.includes("difficulty") && (
+        <MultiSelect
+          title="Difficulty"
+          selectedValues={difficulty}
+          options={difficultyOptions}
+          setSelectedValues={(values) => {
+            setDifficulty(values as Difficulty[]);
+          }}
+        />
+      )}
+      {!excludes.includes("category") && (
+        <MultiSelect
+          title="Category"
+          selectedValues={category}
+          options={categoryOptions}
+          setSelectedValues={(values) => {
+            setCategory(values as Category[]);
+          }}
+        />
+      )}
+      {!excludes.includes("type") && (
+        <ToggleGroup
+          className="hidden lg:flex"
+          onValueChange={(value) => {
+            if (!value) return;
 
-          setType(value as "all" | "question" | "quiz");
-        }}
-        type="single"
-        variant="outline"
-        value={type}
-      >
-        <ToggleGroupItem value="all">All</ToggleGroupItem>
-        <ToggleGroupItem value="question">Question</ToggleGroupItem>
-        <ToggleGroupItem value="quiz">Quiz</ToggleGroupItem>
-      </ToggleGroup>
-      <div className="ml-auto" />
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary">
-            <Icon name="sort" /> Sort
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56" align="end" forceMount>
-          <DropdownMenuItem
-            className="flex justify-between"
+            setType(value as "all" | "question" | "quiz");
+          }}
+          type="single"
+          variant="outline"
+          value={type}
+        >
+          <ToggleGroupItem value="all">All</ToggleGroupItem>
+          <ToggleGroupItem value="question">Question</ToggleGroupItem>
+          <ToggleGroupItem value="quiz">Quiz</ToggleGroupItem>
+        </ToggleGroup>
+      )}
+      {!excludes.includes("sort") && (
+        <div className="ml-auto">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary">
+                <Icon name="sort" /> Sort
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuItem
+                className="flex justify-between"
+                onClick={() => {
+                  setSortBy("difficulty");
+                }}
+              >
+                Difficulty
+                {sortBy === "difficulty" && <Icon name="check" />}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex justify-between"
+                onClick={() => {
+                  setSortBy("published_date");
+                }}
+              >
+                Creation Date
+                {sortBy === "published_date" && <Icon name="check" />}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <IconButton
+            variant="tertiary"
+            size="sm"
             onClick={() => {
-              setSortBy("difficulty");
+              setSortOrder(sortOrder === "asc" ? "desc" : "asc");
             }}
           >
-            Difficulty
-            {sortBy === "difficulty" && <Icon name="check" />}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            className="flex justify-between"
-            onClick={() => {
-              setSortBy("published_date");
-            }}
-          >
-            Creation Date
-            {sortBy === "published_date" && <Icon name="check" />}
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <IconButton
-        variant="tertiary"
-        size="sm"
-        onClick={() => {
-          setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-        }}
-      >
-        <Icon name={sortOrder === "asc" ? "arrow-up" : "arrow-down"} />
-      </IconButton>
+            <Icon name={sortOrder === "asc" ? "arrow-up" : "arrow-down"} />
+          </IconButton>
+        </div>
+      )}
     </div>
   );
 }

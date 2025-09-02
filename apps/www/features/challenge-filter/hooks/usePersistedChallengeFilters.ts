@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { STORAGE_KEY } from "~/shared/config/storage";
 import { Category } from "~/entities/category/model/types";
+import { setSessionStorageItem } from "~/shared/lib/sessionStorage";
 import { sortChallengesByDate } from "~/entities/challenge/lib/sortChallengesByDate";
 import { Challenge, ChallengeList, Difficulty } from "~/entities/challenge/model/types";
 import { sortChallengesByDifficulty } from "~/entities/challenge/lib/sortChallengesByDifficulty";
@@ -37,11 +37,11 @@ function usePersistedChallengeFilters(
     setState((prevState) => {
       const finalState = { ...prevState, ...state };
 
-      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:difficulty`, JSON.stringify(finalState.difficulty));
-      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:category`, JSON.stringify(finalState.category));
-      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:type`, finalState.type);
-      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:sort_by`, finalState.sort_by || "");
-      sessionStorage.setItem(`${STORAGE_KEY}:${scope}:sort_order`, finalState.sort_order || "");
+      setSessionStorageItem(`${scope}:difficulty`, JSON.stringify(finalState.difficulty));
+      setSessionStorageItem(`${scope}:category`, JSON.stringify(finalState.category));
+      setSessionStorageItem(`${scope}:type`, finalState.type);
+      setSessionStorageItem(`${scope}:sort_by`, finalState.sort_by || "");
+      setSessionStorageItem(`${scope}:sort_order`, finalState.sort_order || "");
 
       return finalState;
     });
@@ -79,10 +79,11 @@ function usePersistedChallengeFilters(
     window.history.replaceState({}, "", `?${searchParams.toString()}`);
   };
 
+  console.log({ state });
+
   let filtered = challenges.filter((question) => {
     return (
-      state.category.length === 0 &&
-      state.category.includes(question?.category ?? "javascript") &&
+      (state.category.length === 0 || state.category.includes(question?.category ?? "javascript")) &&
       (state.difficulty.length === 0 || state.difficulty.includes(question?.difficulty ?? "")) &&
       (state.type === "all" || state.type === question.type)
     );

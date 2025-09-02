@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import Loading from "./loading";
 
-const PlaygroundEditor = dynamic(
+const PlaygroundPage = dynamic(
   () => import("~/screens/playground/ui/PlaygroundPage").then((mod) => mod.PlaygroundEditor),
   {
     ssr: false,
@@ -11,5 +11,5 @@ const PlaygroundEditor = dynamic(
 );
 
 export default function Page() {
-  return <PlaygroundEditor />;
+  return <PlaygroundPage />;
 }

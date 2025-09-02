@@ -48,9 +48,9 @@ export async function Header() {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="tertiary" size="sm" className="text-md -ml-2 ms-auto py-0 font-medium">
+                    <Button variant="tertiary" size="sm" className="text-md -ms-1 py-0 font-medium">
                       Submit
-                      <Icon name="caret-down" />
+                      <Icon name="caret-down" className="-me-1" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="center">

@@ -2,7 +2,7 @@
 
 import { createContext, useState } from "react";
 
-import { STORAGE_KEY } from "~/shared/config/storage";
+import { setLocalStorageItem } from "~/shared/lib/localStorage";
 
 type Layout = "layout-1" | "layout-2" | "layout-3";
 
@@ -26,7 +26,7 @@ export function LayoutProvider(props: LayoutProviderProps) {
 
   const change = (layout: Layout) => {
     setLayout(layout);
-    localStorage.setItem(`${STORAGE_KEY}:layout`, layout);
+    setLocalStorageItem(`layout`, layout);
   };
 
   return <LayoutContext.Provider value={{ layout, setLayout: change }}>{children}</LayoutContext.Provider>;

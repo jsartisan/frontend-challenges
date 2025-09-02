@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { STORAGE_KEY } from "~/shared/config/storage";
+import { setLocalStorageItem } from "~/shared/lib/localStorage";
 
 /**
  * Sync the scope to session storage.
@@ -17,6 +17,6 @@ import { STORAGE_KEY } from "~/shared/config/storage";
  */
 export function useSyncScopeToSessionStorage(scope: string) {
   useEffect(() => {
-    sessionStorage.setItem(`${STORAGE_KEY}:scope`, scope);
+    setLocalStorageItem(`scope`, scope);
   }, [scope]);
 }
