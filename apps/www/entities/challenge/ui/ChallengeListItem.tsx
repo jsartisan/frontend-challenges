@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { useUiStore } from "~/shared/model/store";
 import { useAuth } from "~/features/auth/hooks/useAuth";
 import { ChallengeSlim } from "~/entities/challenge/model/types";
 import { useCompletions } from "~/entities/completions/hooks/useCompletions";
@@ -29,6 +30,8 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   const queryClient = useQueryClient();
   const { completions } = useCompletions();
   const { user } = useAuth();
+  const ui = useUiStore();
+
   const isCompleted = completions.includes(challenge.no);
 
   const mutation = useMutation({
@@ -39,6 +42,12 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   });
 
   const onMarkComplete = () => {
+    if (!user) {
+      ui.toggleLoginModal(true);
+
+      return;
+    }
+
     if (mutation.isPending) return;
 
     mutation.mutate({ challenge_id: challenge.no, user_id: user.id });

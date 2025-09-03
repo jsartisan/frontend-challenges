@@ -2,6 +2,7 @@ import { createContext, useMemo } from "react";
 import { SandpackFiles, useSandpack } from "@codesandbox/sandpack-react";
 
 import { SupportedTemplates } from "~/entities/challenge/model/types";
+import { removeLocalStorageItem, setLocalStorageItem } from "~/shared/lib/localStorage";
 
 type SandpackLocalContextType = {
   updateFile: (pathOrFiles: string | SandpackFiles, code?: string, shouldUpdatePreview?: boolean) => void;
@@ -33,15 +34,12 @@ export function SandpackLocalProvider(props: SandpackLocalProviderProps) {
     openFile(name);
     setActiveFile(name);
 
-    localStorage.setItem(
-      `${path}-${template}`,
-      JSON.stringify({
-        ...files,
-        [name]: {
-          code: "",
-        },
-      }),
-    );
+    setLocalStorageItem(`${path}-${template}`, {
+      ...files,
+      [name]: {
+        code: "",
+      },
+    });
   };
 
   const _deleteFile = (...args: Parameters<typeof deleteFile>) => {
@@ -52,14 +50,14 @@ export function SandpackLocalProvider(props: SandpackLocalProviderProps) {
     closeFile(filename);
     deleteFile(filename, true);
 
-    localStorage.setItem(
+    setLocalStorageItem(
       `${path}-${template}`,
-      JSON.stringify(Object.fromEntries(Object.entries(files).filter(([file]) => file !== filename))),
+      Object.fromEntries(Object.entries(files).filter(([file]) => file !== filename)),
     );
   };
 
   const _resetFiles = () => {
-    localStorage.removeItem(`${path}-${template}`);
+    removeLocalStorageItem(`${path}-${template}`);
     updateFile(originalFiles);
   };
 

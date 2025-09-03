@@ -27,14 +27,14 @@ export default function CompletionStats(props: CompletionStatsProps) {
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0" align="center">
         <div className="flex flex-col gap-4 p-3">
-          <div className="text-(--color-fg-neutral) flex h-[1cap] items-center text-lg font-bold">Completions</div>
+          <div className="text-(--color-fg-neutral) box-trim flex items-center text-lg font-bold">Completions</div>
           <div className="flex flex-col gap-3">
             <div className="flex items-end gap-1">
-              <div className="flex h-[1cap] items-center text-3xl font-bold">{completions.length}</div>
-              <div className="text-(--color-fg-neutral-subtle) flex h-[1cap] items-center">/</div>
-              <div className="text-(--color-fg-neutral-subtle) flex h-[1cap] items-center">{challenges.length}</div>
+              <div className="box-trim flex items-center text-3xl font-bold">{completions.length}</div>
+              <div className="text-(--color-fg-neutral-subtle) box-trim flex items-center">/</div>
+              <div className="text-(--color-fg-neutral-subtle) box-trim flex items-center">{challenges.length}</div>
             </div>
-            <div className="text-(--color-fg-subtle) flex h-[1cap] items-center">Challenges Solved</div>
+            <div className="text-(--color-fg-subtle) box-trim flex items-center">Challenges Solved</div>
           </div>
 
           <div className="flex gap-2">

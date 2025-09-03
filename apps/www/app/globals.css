@@ -2,6 +2,7 @@
 
 @import "tw-animate-css";
 @plugin "tailwindcss-logical";
+@import "../shared/styles/utilities.css";
 
 @source "../**/*.{js,ts,jsx,tsx}";
 

@@ -15,6 +15,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
+  Command,
 } from "~/components/ui/command";
 
 interface SpotlightProps {
@@ -39,7 +40,7 @@ export function Spotlight(props: SpotlightProps) {
   }, []);
 
   return (
-    <>
+    <Command>
       <Button
         variant="secondary"
         size="sm"
@@ -95,22 +96,32 @@ export function Spotlight(props: SpotlightProps) {
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Challenges">
-            {items.map((item) => (
-              <CommandItem
-                className="flex items-center justify-between gap-2"
-                key={item.path}
-                onSelect={() => {
-                  router.push(`/challenges/${item.path}`);
-                  setOpen(false);
-                }}
-              >
-                <span>{item.info[DEFAULT_LOCALE]?.title}</span>
-                <Badge variant={item.difficulty}>{item.difficulty}</Badge>
-              </CommandItem>
-            ))}
+            {items
+              .sort((a, b) => {
+                if (a.info[DEFAULT_LOCALE]?.tags?.includes("blind75")) {
+                  return 1;
+                }
+                if (b.info[DEFAULT_LOCALE]?.tags?.includes("blind75")) {
+                  return -1;
+                }
+                return 0;
+              })
+              .map((item) => (
+                <CommandItem
+                  className="flex items-center justify-between gap-2"
+                  key={item.path}
+                  onSelect={() => {
+                    router.push(`/challenges/${item.path}`);
+                    setOpen(false);
+                  }}
+                >
+                  <span>{item.info[DEFAULT_LOCALE]?.title}</span>
+                  <Badge variant={item.difficulty}>{item.difficulty}</Badge>
+                </CommandItem>
+              ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>
-    </>
+    </Command>
   );
 }

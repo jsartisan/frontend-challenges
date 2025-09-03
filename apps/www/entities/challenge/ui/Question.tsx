@@ -11,6 +11,7 @@ import { useLayout } from "~/features/code-editor/hooks/useLayout";
 import { ResourceList } from "~/entities/resource/ui/ResourceList";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
 import { LayoutChanger } from "~/features/code-editor/ui/LayoutChanger";
+import { formatFileName } from "~/features/code-editor/lib/formatFileName";
 import { ResizableLayout } from "~/features/code-editor/ui/ResizableLayout";
 import { TemplateChanger } from "~/features/code-editor/ui/TemplateChanger";
 import { Question, SupportedTemplates } from "~/entities/challenge/model/types";
@@ -100,7 +101,7 @@ function QuestionChallenge(props: QuestionChallengeProps) {
                   return !(availableFiles[file].hidden || file === "/package.json");
                 })
                 .map((file) => ({
-                  title: file,
+                  title: formatFileName(file),
                   value: file,
                   children: (
                     <CodeEditor

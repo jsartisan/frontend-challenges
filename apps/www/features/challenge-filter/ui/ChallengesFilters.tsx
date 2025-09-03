@@ -90,7 +90,7 @@ export function ChallengesFilters(props: ChallengesFiltersProps) {
         </ToggleGroup>
       )}
       {!excludes.includes("sort") && (
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-1">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary">

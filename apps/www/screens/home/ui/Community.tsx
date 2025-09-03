@@ -7,7 +7,7 @@ export function Community() {
   return (
     <div className="bg-(--color-bg-secondary) pb-8 pt-12 text-left sm:text-center md:pt-20">
       <div className="max-w-[600px]! container flex flex-col gap-4">
-        <p className="flex h-[1cap] items-center justify-center text-4xl font-bold sm:text-5xl">Community</p>{" "}
+        <p className="box-trim flex items-center justify-center text-4xl font-bold sm:text-5xl">Community</p>{" "}
         <p className="text-(--color-fg-subtle) text-center text-sm leading-relaxed sm:text-lg">
           frontend-challenges.com is an{" "}
           <a

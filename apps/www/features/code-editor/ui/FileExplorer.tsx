@@ -14,6 +14,7 @@ export function FileExplorer() {
   }
 
   const { addFile, deleteFile } = context;
+  const visibleFiles = Object.keys(files).filter((file) => !files[file].hidden);
 
   return (
     <div className="">
@@ -41,7 +42,7 @@ export function FileExplorer() {
         </IconButton>
       </div>
       <div className="mt-1 flex flex-col gap-1">
-        {Object.keys(files).map((filename) => {
+        {visibleFiles.map((filename) => {
           return (
             <div
               data-selected={activeFile === filename ? "" : undefined}
