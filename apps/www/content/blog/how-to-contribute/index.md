@@ -44,6 +44,6 @@ npm run dev
 
 ## Final Notes
 
-We hope that this guide has helped you get started with contributing to FrontendChallenges. If you have any questions, please do not hesitate to reach out to us on [Twitter](https://twitter.com/frontendchllngs) or [Discord](https://discord.gg/4NjZ2zr).
+We hope that this guide has helped you get started with contributing to FrontendChallenges.
 
 Happy Coding!

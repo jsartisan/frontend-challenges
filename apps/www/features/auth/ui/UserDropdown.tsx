@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import { IconButton } from "~/components/ui";
 import { useAuth } from "~/features/auth/hooks/useAuth";
 import { createClient } from "~/shared/api/supabase/client";
@@ -39,9 +37,6 @@ export function UserDropdown() {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/profile">Profile</Link>
-          </DropdownMenuItem>
           <DropdownMenuItem
             onClick={async () => {
               await supabase.auth.signOut();
