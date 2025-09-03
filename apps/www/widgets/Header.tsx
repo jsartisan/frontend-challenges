@@ -5,6 +5,7 @@ import { Logo } from "~/shared/ui/Logo";
 import { REPO } from "~/shared/config/paths";
 import UserNav from "~/features/auth/ui/UserNav";
 import { Skeleton } from "~/components/ui/skeleton";
+import { DropdownMenuArrow } from "~/components/ui/dropdown-menu";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
 import { Button, Icon, IconButton, Link, Separator } from "~/components/ui";
 import {
@@ -53,7 +54,8 @@ export async function Header() {
                       <Icon name="caret-down" className="-me-1" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center">
+                  <DropdownMenuContent align="start">
+                    <DropdownMenuArrow />
                     <DropdownMenuItem asChild className="flex-col items-start">
                       <Link href={`/submit/question`} className="block">
                         <div>Question</div>
