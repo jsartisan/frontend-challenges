@@ -3,7 +3,7 @@
     <img width="293px" src="https://github.com/jsartisan/frontend-challenges/raw/main/apps/www/public/images/logo-readme-dark.svg#gh-dark-mode-only" />
   </a>
   <a href="https://github.com/jsartisan/frontend-challenges#gh-light-mode-only">
-    <img width="293px" src="https://github.com/jsartisan/frontend-challenges/raw/main/apps/www/public/images/logo-readme-dark.svg#gh-light-mode-only" />
+    <img width="293px" src="https://github.com/jsartisan/frontend-challenges/raw/main/apps/www/public/images/logo-readme-light.svg#gh-light-mode-only" />
   </a>
 </p>
 
