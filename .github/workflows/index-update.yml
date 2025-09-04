@@ -13,17 +13,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      # ➊  Set up pnpm and enable cache
       - uses: pnpm/action-setup@v2
         with:
           version: 9.6.0
+          cache: 'true'
+          run_install: false
+
+      # ➋  Set up Node.js with pnpm cache
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: pnpm
+          node-version: 18
+          cache: 'pnpm'
           cache-dependency-path: |
             pnpm-lock.yaml
             **/pnpm-lock.yaml
-      - run: npm run readme
+
+      # ➌  Install dependencies (offline-friendly)
+      - run: pnpm install --frozen-lockfile --prefer-offline
+
+      # ➍  Run the README generation script
+      - run: pnpm run readme
+
+      # ➎  Commit any changes
       - uses: EndBug/add-and-commit@v9
         with:
           message: "chore: update index"

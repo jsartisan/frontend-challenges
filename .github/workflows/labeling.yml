@@ -9,12 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      # ➊  Set up pnpm and enable its built-in cache logic
       - uses: pnpm/action-setup@v2
         with:
           version: 9.6.0
+          cache: 'true'
+          run_install: false
+
+      # ➋  Set up Node.js and enable dependency cache for pnpm
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: pnpm
-      - run: pnpm i
+          node-version: 18
+          cache: 'pnpm'
+
+      # ➌  Install dependencies without refetching tarballs
+      - run: pnpm install --frozen-lockfile --prefer-offline
+
+      # ➍  Run the action script
       - run: cd apps/www/scripts/actions && pnpm exec esno ./loader.ts ${{github.token}} labeling

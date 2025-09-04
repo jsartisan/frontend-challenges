@@ -9,21 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        # ➊  Sets up Node (needed before pnpm runs)
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          # This line only caches npm-style node_modules. We’ll let pnpm take care of caching,
-          # so we can omit (or leave) it; it doesn’t hurt either way.
-          cache: 'pnpm'
 
-      # ➋  Sets up pnpm **and** caches the store in one shot
+      # ➊  Set up pnpm **first** so that subsequent steps (like Node caching) can locate the pnpm executable
       - uses: pnpm/action-setup@v2
         with:
           version: 9.6.0           # pick the version you need
           cache: 'true'            # <-- enable its built-in cache logic
-          run_install: false       # we’ll run install explicitly later
+          run_install: false       # we'll run install explicitly later
 
+      # ➋  Sets up Node and enables dependency caching for pnpm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+       
       # ➌  Install without refetching tarballs
       - run: pnpm install --frozen-lockfile --prefer-offline
       - run: pnpm exec esno apps/www/scripts/actions/loader.ts ${{github.token}} issue-pr
