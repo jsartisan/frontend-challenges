@@ -1,0 +1,11 @@
+difficulty: medium
+title: Execute Promises in Series
+type: question
+template: javascript
+tags: javascript, promises, async
+author:
+  github: jsartisan
+  name: Pawan Kumar
+  avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
+published_date: '2025-09-05'
+
