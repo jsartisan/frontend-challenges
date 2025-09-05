@@ -1,0 +1,11 @@
+difficulty: easy
+title: Promise.finally
+type: question
+template: javascript
+tags: javascript, promises
+author:
+  github: jsartisan
+  name: Pawan Kumar
+  avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
+published_date: '2025-09-05'
+
