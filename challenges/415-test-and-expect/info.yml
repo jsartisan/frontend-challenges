@@ -1,0 +1,11 @@
+difficulty: medium
+title: test and expect
+type: question
+template: javascript
+tags: javascript, testing, jest
+author:
+  github: jsartisan
+  name: Pawan Kumar
+  avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
+published_date: '2025-09-05'
+
