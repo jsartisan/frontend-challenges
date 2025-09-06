@@ -7,8 +7,6 @@ import { RecentlyAddedChallenges } from "~/screens/home/ui/RecentlyAddedChalleng
 import { sortChallengesByDate } from "~/entities/challenge/lib/sortChallengesByDate";
 import { mapCategoriesWithCount } from "~/entities/category/lib/mapCategoriesWithCount";
 
-export const dynamic = "force-static";
-
 export async function HomePage() {
   const challenges = await getChallenges();
   const sortedChallenges = sortChallengesByDate(challenges, "desc").slice(0, 5);
