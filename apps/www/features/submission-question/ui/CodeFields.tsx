@@ -2,14 +2,14 @@ import { z } from "zod";
 import { UseFormReturn } from "react-hook-form";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
+import { File } from "~/features/code-editor/ui/File";
 import { Preview } from "~/features/code-editor/ui/Preview";
 import { TEMPLATES } from "~/entities/challenge/model/templates";
-import { CodeEditor } from "~/features/code-editor/ui/CodeEditor";
 import { SupportedTemplates } from "~/entities/challenge/model/types";
 import { FileExplorer } from "~/features/code-editor/ui/FileExplorer";
 import { SUPPORTED_TEMPLATES } from "~/entities/challenge/model/constants";
 import { formSchema } from "~/features/submission-question/model/formSchema";
-import { ResizableLayoutTab } from "~/features/code-editor/ui/ResizableLayoutTab";
+import { ResizableLayoutPanel } from "~/features/code-editor/ui/ResizableLayoutPanel";
 import {
   FormControl,
   FormField,
@@ -39,7 +39,7 @@ export function CodeFields(props: Step2FieldsProps) {
   return (
     <ResizablePanelGroup direction="horizontal" className="mt-6 grid grow gap-1">
       <ResizablePanel defaultSize={20}>
-        <ResizableLayoutTab tabless defaultValue="file-explorer">
+        <ResizableLayoutPanel tabless defaultValue="file-explorer">
           {[
             {
               title: "File Explorer",
@@ -83,28 +83,24 @@ export function CodeFields(props: Step2FieldsProps) {
               ),
             },
           ]}
-        </ResizableLayoutTab>
+        </ResizableLayoutPanel>
       </ResizablePanel>
 
       <ResizableHandle className="w-2" />
       <ResizablePanel defaultSize={50}>
-        <ResizableLayoutTab value={activeFile}>
+        <ResizableLayoutPanel value={activeFile}>
           {Object.keys(files).map((file) => ({
             title: file,
             value: file,
             children: (
-              <CodeEditor
-                path="/submit/question"
-                template={form.getValues("template") as SupportedTemplates}
-                file={file}
-              />
+              <File path="/submit/question" template={form.getValues("template") as SupportedTemplates} file={file} />
             ),
           }))}
-        </ResizableLayoutTab>
+        </ResizableLayoutPanel>
       </ResizablePanel>
       <ResizableHandle className="w-2" />
       <ResizablePanel defaultSize={30}>
-        <ResizableLayoutTab value="preview">
+        <ResizableLayoutPanel value="preview">
           {[
             {
               title: "Preview",
@@ -112,7 +108,7 @@ export function CodeFields(props: Step2FieldsProps) {
               children: <Preview template={form.getValues("template") as SupportedTemplates} />,
             },
           ]}
-        </ResizableLayoutTab>
+        </ResizableLayoutPanel>
       </ResizablePanel>
     </ResizablePanelGroup>
   );

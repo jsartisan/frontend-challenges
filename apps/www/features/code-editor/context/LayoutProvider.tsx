@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 
 import { setLocalStorageItem } from "~/shared/lib/localStorage";
 
-type Layout = "layout-1" | "layout-2" | "layout-3";
+export type Layout = "layout-1" | "layout-2" | "layout-3";
 
 type LayoutContextProps = {
   layout: Layout;

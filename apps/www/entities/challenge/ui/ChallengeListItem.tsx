@@ -14,7 +14,7 @@ import {
   IconButton,
   IconProps,
   Link,
-  Tooltip,
+  TooltipRoot,
   TooltipContent,
   TooltipTrigger,
 } from "~/components/ui";
@@ -85,7 +85,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
         <div className="flex items-center gap-2">
           <span className="text-(--color-fg-subtle) text-xs">#{challenge.no}</span>
           {showTypeIcon && (
-            <Tooltip delayDuration={300}>
+            <TooltipRoot delayDuration={300}>
               <TooltipTrigger>
                 <Badge variant={challenge.type == "question" ? "question" : "quiz"} className="px-1">
                   <Icon name={challenge.type === "question" ? "code" : "file-text"} size="sm" />
@@ -94,7 +94,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
               <TooltipContent side="bottom" className="capitalize">
                 {challenge.type}
               </TooltipContent>
-            </Tooltip>
+            </TooltipRoot>
           )}
           <div className="flex items-center gap-2">
             <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
@@ -108,14 +108,14 @@ function ChallengeListItem(props: ChallengeListItemProps) {
             <div className="flex items-center gap-1">
               {challenge.templatesAvailable.map((framework) => {
                 return (
-                  <Tooltip key={framework} delayDuration={300}>
+                  <TooltipRoot key={framework} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <span>
                         <Icon size="default" name={`${framework}-color` as IconProps["name"]} />
                       </span>
                     </TooltipTrigger>
                     <TooltipContent>Available in {framework}</TooltipContent>
-                  </Tooltip>
+                  </TooltipRoot>
                 );
               })}
             </div>

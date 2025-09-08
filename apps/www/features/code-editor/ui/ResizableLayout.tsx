@@ -1,7 +1,6 @@
 "use client";
 
-import { Children, useEffect, useState } from "react";
-import { useSandpack } from "@codesandbox/sandpack-react";
+import { Children } from "react";
 
 import { useLayout } from "~/features/code-editor/hooks/useLayout";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "~/components/ui";
@@ -13,21 +12,7 @@ type ResizableLayoutProps = {
 
 export const ResizableLayout = (props: ResizableLayoutProps) => {
   const { layout } = useLayout();
-  const [mounted, setMounted] = useState(false);
-  const { sandpack } = useSandpack();
   const [description, editor, preview, consoleElement] = Children.toArray(props.children);
-
-  useEffect(() => {
-    if (mounted == true) {
-      setTimeout(() => {
-        sandpack.runSandpack();
-      }, 100);
-
-      return;
-    }
-
-    setMounted(true);
-  }, [layout, setMounted]);
 
   const renderChildren = () => {
     if (layout === "layout-1") {

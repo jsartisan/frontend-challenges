@@ -3,29 +3,21 @@
 import { cloneElement, useRef, useState } from "react";
 import { DragHandleDots2Icon } from "@radix-ui/react-icons";
 import * as ResizablePrimitive from "react-resizable-panels";
-import { ImperativePanelGroupHandle, ImperativePanelHandle } from "react-resizable-panels";
+import { ImperativePanelHandle } from "react-resizable-panels";
 
 import { cn } from "../../utils/helpers";
 
 const ResizablePanelGroup = (props: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => {
   const { children, className, ...rest } = props;
-  const groupRef = useRef<ResizablePrimitive.ImperativePanelGroupHandle>();
 
   return (
     <ResizablePrimitive.PanelGroup className={cn("flex h-full w-full", className)} {...rest}>
-      {Array.isArray(children)
-        ? children.map((child, index) => cloneElement(child, { groupDirection: rest.direction, groupRef, key: index }))
-        : cloneElement(children as React.ReactElement, { groupDirection: rest.direction, groupRef })}
+      {children}
     </ResizablePrimitive.PanelGroup>
   );
 };
 
-const ResizablePanel = (
-  props: React.ComponentProps<typeof ResizablePrimitive.Panel> & {
-    groupDirection?: "horizontal" | "vertical";
-    groupRef?: React.RefObject<ImperativePanelGroupHandle>;
-  },
-) => {
+const ResizablePanel = (props: React.ComponentProps<typeof ResizablePrimitive.Panel> & {}) => {
   const {
     children,
     className,
@@ -55,9 +47,7 @@ const ResizablePanel = (
       {...rest}
     >
       {cloneElement(children as React.ReactElement, {
-        panelRef: ref,
-        groupDirection: rest.groupDirection,
-        groupRef: rest.groupRef,
+        ...(((children as React.ReactElement).type as any)?.name === "ResizableLayoutTab" ? { panelRef: ref } : {}),
       })}
     </ResizablePrimitive.Panel>
   );

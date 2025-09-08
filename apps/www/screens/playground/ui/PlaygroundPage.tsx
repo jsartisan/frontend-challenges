@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
+import { File } from "~/features/code-editor/ui/File";
 import { Preview } from "~/features/code-editor/ui/Preview";
 import { Console } from "~/features/code-editor/ui/Console";
 import { setLocalStorageItem } from "~/shared/lib/localStorage";
-import { CodeEditor } from "~/features/code-editor/ui/CodeEditor";
+import { TEMPLATES } from "~/entities/challenge/model/templates";
 import { FileExplorer } from "~/features/code-editor/ui/FileExplorer";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
 import { TemplateChanger } from "~/screens/playground/ui/TempalteChanger";
@@ -14,7 +15,7 @@ import { getFilesFromURL } from "~/screens/playground/lib/getFilesFromURL";
 import { type SupportedTemplates } from "~/entities/challenge/model/types";
 import { formatFileName } from "~/features/code-editor/lib/formatFileName";
 import { getTemplateFromURL } from "~/screens/playground/lib/getTemplateFromURL";
-import { ResizableLayoutTab } from "~/features/code-editor/ui/ResizableLayoutTab";
+import { ResizableLayoutPanel } from "~/features/code-editor/ui/ResizableLayoutPanel";
 import { SharePlaygroundButton } from "~/screens/playground/ui/SharedPlaygroundButton";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "~/components/ui";
 import { getFilesFromLocalStorage } from "~/screens/playground/lib/getFilesFromLocalStorage";
@@ -37,7 +38,14 @@ export function PlaygroundEditor() {
   };
 
   return (
-    <SandpackRoot files={files} template={template} path={CURRENT_EDITOR_PATH}>
+    <SandpackRoot
+      files={files}
+      template={template}
+      path={CURRENT_EDITOR_PATH}
+      originalFiles={{
+        ...TEMPLATES[template].files,
+      }}
+    >
       <PlaygroundInner template={template} onChangeTemplate={onChangeTemplate} />
     </SandpackRoot>
   );
@@ -50,7 +58,7 @@ type PlaygroundInnerProps = {
 
 export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerProps) {
   const { sandpack } = useSandpack();
-  const { activeFile, files } = sandpack;
+  const { activeFile, files, setActiveFile } = sandpack;
 
   const visibleFiles = Object.keys(files).filter((file) => !files[file].hidden);
 
@@ -68,7 +76,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
         <div className="w-full grow">
           <ResizablePanelGroup direction="horizontal" className="sm:flex! !grid gap-4 sm:gap-1">
             <ResizablePanel defaultSize={20}>
-              <ResizableLayoutTab defaultValue="fileExplorer" tabless>
+              <ResizableLayoutPanel defaultValue="fileExplorer" tabless>
                 {[
                   {
                     title: "File Explorer",
@@ -81,26 +89,28 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
                     ),
                   },
                 ]}
-              </ResizableLayoutTab>
+              </ResizableLayoutPanel>
             </ResizablePanel>
             <ResizableHandle className="hidden w-2 sm:block" />
             <ResizablePanel>
-              <ResizableLayoutTab
+              <ResizableLayoutPanel
                 value={activeFile}
-                defaultValue={visibleFiles.find((file) => files[file].active) || visibleFiles[0]}
+                onValueChange={(value) => {
+                  setActiveFile(value);
+                }}
               >
                 {visibleFiles.map((file) => ({
                   title: formatFileName(file),
                   value: file,
-                  children: <CodeEditor path={`/playground`} template={template} file={file} key={file} />,
+                  children: <File path={`/playground`} template={template} file={file} key={file} />,
                 }))}
-              </ResizableLayoutTab>
+              </ResizableLayoutPanel>
             </ResizablePanel>
             <ResizableHandle className="hidden w-2 sm:block" />
             <ResizablePanel>
               <ResizablePanelGroup direction="vertical" className="sm:flex! !grid gap-4 sm:gap-1">
                 <ResizablePanel>
-                  <ResizableLayoutTab defaultValue="preview">
+                  <ResizableLayoutPanel defaultValue="preview">
                     {[
                       {
                         title: "Preview",
@@ -108,11 +118,11 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
                         children: <Preview template={template} />,
                       },
                     ]}
-                  </ResizableLayoutTab>
+                  </ResizableLayoutPanel>
                 </ResizablePanel>
                 <ResizableHandle className="hidden data-[panel-group-direction=vertical]:h-2 sm:block" />
                 <ResizablePanel defaultSize={0}>
-                  <ResizableLayoutTab defaultValue="console">
+                  <ResizableLayoutPanel defaultValue="console">
                     {[
                       {
                         title: "Console",
@@ -120,7 +130,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
                         children: <Console />,
                       },
                     ]}
-                  </ResizableLayoutTab>
+                  </ResizableLayoutPanel>
                 </ResizablePanel>
               </ResizablePanelGroup>
             </ResizablePanel>

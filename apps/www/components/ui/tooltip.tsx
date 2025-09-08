@@ -7,7 +7,7 @@ import { cn } from "../../utils/helpers";
 
 const TooltipProvider = TooltipPrimitive.Provider;
 
-const Tooltip = TooltipPrimitive.Root;
+const TooltipRoot = TooltipPrimitive.Root;
 
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
@@ -41,4 +41,19 @@ const TooltipArrow = React.forwardRef<
 
 TooltipArrow.displayName = TooltipPrimitive.Arrow.displayName;
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, TooltipArrow };
+const Tooltip = (props: { content: string; children: React.ReactNode }) => {
+  const { children, content } = props;
+
+  return (
+    <TooltipRoot delayDuration={1}>
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
+
+      <TooltipContent>
+        {content}
+        <TooltipArrow />
+      </TooltipContent>
+    </TooltipRoot>
+  );
+};
+
+export { TooltipRoot, Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, TooltipArrow };

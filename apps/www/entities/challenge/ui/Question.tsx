@@ -11,23 +11,19 @@ import { useLayout } from "~/features/code-editor/hooks/useLayout";
 import { ResourceList } from "~/entities/resource/ui/ResourceList";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
 import { LayoutChanger } from "~/features/code-editor/ui/LayoutChanger";
-import { formatFileName } from "~/features/code-editor/lib/formatFileName";
 import { ResizableLayout } from "~/features/code-editor/ui/ResizableLayout";
 import { TemplateChanger } from "~/features/code-editor/ui/TemplateChanger";
-import { Question, SupportedTemplates } from "~/entities/challenge/model/types";
-import { ResizableLayoutTab } from "~/features/code-editor/ui/ResizableLayoutTab";
 import { MarkCompleteButton } from "~/entities/completions/ui/MarkCompleteButton";
 import { useChallengeFiles } from "~/features/code-editor/hooks/useChallengeFiles";
 import { ShareSolutionButton } from "~/features/code-editor/ui/ShareSolutionButton";
+import { ResizableLayoutPanel } from "~/features/code-editor/ui/ResizableLayoutPanel";
+import { Question as QuestionType, SupportedTemplates } from "~/entities/challenge/model/types";
+
+import { TEMPLATES } from "../model/templates";
 
 const Breadcrumb = dynamic(() => import("~/screens/challenge/ui/Breadcrumb").then((mod) => mod.Breadcrumb), {
   ssr: false,
   loading: () => <Skeleton className="h-8 w-28" />,
-});
-
-const CodeEditor = dynamic(() => import("~/features/code-editor/ui/CodeEditor").then((mod) => mod.CodeEditor), {
-  ssr: false,
-  loading: () => <Skeleton className="h-full w-full grow" />,
 });
 
 const Preview = dynamic(() => import("~/features/code-editor/ui/Preview").then((mod) => mod.Preview), {
@@ -40,104 +36,107 @@ const Console = dynamic(() => import("~/features/code-editor/ui/Console").then((
   loading: () => <Skeleton className="h-full w-full" />,
 });
 
-type QuestionChallengeProps = {
-  challenge: Question;
+const Editor = dynamic(() => import("./Editor").then((mod) => mod.Editor), {
+  ssr: false,
+  loading: () => <Skeleton className="h-full w-full" />,
+});
+
+type QuestionProps = {
+  challenge: QuestionType;
 };
 
-function QuestionChallenge(props: QuestionChallengeProps) {
+export function Question(props: QuestionProps) {
   const { challenge } = props;
-  const { layout, setLayout } = useLayout();
   const [template, setTemplate] = useState(Object.keys(props.challenge.templateFiles)[0] as SupportedTemplates);
-  const { allFiles, availableFiles } = useChallengeFiles(challenge, template);
+  const { allFiles } = useChallengeFiles(challenge, template);
 
   return (
-    <SandpackRoot files={allFiles} template={template} path={`/challenges/${challenge.path}`}>
-      <div className="flex h-full w-full flex-col gap-4 p-4">
-        <div className="min-h-auto! relative flex w-full justify-between">
-          <Breadcrumb challenge={challenge} />
-          <LayoutChanger className="absolute left-[calc(50%-125px)] w-[250px]" layout={layout} setLayout={setLayout} />
-          <div className="ms-auto hidden items-center gap-2 md:flex">
-            <TemplateChanger template={template} setTemplate={setTemplate} challenge={challenge} />
-            {Object.keys(challenge.templateFiles).length > 1 && <Separator orientation="vertical" className="mx-1" />}
-            <MarkCompleteButton challenge={challenge} />
-            <ShareSolutionButton template={template} challenge={challenge} />
-          </div>
-        </div>
-        <div className="w-full grow">
-          <ResizableLayout>
-            <ResizableLayoutTab defaultValue="description">
-              {[
-                {
-                  title: "Description",
-                  value: "description",
-                  children: <Description challenge={challenge} />,
-                },
-                {
-                  title: "Submissions",
-                  value: "submissions",
-                  children: <AnswerList challenge={challenge} className="p-3" />,
-                },
-                {
-                  title: "Resources",
-                  value: "resources",
-                  children: <ResourceList challenge={challenge} />,
-                },
-                {
-                  title: "Discussion",
-                  value: "discussion",
-                  children: <CommentList challenge={challenge} className="p-3" />,
-                },
-              ]}
-            </ResizableLayoutTab>
-
-            <ResizableLayoutTab
-              defaultValue={
-                Object.keys(availableFiles).find((file) => availableFiles[file].active) ||
-                Object.keys(availableFiles)[0]
-              }
-            >
-              {Object.keys(availableFiles)
-                .filter((file) => {
-                  return !(availableFiles[file].hidden || file === "/package.json");
-                })
-                .map((file) => ({
-                  title: formatFileName(file),
-                  value: file,
-                  children: (
-                    <CodeEditor
-                      path={`/challenges/${challenge.path}`}
-                      template={template}
-                      file={file}
-                      key={`${challenge.path}-${file}`}
-                    />
-                  ),
-                }))}
-            </ResizableLayoutTab>
-
-            <ResizableLayoutTab defaultValue="preview">
-              {[
-                {
-                  title: "Preview",
-                  value: "preview",
-                  children: <Preview template={template} />,
-                },
-              ]}
-            </ResizableLayoutTab>
-
-            <ResizableLayoutTab defaultValue="console">
-              {[
-                {
-                  title: "Console",
-                  value: "console",
-                  children: <Console />,
-                },
-              ]}
-            </ResizableLayoutTab>
-          </ResizableLayout>
-        </div>
-      </div>
+    <SandpackRoot
+      files={allFiles}
+      template={template}
+      path={`/challenges/${challenge.path}`}
+      originalFiles={{
+        ...TEMPLATES[template].files,
+        ...challenge.templateFiles[template],
+      }}
+    >
+      <QuestionInner challenge={challenge} template={template} setTemplate={setTemplate} />
     </SandpackRoot>
   );
 }
 
-export { QuestionChallenge as Question };
+type QuestionInnerProps = {
+  challenge: QuestionType;
+  template: SupportedTemplates;
+  setTemplate: (template: SupportedTemplates) => void;
+};
+
+function QuestionInner(props: QuestionInnerProps) {
+  const { challenge, setTemplate, template } = props;
+  const { layout, setLayout } = useLayout();
+
+  return (
+    <div className="flex h-full w-full flex-col gap-4 p-4">
+      <div className="min-h-auto! relative flex w-full justify-between">
+        <Breadcrumb challenge={challenge} />
+        <LayoutChanger className="absolute left-[calc(50%-125px)] w-[250px]" layout={layout} setLayout={setLayout} />
+        <div className="ms-auto hidden items-center gap-2 md:flex">
+          <TemplateChanger template={template} setTemplate={setTemplate} challenge={challenge} />
+          {Object.keys(challenge.templateFiles).length > 1 && <Separator orientation="vertical" className="mx-1" />}
+          <MarkCompleteButton challenge={challenge} />
+          <ShareSolutionButton template={template} challenge={challenge} />
+        </div>
+      </div>
+      <div className="w-full grow">
+        <ResizableLayout>
+          <ResizableLayoutPanel defaultValue="description">
+            {[
+              {
+                title: "Description",
+                value: "description",
+                children: <Description challenge={challenge} />,
+              },
+              {
+                title: "Submissions",
+                value: "submissions",
+                children: <AnswerList challenge={challenge} className="p-3" />,
+              },
+              {
+                title: "Resources",
+                value: "resources",
+                children: <ResourceList challenge={challenge} />,
+              },
+              {
+                title: "Discussion",
+                value: "discussion",
+                children: <CommentList challenge={challenge} className="p-3" />,
+              },
+            ]}
+          </ResizableLayoutPanel>
+
+          <Editor challenge={challenge} template={template} />
+
+          <ResizableLayoutPanel defaultValue="preview">
+            {[
+              {
+                title: "Preview",
+                value: "preview",
+                children: <Preview template={template} />,
+              },
+            ]}
+          </ResizableLayoutPanel>
+
+          <ResizableLayoutPanel defaultValue="console">
+            {[
+              {
+                title: "Console",
+                value: "console",
+                children: <Console />,
+              },
+            ]}
+          </ResizableLayoutPanel>
+        </ResizableLayout>
+      </div>
+    </div>
+  );
+}

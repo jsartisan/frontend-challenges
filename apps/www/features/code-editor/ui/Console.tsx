@@ -13,7 +13,7 @@ import {
   Input,
   ToggleGroup,
   ToggleGroupItem,
-  Tooltip,
+  TooltipRoot,
   TooltipTrigger,
   TooltipContent,
   TooltipArrow,
@@ -41,7 +41,7 @@ export function Console(props: Props) {
   return (
     <div className={cn("flex h-full w-full flex-col overflow-hidden", className)}>
       <div className={cn("border-b-(--color-bd) flex items-center gap-2 overflow-hidden border-b px-2 py-2")}>
-        <Tooltip delayDuration={1}>
+        <TooltipRoot delayDuration={1}>
           <TooltipTrigger asChild>
             <IconButton variant="tertiary" size="sm" onClick={reset}>
               <Icon name="log-clear" />
@@ -52,7 +52,7 @@ export function Console(props: Props) {
             Clear all logs
             <TooltipArrow />
           </TooltipContent>
-        </Tooltip>
+        </TooltipRoot>
         <Input
           placeholder="Type here to filter logs"
           className="w-48"
@@ -65,7 +65,7 @@ export function Console(props: Props) {
           onValueChange={(value) => setFilterType(value as typeof filterType)}
           value={filterType}
         >
-          <Tooltip delayDuration={1}>
+          <TooltipRoot delayDuration={1}>
             <TooltipTrigger asChild>
               <ToggleGroupItem value="all">
                 <Icon name="log-all" />
@@ -76,9 +76,9 @@ export function Console(props: Props) {
               All logs
               <TooltipArrow />
             </TooltipContent>
-          </Tooltip>
+          </TooltipRoot>
 
-          <Tooltip delayDuration={1}>
+          <TooltipRoot delayDuration={1}>
             <TooltipTrigger asChild>
               <ToggleGroupItem value="error">
                 <Icon name="log-error" className="text-red-500" />
@@ -89,9 +89,9 @@ export function Console(props: Props) {
               Error logs
               <TooltipArrow />
             </TooltipContent>
-          </Tooltip>
+          </TooltipRoot>
 
-          <Tooltip delayDuration={1}>
+          <TooltipRoot delayDuration={1}>
             <TooltipTrigger asChild>
               <ToggleGroupItem value="warn">
                 <Icon name="log-warning" className="text-yellow-500" />
@@ -101,9 +101,9 @@ export function Console(props: Props) {
               Warning logs
               <TooltipArrow />
             </TooltipContent>
-          </Tooltip>
+          </TooltipRoot>
 
-          <Tooltip delayDuration={1}>
+          <TooltipRoot delayDuration={1}>
             <TooltipTrigger asChild>
               <ToggleGroupItem value="info">
                 <Icon name="log-info" className="text-blue-500" />
@@ -113,7 +113,7 @@ export function Console(props: Props) {
               Info logs
               <TooltipArrow />
             </TooltipContent>
-          </Tooltip>
+          </TooltipRoot>
         </ToggleGroup>
         <div className="ms-auto">
           <Popover>

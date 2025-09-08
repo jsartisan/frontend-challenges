@@ -18,57 +18,61 @@ export function throttle<T extends (...args: any[]) => any>(
 ```
 
 ```ts index.test.ts 
-import { throttle } from './index';
+import { throttle } from "./index";
 
-jest.useFakeTimers();
+function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-describe('throttle', () => {
-  it('calls function immediately when leading is true', () => {
+describe("throttle", () => {
+  it("calls function immediately when leading is true", () => {
     const fn = jest.fn();
     const throttled = throttle(fn, 100);
 
-    throttled('A');
+    throttled("A");
     expect(fn).toHaveBeenCalledTimes(1);
-    expect(fn).toHaveBeenCalledWith('A');
+    expect(fn).toHaveBeenCalledWith("A");
   });
 
-  it('waits before next call within delay', () => {
+  it("waits before next call within delay", async () => {
     const fn = jest.fn();
     const throttled = throttle(fn, 100);
 
-    throttled('A');
-    throttled('B');
+    throttled("A");
+    throttled("B");
 
     expect(fn).toHaveBeenCalledTimes(1); // only leading so far
 
-    jest.advanceTimersByTime(100);
+    await wait(120); // wait for throttle delay to pass
+
     expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenLastCalledWith('B');
+    expect(fn).toHaveBeenLastCalledWith("B");
   });
 
-  it('supports disabling leading', () => {
+  it("supports disabling leading", async () => {
     const fn = jest.fn();
     const throttled = throttle(fn, 100, { leading: false });
 
-    throttled('A'); // should not call immediately
+    throttled("A"); // should not call immediately
     expect(fn).not.toHaveBeenCalled();
 
-    jest.advanceTimersByTime(100);
+    await wait(120);
     expect(fn).toHaveBeenCalledTimes(1);
-    expect(fn).toHaveBeenCalledWith('A');
+    expect(fn).toHaveBeenCalledWith("A");
   });
 
-  it('supports disabling trailing', () => {
+  it("supports disabling trailing", async () => {
     const fn = jest.fn();
     const throttled = throttle(fn, 100, { trailing: false });
 
-    throttled('A'); // leading call
-    throttled('B');
+    throttled("A"); // leading call
+    throttled("B");
 
-    jest.advanceTimersByTime(100);
+    await wait(120);
+
     // trailing disabled, so only leading executed
     expect(fn).toHaveBeenCalledTimes(1);
-    expect(fn).toHaveBeenCalledWith('A');
+    expect(fn).toHaveBeenCalledWith("A");
   });
 });
 ```

@@ -56,7 +56,5 @@ export const getAnswersOfQuestion = async (challenge: Question) => {
     }
   }
 
-  console.log({ answers });
-
   return answers;
 };

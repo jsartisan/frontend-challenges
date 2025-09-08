@@ -9,7 +9,7 @@ import { useCompletions } from "~/entities/completions/hooks/useCompletions";
 import { deleteCompletion } from "~/entities/completions/api/deleteCompletions";
 import { createCompletion } from "~/entities/completions/api/createCompletions";
 import { type Challenge, type SupportedTemplates } from "~/entities/challenge/model/types";
-import { Button, Icon, Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "~/components/ui";
+import { Button, Icon, TooltipRoot, TooltipArrow, TooltipContent, TooltipTrigger } from "~/components/ui";
 
 type ShareSolutionProps = {
   challenge: Challenge;
@@ -44,7 +44,7 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
   };
 
   return (
-    <Tooltip delayDuration={0}>
+    <TooltipRoot delayDuration={0}>
       <TooltipTrigger asChild>
         <Button
           isLoading={mutation.isPending || isCompletionsLoading}
@@ -70,6 +70,6 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
         {isCompleted ? "Mark as incomplete" : "Mark as complete"}
         <TooltipArrow />
       </TooltipContent>
-    </Tooltip>
+    </TooltipRoot>
   );
 }

@@ -52,14 +52,14 @@ root.render(
     "/package.json": {
       code: JSON.stringify({
         dependencies: {
-          react: "^19.0.0",
-          "react-dom": "^19.0.0",
+          react: "^19.1.1",
+          "react-dom": "^19.1.1",
           "react-scripts": "^4.0.0",
         },
         devDependencies: {
-          "@types/react": "^19.0.0",
-          "@types/react-dom": "^19.0.0",
-          typescript: "^4.0.0",
+          "@types/react": "^19.1.1",
+          "@types/react-dom": "^19.1.1",
+          typescript: "^5.0.0",
         },
         main: "/index.tsx",
       }),

@@ -33,7 +33,7 @@ export async function Header() {
       <div className="border-(--color-bd) bg-(--color-bg) sticky top-0 z-30 w-full border-b bg-opacity-5 backdrop-blur-md transition-[background-color]">
         <div className="mx-auto px-4">
           <div className="h-(--navbar-height) flex items-center justify-between md:justify-start md:gap-4">
-            <div className="flex items-center justify-start gap-3">
+            <div className="flex flex-grow items-center justify-start gap-3">
               <Logo />
               <SpotLight items={challenges} />
               <div className="hidden items-center gap-4 md:flex">
@@ -42,6 +42,9 @@ export async function Header() {
                 </Link>
                 <Link href="/roadmaps" className="font-medium">
                   Roadmaps
+                </Link>
+                <Link href="/mock" className="font-medium">
+                  Mock Interview
                 </Link>
                 <Link href="/play" className="font-medium">
                   Playground

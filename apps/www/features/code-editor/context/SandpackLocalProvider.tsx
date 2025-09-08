@@ -9,6 +9,8 @@ type SandpackLocalContextType = {
   deleteFile: (path: string) => void;
   addFile: (path: string) => void;
   resetFiles: () => void;
+  originalFiles: SandpackFiles;
+  resetFile: (path: string) => void;
 };
 
 type SandpackLocalProviderProps = {
@@ -45,10 +47,16 @@ export function SandpackLocalProvider(props: SandpackLocalProviderProps) {
   const _deleteFile = (...args: Parameters<typeof deleteFile>) => {
     const [filename] = args;
 
-    openFile("/index.js");
-    setActiveFile("/index.js");
+    const remainingFiles = Object.keys(files)
+      .filter((file) => file !== filename)
+      .filter((file) => !files[file].hidden);
+    const lastFile = remainingFiles.length > 0 ? remainingFiles[remainingFiles.length - 1] : "/index.js";
+
+    openFile(lastFile);
+    setActiveFile(lastFile);
     closeFile(filename);
     deleteFile(filename, true);
+    window.dispatchEvent(new CustomEvent("setActiveFile", { detail: lastFile }));
 
     setLocalStorageItem(
       `${path}-${template}`,
@@ -61,11 +69,33 @@ export function SandpackLocalProvider(props: SandpackLocalProviderProps) {
     updateFile(originalFiles);
   };
 
+  const _resetFile = (path: string) => {
+    const file = originalFiles[path];
+
+    if (!file) return;
+
+    const code = typeof file === "string" ? file : file.code;
+    updateFile(path, code);
+    setLocalStorageItem(`${path}-${template}`, {
+      ...files,
+      [path]: {
+        code: code,
+      },
+    });
+  };
+
   const memoizedChildren = useMemo(() => children, [children]);
 
   return (
     <SandpackLocalContext.Provider
-      value={{ updateFile: _updateFile, deleteFile: _deleteFile, addFile: _addFile, resetFiles: _resetFiles }}
+      value={{
+        updateFile: _updateFile,
+        deleteFile: _deleteFile,
+        addFile: _addFile,
+        resetFiles: _resetFiles,
+        originalFiles,
+        resetFile: _resetFile,
+      }}
     >
       {memoizedChildren}
     </SandpackLocalContext.Provider>

@@ -7,7 +7,7 @@ import { useAnswers } from "~/entities/answer/hooks/useAnswers";
 import { type Question } from "~/entities/challenge/model/types";
 import { TEMPLATES } from "~/entities/challenge/model/templates";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
-import { ResizableLayoutTab } from "~/features/code-editor/ui/ResizableLayoutTab";
+import { ResizableLayoutPanel } from "~/features/code-editor/ui/ResizableLayoutPanel";
 import {
   Sheet,
   SheetContent,
@@ -24,7 +24,7 @@ import {
   ResizablePanel,
 } from "~/components/ui";
 
-const CodeEditor = dynamic(() => import("~/features/code-editor/ui/CodeEditor").then((mod) => mod.CodeEditor), {
+const CodeEditor = dynamic(() => import("~/features/code-editor/ui/File").then((mod) => mod.File), {
   ssr: false,
   loading: () => <Skeleton className="h-full w-full" />,
 });
@@ -128,7 +128,7 @@ export function AnswerList(props: AnswerListProps) {
                   <div className="grid h-[calc(100%-(--spacing(20)))]">
                     <ResizablePanelGroup direction="vertical" className="flex flex-col gap-3">
                       <ResizablePanel>
-                        <ResizableLayoutTab
+                        <ResizableLayoutPanel
                           defaultValue={
                             Object.keys(answer.files).find((file) => answer.files[file].active) ||
                             Object.keys(answer.files)[0]
@@ -150,10 +150,10 @@ export function AnswerList(props: AnswerListProps) {
                               />
                             ),
                           }))}
-                        </ResizableLayoutTab>
+                        </ResizableLayoutPanel>
                       </ResizablePanel>
                       <ResizablePanel>
-                        <ResizableLayoutTab defaultValue="preview">
+                        <ResizableLayoutPanel defaultValue="preview">
                           {[
                             {
                               title: "Preview",
@@ -161,7 +161,7 @@ export function AnswerList(props: AnswerListProps) {
                               children: <Preview template={answer.template} />,
                             },
                           ]}
-                        </ResizableLayoutTab>
+                        </ResizableLayoutPanel>
                       </ResizablePanel>
                     </ResizablePanelGroup>
                   </div>

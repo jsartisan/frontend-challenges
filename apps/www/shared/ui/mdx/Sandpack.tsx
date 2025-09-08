@@ -1,8 +1,8 @@
 import React from "react";
 import { SandpackFile } from "@codesandbox/sandpack-react";
 
+import { File } from "~/features/code-editor/ui/File";
 import { TEMPLATES } from "~/entities/challenge/model/constants";
-import { CodeEditor } from "~/features/code-editor/ui/CodeEditor";
 import { SupportedTemplates } from "~/entities/challenge/model/types";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
 
@@ -77,7 +77,7 @@ export function Sandpack(props: SandpackProps) {
   return (
     <div className="not-prose">
       <SandpackRoot files={allFiles}>
-        <CodeEditor template={template} showTabs={false} originalFiles={allFiles} />
+        <File template={template} showTabs={false} />
       </SandpackRoot>
     </div>
   );

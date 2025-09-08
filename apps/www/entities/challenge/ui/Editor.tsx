@@ -1,0 +1,39 @@
+import { useSandpack } from "@codesandbox/sandpack-react";
+
+import { File } from "~/features/code-editor/ui/File";
+import { formatFileName } from "~/features/code-editor/lib/formatFileName";
+import { AddNewFileButton } from "~/features/code-editor/ui/AddNewFileButton";
+import { ResizableLayoutPanel } from "~/features/code-editor/ui/ResizableLayoutPanel";
+
+import { Question, SupportedTemplates } from "../model/types";
+
+const FORBIDDEN_FILES = ["/package.json", "/tsconfig.json", "/sandbox.config.json", "/public/index.html"];
+
+type EditorProps = {
+  challenge: Question;
+  template: SupportedTemplates;
+};
+
+export function Editor(props: EditorProps) {
+  const { challenge, template } = props;
+  const { sandpack } = useSandpack();
+  const { activeFile, files, setActiveFile } = sandpack;
+
+  return (
+    <ResizableLayoutPanel
+      value={activeFile}
+      actions={<AddNewFileButton />}
+      onValueChange={(value) => {
+        setActiveFile(value);
+      }}
+    >
+      {Object.keys(files)
+        .filter((file) => !FORBIDDEN_FILES.includes?.(file))
+        .map((file) => ({
+          title: formatFileName(file),
+          value: file,
+          children: <File path={`/challenges/${challenge.path}`} template={template} file={file} key={file} />,
+        }))}
+    </ResizableLayoutPanel>
+  );
+}

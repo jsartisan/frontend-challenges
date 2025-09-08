@@ -2,7 +2,6 @@ import { useTheme } from "next-themes";
 import { SandpackProvider } from "@codesandbox/sandpack-react";
 
 import { cn } from "~/utils/helpers";
-import { TEMPLATES } from "~/entities/challenge/model/constants";
 import { CodeFile, SupportedTemplates } from "~/entities/challenge/model/types";
 import { SandpackLocalProvider } from "~/features/code-editor/context/SandpackLocalProvider";
 
@@ -12,12 +11,12 @@ type Props = {
   children: React.ReactNode;
   files?: Record<string, CodeFile>;
   className?: string;
+  originalFiles?: Record<string, CodeFile>;
 };
 
 export function SandpackRoot(props: Props) {
-  const { children, className, files = {}, path, template = "react" } = props;
+  const { children, className, files = {}, originalFiles = {}, path, template = "react" } = props;
   const { resolvedTheme } = useTheme();
-  const originalFiles = { ...TEMPLATES[template].files, ...files };
   const isStatic = template === "static";
 
   return (

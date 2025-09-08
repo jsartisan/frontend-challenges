@@ -26,7 +26,7 @@ const App = () => {
 export default App;
 ```
 
-```tsx Stepper.tsx 
+```tsx Stepper.tsx active
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 
 export interface StepperProps {
@@ -34,7 +34,6 @@ export interface StepperProps {
   initialStep?: number;
   onChange?: (index: number) => void;
   allowSkip?: boolean;
-  vertical?: boolean;
 }
 
 export interface StepperRef {
@@ -51,7 +50,6 @@ export const Stepper = forwardRef<StepperRef, StepperProps>(
       initialStep = 0,
       onChange,
       allowSkip = true,
-      vertical = false,
     },
     ref,
   ) => {

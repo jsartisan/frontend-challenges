@@ -79,8 +79,6 @@ function usePersistedChallengeFilters(
     window.history.replaceState({}, "", `?${searchParams.toString()}`);
   };
 
-  console.log({ state });
-
   let filtered = challenges.filter((question) => {
     return (
       (state.category.length === 0 || state.category.includes(question?.category ?? "javascript")) &&

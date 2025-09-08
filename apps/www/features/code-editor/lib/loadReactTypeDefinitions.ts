@@ -2,8 +2,8 @@ import { Monaco } from "@monaco-editor/react";
 
 // Load React type definitions from @types/react and @types/react-dom via unpkg and add them to Monaco
 export async function loadReactTypeDefinitions(monaco: Monaco) {
-  const reactVersion = "18"; // keep this in sync with the version in package.json
-  const reactDomVersion = "18";
+  const reactVersion = "19.1.1"; // keep this in sync with the version in package.json
+  const reactDomVersion = "19.1.1";
 
   const reactBase = `https://unpkg.com/@types/react@${reactVersion}/`;
   const reactDomBase = `https://unpkg.com/@types/react-dom@${reactDomVersion}/`;

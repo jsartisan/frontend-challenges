@@ -1,61 +1,38 @@
-import babel from "prettier/plugins/babel";
+import html from "prettier/plugins/html";
 import prettier from "prettier/standalone";
+import babel from "prettier/plugins/babel";
 import estree from "prettier/plugins/estree";
 import postcss from "prettier/plugins/postcss";
-import prettierHTML from "prettier/plugins/html";
 import typescript from "prettier/plugins/typescript";
-import { useSandpack } from "@codesandbox/sandpack-react";
+
+const EXT_MAP: Record<string, { parser: string; plugins: any[] }> = {
+  js: { parser: "babel", plugins: [babel, estree] },
+  jsx: { parser: "babel", plugins: [babel, estree] },
+  ts: { parser: "babel-ts", plugins: [babel, typescript, estree] },
+  tsx: { parser: "babel-ts", plugins: [babel, typescript, estree] },
+  html: { parser: "html", plugins: [html, estree] },
+  css: { parser: "css", plugins: [postcss, estree] },
+  json: { parser: "json", plugins: [babel, estree] },
+  md: { parser: "markdown", plugins: [babel, estree] },
+};
 
 export function usePrettify() {
-  const { sandpack } = useSandpack();
+  const prettify = async (file: string, code: string, options: { tabSize?: number }) => {
+    const { tabSize = 2 } = options;
+    const ext = file.split(".").pop() ?? "";
 
-  const prettify = (options: { tabSize?: number }) => {
-    const { tabSize } = options;
-    const activeFile = sandpack.activeFile;
-    const code = sandpack.files[activeFile].code;
-    const ext = activeFile.split(".").pop();
-    let plugins = [] as any[];
-    let parser = "babel";
+    const config = EXT_MAP[ext] ?? { parser: "babel", plugins: [babel, estree] };
 
-    if (ext === "js" || ext === "jsx") {
-      plugins = [babel, estree];
-    }
-
-    if (ext === "ts") {
-      parser = "babel-ts";
-      plugins = [babel, estree, typescript];
-    }
-
-    if (ext === "html") {
-      plugins = [prettierHTML];
-      parser = "html";
-    }
-
-    if (ext === "css") {
-      parser = "css";
-      plugins = [postcss];
-    }
-
-    return prettier
-      .format(code, {
-        parser: parser,
-        plugins: plugins,
+    try {
+      return await prettier.format(code, {
+        parser: config.parser,
+        plugins: config.plugins.filter(Boolean),
         tabWidth: tabSize,
-      })
-      .then((formatted) => {
-        if (formatted) {
-          sandpack.updateFile(activeFile, formatted);
-          return {
-            ...sandpack.files,
-            [activeFile]: {
-              ...sandpack.files[activeFile],
-              code: formatted,
-            },
-          };
-        }
-        return null;
-      })
-      .catch(console.log);
+      });
+    } catch (err) {
+      console.error("Prettier failed:", err);
+      return code; // fallback so editor doesn't crash
+    }
   };
 
   return prettify;

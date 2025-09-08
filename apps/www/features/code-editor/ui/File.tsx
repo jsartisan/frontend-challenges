@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
+import { useSandpack } from "@codesandbox/sandpack-react";
 
 import { Slider } from "~/components/ui/slider";
 import { MonacoEditor } from "~/features/code-editor/ui/MonacoEditor";
@@ -10,7 +10,7 @@ import { CodeFile, SupportedTemplates } from "~/entities/challenge/model/types";
 import { useSandpackLocal } from "~/features/code-editor/hooks/useSandpackLocal";
 import { Popover, PopoverTrigger, PopoverContent } from "~/components/ui/popover";
 import { getLocalStorageItem, setLocalStorageItem } from "~/shared/lib/localStorage";
-import { Button, Checkbox, Icon, IconButton, Label, ToggleGroup, ToggleGroupItem } from "~/components/ui";
+import { Button, Icon, IconButton, Label, ToggleGroup, ToggleGroupItem, Tooltip } from "~/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
-type Props = {
+type FileProps = {
   files?: Record<string, CodeFile>;
   originalFiles?: Record<string, CodeFile>;
   style?: React.CSSProperties;
@@ -30,16 +30,16 @@ type Props = {
   file?: string;
 };
 
-export function CodeEditor(props: Props) {
-  const { file, originalFiles, path, template } = props;
+export function File(props: FileProps) {
+  const { file, path, template } = props;
   const { sandpack } = useSandpack();
-  const { resetFiles } = useSandpackLocal();
+  const { activeFile } = sandpack;
+  const { deleteFile, originalFiles, resetFile, resetFiles } = useSandpackLocal();
   const [editorFontSize, _setEditorFontSize] = useState(() => {
     const stored = getLocalStorageItem(`editor-font-size`, 14);
 
     return stored ? parseInt(stored) : 14;
   });
-  const [vimMode, setVimMode] = useState(false);
   const [editorTabSize, _setEditorTabSize] = useState(() => {
     const stored = getLocalStorageItem(`editor-tab-size`, 2);
 
@@ -47,12 +47,18 @@ export function CodeEditor(props: Props) {
   });
   const { files, updateFile } = sandpack;
 
-  const onChange = (files: SandpackState["files"]) => {
+  const onChange = (value) => {
     if (path) {
       setLocalStorageItem(`${path}-${template}`, {
         ...files,
+        [activeFile]: {
+          ...files[activeFile],
+          code: value,
+        },
       });
     }
+
+    updateFile(activeFile, value);
   };
 
   const setEditorFontSize = (size: number) => {
@@ -66,32 +72,14 @@ export function CodeEditor(props: Props) {
     onPrettify({ tabSize: size });
   };
 
-  const onResetCurrentFile = () => {
-    const activeFile = sandpack.activeFile;
-    const originalCode = originalFiles?.[activeFile]?.code;
-
-    updateFile(activeFile, originalCode);
-
-    if (path) {
-      localStorage.setItem(
-        `${path}-${template}`,
-        JSON.stringify({
-          ...files,
-          [activeFile]: {
-            ...files[activeFile],
-            code: originalCode,
-          },
-        }),
-      );
-    }
-  };
-
   const prettify = usePrettify();
 
   const onPrettify = (options: { tabSize?: number }) => {
-    prettify(options).then((updatedFiles) => {
-      if (updatedFiles) {
-        onChange(updatedFiles);
+    if (!files) return;
+
+    prettify(activeFile, files?.[activeFile]?.code, options).then((formattedFile) => {
+      if (formattedFile) {
+        onChange(formattedFile);
       }
     });
   };
@@ -100,19 +88,24 @@ export function CodeEditor(props: Props) {
     <>
       <div className="h-full w-full grow flex-col overflow-hidden">
         <div className="min-h-auto border-(--color-bd) flex items-center gap-2 border-b p-1">
-          <div className="flex items-center gap-2 px-2">
-            <Checkbox
-              onCheckedChange={(value) => setVimMode(value === "indeterminate" ? false : value)}
-              id="vim-mode"
-            />
-            <label htmlFor="vim-mode">Vim Mode</label>
-            {vimMode && <div className="vim-status-node"></div>}
-          </div>
+          <Button variant="tertiary" size="sm" onClick={() => onPrettify({ tabSize: editorTabSize })} type="button">
+            <Icon name="tidy" />
+            Tidy
+          </Button>
           <div className="ms-auto">
-            <Button variant="tertiary" size="sm" onClick={() => onPrettify({ tabSize: editorTabSize })} type="button">
-              <Icon name="tidy" />
-              Tidy
-            </Button>
+            {activeFile in originalFiles === false && (
+              <Tooltip content="Delete file">
+                <IconButton
+                  onClick={() => {
+                    deleteFile(activeFile);
+                  }}
+                  variant="tertiary"
+                  size="sm"
+                >
+                  <Icon name="delete" />
+                </IconButton>
+              </Tooltip>
+            )}
             <Popover>
               <PopoverTrigger asChild>
                 <IconButton variant="tertiary" size="sm" type="button">
@@ -163,10 +156,7 @@ export function CodeEditor(props: Props) {
                 </IconButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={typeof onResetCurrentFile === "function" ? onResetCurrentFile : () => {}}
-                  className="flex-col items-start"
-                >
+                <DropdownMenuItem onClick={() => resetFile(activeFile)} className="flex-col items-start">
                   <div>Reset Current File</div>
                   <div className="text-(--color-fg-neutral-subtle) text-xs">
                     Reset the current file to the initial state
@@ -184,13 +174,12 @@ export function CodeEditor(props: Props) {
           </div>
         </div>
         <MonacoEditor
-          key={vimMode ? "vim" : "normal"}
           fontSize={editorFontSize}
           tabSize={editorTabSize}
           onChange={onChange}
           template={template}
-          vimMode={vimMode}
           path={path}
+          files={files}
           file={file}
         />
       </div>

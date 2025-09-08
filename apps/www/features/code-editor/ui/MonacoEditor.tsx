@@ -1,40 +1,42 @@
 import { useTheme } from "next-themes";
 import React, { useEffect } from "react";
-import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import Editor, { useMonaco } from "@monaco-editor/react";
-import { SandpackState, useSandpack } from "@codesandbox/sandpack-react";
 
-import { setLanguage } from "~/utils/helpers";
-import { SupportedTemplates } from "~/entities/challenge/model/types";
+import { setLanguage } from "~/features/code-editor/lib/setLanguage";
+import { CodeFile, SupportedTemplates } from "~/entities/challenge/model/types";
 import { loadReactTypeDefinitions } from "~/features/code-editor/lib/loadReactTypeDefinitions";
+
+import { enableEmmet } from "../lib/enableEmmet";
 
 type MonacoEditorProps = {
   path?: string;
   file?: string;
   template: SupportedTemplates;
-  onChange?: (files: SandpackState["files"]) => void;
+  onChange?: (value: string) => void;
   fontSize?: number;
   tabSize?: number;
-  vimMode?: boolean;
+  files: Record<string, CodeFile>;
 };
 
 export function MonacoEditor(props: MonacoEditorProps) {
-  const { file, fontSize, onChange, path = "", tabSize, template, vimMode } = props;
+  const { file, files, fontSize, onChange, path = "", tabSize, template } = props;
   const monaco = useMonaco();
-  const { sandpack } = useSandpack();
-  const { files, updateFile } = sandpack;
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (monaco) {
       Object.keys(files).forEach((file) => {
-        if (monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))) {
-          monaco.editor.getModel(monaco.Uri.parse(`${path}${file}`))?.setValue(files[file].code);
+        const uri = `${path}${file}`;
+        const modelUri = monaco.Uri.parse(uri);
 
+        const existingModel = monaco.editor.getModel(modelUri);
+
+        if (existingModel) {
+          existingModel.setValue(files[file].code);
           return;
         }
 
-        monaco.editor.createModel(files[file].code, setLanguage(file), monaco.Uri.parse(`${path}${file}`));
+        monaco.editor.createModel(files[file].code, setLanguage(file), modelUri);
       });
 
       monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
@@ -45,7 +47,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
         target: monaco.languages.typescript.ScriptTarget.ESNext,
         // Use the modern React JSX transform
         jsx: monaco.languages.typescript.JsxEmit.ReactJSX,
-        types: ["react", "react-dom"],
         allowSyntheticDefaultImports: true,
         moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
       });
@@ -57,10 +58,11 @@ export function MonacoEditor(props: MonacoEditorProps) {
       );
 
       loadReactTypeDefinitions(monaco);
+      enableEmmet(monaco);
 
       monaco.editor.registerEditorOpener({
         openCodeEditor(source, resource) {
-          const model = monaco.editor.getModel(monaco.Uri.parse(`${path}${resource.path}`));
+          const model = monaco.editor.getModel(monaco.Uri.parse(`${resource.path}`));
 
           if (!model) return false;
 
@@ -72,31 +74,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
     }
   }, [monaco, template]);
 
-  useEffect(() => {
-    if (!monaco) return;
-
-    emmetHTML(monaco);
-    emmetCSS(monaco);
-  }, [monaco]);
-
-  function handleEditorDidMount(editor) {
-    // @ts-expect-error window.require is not defined
-    window.require.config({
-      paths: {
-        "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
-      },
-    });
-
-    // @ts-expect-error window.require is not defined
-    window.require(["monaco-vim"], function (MonacoVim) {
-      if (vimMode) {
-        MonacoVim.initVimMode(editor, document.querySelector(".vim-status-node"));
-
-        return;
-      }
-    });
-  }
-
   if (!monaco) return null;
 
   return (
@@ -104,7 +81,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
       width="100%"
       height="100%"
       path={`${path}${file}`}
-      onMount={handleEditorDidMount}
       language={setLanguage(file)}
       theme={`vs-${resolvedTheme}`}
       value={(function () {
@@ -113,8 +89,6 @@ export function MonacoEditor(props: MonacoEditorProps) {
         if (files[file]) {
           return files[file].code;
         }
-
-        // console.log("failing file", file, files);
 
         return "";
       })()}
@@ -129,16 +103,8 @@ export function MonacoEditor(props: MonacoEditorProps) {
       onChange={(value) => {
         if (!file) return;
 
-        updateFile(file, value);
-
         if (onChange) {
-          onChange({
-            ...files,
-            [file]: {
-              ...files[file],
-              code: value ?? "",
-            },
-          });
+          onChange(value ?? "");
         }
       }}
     />

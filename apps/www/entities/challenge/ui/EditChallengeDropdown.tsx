@@ -1,4 +1,4 @@
-import { Icon, IconButton } from "~/components/ui";
+import { Icon, IconButton, Tooltip } from "~/components/ui";
 import { type Challenge } from "~/entities/challenge/model/types";
 import {
   DropdownMenu,
@@ -16,11 +16,13 @@ export function EditChallengeDropdown(props: EditDropdownProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <IconButton asChild variant="tertiary" size="sm">
-        <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
-          <Icon name="github" />
-        </a>
-      </IconButton>
+      <Tooltip content="Go to github">
+        <IconButton asChild variant="tertiary" size="sm">
+          <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
+            <Icon name="github" />
+          </a>
+        </IconButton>
+      </Tooltip>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <IconButton variant="tertiary" size="sm" className="ms-auto">
