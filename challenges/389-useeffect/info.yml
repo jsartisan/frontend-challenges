@@ -7,4 +7,10 @@ author:
   name: Pawan Kumar
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: '2025-08-19'
+options:
+  - "0 0 1 0"
+  - "0 1 1 1"
+  - "0 0 1 1"
+  - "1 0 1 0"
+right_answer: "0 0 1 0"
 

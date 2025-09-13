@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev -p 8080",
+    "dev": "next dev --turbopack -p 8080",
     "lint": "eslint . --debug --ignore-pattern .",
     "start": "next start",
     "check-types": "tsc --noEmit"
@@ -14,7 +14,7 @@
     "@excalidraw/excalidraw": "^0.17.6",
     "@hookform/resolvers": "^3.3.2",
     "@monaco-editor/react": "^4.7.0",
-    "@next/bundle-analyzer": "^14.2.5",
+    "@next/bundle-analyzer": "15.5.3",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -46,6 +46,7 @@
     "@react-stately/toggle": "^3.7.6",
     "@resvg/resvg-js": "^2.6.2",
     "@supabase/ssr": "^0.5.2",
+    "@tabler/icons-react": "^3.34.1",
     "@tanstack/react-query": "^5.31.0",
     "@tanstack/react-table": "^8.13.2",
     "@type-challenges/octokit-create-pull-request": "^0.1.9",
@@ -71,19 +72,19 @@
     "mixpanel-browser": "^2.54.0",
     "monaco-vim": "^0.4.2",
     "negotiator": "^0.6.3",
-    "next": "^14.2.2",
+    "next": "15.5.3",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
     "nuqs": "^2.4.3",
     "octokit": "^3.1.2",
     "prettier": "^3.6.2",
     "prompts": "^2.4.2",
-    "react": "^18.2.0",
+    "react": "19.1.1",
     "react-aria": "^3.33.0",
     "react-aria-components": "^1.3.3",
     "react-custom-scrollbars": "^4.2.1",
     "react-day-picker": "^8.9.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "19.1.1",
     "react-hook-form": "^7.48.2",
     "react-markdown": "^9.0.1",
     "react-resizable-panels": "^2.1.6",
@@ -109,12 +110,18 @@
     "@types/mixpanel-browser": "^2.49.1",
     "@types/node": "^20",
     "@types/prompts": "^2.4.9",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
     "esbuild": "^0.23.0",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.1.12",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.1.13",
+      "@types/react-dom": "19.1.9"
+    }
   }
 }

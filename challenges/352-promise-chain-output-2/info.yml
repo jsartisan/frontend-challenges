@@ -7,3 +7,9 @@ author:
   name: Pawan Kumar
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: "2024-12-26"
+options:
+  - "1, 2, undefined, 3, undefined, 4, undefined, undefined"
+  - "1, 2, 3, undefined, 4, undefined, undefined, undefined"
+  - "1, 2, undefined, 3, 4, undefined, undefined, undefined"
+  - "1, 2, 3, 4, undefined, undefined, undefined, undefined"
+right_answer: "1, 2, undefined, 3, undefined, 4, undefined, undefined"

@@ -43,7 +43,7 @@ export async function Header() {
                 <Link href="/roadmaps" className="font-medium">
                   Roadmaps
                 </Link>
-                <Link href="/mock" className="font-medium">
+                <Link href="/mock-interview" className="font-medium">
                   Mock Interview
                 </Link>
                 <Link href="/play" className="font-medium">

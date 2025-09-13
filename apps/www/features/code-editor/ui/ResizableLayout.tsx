@@ -12,6 +12,8 @@ type ResizableLayoutProps = {
 };
 
 export const ResizableLayout = (props: ResizableLayoutProps) => {
+  const [mounted, setMounted] = useState(false);
+  const { sandpack } = useSandpack();
   const { layout } = useLayout();
   const [mounted, setMounted] = useState(false);
   const { sandpack } = useSandpack();
