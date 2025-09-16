@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from "next/dynamic";
 
 import { Logo } from "~/shared/ui/Logo";
@@ -5,7 +7,6 @@ import { Icon, Link } from "~/components/ui";
 import { Skeleton } from "~/components/ui/skeleton";
 
 const ThemeChanger = dynamic(() => import("~/widgets/ThemeChanger"), {
-  ssr: false,
   loading: () => (
     <>
       <div className="flex h-8 gap-2">

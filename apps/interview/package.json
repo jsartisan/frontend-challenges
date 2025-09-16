@@ -1,0 +1,45 @@
+{
+  "name": "www",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack -p 8081",
+    "lint": "eslint . --debug --ignore-pattern .",
+    "start": "next start",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@/www": "workspace:*",
+    "@ai-sdk/openai": "^1",
+    "@codesandbox/sandpack-react": "^2.20.0",
+    "@mastra/core": "^0.16.3",
+    "@monaco-editor/react": "^4.7.0",
+    "@next/bundle-analyzer": "15.5.3",
+    "clsx": "^2.0.0",
+    "next": "15.5.3",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "tldraw": "^3.8.1",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/fs-extra": "^11.0.4",
+    "@types/mixpanel-browser": "^2.49.1",
+    "@types/node": "^20.17.6",
+    "@types/prompts": "^2.4.9",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "esbuild": "^0.23.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.6.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.1.13",
+      "@types/react-dom": "19.1.9"
+    }
+  }
+}
