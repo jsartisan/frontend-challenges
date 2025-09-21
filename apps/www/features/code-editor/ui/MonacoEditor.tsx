@@ -16,10 +16,11 @@ type MonacoEditorProps = {
   fontSize?: number;
   tabSize?: number;
   files: Record<string, CodeFile>;
+  readOnly?: boolean;
 };
 
 export function MonacoEditor(props: MonacoEditorProps) {
-  const { file, files, fontSize, onChange, path = "", tabSize, template } = props;
+  const { file, files, fontSize, onChange, path = "", readOnly = false, tabSize, template } = props;
   const monaco = useMonaco();
   const { resolvedTheme } = useTheme();
 
@@ -93,7 +94,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
         return "";
       })()}
       options={{
-        readOnly: file ? files[file]?.readOnly : false,
+        readOnly: file ? files[file]?.readOnly || readOnly : false,
         minimap: { enabled: false },
         tabSize: tabSize || 2,
         fontSize: fontSize || 14,

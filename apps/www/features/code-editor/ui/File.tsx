@@ -46,6 +46,7 @@ export function File(props: FileProps) {
     return stored ? parseInt(stored) : 2;
   });
   const { files, updateFile } = sandpack;
+  const isTestFile = activeFile.includes(".test.");
 
   const onChange = (value) => {
     if (path) {
@@ -92,7 +93,10 @@ export function File(props: FileProps) {
             <Icon name="tidy" />
             Tidy
           </Button>
-          <div className="ms-auto">
+          <div className="ms-auto flex items-center">
+            {(isTestFile || files[activeFile].readOnly) && (
+              <span className="box-trim mr-2 inline-block">Read-only</span>
+            )}
             {activeFile in originalFiles === false && (
               <Tooltip content="Delete file">
                 <IconButton
@@ -181,6 +185,7 @@ export function File(props: FileProps) {
           path={path}
           files={files}
           file={file}
+          readOnly={isTestFile}
         />
       </div>
     </>
