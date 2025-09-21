@@ -8,3 +8,9 @@ author:
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: "2024-07-29"
 discussionNo: 135
+options:
+  - "function, {constructor: [Function: User], greet: [Function: greet]}, [Function: User], ['constructor', 'greet']"
+  - "object, {constructor: [Function: User], greet: [Function: greet]}, [Function: User], ['constructor', 'greet']"
+  - "class, {constructor: [Function: User], greet: [Function: greet]}, [Function: User], ['constructor', 'greet']"
+  - "function, {greet: [Function: greet]}, [Function: User], ['greet']"
+right_answer: "function, {constructor: [Function: User], greet: [Function: greet]}, [Function: User], ['constructor', 'greet']"

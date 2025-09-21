@@ -56,7 +56,11 @@ export function Quiz(props: QuizChallengeProps) {
                 </TabsContent>
               </Tabs>
             </Card>
-            <Solution solution={challenge.solution["en"]} />
+            <Solution
+              solution={challenge.solution["en"]}
+              right_answer={challenge.info["en"]?.right_answer}
+              options={challenge.info["en"]?.options as string[]}
+            />
           </div>
         </div>
       </div>

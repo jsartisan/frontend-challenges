@@ -8,3 +8,10 @@ author:
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: 2024-02-02
 type: quiz
+options:
+  - "1, 2, 3, 4, 7, 5, 6, 9, 8"
+  - "1, 2, 3, 4, 5, 6, 7, 8, 9"
+  - "1, 2, 3, 4, 7, 8, 9, 5, 6"
+  - "1, 4, 7, 2, 3, 5, 6, 9, 8"
+right_answer: "1, 2, 3, 4, 7, 5, 6, 9, 8"
+level: junior

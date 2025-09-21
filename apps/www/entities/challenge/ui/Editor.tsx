@@ -12,10 +12,11 @@ const FORBIDDEN_FILES = ["/package.json", "/tsconfig.json", "/sandbox.config.jso
 type EditorProps = {
   challenge: Question;
   template: SupportedTemplates;
+  onChange?: (file: string, value: string) => void;
 };
 
 export function Editor(props: EditorProps) {
-  const { challenge, template } = props;
+  const { challenge, onChange, template } = props;
   const { sandpack } = useSandpack();
   const { activeFile, files, setActiveFile } = sandpack;
 
@@ -32,7 +33,15 @@ export function Editor(props: EditorProps) {
         .map((file) => ({
           title: formatFileName(file),
           value: file,
-          children: <File path={`/challenges/${challenge.path}`} template={template} file={file} key={file} />,
+          children: (
+            <File
+              onChange={onChange}
+              path={`/challenges/${challenge.path}`}
+              template={template}
+              file={file}
+              key={file}
+            />
+          ),
         }))}
     </ResizableLayoutPanel>
   );

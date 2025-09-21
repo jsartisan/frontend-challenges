@@ -10,3 +10,9 @@ published_date: "2025-08-12"
 resources: 
   - https://javascript.info/var
   - https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
+options:
+  - "1, undefined, undefined, ReferenceError"
+  - "1, undefined, 3, ReferenceError"
+  - "1, 2, undefined, ReferenceError"
+  - "1, undefined, undefined, 2"
+right_answer: "1, undefined, undefined, ReferenceError"

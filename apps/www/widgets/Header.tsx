@@ -1,3 +1,4 @@
+import { use } from "react";
 import dynamic from "next/dynamic";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
@@ -16,17 +17,17 @@ import {
 } from "~/components/ui/dropdown-menu";
 
 const SpotLight = dynamic(() => import("~/widgets/Spotlight").then((mod) => mod.Spotlight), {
-  ssr: false,
   loading: () => <Skeleton className="hidden h-8 w-20 md:flex" />,
 });
 
 const CompletionStats = dynamic(() => import("~/features/header-completion-stats/ui/CompletionStats"), {
-  ssr: false,
   loading: () => <Skeleton className="size-8" />,
 });
 
-export async function Header() {
-  const challenges = await getChallenges();
+export function Header() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  const challenges = use(getChallenges());
 
   return (
     <>
@@ -42,9 +43,6 @@ export async function Header() {
                 </Link>
                 <Link href="/roadmaps" className="font-medium">
                   Roadmaps
-                </Link>
-                <Link href="/mock" className="font-medium">
-                  Mock Interview
                 </Link>
                 <Link href="/play" className="font-medium">
                   Playground

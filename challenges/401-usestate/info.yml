@@ -9,4 +9,10 @@ author:
 published_date: '2025-08-29'
 resources:
   - https://react.dev/learn/state-as-a-snapshot
+options:
+  - "0 2 4 6 8..."
+  - "0 1 2 3 4..."
+  - "0 3 6 9 12..."
+right_answer: "0 2 4 6 8..."
+level: junior,mid-level
 

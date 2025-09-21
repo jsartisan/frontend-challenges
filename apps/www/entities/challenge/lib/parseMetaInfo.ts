@@ -12,7 +12,7 @@ export function parseMetaInfo(s: string): Partial<QuestionMetaInfo> | undefined 
   const object = YAML.load(s) as any;
   if (!object) return undefined;
 
-  const arrayKeys = ["tags", "related"];
+  const arrayKeys = ["tags", "related", "level"];
 
   for (const key of arrayKeys) {
     if (object[key]) {

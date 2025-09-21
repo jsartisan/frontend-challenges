@@ -5,6 +5,7 @@ import { SUPPORTED_TEMPLATES } from "~/entities/challenge/model/constants";
 
 export type Difficulty = "easy" | "medium" | "hard" | "extreme";
 export type Importance = "hight" | "medium" | "low";
+export type Level = "junior" | "mid-level" | "senior";
 
 export type Challenge = Question | Quiz | Theory;
 export type ChallengeList = ChallengeSlim[];
@@ -69,6 +70,9 @@ export interface QuestionMetaInfo {
   type: "question" | "quiz" | "theory";
   discussionNo: string;
   resources?: string[];
+  level?: Level | Level[];
+  options?: string[];
+  right_answer?: string;
 }
 
 export type SupportedTemplates = (typeof SUPPORTED_TEMPLATES)[number];
@@ -78,15 +82,4 @@ export type CodeFile = {
   hidden?: boolean;
   active?: boolean;
   readOnly?: boolean;
-};
-
-export type Blog = {
-  title: string;
-  path: string;
-  slug: string;
-  excerpt: string;
-  published_at: string;
-  tags: string[];
-  code: string;
-  emoji: string;
 };

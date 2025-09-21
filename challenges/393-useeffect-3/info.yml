@@ -7,4 +7,11 @@ author:
   name: Pawan Kumar
   avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
 published_date: '2025-08-19'
+options:
+  - "1, 5, 2, 4, 1, 6, 3, 5, 2"
+  - "1, 2, 4, 5, 1, 3, 6, 2, 5"
+  - "1, 4, 2, 5, 1, 3, 6, 5, 2"
+  - "1, 2, 5, 4, 1, 6, 3, 2, 5"
+right_answer: "1, 5, 2, 4, 1, 6, 3, 5, 2"
+level: senior
 

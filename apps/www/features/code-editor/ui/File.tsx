@@ -28,10 +28,11 @@ type FileProps = {
   path?: string;
   template: SupportedTemplates;
   file?: string;
+  onChange?: (file, value: string) => void;
 };
 
 export function File(props: FileProps) {
-  const { file, path, template } = props;
+  const { file, onChange: onChangeProp, path, template } = props;
   const { sandpack } = useSandpack();
   const { activeFile } = sandpack;
   const { deleteFile, originalFiles, resetFile, resetFiles } = useSandpackLocal();
@@ -49,6 +50,10 @@ export function File(props: FileProps) {
   const isTestFile = activeFile.includes(".test.");
 
   const onChange = (value) => {
+    if (onChangeProp) {
+      onChangeProp(file, value);
+    }
+
     if (path) {
       setLocalStorageItem(`${path}-${template}`, {
         ...files,

@@ -40,4 +40,4 @@ next-env.d.ts
 # playground
 /playground
 
-apps/api
+# apps/interview
