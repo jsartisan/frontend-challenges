@@ -1,3 +1,4 @@
+import remarkGfm from "remark-gfm";
 import { bundleMDX } from "mdx-bundler";
 import { visit } from "unist-util-visit";
 
@@ -5,7 +6,7 @@ export const bundleMarkdown = async (source: string) => {
   return await bundleMDX({
     source: source,
     mdxOptions(options) {
-      options.remarkPlugins = [...(options.remarkPlugins ?? [])];
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         function rehypeMetaAsAttributes() {
