@@ -2,7 +2,7 @@ difficulty: medium
 title: Multi-Stepper Component
 type: question
 template: react-ts
-tags: react, typescript, components
+tags: react, typescript, components, ui-coding
 author:
   github: jsartisan
   name: Pawan Kumar

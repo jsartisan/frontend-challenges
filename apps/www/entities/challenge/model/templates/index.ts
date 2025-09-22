@@ -10,8 +10,8 @@ import { REACT_TYPESCRIPT_TEMPLATE } from "./react-typescript";
 export const TEMPLATES = {
   static: STATIC_TEMPLATE,
   vanilla: VANILLA_TEMPLATE,
-  typescript: TYPESCRIPT_TEMPLATE,
   javascript: TESTS_TEMPLATE,
+  typescript: TYPESCRIPT_TEMPLATE,
   react: REACT_TEMPLATE,
   vue: VUE_TEMPLATE,
   svelte: SVELTE_TEMPLATE,

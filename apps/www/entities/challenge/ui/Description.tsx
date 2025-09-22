@@ -25,7 +25,7 @@ export function Description(props: DescriptionProps) {
   const { readme } = challenge;
 
   return (
-    <div className={cn("h-full w-full overflow-y-auto p-3", className)} {...rest}>
+    <div className={cn("h-full w-full overflow-y-auto px-5 py-4", className)} {...rest}>
       <div className="flex flex-col gap-2">
         <header className="flex items-center gap-3">
           <h1 className="box-trim flex items-baseline gap-2 text-2xl font-bold">

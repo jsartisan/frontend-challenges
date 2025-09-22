@@ -17,4 +17,5 @@ export const DIFFICULTY_RANK = Object.keys(DIFFICULTY_COLORS) as (keyof typeof D
 // templates
 export const DEFAULT_TEMPLATE = "vanilla";
 export const SUPPORTED_TEMPLATES = Object.keys(TEMPLATES) as (keyof typeof TEMPLATES)[];
+
 export { TEMPLATES };
