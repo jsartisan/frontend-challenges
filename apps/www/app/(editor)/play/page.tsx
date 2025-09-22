@@ -5,7 +5,6 @@ import Loading from "./loading";
 const PlaygroundPage = dynamic(
   () => import("~/screens/playground/ui/PlaygroundPage").then((mod) => mod.PlaygroundEditor),
   {
-    ssr: false,
     loading: Loading,
   },
 );

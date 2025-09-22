@@ -10,14 +10,10 @@ import { getChallenges } from "~/entities/challenge/api/getChallenges";
 import { LayoutProvider } from "~/features/code-editor/context/LayoutProvider";
 import { getChallengeByPath } from "~/entities/challenge/api/getChallengeByPath";
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
+export async function generateMetadata(props: PageProps<"/challenges/[slug]">): Promise<Metadata> {
+  const { slug } = await props.params;
 
-export async function generateMetadata(props: PageProps): Promise<Metadata> {
-  const question = await getChallengeByPath(props.params.slug);
+  const question = await getChallengeByPath(slug);
 
   return {
     title: `${question.info?.en?.title} | Frontend Challenges`,
@@ -36,8 +32,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function ChallengePage(props: PageProps) {
-  const challenge = await getChallengeByPath(props.params.slug);
+export async function ChallengePage(props: PageProps<"/challenges/[slug]">) {
+  const challenge = await getChallengeByPath((await props.params).slug);
 
   return (
     <LayoutProvider>

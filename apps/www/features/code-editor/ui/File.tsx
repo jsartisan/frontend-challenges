@@ -99,9 +99,6 @@ export function File(props: FileProps) {
             Tidy
           </Button>
           <div className="ms-auto flex items-center">
-            {(isTestFile || files[activeFile].readOnly) && (
-              <span className="box-trim mr-2 inline-block">Read-only</span>
-            )}
             {activeFile in originalFiles === false && (
               <Tooltip content="Delete file">
                 <IconButton

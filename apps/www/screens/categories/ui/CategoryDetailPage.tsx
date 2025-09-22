@@ -6,14 +6,8 @@ import CompletionStats from "~/entities/completions/ui/CompletionStats";
 import { CATEGORY_METADATA } from "~/entities/category/config/metadata";
 import { ChallengeListWithFilters } from "~/entities/challenge/ui/ChallengeListWithFilters";
 
-interface CategoryDetailPageProps {
-  params: {
-    category: Category;
-  };
-}
-
-async function CategoryDetailPage(props: CategoryDetailPageProps) {
-  const { category } = props.params;
+async function CategoryDetailPage(props: PageProps<"/categories/[category]">) {
+  const category = (await props.params).category as Category;
   const challengesByCategory = await getChallengesByCategory(category);
 
   return (

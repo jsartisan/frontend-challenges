@@ -1,15 +1,8 @@
 import { BlogDetail } from "~/entities/blog/ui";
 import { getBlogBySlug } from "~/entities/blog/api";
 
-interface BlogDetailPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-async function BlogDetailPage(props: BlogDetailPageProps) {
-  const { slug } = props.params;
-  const blog = await getBlogBySlug(slug);
+async function BlogDetailPage(props: PageProps<"/blog/[slug]">) {
+  const blog = await getBlogBySlug((await props.params).slug);
 
   return <BlogDetail blog={blog} />;
 }

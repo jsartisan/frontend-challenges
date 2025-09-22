@@ -27,7 +27,7 @@ const ResizablePanel = (props: React.ComponentProps<typeof ResizablePrimitive.Pa
     minSize = 15,
     ...rest
   } = props;
-  const ref = useRef<ImperativePanelHandle>();
+  const ref = useRef<ImperativePanelHandle>(null);
   const [, setIsCollapsed] = useState(collapsedSize === 0);
 
   return (

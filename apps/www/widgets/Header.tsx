@@ -25,8 +25,6 @@ const CompletionStats = dynamic(() => import("~/features/header-completion-stats
 });
 
 export function Header() {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   const challenges = use(getChallenges());
 
   return (

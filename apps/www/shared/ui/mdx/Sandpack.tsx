@@ -18,13 +18,13 @@ export function Sandpack(props: SandpackProps) {
   const { children, template = "react" } = props;
 
   // convert the children to an array
-  const codeSnippets: any = React.Children.toArray(children);
+  const codeSnippets = React.Children.toArray(children);
 
   // using the array.reduce method to reduce the children to an object containing
   // filename as key then other properties like the code, if the file is hidden as
   // properties
   const files = codeSnippets.reduce((result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-    const { props } = codeSnippet.props.children;
+    const { props } = (codeSnippet.props as any).children;
     let filePath; // path in the folder structure
     let fileHidden = false; // if the file is available as a tab
     let fileActive = false; // if the file tab is shown by default

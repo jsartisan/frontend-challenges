@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React from "react";
 
 import { Icon } from "./icon";
 import { cn, getValidChildren } from "../..//utils/helpers";
@@ -28,7 +28,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ) => {
     const validChildren = getValidChildren(children);
     const clones = validChildren.map((child, index) => {
-      return React.cloneElement(child, {
+      return React.cloneElement(child as any, {
         addSeparator,
         separator,
         isLastChild: validChildren.length === index + 1,
@@ -58,12 +58,12 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
     const validChildren = getValidChildren(children);
     const clones = validChildren.map((child) => {
       if (child.type === BreadcrumbLink) {
-        return React.cloneElement(child, { isCurrentPage });
+        return React.cloneElement(child as any, { isCurrentPage });
       }
 
       if (child.type === BreadcrumbSeparator) {
-        return React.cloneElement(child, {
-          children: separator || child.props.children,
+        return React.cloneElement(child as any, {
+          children: separator || (child.props as any).children,
         });
       }
 

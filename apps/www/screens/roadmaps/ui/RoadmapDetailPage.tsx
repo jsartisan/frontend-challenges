@@ -1,14 +1,8 @@
 import { RoadmapDetail } from "~/entities/roadmap/ui";
 import { getRoadmapByPath } from "~/entities/roadmap/api";
 
-interface RoadmapDetailPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-async function RoadmapDetailPage(props: RoadmapDetailPageProps) {
-  const { slug } = props.params;
+async function RoadmapDetailPage(props: PageProps<"/challenges/[slug]">) {
+  const slug = (await props.params).slug;
 
   const roadmap = await getRoadmapByPath(slug);
 

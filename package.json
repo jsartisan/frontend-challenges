@@ -9,7 +9,7 @@
   "repository": "https://github.com/jsartisan/frontend-challenges.git",
   "scripts": {
     "build": "pnpm run --filter=www build",
-    "check-types": "pnpm run --filter=www check-types",
+    "typecheck": "pnpm run --filter=www check-types",
     "dev": "turbo dev",
     "generate": "esno ./apps/www/scripts/generate-play.ts",
     "lint": "next lint",

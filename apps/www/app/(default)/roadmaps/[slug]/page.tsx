@@ -4,8 +4,8 @@ import { DOMAIN } from "~/shared/config/paths";
 import { getRoadmapByPath, getRoadmaps } from "~/entities/roadmap/api";
 import { RoadmapDetailPage } from "~/screens/roadmaps/ui/RoadmapDetailPage";
 
-export async function generateMetadata(props: any): Promise<Metadata> {
-  const roadmap = await getRoadmapByPath(props.params.slug);
+export async function generateMetadata(props: PageProps<"/roadmaps/[slug]">): Promise<Metadata> {
+  const roadmap = await getRoadmapByPath((await props.params).slug);
 
   return {
     title: `${roadmap.info?.en?.title} Roadmap | Frontend Challenges`,

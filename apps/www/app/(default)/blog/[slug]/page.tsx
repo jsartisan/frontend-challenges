@@ -11,8 +11,8 @@ export function generateStaticParams() {
   return transformedPosts;
 }
 
-export async function generateMetadata({ params }: { params: any }) {
-  const blog = await getBlogBySlug(params.slug);
+export async function generateMetadata(props: PageProps<"/blog/[slug]">) {
+  const blog = await getBlogBySlug((await props.params).slug);
   return { title: blog.title };
 }
 
