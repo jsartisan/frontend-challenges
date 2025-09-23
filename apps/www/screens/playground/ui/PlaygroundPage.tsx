@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
 import { File } from "~/features/code-editor/ui/File";
@@ -23,7 +24,7 @@ import { getFilesFromLocalStorage } from "~/screens/playground/lib/getFilesFromL
 const CURRENT_EDITOR_PATH = "/playground";
 
 export function PlaygroundEditor() {
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = useSearchParams();
   const [template, setTemplate] = useState<SupportedTemplates>(() => getTemplateFromURL(searchParams));
   const [files, setFiles] = useState(() => getFilesFromURL(searchParams, template));
 
