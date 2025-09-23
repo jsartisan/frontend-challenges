@@ -9,7 +9,7 @@ export function CategoryList(props: CategoryListProps) {
   const { categories } = props;
 
   return (
-    <div className="mb-10 mt-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
+    <div className="mb-12 mt-12 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
       {categories.map((category) => (
         <Link
           prefetch={false}
