@@ -1,27 +1,24 @@
-```js index.js 
+```ts index.ts 
 /**
  * Find corresponding node in two identical DOM trees.
- * @param {Node} rootA - Root of first tree
- * @param {Node} rootB - Root of second tree  
- * @param {Node} target - Target node in tree A
- * @returns {Node|null} Corresponding node in tree B
  */
-function findCorrespondingNode(rootA, rootB, target) {
+export function findCorrespondingNode(
+  rootA: Node,
+  rootB: Node, 
+  target: Node
+): Node | null {
   // TODO: Implement me
 }
-
-export { findCorrespondingNode };
 ```
 
-```js index.test.js 
+```ts index.test.ts 
 import { findCorrespondingNode } from './index';
 
-describe('findCorrespondingNode (JS)', () => {
-  let rootA, rootB;
-  let targetA, expectedB;
+describe('findCorrespondingNode (TS)', () => {
+  let rootA: HTMLElement, rootB: HTMLElement;
+  let targetA: Element, expectedB: Element;
 
   beforeEach(() => {
-    // Create identical DOM structures
     rootA = document.createElement('div');
     rootA.innerHTML = `
       <div class="container">
@@ -46,9 +43,8 @@ describe('findCorrespondingNode (JS)', () => {
       </div>
     `;
 
-    // Find target elements
-    targetA = rootA.querySelector('.text');
-    expectedB = rootB.querySelector('.text');
+    targetA = rootA.querySelector('.text')!;
+    expectedB = rootB.querySelector('.text')!;
   });
 
   it('finds corresponding element at same position', () => {
@@ -57,8 +53,8 @@ describe('findCorrespondingNode (JS)', () => {
   });
 
   it('finds nested elements correctly', () => {
-    const nestedTarget = rootA.querySelector('li');
-    const nestedExpected = rootB.querySelector('li');
+    const nestedTarget = rootA.querySelector('li')!;
+    const nestedExpected = rootB.querySelector('li')!;
     
     const result = findCorrespondingNode(rootA, rootB, nestedTarget);
     expect(result).toBe(nestedExpected);
@@ -76,8 +72,8 @@ describe('findCorrespondingNode (JS)', () => {
   });
 
   it('works with deeper nesting', () => {
-    const deepTarget = rootA.querySelector('ul li:last-child');
-    const deepExpected = rootB.querySelector('ul li:last-child');
+    const deepTarget = rootA.querySelector('ul li:last-child')!;
+    const deepExpected = rootB.querySelector('ul li:last-child')!;
     
     const result = findCorrespondingNode(rootA, rootB, deepTarget);
     expect(result).toBe(deepExpected);
@@ -90,12 +86,13 @@ describe('findCorrespondingNode (JS)', () => {
     const singleB = document.createElement('div');
     singleB.innerHTML = '<p>Single</p>';
     
-    const target = singleA.querySelector('p');
-    const expected = singleB.querySelector('p');
+    const target = singleA.querySelector('p')!;
+    const expected = singleB.querySelector('p')!;
     
     const result = findCorrespondingNode(singleA, singleB, target);
     expect(result).toBe(expected);
   });
 });
 ```
+
 

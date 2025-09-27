@@ -134,9 +134,13 @@ const action: Action = async (github, context, core) => {
     };
 
     if (type === "question") {
-      quiz["templateFiles"] = {
-        [template]: templateFiles,
-      } as Question["templateFiles"];
+      if (typeof templateFiles === 'object' && !Array.isArray(templateFiles) && templateFiles !== null) {
+        quiz["templateFiles"] = templateFiles as unknown as Question["templateFiles"];
+      } else {
+        quiz["templateFiles"] = {
+          [template]: templateFiles,
+        } as unknown as Question["templateFiles"];
+      }
     }
 
     core.info("-----Parsed-----");
@@ -167,7 +171,14 @@ const action: Action = async (github, context, core) => {
     }
 
     if (type === "question" && templateFiles) {
-      files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileContent(templateFiles)}\n`;
+      if (typeof templateFiles === 'object' && !Array.isArray(templateFiles) && templateFiles !== null) {
+        const templateFilesObj = templateFiles as Record<string, Record<string, any>>;
+        Object.entries(templateFilesObj).forEach(([templateType, fileMap]) => {
+          files[resolveFilePath(dir, `template.${templateType}`, "md", "en")] = `${getTemplateFileContent(fileMap as any)}\n`;
+        });
+      } else {
+        files[resolveFilePath(dir, `template.${template}`, "md", "en")] = `${getTemplateFileContent(templateFiles as any)}\n`;
+      }
     }
 
     if (type === "quiz" && solution) {
@@ -241,14 +252,19 @@ const action: Action = async (github, context, core) => {
   }
 };
 
-export function getTemplateFiles(body: string) {
-  const templateStringRange = getCommentRange(body, "template") || "";
+export function getTemplateFiles(body: string): Record<string, Record<string, any>> | null {
+  const templateRanges = getTemplateRanges(body);
 
-  if (!templateStringRange) return null;
+  if (!templateRanges) return null;
 
-  const parsed = unified().use(remarkParse).parse(templateStringRange);
+  const result: Record<string, Record<string, any>> = {};
 
-  return createFileMap(parsed);
+  Object.entries(templateRanges).forEach(([templateType, content]) => {
+    const parsed = unified().use(remarkParse).parse(content);
+    result[templateType] = createFileMap(parsed);
+  });
+
+  return result;
 }
 
 async function updateComment(github: Github, context: Context, body: string) {
@@ -329,6 +345,33 @@ function getCommentRange(text: string, key: string) {
   const match = text.match(regex);
   if (match && match[1]) return match[1].toString().trim();
   return null;
+}
+
+function getTemplateRanges(text: string): Record<string, string> | null {
+  const regex = /<!--template-start-->([\s\S]*?)<!--template-end-->/g;
+  const matches: string[] = [];
+  let match: RegExpExecArray | null;
+  
+  while ((match = regex.exec(text)) !== null) {
+    matches.push(match[1].trim());
+  }
+  
+  if (matches.length === 0) return null;
+  
+  const result: Record<string, string> = {};
+  
+  matches.forEach(matchContent => {
+    const lines = matchContent.split('\n');
+    const firstLine = lines[0]?.trim();
+    
+    if (firstLine === 'template.javascript.md' || firstLine === 'javascript.template.md') {
+      result.javascript = matchContent;
+    } else if (firstLine === 'template.typescript.md' || firstLine === 'typescript.template.md') {
+      result.typescript = matchContent;
+    }
+  });
+  
+  return Object.keys(result).length > 0 ? result : null;
 }
 
 export function getQuestionFullName(no: number, title: string) {
