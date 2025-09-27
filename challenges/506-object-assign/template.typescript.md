@@ -45,7 +45,7 @@ describe('objectAssign', () => {
     const target = { a: 1 };
     const result = objectAssign(target, 'string', 42, true, null);
     
-    expect(result).toEqual({ a: 1 });
+    expect(result).toEqual({"0": "s", "1": "t", "2": "r", "3": "i", "4": "n", "5": "g", "a": 1});
   });
 
   it('should handle empty target and sources', () => {
@@ -74,8 +74,7 @@ describe('objectAssign', () => {
     const source = { [symbol]: 'value', regular: 'prop' };
     const result = objectAssign(target, source);
     
-    expect(result).toEqual({ regular: 'prop' });
-    expect(result[symbol]).toBe('value');
+    expect(result).toEqual({ regular: 'prop', [symbol]: 'value' });
   });
 });
 ```
