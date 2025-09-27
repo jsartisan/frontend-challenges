@@ -35,8 +35,8 @@ describe('stringify (TS)', () => {
     expect(stringify([{ a: 1 }, { b: 2 }])).toBe('[{"a":1},{"b":2}]');
   });
 
-  it('omits undefined, Symbol, and functions from objects', () => {
-    expect(stringify({ a: 1, b: undefined, c: Symbol(), d: function() {} })).toBe('{"a":1}');
+  it('converts undefined, Symbol, and functions to null in objects', () => {
+    expect(stringify({ a: 1, b: undefined, c: Symbol(), d: function() {} })).toBe('{"a":1,"b":null,"c":null,"d":null}');
   });
 
   it('converts undefined, Symbol, and functions to null in arrays', () => {
