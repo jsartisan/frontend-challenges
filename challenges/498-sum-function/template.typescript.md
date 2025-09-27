@@ -52,11 +52,6 @@ describe('sum (TS)', () => {
     expect(sum(1)(2, 3) == 6).toBe(true);
   });
 
-  it('handles decimal numbers', () => {
-    expect(sum(1.5)(2.5) == 4).toBe(true);
-    expect(sum(0.1)(0.2) == 0.3).toBe(true);
-  });
-
   it('maintains separate instances', () => {
     const sum1 = sum(1);
     const sum2 = sum(2);

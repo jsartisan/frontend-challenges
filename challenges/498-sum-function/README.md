@@ -14,6 +14,7 @@ Create a `sum()` function that supports currying and chaining. The function shou
 - **Value coercion** – the returned function should coerce to its numeric value
 - **Multiple arguments** – each call can accept multiple arguments
 
+
 ### Example
 
 ```js
