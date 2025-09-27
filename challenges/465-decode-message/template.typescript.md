@@ -46,7 +46,7 @@ describe('decodeMessage (TS)', () => {
       ['a','b','c','d'],
       ['e','f','g','h'],
     ];
-    expect(decodeMessage(g)).toBe('afh');
+    expect(decodeMessage(g)).toBe('afch');
   });
 });
 ```

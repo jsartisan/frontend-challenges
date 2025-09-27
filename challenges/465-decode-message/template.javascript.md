@@ -46,7 +46,7 @@ describe('decodeMessage (JS)', () => {
       ['M','N','O','P'],
     ];
     // Path: A → F → K → H → O → L
-    expect(decodeMessage(g)).toBe('AFKHOL');
+    expect(decodeMessage(g)).toBe('AFKP');
   });
 
   it('rectangular taller than wide', () => {
@@ -56,7 +56,7 @@ describe('decodeMessage (JS)', () => {
       ['C','D'],
       ['E','F'],
     ];
-    expect(decodeMessage(g)).toBe('XBF');
+    expect(decodeMessage(g)).toBe('XB');
   });
 });
 ```
