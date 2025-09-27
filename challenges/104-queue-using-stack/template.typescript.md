@@ -1,24 +1,24 @@
-```js index.js
+
+```ts index.ts
 import { Stack } from "./stack";
 
-class Queue {
-  constructor() {
-    // TODO: Implement me using only Stack
-  }
+class Queue<T> {
+  // TODO: Implement me using only Stack
+  constructor() {}
 
-  enqueue(element) {
+  enqueue(element: T): void {
     // TODO: Implement me
   }
 
-  peek() {
+  peek(): T | undefined {
     // TODO: Implement me
   }
 
-  dequeue() {
+  dequeue(): T | undefined {
     // TODO: Implement me
   }
 
-  size() {
+  size(): number {
     // TODO: Implement me
   }
 }
@@ -26,25 +26,23 @@ class Queue {
 export { Queue };
 ```
 
-```js stack.js readOnly
-class Stack {
-  constructor() {
-    this.items = [];
-  }
+```ts stack.ts
+class Stack<T> {
+  private items: T[] = [];
 
-  push(element) {
+  push(element: T): void {
     this.items.push(element);
   }
 
-  peek() {
+  peek(): T | undefined {
     return this.items[this.items.length - 1];
   }
 
-  pop() {
+  pop(): T | undefined {
     return this.items.pop();
   }
 
-  size() {
+  size(): number {
     return this.items.length;
   }
 }
@@ -52,17 +50,17 @@ class Stack {
 export { Stack }
 ```
 
-```js index.test.js
+```ts index.test.ts
 import { Queue } from './index';
 
-describe('Queue with Stack (JS)', () => {
-  let queue;
+describe('Queue with Stack (TS)', () => {
+  let queue: Queue<number>;
 
   beforeEach(() => {
-    queue = new Queue();
+    queue = new Queue<number>();
   });
 
-  it('enqueues and dequeues elements in FIFO order', () => {
+  it('enqueues and dequeues in FIFO order', () => {
     queue.enqueue(1);
     queue.enqueue(2);
     queue.enqueue(3);
@@ -72,7 +70,7 @@ describe('Queue with Stack (JS)', () => {
     expect(queue.dequeue()).toBe(3);
   });
 
-  it('peek returns front element without removing', () => {
+  it('peek returns front without removing', () => {
     queue.enqueue(10);
     queue.enqueue(20);
 
@@ -80,7 +78,7 @@ describe('Queue with Stack (JS)', () => {
     expect(queue.size()).toBe(2);
   });
 
-  it('size returns correct count', () => {
+  it('size tracks elements correctly', () => {
     expect(queue.size()).toBe(0);
     queue.enqueue(1);
     expect(queue.size()).toBe(1);
@@ -94,18 +92,18 @@ describe('Queue with Stack (JS)', () => {
     expect(queue.dequeue()).toBeUndefined();
   });
 
-  it('works with mixed operations', () => {
-    queue.enqueue('a');
-    queue.enqueue('b');
-    expect(queue.peek()).toBe('a');
+  it('mixed operations work correctly', () => {
+    queue.enqueue(1);
+    queue.enqueue(2);
+    expect(queue.peek()).toBe(1);
     
     queue.dequeue();
-    queue.enqueue('c');
-    expect(queue.peek()).toBe('b');
+    queue.enqueue(3);
+    expect(queue.peek()).toBe(2);
     expect(queue.size()).toBe(2);
   });
 
-  it('maintains queue order after multiple operations', () => {
+  it('maintains order through complex operations', () => {
     queue.enqueue(1);
     queue.enqueue(2);
     queue.dequeue();
