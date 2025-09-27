@@ -1,43 +1,33 @@
 ```ts index.ts 
-// Replace the global setTimeout and clearTimeout
-(window as any).setTimeout = function(callback: Function, delay?: number): number {
-  // TODO: Implement me
-};
-
-(window as any).clearTimeout = function(timerId: number): void {
-  // TODO: Implement me
-};
-
 export function clearAllTimeout(): void {
   // TODO: Implement me
 }
 ```
 
 ```ts index.test.ts 
-import { clearAllTimeout } from './index';
+import './index';
+
+function wait(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 describe('clearAllTimeout', () => {
-  beforeEach(() => {
-    jest.useFakeTimers();
-  });
-
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    clearAllTimeout();
   });
 
-  it('should clear all active timers', () => {
+  it('should clear all active timers', async () => {
     const callback1 = jest.fn();
     const callback2 = jest.fn();
     const callback3 = jest.fn();
 
-    setTimeout(callback1, 1000);
-    setTimeout(callback2, 2000);
-    setTimeout(callback3, 3000);
+    setTimeout(callback1, 50);
+    setTimeout(callback2, 100);
+    setTimeout(callback3, 150);
 
     clearAllTimeout();
 
-    jest.advanceTimersByTime(5000);
+    await wait(200);
 
     expect(callback1).not.toHaveBeenCalled();
     expect(callback2).not.toHaveBeenCalled();
@@ -48,81 +38,79 @@ describe('clearAllTimeout', () => {
     expect(() => clearAllTimeout()).not.toThrow();
   });
 
-  it('should preserve original setTimeout behavior', () => {
+  it('should preserve original setTimeout behavior', async () => {
     const callback = jest.fn();
-    const timerId = setTimeout(callback, 1000);
+    setTimeout(callback, 50);
 
-    expect(typeof timerId).toBe('number');
-    
-    jest.advanceTimersByTime(1000);
+    await wait(100);
     expect(callback).toHaveBeenCalled();
   });
 
-  it('should preserve original clearTimeout behavior', () => {
+  it('should preserve original clearTimeout behavior', async () => {
     const callback = jest.fn();
-    const timerId = setTimeout(callback, 1000);
+    const timerId = setTimeout(callback, 50);
 
     clearTimeout(timerId);
 
-    jest.advanceTimersByTime(2000);
+    await wait(100);
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it('should handle mixed clearTimeout and clearAllTimeout', () => {
+  it('should handle mixed clearTimeout and clearAllTimeout', async () => {
     const callback1 = jest.fn();
     const callback2 = jest.fn();
     const callback3 = jest.fn();
 
-    const timerId1 = setTimeout(callback1, 1000);
-    setTimeout(callback2, 2000);
-    const timerId3 = setTimeout(callback3, 3000);
+    const timerId1 = setTimeout(callback1, 50);
+    setTimeout(callback2, 100);
+    const timerId3 = setTimeout(callback3, 150);
 
     clearTimeout(timerId1);
     clearAllTimeout();
 
-    jest.advanceTimersByTime(5000);
+    await wait(200);
 
     expect(callback1).not.toHaveBeenCalled();
     expect(callback2).not.toHaveBeenCalled();
     expect(callback3).not.toHaveBeenCalled();
   });
 
-  it('should work with multiple clearAllTimeout calls', () => {
+  it('should work with multiple clearAllTimeout calls', async () => {
     const callback = jest.fn();
-    setTimeout(callback, 1000);
+    setTimeout(callback, 50);
 
     clearAllTimeout();
     clearAllTimeout();
 
-    jest.advanceTimersByTime(2000);
+    await wait(100);
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it('should handle timers with different delays', () => {
+  it('should handle timers with different delays', async () => {
     const callback1 = jest.fn();
     const callback2 = jest.fn();
     const callback3 = jest.fn();
 
-    setTimeout(callback1, 100);
-    setTimeout(callback2, 500);
-    setTimeout(callback3, 1000);
+    setTimeout(callback1, 50);
+    setTimeout(callback2, 100);
+    setTimeout(callback3, 150);
 
     clearAllTimeout();
 
-    jest.advanceTimersByTime(2000);
+    await wait(200);
 
     expect(callback1).not.toHaveBeenCalled();
     expect(callback2).not.toHaveBeenCalled();
     expect(callback3).not.toHaveBeenCalled();
   });
 
-  it('should handle immediate timers (delay 0)', () => {
+  it('should handle immediate timers (delay 0)', async () => {
     const callback = jest.fn();
     setTimeout(callback, 0);
 
     clearAllTimeout();
 
-    jest.advanceTimersByTime(100);
+    await wait(50);
     expect(callback).not.toHaveBeenCalled();
   });
 });

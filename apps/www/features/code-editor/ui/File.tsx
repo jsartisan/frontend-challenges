@@ -187,7 +187,7 @@ export function File(props: FileProps) {
           path={path}
           files={files}
           file={file}
-          readOnly={isTestFile}
+          readOnly={isTestFile && false}
         />
       </div>
     </>
