@@ -1,20 +1,19 @@
-```js index.js 
-/**
- * Simple DOM wrapper with method chaining support.
- * @param {string} selector - CSS selector
- * @returns {object} wrapper with chainable methods
- */
-function $(selector) {
-  // TODO: Implement me
+```ts index.ts 
+interface CSSWrapper {
+  css(property: string, value: string): CSSWrapper;
 }
 
-export { $ };
+export function $(selector: string): CSSWrapper {
+  // TODO: Implement me
+  return {
+    css: () => $ as any
+  };
+}
 ```
 
-```js index.test.js 
+```ts index.test.ts 
 import { $ } from './index';
 
-// Mock DOM environment for testing
 beforeEach(() => {
   document.body.innerHTML = `
     <div id="test">Hello</div>
@@ -23,7 +22,7 @@ beforeEach(() => {
   `;
 });
 
-describe('$ jQuery-like wrapper (JS)', () => {
+describe('$ jQuery-like wrapper (TS)', () => {
   it('selects element by id', () => {
     const element = $('#test');
     expect(element).toBeDefined();
@@ -31,7 +30,7 @@ describe('$ jQuery-like wrapper (JS)', () => {
 
   it('applies single CSS property', () => {
     $('#test').css('color', 'red');
-    expect(document.getElementById('test').style.color).toBe('red');
+    expect(document.getElementById('test')!.style.color).toBe('red');
   });
 
   it('supports method chaining', () => {
@@ -40,7 +39,7 @@ describe('$ jQuery-like wrapper (JS)', () => {
       .css('backgroundColor', 'yellow')
       .css('fontSize', '20px');
 
-    const element = document.getElementById('test');
+    const element = document.getElementById('test')!;
     expect(element.style.color).toBe('blue');
     expect(element.style.backgroundColor).toBe('yellow');
     expect(element.style.fontSize).toBe('20px');
@@ -55,15 +54,16 @@ describe('$ jQuery-like wrapper (JS)', () => {
     });
   });
 
-  it('handles non-existent selector gracefully', () => {
+  it('handles invalid selector gracefully', () => {
     expect(() => $('#nonexistent').css('color', 'red')).not.toThrow();
   });
 
-  it('returns wrapper instance for chaining', () => {
+  it('returns chainable wrapper', () => {
     const wrapper = $('#test').css('color', 'red');
     expect(wrapper).toBeDefined();
     expect(typeof wrapper.css).toBe('function');
   });
 });
 ```
+
 
