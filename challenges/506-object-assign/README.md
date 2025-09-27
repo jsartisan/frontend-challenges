@@ -1,12 +1,41 @@
-*The `Object.assign()` method copies all enumerable own properties from one or more source objects to a target object. It returns the target object.* (source: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign))
+Implement your own version of `Object.assign()` that copies enumerable own properties from source objects to a target object. This is a fundamental JavaScript utility that powers the object spread operator under the hood.
 
-It is widely used, Object Spread operator actually is internally the same as `Object.assign()` ([source](https://github.com/tc39/proposal-object-rest-spread/blob/master/Spread.md)). Following 2 lines of code are totally the same.
+### Requirements
+
+1. **Property copying** – Copy all enumerable own properties from sources to target
+2. **Multiple sources** – Support variadic arguments with multiple source objects
+3. **Property overwriting** – Later sources should override earlier properties
+4. **Return target** – Return the modified target object (same reference)
+5. **Edge case handling** – Handle `null`, `undefined`, and primitive sources gracefully
+
+### Key Behaviors
+
+- **Enumerable properties only** – Skip non-enumerable and inherited properties
+- **Symbol properties** – Copy symbol-keyed properties when enumerable
+- **Primitive sources** – Ignore `null`, `undefined`, strings, numbers, booleans
+- **Property precedence** – Later sources override earlier ones
+- **Reference preservation** – Return the same target object reference
+
+### Example
 
 ```js
-let aClone = { ...a };
-let aClone = Object.assign({}, a);
+const target = { a: 1 };
+const source1 = { b: 2, c: 3 };
+const source2 = { c: 4, d: 5 };
+
+objectAssign(target, source1, source2);
+// target is now { a: 1, b: 2, c: 4, d: 5 }
+// Returns the same target object
+
+objectAssign({}, { a: 1 }, null, undefined, { b: 2 });
+// Returns { a: 1, b: 2 }
+
+// Symbol properties
+const symbol = Symbol('key');
+objectAssign({}, { [symbol]: 'value', regular: 'prop' });
+// Returns { regular: 'prop', [Symbol(key)]: 'value' }
 ```
 
-This is an easy one, could you implement `Object.assign()` with your own implementation ?
+### Key Challenge
 
-**Note**: **Don't use Object.assign() in your code** It doesn't help improve your skills
+The function must properly iterate over enumerable own properties while handling edge cases like primitive sources and maintaining the correct property precedence order.
