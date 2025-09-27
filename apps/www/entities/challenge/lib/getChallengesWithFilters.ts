@@ -5,7 +5,7 @@ import { sortChallengesByDifficulty } from "~/entities/challenge/lib/sortChallen
 export function getChallengesWithFilters(challenges: ChallengeList, searchParams: URLSearchParams) {
   const search = searchParams.get("search") ?? "";
   const sortBy = searchParams.get("sort_by") ?? "published_date";
-  const sortOrder = (searchParams.get("sort_order") ?? "asc") as "asc" | "desc";
+  const sortOrder = (searchParams.get("sort_order") ?? "desc") as "asc" | "desc";
   const type = (searchParams.get("type") ?? "all") as "all" | "question" | "quiz";
 
   let filtered = challenges.filter((challenge) => {

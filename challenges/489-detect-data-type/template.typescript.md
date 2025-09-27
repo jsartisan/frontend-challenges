@@ -1,20 +1,17 @@
-```js index.js 
+
+```ts index.ts 
 /**
  * Detect the data type of any JavaScript value.
- * @param {any} value - Value to detect type of
- * @returns {string} Lowercase type name
  */
-function detectType(value) {
+export function detectType(value: any): string {
   // TODO: Implement me
 }
-
-export { detectType };
 ```
 
-```js index.test.js 
+```ts index.test.ts 
 import { detectType } from './index';
 
-describe('detectType (JS)', () => {
+describe('detectType (TS)', () => {
   it('detects primitive types', () => {
     expect(detectType(42)).toBe('number');
     expect(detectType('hello')).toBe('string');
@@ -66,3 +63,5 @@ describe('detectType (JS)', () => {
   });
 });
 ```
+
+
