@@ -40,7 +40,7 @@ describe('reorderArray', () => {
     const array = [1, 'hello', true, null];
     const indexes = [3, 0, 2, 1];
     reorderArray(array, indexes);
-    expect(array).toEqual(['hello', true, null, 1]);
+    expect(array).toEqual(['hello', null, true, 1]);
   });
 
   it('should handle complex reordering', () => {
