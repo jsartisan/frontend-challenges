@@ -1,4 +1,5 @@
-```js index.js 
+
+```ts index.ts 
 /**
  * A store that uses DOM elements as keys.
  * Cannot use ES6 Map, must implement custom solution.
@@ -10,28 +11,22 @@ class NodeStore {
 
   /**
    * Set a value for the given DOM node
-   * @param {Node} node - DOM node
-   * @param {any} value - value to store
    */
-  set(node, value) {
+  set(node: Node, value: any): void {
     // TODO: Implement me
   }
 
   /**
    * Get the value for the given DOM node
-   * @param {Node} node - DOM node
-   * @returns {any} stored value or undefined
    */
-  get(node) {
+  get(node: Node): any {
     // TODO: Implement me
   }
 
   /**
    * Check if the given DOM node exists as a key
-   * @param {Node} node - DOM node
-   * @returns {boolean} true if node exists
    */
-  has(node) {
+  has(node: Node): boolean {
     // TODO: Implement me
   }
 }
@@ -39,12 +34,12 @@ class NodeStore {
 export { NodeStore };
 ```
 
-```js index.test.js 
+```ts index.test.ts 
 import { NodeStore } from './index';
 
-describe('NodeStore (JS)', () => {
-  let store;
-  let node1, node2, node3;
+describe('NodeStore (TS)', () => {
+  let store: NodeStore;
+  let node1: HTMLDivElement, node2: HTMLSpanElement, node3: HTMLParagraphElement;
 
   beforeEach(() => {
     store = new NodeStore();
@@ -103,6 +98,3 @@ describe('NodeStore (JS)', () => {
   });
 });
 ```
-
-
-
