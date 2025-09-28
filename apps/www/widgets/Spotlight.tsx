@@ -40,7 +40,12 @@ export function Spotlight(props: SpotlightProps) {
   }, []);
 
   return (
-    <Command className="w-auto">
+    <Command
+      className="w-auto"
+      filter={(value, search) => {
+        return value.toLowerCase().includes(search.toLowerCase()) ? 1 : 0;
+      }}
+    >
       <Button
         variant="secondary"
         size="sm"

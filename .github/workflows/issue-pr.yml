@@ -10,19 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # ➊  Set up pnpm **first** so that subsequent steps (like Node caching) can locate the pnpm executable
       - uses: pnpm/action-setup@v2
         with:
-          version: 9.6.0           # pick the version you need
-          cache: 'true'            # <-- enable its built-in cache logic
-          run_install: false       # we'll run install explicitly later
+          version: 9.6.0
+          cache: true  # handles caching automatically
 
-      # ➋  Sets up Node and enables dependency caching for pnpm
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
-       
-      # ➌  Install without refetching tarballs
+          # ⛔️ don't add cache: 'pnpm' here
+
       - run: pnpm install --frozen-lockfile --prefer-offline
-      - run: pnpm exec esno apps/www/scripts/actions/loader.ts ${{github.token}} issue-pr
+      - run: pnpm exec esno apps/www/scripts/actions/loader.ts ${{ github.token }} issue-pr
