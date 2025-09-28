@@ -10,207 +10,124 @@ export function parallel(asyncFuncs: AsyncFunc[]): AsyncFunc {
 ```ts index.test.ts 
 import { parallel } from './index';
 
+// Utility to wait for a specified time
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 describe('parallel', () => {
-  beforeEach(() => {
-    jest.useFakeTimers();
-  });
-
-  afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
-  });
-
-  it('should execute all async functions in parallel', (done) => {
-    const async1 = (callback: any) => {
-      setTimeout(() => callback(null, 1), 100);
-    };
-
-    const async2 = (callback: any) => {
-      setTimeout(() => callback(null, 2), 50);
-    };
-
-    const async3 = (callback: any) => {
-      setTimeout(() => callback(null, 3), 150);
-    };
+  it('should execute all async functions in parallel', async () => {
+    const async1 = (callback) => setTimeout(() => callback(null, 1), 10);
+    const async2 = (callback) => setTimeout(() => callback(null, 2), 5);
+    const async3 = (callback) => setTimeout(() => callback(null, 3), 15);
 
     const all = parallel([async1, async2, async3]);
 
-    all((error, data) => {
-      expect(error).toBeNull();
-      expect(data).toEqual([1, 2, 3]);
-      done();
-    });
+    const result = await new Promise((resolve) => all((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(200);
+    expect(result.err).toBeNull();
+    expect(result.data).toEqual([1, 2, 3]);
   });
 
-  it('should handle empty array', (done) => {
+  it('should handle empty array', async () => {
     const emptyParallel = parallel([]);
+    const result = await new Promise((resolve) => emptyParallel((err, data) => resolve({ err, data })));
 
-    emptyParallel((error, data) => {
-      expect(error).toBeNull();
-      expect(data).toEqual([]);
-      done();
-    });
+    expect(result.err).toBeNull();
+    expect(result.data).toEqual([]);
   });
 
-  it('should handle single async function', (done) => {
-    const asyncSingle = (callback: any) => {
-      setTimeout(() => callback(null, 'single'), 100);
-    };
-
+  it('should handle single async function', async () => {
+    const asyncSingle = (callback) => setTimeout(() => callback(null, 'single'), 10);
     const singleParallel = parallel([asyncSingle]);
 
-    singleParallel((error, data) => {
-      expect(error).toBeNull();
-      expect(data).toEqual(['single']);
-      done();
-    }, 'initial');
+    const result = await new Promise((resolve) => singleParallel((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(100);
+    expect(result.err).toBeNull();
+    expect(result.data).toEqual(['single']);
   });
 
-  it('should return first error and ignore subsequent results', (done) => {
-    const async1 = (callback: any) => {
-      setTimeout(() => callback(null, 1), 100);
-    };
-
-    const asyncFail = (callback: any) => {
-      setTimeout(() => callback(new Error('First error')), 50);
-    };
-
-    const asyncNeverCalled = jest.fn((callback: any) => {
-      setTimeout(() => callback(new Error('Second error')), 75);
-    });
+  it('should return first error and ignore subsequent results', async () => {
+    const async1 = (callback) => setTimeout(() => callback(null, 1), 10);
+    const asyncFail = (callback) => setTimeout(() => callback(new Error('First error')), 5);
+    const asyncNeverCalled = jest.fn((callback) => setTimeout(() => callback(new Error('Second error')), 8));
 
     const parallelWithError = parallel([async1, asyncFail, asyncNeverCalled]);
 
-    parallelWithError((error, data) => {
-      expect(error.message).toBe('First error');
-      expect(data).toBeUndefined();
-      expect(asyncNeverCalled).toHaveBeenCalled();
-      done();
-    });
+    const result = await new Promise((resolve) =>
+      parallelWithError((err, data) => resolve({ err, data }))
+    );
 
-    jest.advanceTimersByTime(200);
+    expect(result.err.message).toBe('First error');
+    expect(result.data).toBeUndefined();
+    expect(asyncNeverCalled).toHaveBeenCalled();
   });
 
-  it('should handle functions with different completion times', (done) => {
-    const fastAsync = (callback: any) => {
-      setTimeout(() => callback(null, 'fast'), 10);
-    };
-
-    const slowAsync = (callback: any) => {
-      setTimeout(() => callback(null, 'slow'), 200);
-    };
-
-    const mediumAsync = (callback: any) => {
-      setTimeout(() => callback(null, 'medium'), 100);
-    };
+  it('should handle functions with different completion times', async () => {
+    const fastAsync = (callback) => setTimeout(() => callback(null, 'fast'), 1);
+    const slowAsync = (callback) => setTimeout(() => callback(null, 'slow'), 15);
+    const mediumAsync = (callback) => setTimeout(() => callback(null, 'medium'), 5);
 
     const mixedParallel = parallel([fastAsync, slowAsync, mediumAsync]);
 
-    mixedParallel((error, data) => {
-      expect(error).toBeNull();
-      expect(data).toEqual(['fast', 'slow', 'medium']);
-      done();
-    });
+    const result = await new Promise((resolve) => mixedParallel((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(250);
+    expect(result.err).toBeNull();
+    expect(result.data).toEqual(['fast', 'slow', 'medium']);
   });
 
-  it('should handle functions with same completion time', (done) => {
-    const async1 = (callback: any) => {
-      setTimeout(() => callback(null, 1), 100);
-    };
-
-    const async2 = (callback: any) => {
-      setTimeout(() => callback(null, 2), 100);
-    };
-
-    const async3 = (callback: any) => {
-      setTimeout(() => callback(null, 3), 100);
-    };
+  it('should handle functions with same completion time', async () => {
+    const async1 = (callback) => setTimeout(() => callback(null, 1), 5);
+    const async2 = (callback) => setTimeout(() => callback(null, 2), 5);
+    const async3 = (callback) => setTimeout(() => callback(null, 3), 5);
 
     const sameTimeParallel = parallel([async1, async2, async3]);
 
-    sameTimeParallel((error, data) => {
-      expect(error).toBeNull();
-      expect(data).toEqual([1, 2, 3]);
-      done();
-    });
+    const result = await new Promise((resolve) => sameTimeParallel((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(150);
+    expect(result.err).toBeNull();
+    expect(result.data).toEqual([1, 2, 3]);
   });
 
-  it('should handle string and number results', (done) => {
-    const asyncString = (callback: any) => {
-      setTimeout(() => callback(null, 'hello'), 50);
-    };
-
-    const asyncNumber = (callback: any) => {
-      setTimeout(() => callback(null, 42), 100);
-    };
-
-    const asyncBoolean = (callback: any) => {
-      setTimeout(() => callback(null, true), 75);
-    };
+  it('should handle string and number results', async () => {
+    const asyncString = (callback) => setTimeout(() => callback(null, 'hello'), 5);
+    const asyncNumber = (callback) => setTimeout(() => callback(null, 42), 10);
+    const asyncBoolean = (callback) => setTimeout(() => callback(null, true), 7);
 
     const mixedTypesParallel = parallel([asyncString, asyncNumber, asyncBoolean]);
 
-    mixedTypesParallel((error, data) => {
-      expect(error).toBeNull();
-      expect(data).toEqual(['hello', 42, true]);
-      done();
-    });
+    const result = await new Promise((resolve) => mixedTypesParallel((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(150);
+    expect(result.err).toBeNull();
+    expect(result.data).toEqual(['hello', 42, true]);
   });
 
-  it('should handle error in first function', (done) => {
-    const asyncFail = (callback: any) => {
-      setTimeout(() => callback(new Error('Immediate error')), 10);
-    };
-
-    const asyncSuccess = (callback: any) => {
-      setTimeout(() => callback(null, 'success'), 50);
-    };
+  it('should handle error in first function', async () => {
+    const asyncFail = (callback) => setTimeout(() => callback(new Error('Immediate error')), 1);
+    const asyncSuccess = (callback) => setTimeout(() => callback(null, 'success'), 5);
 
     const immediateErrorParallel = parallel([asyncFail, asyncSuccess]);
 
-    immediateErrorParallel((error, data) => {
-      expect(error.message).toBe('Immediate error');
-      expect(data).toBeUndefined();
-      done();
-    });
+    const result = await new Promise((resolve) => immediateErrorParallel((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(100);
+    expect(result.err.message).toBe('Immediate error');
+    expect(result.data).toBeUndefined();
   });
 
-  it('should handle all functions failing', (done) => {
-    const asyncFail1 = (callback: any) => {
-      setTimeout(() => callback(new Error('Error 1')), 100);
-    };
-
-    const asyncFail2 = (callback: any) => {
-      setTimeout(() => callback(new Error('Error 2')), 50);
-    };
-
-    const asyncFail3 = (callback: any) => {
-      setTimeout(() => callback(new Error('Error 3')), 75);
-    };
+  it('should handle all functions failing', async () => {
+    const asyncFail1 = (callback) => setTimeout(() => callback(new Error('Error 1')), 10);
+    const asyncFail2 = (callback) => setTimeout(() => callback(new Error('Error 2')), 5);
+    const asyncFail3 = (callback) => setTimeout(() => callback(new Error('Error 3')), 7);
 
     const allFailParallel = parallel([asyncFail1, asyncFail2, asyncFail3]);
 
-    allFailParallel((error, data) => {
-      expect(error.message).toBe('Error 2'); // First error chronologically
-      expect(data).toBeUndefined();
-      done();
-    });
+    const result = await new Promise((resolve) => allFailParallel((err, data) => resolve({ err, data })));
 
-    jest.advanceTimersByTime(150);
+    expect(result.err.message).toBe('Error 2'); // first error chronologically
+    expect(result.data).toBeUndefined();
   });
 });
+
 ```
 
 

@@ -7,17 +7,17 @@ export function sequence(asyncFuncs: AsyncFunc[]): AsyncFunc {
 }
 ```
 
-```ts index.test.ts 
-import { sequence } from './index';
+```ts index.test.ts
+import { sequence } from "./index";
 
 function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-describe('sequence', () => {
-  it('should chain async functions sequentially', async () => {
+describe("sequence", () => {
+  it("should chain async functions sequentially", async () => {
     const asyncTimes2 = (callback, num) => {
-      setTimeout(() => callback(null, num * 2), 100);
+      setTimeout(() => callback(null, num * 2), 5); // lowered from 100
     };
 
     const asyncTimes4 = sequence([asyncTimes2, asyncTimes2]);
@@ -29,11 +29,11 @@ describe('sequence', () => {
       }, 1);
     });
 
-    await wait(200);
+    await wait(10); // lowered from 200
     expect(result).toBe(4);
   });
 
-  it('should handle empty array', async () => {
+  it("should handle empty array", async () => {
     const emptySequence = sequence([]);
 
     const result = await new Promise((resolve, reject) => {
@@ -46,9 +46,9 @@ describe('sequence', () => {
     expect(result).toBeUndefined();
   });
 
-  it('should handle single async function', async () => {
+  it("should handle single async function", async () => {
     const asyncAdd1 = (callback, num) => {
-      setTimeout(() => callback(null, num + 1), 100);
+      setTimeout(() => callback(null, num + 1), 5); // lowered from 100
     };
 
     const singleSequence = sequence([asyncAdd1]);
@@ -60,46 +60,50 @@ describe('sequence', () => {
       }, 1);
     });
 
-    await wait(100);
+    await wait(10); // lowered from 100
     expect(result).toBe(2);
   });
 
-  it('should stop on first error', async () => {
+  it("should stop on first error", async () => {
     const asyncTimes2 = (callback, num) => {
-      setTimeout(() => callback(null, num * 2), 100);
+      setTimeout(() => callback(null, num * 2), 5);
     };
 
     const asyncFail = (callback, data) => {
-      setTimeout(() => callback(new Error('Something went wrong')), 50);
+      setTimeout(() => callback(new Error("Something went wrong")), 5); // lowered from 50
     };
 
     const asyncNeverCalled = jest.fn((callback, data) => {
-      setTimeout(() => callback(null, data + 1), 100);
+      setTimeout(() => callback(null, data + 1), 5);
     });
 
-    const sequenceWithError = sequence([asyncTimes2, asyncFail, asyncNeverCalled]);
+    const sequenceWithError = sequence([
+      asyncTimes2,
+      asyncFail,
+      asyncNeverCalled,
+    ]);
 
     const error = await new Promise((resolve) => {
       sequenceWithError((err) => resolve(err), 1);
     });
 
-    await wait(200);
+    await wait(10); // lowered from 200
 
-    expect(error.message).toBe('Something went wrong');
+    expect(error.message).toBe("Something went wrong");
     expect(asyncNeverCalled).not.toHaveBeenCalled();
   });
 
-  it('should handle multiple chained operations', async () => {
+  it("should handle multiple chained operations", async () => {
     const asyncAdd1 = (callback, num) => {
-      setTimeout(() => callback(null, num + 1), 50);
+      setTimeout(() => callback(null, num + 1), 5); // lowered from 50
     };
 
     const asyncTimes3 = (callback, num) => {
-      setTimeout(() => callback(null, num * 3), 50);
+      setTimeout(() => callback(null, num * 3), 5); // lowered from 50
     };
 
     const asyncSubtract2 = (callback, num) => {
-      setTimeout(() => callback(null, num - 2), 50);
+      setTimeout(() => callback(null, num - 2), 5); // lowered from 50
     };
 
     const complexSequence = sequence([asyncAdd1, asyncTimes3, asyncSubtract2]);
@@ -111,17 +115,17 @@ describe('sequence', () => {
       }, 1);
     });
 
-    await wait(150);
+    await wait(15); // lowered from 150
     expect(result).toBe(4);
   });
 
-  it('should handle async functions with different timing', async () => {
+  it("should handle async functions with different timing", async () => {
     const fastAsync = (callback, data) => {
-      setTimeout(() => callback(null, data + 1), 10);
+      setTimeout(() => callback(null, data + 1), 2); // lowered from 10
     };
 
     const slowAsync = (callback, data) => {
-      setTimeout(() => callback(null, data * 2), 100);
+      setTimeout(() => callback(null, data * 2), 10); // lowered from 100
     };
 
     const mixedSequence = sequence([fastAsync, slowAsync]);
@@ -133,17 +137,17 @@ describe('sequence', () => {
       }, 1);
     });
 
-    await wait(200);
+    await wait(15); // lowered from 200
     expect(result).toBe(4);
   });
 
-  it('should handle string data transformation', async () => {
+  it("should handle string data transformation", async () => {
     const asyncToUpper = (callback, str) => {
-      setTimeout(() => callback(null, str.toUpperCase()), 50);
+      setTimeout(() => callback(null, str.toUpperCase()), 5); // lowered from 50
     };
 
     const asyncAddExclamation = (callback, str) => {
-      setTimeout(() => callback(null, str + '!'), 50);
+      setTimeout(() => callback(null, str + "!"), 5); // lowered from 50
     };
 
     const stringSequence = sequence([asyncToUpper, asyncAddExclamation]);
@@ -152,34 +156,32 @@ describe('sequence', () => {
       stringSequence((error, data) => {
         if (error) reject(error);
         else resolve(data);
-      }, 'hello');
+      }, "hello");
     });
 
-    await wait(100);
-    expect(result).toBe('HELLO!');
+    await wait(10); // lowered from 100
+    expect(result).toBe("HELLO!");
   });
 
-  it('should handle error in first function', async () => {
+  it("should handle error in first function", async () => {
     const asyncFail = (callback, data) => {
-      setTimeout(() => callback(new Error('First error')), 50);
+      setTimeout(() => callback(new Error("First error")), 5); // lowered from 50
     };
 
     const asyncNeverCalled = jest.fn((callback, data) => {
-      setTimeout(() => callback(null, data), 100);
+      setTimeout(() => callback(null, data), 5); // lowered from 100
     });
 
     const failingSequence = sequence([asyncFail, asyncNeverCalled]);
 
     const error = await new Promise((resolve) => {
-      failingSequence((err) => resolve(err), 'test');
+      failingSequence((err) => resolve(err), "test");
     });
 
-    await wait(100);
+    await wait(10); // lowered from 100
 
-    expect(error.message).toBe('First error');
+    expect(error.message).toBe("First error");
     expect(asyncNeverCalled).not.toHaveBeenCalled();
   });
 });
 ```
-
-
