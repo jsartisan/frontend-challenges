@@ -364,11 +364,9 @@ function getTemplateRanges(text: string): Record<string, string> | null {
     const lines = matchContent.split('\n');
     const firstLine = lines[0]?.trim();
     
-    if (firstLine === 'template.javascript.md' || firstLine === 'javascript.template.md') {
-      result.javascript = matchContent;
-    } else if (firstLine === 'template.typescript.md' || firstLine === 'typescript.template.md') {
-      result.typescript = matchContent;
-    }
+    const template = firstLine.split('.')[0];
+    
+    result[template] = matchContent;
   });
   
   return Object.keys(result).length > 0 ? result : null;

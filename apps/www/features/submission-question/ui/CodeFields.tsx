@@ -34,7 +34,7 @@ type Step2FieldsProps = {
 export function CodeFields(props: Step2FieldsProps) {
   const { form } = props;
   const { sandpack } = useSandpack();
-  const { activeFile, files } = sandpack;
+  const { activeFile, files, setActiveFile } = sandpack;
 
   return (
     <ResizablePanelGroup direction="horizontal" className="mt-6 grid grow gap-1">
@@ -88,7 +88,12 @@ export function CodeFields(props: Step2FieldsProps) {
 
       <ResizableHandle className="w-2" />
       <ResizablePanel defaultSize={50}>
-        <ResizableLayoutPanel value={activeFile}>
+        <ResizableLayoutPanel
+          value={activeFile}
+          onValueChange={(value) => {
+            setActiveFile(value);
+          }}
+        >
           {Object.keys(files).map((file) => ({
             title: file,
             value: file,

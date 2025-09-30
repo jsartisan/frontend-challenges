@@ -32,6 +32,7 @@ type: ${type}\n`;
     body += `## Template\n\n`;
 
     body += `<!--template-start-->\n\n`;
+    body += `template.${template}.md\n`;
 
     Object.keys(files).map((filename) => {
       const file = files[filename];
@@ -64,7 +65,6 @@ type: ${type}\n`;
         }[filename]?.code;
 
       if (isFileChanged) {
-        body += `${filename.replace("/", "")}\n`;
         body += "```";
         body += `${filename.split(".").pop()} ${filename.replace("/", "")}\n`;
         body += file.code;
