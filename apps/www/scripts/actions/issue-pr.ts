@@ -364,7 +364,7 @@ function getTemplateRanges(text: string): Record<string, string> | null {
     const lines = matchContent.split('\n');
     const firstLine = lines[0]?.trim();
     
-    const template = firstLine.split('.')[0];
+    const template = firstLine.split('.')[1];
     
     result[template] = matchContent;
   });
