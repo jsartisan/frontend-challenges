@@ -18,11 +18,12 @@ export const LayoutContext = createContext<LayoutContextProps>({
 
 type LayoutProviderProps = {
   children: React.ReactNode;
+  defaultValue?: Layout;
 };
 
 export function LayoutProvider(props: LayoutProviderProps) {
-  const { children } = props;
-  const [layout, setLayout] = useState<Layout>("layout-1");
+  const { children, defaultValue } = props;
+  const [layout, setLayout] = useState<Layout>(defaultValue ?? "layout-1");
 
   const change = (layout: Layout) => {
     setLayout(layout);

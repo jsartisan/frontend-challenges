@@ -1,4 +1,4 @@
-```jsx App.jsx
+```jsx App.jsx active
 import { useState, useRef } from "react";
 
 export default function App() {
@@ -6,7 +6,7 @@ export default function App() {
 
   const ref = useRef(() => {
     console.log("Submitted value:" + value);
-  }, []);
+  });
 
   return (
     <>

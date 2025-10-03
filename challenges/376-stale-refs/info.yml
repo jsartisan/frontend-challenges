@@ -2,7 +2,7 @@ difficulty: easy
 title: Stale Refs
 type: question
 template: react
-tags: react
+tags: react, ui-coding
 author:
   github: jsartisan
   name: Pawan Kumar

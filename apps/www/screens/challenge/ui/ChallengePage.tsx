@@ -36,7 +36,7 @@ export async function ChallengePage(props: PageProps<"/challenges/[slug]">) {
   const challenge = await getChallengeByPath((await props.params).slug);
 
   return (
-    <LayoutProvider>
+    <LayoutProvider defaultValue={challenge.info?.en?.tags?.includes("ui-coding") ? "layout-2" : undefined}>
       {challenge.type === "quiz" && <Quiz challenge={challenge} />}
       {challenge.type === "question" && <Question challenge={challenge} />}
       {challenge.type === "theory" && <Theory challenge={challenge} />}
