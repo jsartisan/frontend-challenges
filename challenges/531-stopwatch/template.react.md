@@ -7,7 +7,7 @@ export default function App() {
 
 ```
 
-```jsx Stopwatch.jsx 
+```jsx Stopwatch.jsx active 
 export function Stopwatch() {
   return (
     <div>
