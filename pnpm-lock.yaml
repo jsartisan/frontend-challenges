@@ -229,8 +229,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.1(@types/react@19.1.13)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       console-feed:
-        specifier: ^3.6.0
-        version: 3.6.0(jquery@3.7.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: ^3.8.0
+        version: 3.8.0(jquery@3.7.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
@@ -451,10 +451,6 @@ packages:
 
   '@babel/helper-string-parser@7.25.9':
     resolution: {integrity: sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helper-validator-identifier@7.25.9':
-    resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.27.1':
@@ -3511,10 +3507,10 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
-  console-feed@3.6.0:
-    resolution: {integrity: sha512-eeMvRE2YkkLKhDJ16P5qEaM92tVLSI1DwqMBD5v7cmcvrU1WRGoKh4xpOAkzCqK3y/mAkqsMa8dDEafNi1uJ3w==}
+  console-feed@3.8.0:
+    resolution: {integrity: sha512-H7d5dbVOmsujpMdI252RGHKxGwTybRI9o1aDUe2xDeVC63Koqh/QC7Rvo48EYcU3aMCM4OgWHKKISsZ2dMLX7w==}
     peerDependencies:
-      react: ^15.x || ^16.x || ^17.x || ^18.x
+      react: ^15.x || ^16.x || ^17.x || ^18.x || ^19.x
 
   convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
@@ -6417,8 +6413,6 @@ snapshots:
 
   '@babel/helper-string-parser@7.25.9': {}
 
-  '@babel/helper-validator-identifier@7.25.9': {}
-
   '@babel/helper-validator-identifier@7.27.1': {}
 
   '@babel/parser@7.26.2':
@@ -6450,7 +6444,7 @@ snapshots:
   '@babel/types@7.26.0':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
-      '@babel/helper-validator-identifier': 7.25.9
+      '@babel/helper-validator-identifier': 7.27.1
 
   '@codemirror/autocomplete@6.18.3(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.2)(@lezer/common@1.2.3)':
     dependencies:
@@ -10182,7 +10176,7 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  console-feed@3.6.0(jquery@3.7.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+  console-feed@3.8.0(jquery@3.7.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       '@emotion/core': 10.3.1(react@19.1.1)
       '@emotion/styled': 10.3.0(@emotion/core@10.3.1(react@19.1.1))(react@19.1.1)

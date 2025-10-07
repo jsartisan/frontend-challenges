@@ -2,7 +2,7 @@ difficulty: medium
 title: Tic Tac Toe
 type: question
 template: react
-tags: react, ui coding
+tags: react, ui-coding
 author:
   github: jsartisan
   name: Pawan Kumar

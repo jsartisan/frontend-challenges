@@ -55,7 +55,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
-    "console-feed": "^3.6.0",
+    "console-feed": "^3.8.0",
     "date-fns": "^2.30.0",
     "emmet-monaco-es": "^5.5.0",
     "esno": "^4.0.0",
