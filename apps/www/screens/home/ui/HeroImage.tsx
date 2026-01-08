@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { Box } from "lucide-react";
 
-import { Icon } from "~/components/ui";
+import { Icon } from "~/components/ui/Icon";
 
 import logo from "../../../public/images/logo.svg";
 
@@ -25,18 +26,18 @@ export function HeroImage() {
                 r={levels[level]}
                 fill="none"
                 strokeDasharray="4 4"
-                className="stroke-(--color-bd) desktop:stroke-(--color-bd) desktop:stroke-[1px] stroke-[3px]"
+                className="stroke-border desktop:stroke-border desktop:stroke-[1px] stroke-[3px]"
                 opacity={1}
               />
             ))}
           </svg>
         </div>
         <div className="absolute inset-0 grid place-items-center">
-          <OrbitingItem level={1} angleOffset={0} icon={<Icon name="static-color" />} />
-          <OrbitingItem level={2} angleOffset={60} icon={<Icon name="css-color" />} />
-          <OrbitingItem level={3} angleOffset={0} icon={<Icon name="javascript-color" />} />
-          <OrbitingItem level={3} angleOffset={120} icon={<Icon name="typescript-color" />} />
-          <OrbitingItem level={3} angleOffset={240} icon={<Icon name="react-color" />} />
+          <OrbitingItem level={1} angleOffset={0} icon={<Icon icon={Box} />} />
+          <OrbitingItem level={2} angleOffset={60} icon={<Icon icon={Box} />} />
+          <OrbitingItem level={3} angleOffset={0} icon={<Icon icon={Box} />} />
+          <OrbitingItem level={3} angleOffset={120} icon={<Icon icon={Box} />} />
+          <OrbitingItem level={3} angleOffset={240} icon={<Icon icon={Box} />} />
         </div>
       </div>
     </div>

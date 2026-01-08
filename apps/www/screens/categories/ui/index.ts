@@ -1,1 +1,0 @@
-export { CategoryDetailPage } from "./CategoryDetailPage";

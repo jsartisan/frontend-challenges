@@ -1,26 +1,75 @@
-import { Hero } from "~/screens/home/ui/Hero";
-import { Community } from "~/screens/home/ui/Community";
-import { CategoryList } from "~/entities/category/ui/CategoryList";
-import { Leaderboard } from "~/features/leaderboard/ui/Leaderboard";
-import { getChallenges } from "~/entities/challenge/api/getChallenges";
-import { RecentlyAddedChallenges } from "~/screens/home/ui/RecentlyAddedChallenges";
-import { sortChallengesByDate } from "~/entities/challenge/lib/sortChallengesByDate";
-import { mapCategoriesWithCount } from "~/entities/category/lib/mapCategoriesWithCount";
+"use client";
 
-export async function HomePage() {
-  const challenges = await getChallenges();
-  const sortedChallenges = sortChallengesByDate(challenges, "desc").slice(0, 5);
-  const categories = mapCategoriesWithCount(challenges);
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { nanoid } from "nanoid";
+
+import { Button } from "~/components/ui/Button";
+import {
+  PromptInput,
+  PromptInputBody,
+  PromptInputFooter,
+  PromptInputMessage,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  PromptInputTools,
+} from "~/components/ui/PromptInput";
+
+import { HeroImage } from "./HeroImage";
+
+export function HomePage() {
+  const router = useRouter();
+  const [text, setText] = useState("");
+
+  const handleSubmit = (message: PromptInputMessage) => {
+    if (!message.text?.trim()) return;
+
+    // Generate a unique thread ID and navigate to the thread page
+    const threadId = nanoid(10);
+    const searchParams = new URLSearchParams({ q: message.text });
+    router.push(`/thread/${threadId}?${searchParams.toString()}`);
+  };
 
   return (
-    <>
-      <Hero />
-      <CategoryList categories={categories} />
-      <div className="flex gap-8 py-4">
-        <RecentlyAddedChallenges challenges={sortedChallenges} className="flex-grow" />
-        <Leaderboard className="w-4/12" />
+    <div className="flex min-h-screen flex-col items-center justify-center px-4">
+      <div className="relative flex w-full max-w-2xl flex-col items-center">
+        <div className="flex h-40 items-center justify-center">
+          <HeroImage />
+        </div>
+
+        {/* Content overlaid on top */}
+        <div className="relative z-10 -mt-20 w-full space-y-8 py-32">
+          <div className="text-center">
+            <h1 className="text-(--color-fg) text-3xl font-semibold">What do you want to learn?</h1>
+            <p className="text-(--color-fg-muted) mt-2">Ask anything about HTML, CSS, or JavaScript</p>
+          </div>
+
+          <div className="w-full max-w-2xl">
+            <PromptInput onSubmit={handleSubmit} className="relative" globalDrop multiple>
+              <PromptInputBody>
+                <PromptInputTextarea
+                  onChange={(e) => setText(e.target.value)}
+                  value={text}
+                  className=""
+                  placeholder="Ask me anything..."
+                />
+              </PromptInputBody>
+              <PromptInputFooter>
+                <PromptInputTools />
+                <PromptInputSubmit disabled={!text.trim()} />
+              </PromptInputFooter>
+            </PromptInput>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            {["Flexbox basics", "CSS Grid layout", "JavaScript closures", "DOM manipulation"].map((suggestion) => (
+              <Button key={suggestion} onClick={() => setText(suggestion)} variant="outline" className="shadow-none">
+                {suggestion}
+              </Button>
+            ))}
+          </div>
+        </div>
       </div>
-      <Community />
-    </>
+    </div>
   );
 }

@@ -1,23 +1,22 @@
+"use client";
+
 import * as React from "react";
+import { TextArea as RACTextarea } from "react-aria-components";
 
-import { cn } from "../../utils/helpers";
+import { cn } from "~/utils/helpers";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
-
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, ...props }, ref) => {
+function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
-    <textarea
+    <RACTextarea
+      data-slot="textarea"
       className={cn(
-        "placeholder:[var(--color-fg-neutral-subtle)] bg-(--color-bg) shadow-xs ring-(--color-bd) flex min-h-[60px] w-full rounded-md px-3 py-1 text-sm ring-1 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50",
-        "focus-visible:outline-hidden focus-visible:ring-(--color-bd-accent) focus-visible:ring-2",
+        "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 field-sizing-content shadow-xs flex min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "focus:border-ring focus:ring-ring/50 focus:ring-[3px]",
         className,
       )}
-      ref={ref}
       {...props}
     />
   );
-});
-Textarea.displayName = "Textarea";
+}
 
 export { Textarea };

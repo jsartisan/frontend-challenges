@@ -1,145 +1,84 @@
 "use client";
 
-import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
-import { CaretSortIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
-
-import { cn } from "../../utils/helpers";
-
-const Select = SelectPrimitive.Root;
-
-const SelectGroup = SelectPrimitive.Group;
-
-const SelectValue = SelectPrimitive.Value;
-
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & { size?: "sm" | "md" }
->(({ children, className, size = "md", ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "placeholder:text-muted-foreground border-(--color-bd) bg-(--color-bg) shadow-xs ring-offset-(--color-bg) flex h-8 w-full items-center justify-between whitespace-nowrap rounded-md border px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-      "focus-visible:outline-hidden focus-visible:ring-(--color-bd-accent) focus-visible:ring-2 focus-visible:ring-offset-2",
-      size === "sm" && "bs-7",
-      className,
-    )}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <CaretSortIcon className="h-4 w-4 opacity-50" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-));
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-
-const SelectScrollUpButton = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.ScrollUpButton
-    ref={ref}
-    className={cn("flex cursor-default items-center justify-center py-1", className)}
-    {...props}
-  >
-    <ChevronUpIcon />
-  </SelectPrimitive.ScrollUpButton>
-));
-SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-
-const SelectScrollDownButton = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.ScrollDownButton
-    ref={ref}
-    className={cn("flex cursor-default items-center justify-center py-1", className)}
-    {...props}
-  >
-    <ChevronDownIcon />
-  </SelectPrimitive.ScrollDownButton>
-));
-SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ children, className, position = "popper", ...props }, ref) => (
-  <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
-      ref={ref}
-      className={cn(
-        "text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 border-(--color-bd) bg-(--color-bg) relative z-50 max-h-96 min-w-32 overflow-hidden rounded-md border shadow-md",
-        position === "popper" &&
-          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-        className,
-      )}
-      position={position}
-      {...props}
-    >
-      <SelectScrollUpButton />
-      <SelectPrimitive.Viewport
-        className={cn(
-          "p-1",
-          position === "popper" && "h-(--radix-select-trigger-height) min-w-(--radix-select-trigger-width) w-full",
-        )}
-      >
-        {children}
-      </SelectPrimitive.Viewport>
-      <SelectScrollDownButton />
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
-));
-SelectContent.displayName = SelectPrimitive.Content.displayName;
-
-const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label ref={ref} className={cn("px-2 py-1.5 text-sm font-semibold", className)} {...props} />
-));
-SelectLabel.displayName = SelectPrimitive.Label.displayName;
-
-const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ children, className, ...props }, ref) => (
-  <SelectPrimitive.Item
-    ref={ref}
-    className={cn(
-      "focus:text-accent-foreground outline-hidden focus:bg-(--color-bg-active) data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm",
-      className,
-    )}
-    {...props}
-  >
-    <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
-      </SelectPrimitive.ItemIndicator>
-    </span>
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
-));
-SelectItem.displayName = SelectPrimitive.Item.displayName;
-
-const SelectSeparator = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator ref={ref} className={cn("bg-muted -mx-1 my-1 h-px", className)} {...props} />
-));
-SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
-
-export {
-  Select,
-  SelectGroup,
+import React from "react";
+import { ChevronDown } from "lucide-react";
+import {
+  Select as AriaSelect,
+  SelectProps as AriaSelectProps,
+  composeRenderProps,
   SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectLabel,
-  SelectItem,
-  SelectSeparator,
-  SelectScrollUpButton,
-  SelectScrollDownButton,
-};
+  ValidationResult,
+  type ListBoxItemProps,
+} from "react-aria-components";
+
+import { cn } from "~/utils/helpers";
+import { Popover } from "./Popover";
+import { Button, ButtonProps } from "./Button";
+import { FieldDescription, FieldError, FieldLabel } from "./Field";
+import { DropdownItem, DropdownSection, DropdownSectionProps, ListBox } from "./ListBox";
+
+export interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, "children"> {
+  label?: string;
+  description?: string;
+  errorMessage?: string | ((validation: ValidationResult) => string);
+  items?: Iterable<T>;
+  children: React.ReactNode | ((item: T) => React.ReactNode);
+  size?: ButtonProps["size"];
+  enableSearch?: boolean;
+  filterBehavior?: "contains" | "startsWith";
+  variant?: ButtonProps["variant"];
+}
+
+export function SelectRoot<T extends object>(props: AriaSelectProps<T>) {
+  return (
+    <AriaSelect<T>
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        cn("group relative flex flex-col gap-1", className),
+      )}
+    >
+      {props.children}
+    </AriaSelect>
+  );
+}
+
+export function Select<T extends object>({
+  children,
+  description,
+  errorMessage,
+  items,
+  label,
+  size = "default",
+  variant = "outline",
+  ...props
+}: SelectProps<T>) {
+  return (
+    <SelectRoot {...props}>
+      {label && <FieldLabel>{label}</FieldLabel>}
+      <Button size={size} variant={variant} data-slot="select-trigger" className="text-start">
+        <SelectValue data-slot="select-value" className="placeholder-shown:text-muted-foreground flex-1 text-sm">
+          {({ defaultChildren, selectedText }) => selectedText || defaultChildren}
+        </SelectValue>
+        <ChevronDown aria-hidden />
+      </Button>
+      {description && <FieldDescription>{description}</FieldDescription>}
+      <FieldError>{errorMessage}</FieldError>
+      <Popover className="w-56 min-w-(--trigger-width)">
+        <ListBox
+          items={items}
+          className="max-h-[inherit] overflow-auto border-none p-1 outline-hidden [clip-path:inset(0_0_0_0_round_.75rem)]"
+        >
+          {children}
+        </ListBox>
+      </Popover>
+    </SelectRoot>
+  );
+}
+
+export function SelectItem(props: ListBoxItemProps) {
+  return <DropdownItem {...props} />;
+}
+
+export function SelectSection<T extends object>(props: DropdownSectionProps<T>) {
+  return <DropdownSection {...props} />;
+}

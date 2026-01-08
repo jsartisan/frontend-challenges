@@ -1,5 +1,5 @@
-import { HomePage } from "~/screens/home/index";
+import { HomePage } from "~/screens/home";
 
-export const dynamic = "force-static";
-
-export default HomePage;
+export default function Page() {
+  return <HomePage />;
+}

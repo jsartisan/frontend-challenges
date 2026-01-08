@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef } from "react";
 
 import { cn } from "~/utils/helpers";
-import { Link } from "~/components/ui";
+import { Link } from "~/components/ui/Link";
 
 type LogoProps = {
   svgClassName?: string;
