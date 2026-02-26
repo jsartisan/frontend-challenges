@@ -1,108 +1,163 @@
-@theme {
-  --color-bg: var(--ramp-white-1000);
-  --color-bg-transparent: color-mix(in srgb, var(--color-bg), transparent 10%);
-  --color-bg-hover: color-mix(in srgb, var(--color-bg), black 5%);
-  --color-bg-active: color-mix(in srgb, var(--color-bg), black 6%);
-  --color-bg-selected: color-mix(in srgb, var(--color-bg), black 8%);
-  --color-bg-secondary: color-mix(in oklch, var(--color-bg), black 2%);
-  --color-bg-accent: var(--ramp-blue-500);
-  --color-bg-accent-hover: color-mix(in srgb, var(--color-bg-accent), white 10%);
-  --color-bg-accent-active: color-mix(in srgb, var(--color-bg-accent), black 10%);
-  --color-bg-accent-subtle: color-mix(in srgb, var(--color-bg-accent), white 80%);
-  --color-bg-accent-strong: color-mix(in srgb, var(--color-bg-accent), black 20%);
-  --color-bg-neutral: var(--ramp-grey-100);
-  --color-bg-neutral-hover: color-mix(in srgb, var(--color-bg-neutral), black 5%);
-  --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral), white 5%);
-  --color-bg-neutral-subtle-hover: color-mix(in srgb, var(--color-bg-neutral-subtle), white 10%);
-  --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%);
-  --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 5%);
-  --color-bg-neutral-strong-hover: color-mix(in srgb, var(--color-bg-neutral-strong), black 5%);
-  --color-bg-assistive: var(--ramp-grey-900);
-  --color-bg-assistive-transparent: color-mix(in srgb, var(--color-bg-assistive), transparent);
-  --color-bg-negative: var(--ramp-red-500);
-  --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
-  --color-bg-positive: var(--ramp-green-500);
-  --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
-  --color-bg-easy: var(--ramp-green-500);
-  --color-bg-easy-subtle: color-mix(in srgb, var(--color-bg-easy) 10%, white 90%);
-  --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 8% black);
-  --color-bg-medium: var(--ramp-orange-500);
-  --color-bg-medium-subtle: color-mix(in srgb, var(--color-bg-medium) 10%, white 90%);
-  --color-bg-medium-strong: color-mix(in srgb, var(--color-bg-medium), 8% black);
-  --color-bg-hard: var(--ramp-red-500);
-  --color-bg-hard-subtle: color-mix(in srgb, var(--color-bg-hard) 10%, white 90%);
-  --color-bg-hard-strong: color-mix(in srgb, var(--color-bg-hard), 8% black);
-  --color-bg-extreme: var(--ramp-purple-500);
-  --color-bg-extreme-subtle: color-mix(in srgb, var(--color-bg-extreme) 10%, white 90%);
-  --color-bg-extreme-strong: color-mix(in srgb, var(--color-bg-extreme), 8% black);
-  --color-bg-question: var(--ramp-purple-100);
-  --color-bg-quiz: var(--ramp-orange-100);
+:root {
+  color-scheme: light dark;
 
-  --color-fg: var(--ramp-grey-900);
-  --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, white 20%);
-  --color-fg-subtle-hover: color-mix(in srgb, var(--color-fg-subtle), black 30%);
-  --color-fg-onaccent: var(--ramp-white-1000);
-  --color-fg-accent: var(--ramp-blue-500);
-  --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent), black 20%);
-  --color-fg-neutral: var(--ramp-grey-900);
-  --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 40%);
-  --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral-subtle), black 30%);
-  --color-fg-invert: var(--ramp-white-1000);
-  --color-fg-on-assistive: var(--ramp-white-1000);
-  --color-fg-negative: var(--ramp-red-500);
-  --color-fg-positive: var(--ramp-green-600);
-  --color-fg-on-positive: var(--ramp-white-1000);
-  --color-fg-easy: var(--ramp-green-900);
-  --color-fg-medium: var(--ramp-orange-900);
-  --color-fg-hard: var(--ramp-red-900);
-  --color-fg-question: var(--ramp-purple-900);
-  --color-fg-quiz: var(--ramp-orange-900);
+  --background: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --card: light-dark(oklch(1 0 0), oklch(0.1400 0 0));
+  --card-foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --popover: light-dark(oklch(1 0 0), oklch(0.1800 0 0));
+  --popover-foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --primary: light-dark(oklch(0.67 0.18 249.23), oklch(1 0 0));
+  --primary-foreground: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --secondary: light-dark(oklch(0.9800 0 0), oklch(0.2500 0 0));
+  --secondary-foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --muted: light-dark(oklch(0.9700 0 0), oklch(0.2300 0 0));
+  --muted-foreground: light-dark(oklch(0.4400 0 0), oklch(0.7200 0 0));
+  --accent: light-dark(oklch(0.9400 0 0), oklch(0.3200 0 0));
+  --accent-foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --destructive: light-dark(oklch(0.6300 0.1900 23.0300), oklch(0.6900 0.2000 23.9100));
+  --destructive-foreground: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --border: light-dark(oklch(0.9200 0 0), oklch(0.2600 0 0));
+  --input: light-dark(oklch(0.9400 0 0), oklch(0.3200 0 0));
+  --ring: light-dark(oklch(0 0 0), oklch(0.7200 0 0));
 
-  --color-ic-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
+  --chart-1: oklch(0.8100 0.1700 75.3500);
+  --chart-2: light-dark(oklch(0.5500 0.2200 264.5300), oklch(0.5800 0.2100 260.8400));
+  --chart-3: light-dark(oklch(0.7200 0 0), oklch(0.5600 0 0));
+  --chart-4: light-dark(oklch(0.9200 0 0), oklch(0.4400 0 0));
+  --chart-5: light-dark(oklch(0.5600 0 0), oklch(0.9200 0 0));
 
-  --color-bd: var(--ramp-grey-300);
-  --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, transparent 60%);
-  --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
-  --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
-  --color-bd-accent: var(--ramp-blue-500);
-  --color-bd-accent-strong: color-mix(in srgb, var(--color-bd-accent), black 20%);
-  --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
-  --color-bd-positive: var(--ramp-green-500);
-  --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive), transparent 50%);
-  --color-bd-assistive: var(--ramp-grey-900);
+  --sidebar: light-dark(oklch(0.9900 0 0), oklch(0.1800 0 0));
+  --sidebar-foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --sidebar-primary: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --sidebar-primary-foreground: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --sidebar-accent: light-dark(oklch(0.9400 0 0), oklch(0.3200 0 0));
+  --sidebar-accent-foreground: light-dark(oklch(0 0 0), oklch(1 0 0));
+  --sidebar-border: light-dark(oklch(0.9400 0 0), oklch(0.3200 0 0));
+  --sidebar-ring: light-dark(oklch(0 0 0), oklch(0.7200 0 0));
+
+  /* Domain-specific colors for challenges (subtle tinted backgrounds with colored text) */
+  --easy: light-dark(oklch(0.9500 0.0400 142.50), oklch(0.2500 0.0400 142.50));
+  --easy-foreground: light-dark(oklch(0.4000 0.1200 142.50), oklch(0.7500 0.1400 142.50));
+  --medium: light-dark(oklch(0.9400 0.0400 55.00), oklch(0.2500 0.0400 55.00));
+  --medium-foreground: light-dark(oklch(0.4500 0.1200 55.00), oklch(0.7800 0.1200 55.00));
+  --hard: light-dark(oklch(0.9400 0.0400 23.03), oklch(0.2500 0.0400 23.03));
+  --hard-foreground: light-dark(oklch(0.4500 0.1400 23.03), oklch(0.7500 0.1400 23.03));
+  --extreme: light-dark(oklch(0.9400 0.0400 300.00), oklch(0.2500 0.0400 300.00));
+  --extreme-foreground: light-dark(oklch(0.4500 0.1400 300.00), oklch(0.7500 0.1400 300.00));
+
+  /* Typography */
+  --font-sans: Geist, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Geist Mono, monospace;
+
+  /* Radius - matches frontend-coach */
+  --radius: 0.625rem;
+
+  /* Shadows */
+  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
+  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
+  --shadow-sm: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 1px 2px -1px hsl(0 0% 0% / 0.18);
+  --shadow: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 1px 2px -1px hsl(0 0% 0% / 0.18);
+  --shadow-md: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 2px 4px -1px hsl(0 0% 0% / 0.18);
+  --shadow-lg: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 4px 6px -1px hsl(0 0% 0% / 0.18);
+  --shadow-xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 8px 10px -1px hsl(0 0% 0% / 0.18);
+  --shadow-2xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.45);
+
+  /* Custom shadows */
+  --shadow-bg-none: 0 0 0 0px var(--border), 0 0px 0 0px var(--border);
+  --shadow-bg: 0px -1px 0px 0px color-mix(in srgb, var(--border), black 15%) inset, 0px 1px 1px 0px var(--border),
+    0 0 0 1px var(--border) inset;
+  --shadow-bg-pressed: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
+    -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px var(--border) inset;
+
+  --shadow-bg-accent: 0px -1px 0px 0px color-mix(in srgb, var(--primary), black 20%) inset,
+    0 2px 3px #00000021, 0 0 0 1px color-mix(in srgb, var(--primary), black 20%) inset;
+  --shadow-bg-accent-hover: 0 0 0 1px var(--color-primary), 0 4px 0 0px var(--color-bd-accent-strong);
+  --shadow-bg-accent-pressed: 0px 2px 4px 0px color-mix(in srgb, var(--color-bd-accent-strong), black 30%) inset,
+    1px 0px 1px 0px var(--color-bd-accent-strong) inset, -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
+    0 0 0 1px var(--color-bd-accent-strong) inset;
+  --shadow-bg-negative: 0 0 0 1px var(--color-bd-negative), 0 3px 0 0px var(--color-bd-negative);
+
+  --shadow-card: 0px 3px 2px -1px rgba(0, 0, 0, 0.12);
+  --shadow-input: 0px 1px 1px 0px rgba(0, 0, 0, 0.08) inset;
+  --shadow-popover: rgba(0, 0, 0, 0.16) 0px 4px 16px;
+
+  /* Spacing */
+  --spacing: 0.25rem;
 }
 
-.dark {
-  --color-bg: color-mix(in srgb, var(--ramp-grey-1000), 5% white);
-  --color-bg-hover: color-mix(in srgb, var(--color-bg) 100%, white 8%);
-  --color-bg-active: color-mix(in srgb, var(--color-bg) 100%, white 10%);
-  --color-bg-selected: color-mix(in srgb, var(--color-bg) 100%, white 12%);
-  --color-bg-secondary: var(--ramp-grey-1000);
-  --color-bg-accent: var(--ramp-blue-500);
-  --color-bg-neutral: color-mix(in srgb, var(--ramp-grey-100), 80% black);
-  --color-bg-neutral-subtle: var(--ramp-grey-700);
-  --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive), transparent 80%);
-  --color-bg-easy-subtle: color-mix(in srgb, var(--ramp-green-100), 80% black);
-  --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 10% black);
-  --color-bg-medium-subtle: color-mix(in srgb, var(--ramp-orange-100), 80% black);
-  --color-bg-hard-subtle: color-mix(in srgb, var(--ramp-red-100), 80% black);
-  --color-bg-extreme-subtle: color-mix(in srgb, var(--ramp-purple-100), 80% black);
-  --color-bg-question: color-mix(in srgb, var(--ramp-purple-100), 80% black);
-  --color-bg-quiz: color-mix(in srgb, var(--ramp-orange-100), 80% black);
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
-  --color-fg: var(--ramp-white-1000);
-  --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, black 30%);
-  --color-fg-onaccent: var(--ramp-white-1000);
-  --color-fg-neutral: color-mix(in srgb, var(--ramp-grey-900), white 80%);
-  --color-fg-easy: color-mix(in srgb, var(--ramp-green-900), 50% white);
-  --color-fg-medium: color-mix(in srgb, var(--ramp-orange-900), 50% white);
-  --color-fg-hard: color-mix(in srgb, var(--ramp-red-900), 50% white);
-  --color-fg-question: color-mix(in srgb, var(--ramp-purple-900), 50% white);
-  --color-fg-quiz: color-mix(in srgb, var(--ramp-orange-900), 50% white);
+  /* Domain-specific colors */
+  --color-easy: var(--easy);
+  --color-easy-foreground: var(--easy-foreground);
+  --color-medium: var(--medium);
+  --color-medium-foreground: var(--medium-foreground);
+  --color-hard: var(--hard);
+  --color-hard-foreground: var(--hard-foreground);
+  --color-extreme: var(--extreme);
+  --color-extreme-foreground: var(--extreme-foreground);
 
-  --color-bd: color-mix(in oklch, var(--ramp-grey-600), 50% transparent);
-  --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, white 2%);
-  --color-bd-strong: color-mix(in srgb, var(--color-bd), white 5%);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
 
-  --sp-colors-surface1: var(--color-bg) !important;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --shadow-bg-none: var(--shadow-bg-none);
+  --shadow-bg: var(--shadow-bg);
+  --shadow-bg-pressed: var(--shadow-bg-pressed);
+
+  --shadow-bg-accent: var(--shadow-bg-accent);
+  --shadow-bg-accent-pressed: var(--shadow-bg-accent-pressed);
+  --shadow-bg-negative: var(--shadow-bg-negative);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-input: var(--shadow-input);
+  --shadow-popover: var(--shadow-popover);
 }
