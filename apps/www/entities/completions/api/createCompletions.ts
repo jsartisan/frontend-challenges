@@ -1,8 +1,19 @@
-import { supabase } from "~/shared/api/supabase/client";
+"use server";
 
-export async function createCompletion({ challenge_id, user_id }) {
-  return supabase.from("completions").insert({
-    challenge_id: challenge_id,
-    user_id: user_id,
+import { db } from "~/shared/lib/db";
+import { completions } from "~/shared/lib/db/schema";
+
+export async function createCompletion({
+  challenge_id,
+  user_id,
+}: {
+  challenge_id: number;
+  user_id: string;
+}) {
+  await db.insert(completions).values({
+    challengeId: challenge_id,
+    userId: user_id,
   });
+
+  return { success: true };
 }

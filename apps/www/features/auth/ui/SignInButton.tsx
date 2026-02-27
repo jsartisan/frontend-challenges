@@ -4,24 +4,14 @@ import Link from "next/link";
 
 import { Button, Icon } from "~/components/ui";
 import { useUiStore } from "~/shared/model/store";
-import { createClient } from "~/shared/api/supabase";
+import { signInWithOAuth } from "~/features/auth/api/sign-in-with-oauth";
 import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from "~/components/ui/popover";
 
 export function SignInButton() {
   const ui = useUiStore();
-  const supabase = createClient();
 
   const onLoginWithGithub = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
-    });
-
-    if (error) {
-      console.error("Error logging in:", error.message);
-
-      return;
-    }
+    await signInWithOAuth();
   };
 
   return (

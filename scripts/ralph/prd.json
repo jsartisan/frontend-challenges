@@ -1,0 +1,20 @@
+{
+  "project": "Frontend Coach",
+  "branchName": "ralph/bug-colors-for-diffiultly-badges-needs-to-be-subtl",
+  "description": "[Bug]: Colors for Diffiultly badges needs to be subtle",
+  "issueNumber": 543,
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "[Bug]: Colors for Diffiultly badges needs to be subtle",
+      "description": "As a user, I want to [bug]: colors for diffiultly badges needs to be subtle",
+      "acceptanceCriteria": [
+        "[Bug]: Colors for Diffiultly badges needs to be subtle",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    }
+  ]
+}

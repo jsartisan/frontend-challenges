@@ -8,12 +8,12 @@ export function useCompletions() {
   const completionsQuery = useQuery({
     queryKey: ["completions"],
     queryFn: () => {
-      return getCompletions({ user_id: auth.user.id });
+      return getCompletions({ user_id: auth.user!.id });
     },
     enabled: !!auth.user,
   });
 
-  const completions = completionsQuery.data?.data?.map((c) => c.challenge_id) ?? [];
+  const completions = completionsQuery.data?.data?.map((c) => c.challengeId) ?? [];
 
   return { completions, isLoading: completionsQuery.isFetching };
 }

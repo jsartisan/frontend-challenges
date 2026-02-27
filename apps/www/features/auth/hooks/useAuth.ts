@@ -1,12 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
+"use client";
 
-import { getAuthUser } from "~/features/auth/api/getAuthUser";
+import { useSession } from "next-auth/react";
 
 export function useAuth() {
-  const profileQuery = useQuery({
-    queryKey: ["user"],
-    queryFn: getAuthUser,
-  });
+  const { data: session, status } = useSession();
 
-  return { isLoading: profileQuery.isPending, user: profileQuery.data };
+  return {
+    isLoading: status === "loading",
+    user: session?.user
+      ? {
+          id: session.user.id as string,
+          name: session.user.name,
+          email: session.user.email,
+          avatar_url: session.user.image,
+          user_name: session.user.name,
+        }
+      : null,
+  };
 }

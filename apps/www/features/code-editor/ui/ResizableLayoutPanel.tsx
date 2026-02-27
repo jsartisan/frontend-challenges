@@ -104,8 +104,7 @@ export const ResizableLayoutPanel = (props: ResizableLayoutTabPanel) => {
   return (
     <Card
       className={cn(
-        "h-full w-full overflow-hidden shadow-none",
-        "before:shadow-card before:fixed before:z-[-1] before:h-[calc(var(--height)-1px)] before:w-[calc(var(--width)-1px)] before:rounded-[inherit] before:border before:border-transparent",
+        "h-full w-full overflow-hidden",
         tabless &&
           "before:shadow-none [[data-panel-group-direction=horizontal]_div:not([data-panel-size='0.0'])_&]:border-none [[data-panel-group-direction=horizontal]_div:not([data-panel-size='0.0'])_&]:bg-transparent",
       )}

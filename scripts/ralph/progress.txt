@@ -1,0 +1,34 @@
+# Ralph Progress Log
+Started: Thu Feb 26 09:21:57 IST 2026
+---
+
+## Codebase Patterns
+- Difficulty badge colors are defined as CSS custom properties in `apps/www/shared/styles/theme.css` using oklch color space with `light-dark()` for theme support
+- Badge variants for difficulty levels (easy, medium, hard, extreme) are in `apps/www/components/ui/badge.tsx` using `class-variance-authority`
+- Tailwind v4 maps CSS vars via `--color-*` prefix (e.g., `--color-easy` → `bg-easy`)
+
+---
+
+## 2026-02-26 - US-001
+- Made difficulty badge colors subtle by changing from solid saturated backgrounds to light tinted backgrounds with colored text
+- Changed background colors to high lightness (0.94-0.95) with low chroma (0.04) for light mode, and dark backgrounds (0.25) with low chroma for dark mode
+- Changed foreground colors to medium-dark text with moderate chroma for readability
+- Files changed: `apps/www/shared/styles/theme.css`
+- **Learnings for future iterations:**
+  - oklch color space: first value is lightness (0-1), second is chroma (saturation), third is hue angle
+  - For subtle/muted badges: use lightness ~0.94, chroma ~0.04 for backgrounds; lightness ~0.45, chroma ~0.12-0.14 for foreground text
+  - The `light-dark()` CSS function handles theme switching automatically
+  - Badge component uses `bg-{difficulty}` and `text-{difficulty}-foreground` classes
+- No `typecheck` script exists — use `npx tsc --noEmit --project apps/www/tsconfig.json` for type checking
+---
+
+## 2026-02-26 - US-001 (completion)
+- Previous iteration committed theme.css but missed badge.tsx — committed the badge component update separately
+- badge.tsx was updated from old custom CSS property classes (`bg-(--color-bg-easy-subtle)`) to Tailwind color classes (`bg-easy`) that map to the theme.css variables
+- Files changed: `apps/www/components/ui/badge.tsx`
+- TypeScript check passes with no errors
+- **Learnings for future iterations:**
+  - Always verify all changed files are included in the commit (previous iteration missed badge.tsx)
+  - The project has no `typecheck` script — use `npx tsc --noEmit --project apps/www/tsconfig.json` directly
+  - Many unrelated changes exist in the working tree (large migration effort) — only commit files relevant to the current story
+---

@@ -2,7 +2,7 @@
 
 import { IconButton } from "~/components/ui";
 import { useAuth } from "~/features/auth/hooks/useAuth";
-import { createClient } from "~/shared/api/supabase/client";
+import { signOut } from "~/features/auth/api/sign-out";
 import { Avatar, AvatarImage } from "~/components/ui/avatar";
 import {
   DropdownMenu,
@@ -15,7 +15,6 @@ import {
 
 export function UserDropdown() {
   const auth = useAuth();
-  const supabase = createClient();
 
   return (
     <>
@@ -39,9 +38,7 @@ export function UserDropdown() {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={async () => {
-              await supabase.auth.signOut();
-
-              window.location.reload();
+              await signOut();
             }}
           >
             Log out
