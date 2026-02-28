@@ -14,19 +14,16 @@ export function TemplateChanger(props: TemplateChangerProps) {
 
   return (
     Object.keys(challenge.templateFiles).length > 1 && (
-      <ToggleGroup
-        variant="outline"
-        size="icon"
-        type="single"
-        value={template}
-        onValueChange={(value: string) => {
-          setTemplate(value as SupportedTemplates);
-        }}
-      >
-        {Object.keys(challenge.templateFiles).map((template) => {
+      <ToggleGroup variant="outline" size="icon">
+        {Object.keys(challenge.templateFiles).map((templateKey) => {
           return (
-            <ToggleGroupItem key={template} value={template}>
-              <Icon name={`${template}-color` as IconProps["name"]} />
+            <ToggleGroupItem
+              key={templateKey}
+              id={templateKey}
+              isSelected={template === templateKey}
+              onChange={() => setTemplate(templateKey as SupportedTemplates)}
+            >
+              <Icon name={`${templateKey}-color` as IconProps["name"]} />
             </ToggleGroupItem>
           );
         })}

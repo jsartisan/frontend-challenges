@@ -24,15 +24,15 @@ export function Editor(props: EditorProps) {
     <ResizableLayoutPanel
       value={activeFile}
       actions={<AddNewFileButton />}
-      onValueChange={(value) => {
-        setActiveFile(value);
+      onSelectionChange={(key) => {
+        setActiveFile(key);
       }}
     >
       {Object.keys(files)
         .filter((file) => !FORBIDDEN_FILES.includes?.(file))
         .map((file) => ({
           title: formatFileName(file),
-          value: file,
+          id: file,
           children: (
             <File
               onChange={onChange}

@@ -1,38 +1,96 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { CheckIcon } from "@radix-ui/react-icons";
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import React, { ReactNode } from "react"
+import {
+  composeRenderProps,
+  Radio as RACRadio,
+  RadioGroup as RACRadioGroup,
+  RadioGroupProps as RACRadioGroupProps,
+  RadioProps,
+  ValidationResult,
+} from "react-aria-components"
+import { tv } from "tailwind-variants"
 
-import { cn } from "../../utils/helpers";
+import { cn } from "~/utils/helpers"
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  fieldVariants,
+} from "./field"
 
-const RadioGroup = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
->(({ className, ...props }, ref) => {
-  return <RadioGroupPrimitive.Root className={cn("grid gap-2", className)} {...props} ref={ref} />;
-});
-RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
+export interface RadioGroupProps extends Omit<RACRadioGroupProps, "children"> {
+  label?: string
+  children?: ReactNode
+  description?: string
+  errorMessage?: string | ((validation: ValidationResult) => string)
+}
 
-const RadioGroupItem = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
->(({ className, ...props }, ref) => {
+export function RadioGroup(props: RadioGroupProps) {
+  const { orientation = "vertical", ...rest } = props
+
   return (
-    <RadioGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        "text-foreground bg-background focus-visible:ring-ring border-border focus:outline-hidden aspect-square h-4 w-4 rounded-full border shadow-sm focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50",
-        className,
-      )}
-      {...props}
+    <RACRadioGroup
+      {...rest}
+      className={cn(fieldVariants({ orientation }), props.className)}
     >
-      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <CheckIcon className="fill-primary h-3.5 w-3.5" />
-      </RadioGroupPrimitive.Indicator>
-    </RadioGroupPrimitive.Item>
-  );
-});
-RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
+      <FieldLabel>{props.label}</FieldLabel>
+      <div className="grid gap-3">{props.children}</div>
+      {props.description && (
+        <FieldDescription>{props.description}</FieldDescription>
+      )}
+      <FieldError>{props.errorMessage}</FieldError>
+    </RACRadioGroup>
+  )
+}
 
-export { RadioGroup, RadioGroupItem };
+const radioVariants = tv({
+  base: "border-input text-primary aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none relative flex items-center justify-center",
+  variants: {
+    isFocusVisible: {
+      true: "border-ring ring-ring/50 ring-[3px]",
+    },
+    isInvalid: {
+      true: "border-destructive ring-destructive/20",
+    },
+    isDisabled: {
+      true: "cursor-not-allowed opacity-50",
+    },
+  },
+})
+
+const radioIndicatorVariants = tv({
+  base: "bg-primary size-2 rounded-full",
+  variants: {
+    isSelected: {
+      true: "scale-100",
+      false: "scale-0",
+    },
+  },
+})
+
+export function Radio(props: RadioProps) {
+  return (
+    <RACRadio
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        cn(
+          "group relative flex items-center gap-2 text-sm transition",
+          className
+        )
+      )}
+    >
+      {(renderProps) => (
+        <>
+          <div className={radioVariants(renderProps)}>
+            <div className={radioIndicatorVariants(renderProps)} />
+          </div>
+          {props.children}
+        </>
+      )}
+    </RACRadio>
+  )
+}
+
+// Backward compatibility alias
+export const RadioGroupItem = Radio

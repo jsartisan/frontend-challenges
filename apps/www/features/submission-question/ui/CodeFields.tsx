@@ -19,13 +19,8 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "~/components/ui";
+import { Select, SelectItem } from "~/components/ui/select";
 
 type Step2FieldsProps = {
   form: UseFormReturn<z.infer<typeof formSchema>>;
@@ -43,7 +38,7 @@ export function CodeFields(props: Step2FieldsProps) {
           {[
             {
               title: "File Explorer",
-              value: "file-explorer",
+              id: "file-explorer",
               children: (
                 <div className="flex flex-col gap-4">
                   <FormField
@@ -54,24 +49,18 @@ export function CodeFields(props: Step2FieldsProps) {
                         <FormLabel>Template</FormLabel>
                         <FormControl>
                           <Select
-                            value={field.value}
-                            onValueChange={(value) => {
+                            selectedKey={field.value}
+                            onSelectionChange={(key) => {
+                              const value = String(key);
                               field.onChange(value);
                               form.setValue("files", TEMPLATES[value as SupportedTemplates].files);
                             }}
                           >
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="Select template" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectGroup>
-                                {SUPPORTED_TEMPLATES.map((template) => (
-                                  <SelectItem key={template} value={template}>
-                                    {template}
-                                  </SelectItem>
-                                ))}
-                              </SelectGroup>
-                            </SelectContent>
+                            {SUPPORTED_TEMPLATES.map((template) => (
+                              <SelectItem key={template} id={template}>
+                                {template}
+                              </SelectItem>
+                            ))}
                           </Select>
                         </FormControl>
                         <FormMessage />
@@ -90,13 +79,13 @@ export function CodeFields(props: Step2FieldsProps) {
       <ResizablePanel defaultSize={50}>
         <ResizableLayoutPanel
           value={activeFile}
-          onValueChange={(value) => {
-            setActiveFile(value);
+          onSelectionChange={(key) => {
+            setActiveFile(key);
           }}
         >
           {Object.keys(files).map((file) => ({
             title: file,
-            value: file,
+            id: file,
             children: (
               <File path="/submit/question" template={form.getValues("template") as SupportedTemplates} file={file} />
             ),
@@ -109,7 +98,7 @@ export function CodeFields(props: Step2FieldsProps) {
           {[
             {
               title: "Preview",
-              value: "preview",
+              id: "preview",
               children: <Preview template={form.getValues("template") as SupportedTemplates} />,
             },
           ]}

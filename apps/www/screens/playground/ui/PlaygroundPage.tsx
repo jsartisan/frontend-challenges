@@ -81,7 +81,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
                 {[
                   {
                     title: "File Explorer",
-                    value: "fileExplorer",
+                    id: "fileExplorer",
                     children: (
                       <div className="flex flex-col gap-3 p-1">
                         <TemplateChanger template={template} setTemplate={onChangeTemplate} />
@@ -96,13 +96,13 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
             <ResizablePanel>
               <ResizableLayoutPanel
                 value={activeFile}
-                onValueChange={(value) => {
-                  setActiveFile(value);
+                onSelectionChange={(key) => {
+                  setActiveFile(key);
                 }}
               >
                 {visibleFiles.map((file) => ({
                   title: formatFileName(file),
-                  value: file,
+                  id: file,
                   children: <File path={`/playground`} template={template} file={file} key={file} />,
                 }))}
               </ResizableLayoutPanel>
@@ -115,7 +115,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
                     {[
                       {
                         title: "Preview",
-                        value: "preview",
+                        id: "preview",
                         children: <Preview template={template} />,
                       },
                     ]}
@@ -127,7 +127,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
                     {[
                       {
                         title: "Console",
-                        value: "console",
+                        id: "console",
                         children: <Console />,
                       },
                     ]}

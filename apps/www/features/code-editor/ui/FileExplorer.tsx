@@ -24,7 +24,7 @@ export function FileExplorer() {
           size="sm"
           variant="tertiary"
           type="button"
-          onClick={() => {
+          onPress={() => {
             const filename = prompt("Enter filename");
 
             if (filename) {
@@ -59,10 +59,7 @@ export function FileExplorer() {
                 size="sm"
                 type="button"
                 className="invisible group-hover:visible"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-
+                onPress={(e) => {
                   deleteFile(filename);
                 }}
               >

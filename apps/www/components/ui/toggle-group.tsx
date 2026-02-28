@@ -1,64 +1,134 @@
 "use client";
-import * as React from "react";
-import { VariantProps } from "class-variance-authority";
-import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 
-import { cn } from "../../utils/helpers";
-import { toggleVariants } from "./toggle";
+import React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
+import {
+  ToggleButton as AriaToggleButton,
+  ToggleButtonProps as AriaToggleButtonProps,
+  composeRenderProps,
+  Group,
+  GroupProps,
+} from "react-aria-components";
 
-const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants>>({
+import { cn, focusRing } from "~/utils/helpers";
+
+export const toggleButtonVariants = tv({
+  extend: focusRing,
+  base: "inline-flex items-center justify-center rounded-[calc(var(--radius)-2px)] text-sm font-medium whitespace-nowrap transition-colors cursor-default outline-none [&_svg]:pointer-events-none [&>svg]:size-5 [&_svg]:shrink-0 hover:bg-accent hover:text-foreground selected:text-foreground selected:bg-accent selected:shadow-bg-pressed",
+  variants: {
+    variant: {
+      default: "bg-transparent",
+      outline: "bg-transparent",
+      ghost: "bg-transparent",
+    },
+    size: {
+      default: "h-6 px-3",
+      sm: "h-5 px-2",
+      lg: "h-10 px-3",
+      icon: "size-7 px-0",
+    },
+    isDisabled: {
+      true: "pointer-events-none opacity-50",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
+
+const ToggleButtonGroupContext = React.createContext<VariantProps<typeof toggleButtonVariants>>({
   size: "default",
   variant: "default",
 });
 
-const ToggleGroup = React.forwardRef<
-  React.ElementRef<typeof ToggleGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>
->(({ children, className, size, variant, ...props }, ref) => (
-  <ToggleGroupPrimitive.Root
-    ref={ref}
-    data-variant={variant}
-    data-size={size}
-    className={cn(
-      "bs-8 bg-background shadow-bg inline-flex items-center justify-center gap-1 rounded p-1",
-      "data-[variant=outline]:border-border",
-      "data-[variant=ghost]:gap-2 data-[variant=ghost]:p-0 data-[variant=ghost]:shadow-none",
-      "data-[size=sm][variant=outline]:bs-7",
-      className,
-    )}
-    {...props}
-  >
-    <ToggleGroupContext.Provider value={{ variant, size }}>{children}</ToggleGroupContext.Provider>
-  </ToggleGroupPrimitive.Root>
-));
+export interface ToggleGroupProps extends Omit<GroupProps, "children"> {
+  variant?: "default" | "outline" | "ghost";
+  size?: "default" | "sm" | "lg" | "icon";
+  children: React.ReactNode;
+}
 
-ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName;
-
-const ToggleGroupItem = React.forwardRef<
-  React.ElementRef<typeof ToggleGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> & VariantProps<typeof toggleVariants>
->(({ children, className, size, variant, ...props }, ref) => {
-  const context = React.useContext(ToggleGroupContext);
-
-  return (
-    <ToggleGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        toggleVariants({
-          variant: context.variant || variant,
-          size: context.size || size,
-        }),
-        className,
-      )}
-      data-variant={context.variant || variant}
-      data-size={context.size || size}
-      {...props}
-    >
-      {children}
-    </ToggleGroupPrimitive.Item>
-  );
+const toggleGroupVariants = tv({
+  base: "group/toggle-button-group h-8 bg-background shadow-bg inline-flex items-center justify-center gap-0.5 rounded p-1",
+  variants: {
+    variant: {
+      default: "",
+      outline: "border-border",
+      ghost: "gap-2 p-0 shadow-none bg-transparent",
+    },
+    size: {
+      default: "",
+      sm: "h-7",
+      lg: "",
+      icon: "",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
 });
 
-ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
+export function ToggleGroup({
+  children,
+  className,
+  size = "default",
+  variant = "default",
+  ...props
+}: ToggleGroupProps) {
+  return (
+    <Group
+      data-slot="toggle-button-group"
+      data-variant={variant}
+      data-size={size}
+      className={cn(toggleGroupVariants({ variant, size }), className)}
+      {...props}
+    >
+      <ToggleButtonGroupContext.Provider value={{ variant, size }}>{children}</ToggleButtonGroupContext.Provider>
+    </Group>
+  );
+}
 
-export { ToggleGroup, ToggleGroupItem };
+export interface ToggleGroupItemProps extends AriaToggleButtonProps {
+  variant?: "default" | "outline" | "ghost";
+  size?: "default" | "sm" | "lg" | "icon";
+}
+
+const toggleGroupItemVariants = tv({
+  base: "min-w-0 shrink-0 rounded-[calc(var(--radius)-2px)] shadow-none focus:z-10 focus-visible:z-10",
+  variants: {
+    variant: {
+      default: "",
+      outline: "",
+      ghost: "",
+    },
+  },
+});
+
+export function ToggleGroupItem({ className, size, variant, ...props }: ToggleGroupItemProps) {
+  const context = React.useContext(ToggleButtonGroupContext);
+  const finalVariant = context.variant || variant;
+  const finalSize = context.size || size;
+
+  return (
+    <AriaToggleButton
+      data-slot="toggle-button-group-item"
+      data-variant={finalVariant}
+      data-size={finalSize}
+      {...props}
+      className={composeRenderProps(className, (cls, renderProps) =>
+        toggleButtonVariants({
+          ...renderProps,
+          variant: finalVariant as "default" | "outline" | "ghost",
+          size: finalSize as "default" | "sm" | "lg" | "icon",
+          className: cn(
+            toggleGroupItemVariants({
+              variant: finalVariant as "default" | "outline" | "ghost",
+            }),
+            cls,
+          ),
+        }),
+      )}
+    />
+  );
+}

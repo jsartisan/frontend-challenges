@@ -15,14 +15,9 @@ import {
   FormMessage,
   Icon,
   Input,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   Textarea,
 } from "~/components/ui";
+import { Select, SelectItem } from "~/components/ui/select";
 
 type AnswerFieldsProps = {
   form: UseFormReturn<z.infer<typeof formSchema>>;
@@ -61,19 +56,12 @@ export function FormFields(props: AnswerFieldsProps) {
               <FormItem>
                 <FormLabel>Difficulty</FormLabel>
                 <FormControl>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a fruit" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {DIFFICULTY_RANK.map((difficulty) => (
-                          <SelectItem key={difficulty} value={difficulty}>
-                            {difficulty}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
+                  <Select selectedKey={field.value} onSelectionChange={(key) => field.onChange(String(key))}>
+                    {DIFFICULTY_RANK.map((difficulty) => (
+                      <SelectItem key={difficulty} id={difficulty}>
+                        {difficulty}
+                      </SelectItem>
+                    ))}
                   </Select>
                 </FormControl>
                 <FormMessage />

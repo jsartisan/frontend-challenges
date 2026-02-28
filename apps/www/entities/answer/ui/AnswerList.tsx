@@ -17,7 +17,7 @@ import {
   SheetTrigger,
   Icon,
   IconButton,
-  Button,
+  LinkButton,
   Link,
   Skeleton,
   ResizablePanelGroup,
@@ -117,11 +117,9 @@ export function AnswerList(props: AnswerListProps) {
                       </div>
                       {/* view on github button */}
                       <div className="ml-auto">
-                        <Button asChild variant="tertiary" className="flex gap-2">
-                          <a href={answer.url} target="_blank" rel="noreferrer">
-                            View on <Icon name="github" /> GitHub
-                          </a>
-                        </Button>
+                        <LinkButton variant="tertiary" className="flex gap-2" href={answer.url} target="_blank" rel="noreferrer">
+                          View on <Icon name="github" /> GitHub
+                        </LinkButton>
                       </div>
                     </SheetDescription>
                   </SheetHeader>
@@ -136,7 +134,7 @@ export function AnswerList(props: AnswerListProps) {
                         >
                           {Object.keys(answer.files).map((file) => ({
                             title: file,
-                            value: file,
+                            id: file,
                             children: (
                               <CodeEditor
                                 path={`/answers/${answer.no}`}
@@ -157,7 +155,7 @@ export function AnswerList(props: AnswerListProps) {
                           {[
                             {
                               title: "Preview",
-                              value: "preview",
+                              id: "preview",
                               children: <Preview template={answer.template} />,
                             },
                           ]}

@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from "react";
 
 import { cn } from "~/utils/helpers";
 import { REPO } from "~/shared/config/paths";
-import { Button, Skeleton } from "~/components/ui";
+import { LinkButton, Skeleton } from "~/components/ui";
 import { Challenge } from "~/entities/challenge/model/types";
 import { useComment } from "~/entities/comment/hooks/useComment";
 
@@ -33,11 +33,9 @@ export function CommentList(props: ResourceListProps) {
         <p className="text-3xl">📋</p>
         <p className="text-lg font-semibold">No discussions yet.</p>
         <p className="text-muted-foreground/60 text-sm">Be the first to discuss this challenge!</p>
-        <Button asChild size="xs" variant="secondary" className="mt-2">
-          <a target="_blank" href={`${REPO}/issues/${challenge.no}`}>
-            Add Comment
-          </a>
-        </Button>
+        <LinkButton size="xs" variant="secondary" className="mt-2" target="_blank" href={`${REPO}/issues/${challenge.no}`}>
+          Add Comment
+        </LinkButton>
       </div>
     );
   }

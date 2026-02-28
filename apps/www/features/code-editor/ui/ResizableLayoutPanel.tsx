@@ -7,7 +7,7 @@ import { Card, Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui"
 export type ResizableLayoutTabPanel = {
   children: {
     title: string;
-    value: string;
+    id: string;
     children: React.ReactNode;
   }[];
   defaultValue?: string;
@@ -15,16 +15,16 @@ export type ResizableLayoutTabPanel = {
   panelRef?: React.RefObject<ImperativePanelHandle>;
   tabless?: boolean;
   actions?: React.ReactNode;
-  onValueChange?: (value: string) => void;
+  onSelectionChange?: (key: string) => void;
 };
 
 export const ResizableLayoutPanel = (props: ResizableLayoutTabPanel) => {
   const { actions, children, defaultValue, panelRef, tabless, value } = props;
   const [selectedTab, setSelectedTab] = useState(value || defaultValue);
 
-  const onValueChange = (value: string) => {
-    props.onValueChange?.(value);
-    setSelectedTab(value);
+  const onSelectionChange = (key: string) => {
+    props.onSelectionChange?.(key);
+    setSelectedTab(key);
   };
 
   useEffect(() => {
@@ -111,12 +111,17 @@ export const ResizableLayoutPanel = (props: ResizableLayoutTabPanel) => {
       ref={cardRef}
     >
       <Tabs
-        value={selectedTab}
+        selectedKey={selectedTab}
         className={cn(
           "h-full w-full flex-col",
           "[[data-panel-group-direction=horizontal]_[data-panel-size='0.0']_&]:[writing-mode:tb] [[data-panel-group-direction=vertical]_[data-panel-size='0.0']_&]:[writing-mode:lr]",
         )}
-        onValueChange={onValueChange}
+        onSelectionChange={(key) => {
+          if (panelRef?.current?.isCollapsed()) {
+            panelRef?.current?.expand();
+          }
+          onSelectionChange(key as string);
+        }}
       >
         {/*
          * The wrapper below enables overflow scrolling while hiding the native
@@ -146,15 +151,7 @@ export const ResizableLayoutPanel = (props: ResizableLayoutTabPanel) => {
               )}
             >
               {children.map((child) => (
-                <TabsTrigger
-                  key={child.value}
-                  value={child.value}
-                  onClick={() => {
-                    if (panelRef?.current?.isCollapsed()) {
-                      panelRef?.current?.expand();
-                    }
-                  }}
-                >
+                <TabsTrigger key={child.id} id={child.id}>
                   {child.title}
                 </TabsTrigger>
               ))}
@@ -163,7 +160,7 @@ export const ResizableLayoutPanel = (props: ResizableLayoutTabPanel) => {
           {actions && <div className="gpa-2 ms-auto flex items-center p-1">{actions}</div>}
         </div>
         {children.map((child) => (
-          <TabsContent key={child.value} value={child.value} className={cn(tabless && "border-none")}>
+          <TabsContent key={child.id} id={child.id} className={cn(tabless && "border-none")}>
             {child.children}
           </TabsContent>
         ))}

@@ -57,8 +57,7 @@ function Solution(props: SolutionProps) {
                     variant="secondary"
                     key={option}
                     className="h-auto whitespace-normal break-words"
-                    onClick={(e) => {
-                      e.stopPropagation();
+                    onPress={() => {
                       setSelectedAnswer(option);
                       setShowSolution(true);
                     }}
@@ -79,7 +78,7 @@ function Solution(props: SolutionProps) {
           <p>
             Correct answer: <span className="font-medium">{right_answer}</span>
           </p>
-          <Button variant="secondary" onClick={() => setShowExplanation(true)}>
+          <Button variant="secondary" onPress={() => setShowExplanation(true)}>
             View Explanation
           </Button>
         </div>

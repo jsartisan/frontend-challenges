@@ -8,13 +8,14 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { IconButton } from "~/components/ui/icon-button";
 import { MultiSelect } from "~/components/ui/multi-select";
-import { ToggleGroup } from "~/components/ui/toggle-group";
-import { DropdownMenu } from "~/components/ui/dropdown-menu";
-import { ToggleGroupItem } from "~/components/ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import { CATEGORIES } from "~/entities/category/model/constants";
-import { DropdownMenuContent } from "~/components/ui/dropdown-menu";
 import { DIFFICULTY_RANK } from "~/entities/challenge/model/constants";
-import { DropdownMenuItem, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
+import {
+  MenuTrigger,
+  Menu,
+  MenuItem,
+} from "~/components/ui/dropdown-menu";
 import { useSessionSyncedQueryState } from "~/features/challenge-filter/hooks/useSessionSyncedQueryState";
 
 const difficultyOptions = DIFFICULTY_RANK.map((difficulty) => ({ label: difficulty, value: difficulty }));
@@ -77,55 +78,49 @@ export function ChallengesFilters(props: ChallengesFiltersProps) {
         />
       )}
       {!excludes.includes("type") && (
-        <ToggleGroup
-          className="hidden lg:flex"
-          onValueChange={(value) => {
-            if (!value) return;
-
-            setType(value as "all" | "question" | "quiz");
-          }}
-          type="single"
-          variant="outline"
-          value={type}
-        >
-          <ToggleGroupItem value="all">All</ToggleGroupItem>
-          <ToggleGroupItem value="question">Question</ToggleGroupItem>
-          <ToggleGroupItem value="quiz">Quiz</ToggleGroupItem>
+        <ToggleGroup className="hidden lg:flex" variant="outline">
+          <ToggleGroupItem id="all" isSelected={type === "all"} onChange={() => setType("all")}>
+            All
+          </ToggleGroupItem>
+          <ToggleGroupItem id="question" isSelected={type === "question"} onChange={() => setType("question")}>
+            Question
+          </ToggleGroupItem>
+          <ToggleGroupItem id="quiz" isSelected={type === "quiz"} onChange={() => setType("quiz")}>
+            Quiz
+          </ToggleGroupItem>
         </ToggleGroup>
       )}
       {!excludes.includes("sort") && (
         <div className="ml-auto flex items-center gap-1">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary">
-                <Icon name="sort" /> Sort
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuItem
+          <MenuTrigger>
+            <Button variant="secondary">
+              <Icon name="sort" /> Sort
+            </Button>
+            <Menu placement="bottom end" className="w-56">
+              <MenuItem
                 className="flex justify-between"
-                onClick={() => {
+                onAction={() => {
                   setSortBy("difficulty");
                 }}
               >
                 Difficulty
                 {sortBy === "difficulty" && <Icon name="check" />}
-              </DropdownMenuItem>
-              <DropdownMenuItem
+              </MenuItem>
+              <MenuItem
                 className="flex justify-between"
-                onClick={() => {
+                onAction={() => {
                   setSortBy("published_date");
                 }}
               >
                 Creation Date
                 {sortBy === "published_date" && <Icon name="check" />}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              </MenuItem>
+            </Menu>
+          </MenuTrigger>
           <IconButton
-            variant="tertiary"
+            variant="ghost"
             size="sm"
-            onClick={() => {
+            onPress={() => {
               setSortOrder(sortOrder === "asc" ? "desc" : "asc");
             }}
           >

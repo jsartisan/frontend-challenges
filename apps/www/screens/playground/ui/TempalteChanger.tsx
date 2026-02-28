@@ -1,6 +1,6 @@
 import { SupportedTemplates } from "~/entities/challenge/model/types";
 import { SUPPORTED_TEMPLATES } from "~/entities/challenge/model/constants";
-import { Select, SelectValue, SelectGroup, SelectItem, SelectTrigger, SelectContent } from "~/components/ui";
+import { Select, SelectItem } from "~/components/ui/select";
 
 type TemplateChangerProps = {
   template: SupportedTemplates;
@@ -12,23 +12,17 @@ const TemplateChanger = (props: TemplateChangerProps) => {
 
   return (
     <Select
-      onValueChange={(value: string) => {
-        setTemplate(value as SupportedTemplates);
+      selectedKey={template}
+      onSelectionChange={(key) => {
+        setTemplate(key as SupportedTemplates);
       }}
-      value={template}
+      placeholder="Select template"
     >
-      <SelectTrigger>
-        <SelectValue placeholder="Select template" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          {SUPPORTED_TEMPLATES.map((template) => (
-            <SelectItem key={template} value={template}>
-              {template}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
+      {SUPPORTED_TEMPLATES.map((template) => (
+        <SelectItem key={template} id={template}>
+          {template}
+        </SelectItem>
+      ))}
     </Select>
   );
 };

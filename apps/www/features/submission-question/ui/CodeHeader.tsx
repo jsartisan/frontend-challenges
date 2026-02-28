@@ -2,7 +2,7 @@ import { z } from "zod";
 import { UseFormReturn } from "react-hook-form";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
-import { Button } from "~/components/ui";
+import { Button } from "~/components/ui/button";
 import { formSchema } from "~/features/submission-question/model/formSchema";
 import { generateSubmitChallengeURL } from "~/features/submission-question/lib/generateSubmitChallengeURL";
 
@@ -35,10 +35,10 @@ export function CodeHeader(props: Step2HeaderProps) {
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex gap-3">
-          <Button type="button" className="self-end" variant="secondary" onClick={() => setActiveTab("description")}>
+          <Button type="button" className="self-end" variant="secondary" onPress={() => setActiveTab("description")}>
             Previous Step
           </Button>
-          <Button type="button" onClick={onSubmit}>
+          <Button type="button" onPress={onSubmit}>
             Submit Challenge
           </Button>
         </div>

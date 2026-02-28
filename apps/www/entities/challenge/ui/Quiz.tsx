@@ -43,15 +43,15 @@ export function Quiz(props: QuizChallengeProps) {
           </div>
           <div className="grid min-h-0 w-full grow grid-cols-1 grid-rows-2 gap-3 sm:grid-cols-2 sm:grid-rows-1">
             <Card className="min-h flex flex-col overflow-hidden">
-              <Tabs defaultValue="description" className="h-full">
+              <Tabs defaultSelectedKey="description" className="h-full">
                 <TabsList>
-                  <TabsTrigger value="description">Description</TabsTrigger>
-                  <TabsTrigger value="resources">Resources</TabsTrigger>
+                  <TabsTrigger id="description">Description</TabsTrigger>
+                  <TabsTrigger id="resources">Resources</TabsTrigger>
                 </TabsList>
-                <TabsContent value="description" className="overflow-y-auto">
+                <TabsContent id="description" className="overflow-y-auto">
                   <Description challenge={challenge} />
                 </TabsContent>
-                <TabsContent value="resources" className="overflow-y-auto">
+                <TabsContent id="resources" className="overflow-y-auto">
                   <ResourceList challenge={challenge} />
                 </TabsContent>
               </Tabs>

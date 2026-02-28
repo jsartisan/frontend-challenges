@@ -1,58 +1,112 @@
 "use client";
 
 import * as React from "react";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
+import { tv } from "tailwind-variants";
+import {
+  composeRenderProps,
+  Tab as RACTab,
+  TabList as RACTabList,
+  TabPanel as RACTabPanel,
+  Tabs as RACTabs,
+  TabListProps,
+  TabPanelProps,
+  TabProps,
+  TabsProps,
+} from "react-aria-components";
 
-import { cn } from "../../utils/helpers";
+import { focusRing } from "~/utils/helpers";
 
-const Tabs = TabsPrimitive.Root;
+const tabsStyles = tv({
+  base: "flex",
+  variants: {
+    orientation: {
+      horizontal: "flex-col",
+      vertical: "flex-row",
+    },
+  },
+});
 
-const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    className={cn(
-      "text-muted-foreground inline-flex h-9 w-full items-center justify-start gap-2 rounded-none bg-transparent p-1",
-      className,
-    )}
-    {...props}
-  />
-));
-TabsList.displayName = TabsPrimitive.List.displayName;
+function Tabs(props: TabsProps) {
+  return (
+    <RACTabs
+      data-slot="tabs"
+      {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        tabsStyles({ ...renderProps, className }),
+      )}
+    />
+  );
+}
 
-const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "focus-visible:ring-ring hover:bg-accent focus-visible:outline-hidden active:bg-accent bs-7 relative inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-sm px-2 text-xs font-medium transition-colors focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:h-4 [&_svg]:w-4",
-      "data-[state=active]:before:bg-primary data-[state=active]:before:absolute data-[state=active]:before:-bottom-[calc(4px)] data-[state=active]:before:h-[2px] data-[state=active]:before:w-[calc(100%+4px)] data-[state=active]:before:content-['']",
-      "[[data-panel-size='0.0']_&:before]:hidden",
+const tabListStyles = tv({
+  base: "text-foreground inline-flex h-9 w-full items-center justify-start gap-2 rounded-none bg-transparent p-1",
+  variants: {
+    orientation: {
+      horizontal: "flex-row",
+      vertical: "flex-col items-start h-auto",
+    },
+  },
+});
 
-      className,
-    )}
-    {...props}
-  />
-));
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+function TabsList<T extends object>(props: TabListProps<T>) {
+  return (
+    <RACTabList
+      data-slot="tabs-list"
+      {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        tabListStyles({ ...renderProps, className }),
+      )}
+    />
+  );
+}
 
-const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Content
-    ref={ref}
-    className={cn(
-      "focus-visible:ring-ring border-t-border focus-visible:outline-hidden h-[calc(100%-(--spacing(9)))] border-t focus-visible:ring-2 focus-visible:ring-offset-2",
-      className,
-    )}
-    {...props}
-  />
-));
-TabsContent.displayName = TabsPrimitive.Content.displayName;
+const tabTriggerStyles = tv({
+  extend: focusRing,
+  base: [
+    "bs-7 relative inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-sm px-2 text-xs font-medium transition-colors outline-none",
+    "hover:bg-accent pressed:bg-accent",
+    "[&_svg]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  ],
+  variants: {
+    isSelected: {
+      true: [
+        "before:bg-primary before:absolute before:-bottom-[calc(4px)] before:h-[2px] before:w-[calc(100%+4px)] before:content-['']",
+        "[[data-panel-size='0.0']_&]:before:hidden",
+      ],
+    },
+    isDisabled: {
+      true: "opacity-50 pointer-events-none",
+    },
+  },
+});
+
+function TabsTrigger(props: TabProps) {
+  return (
+    <RACTab
+      data-slot="tabs-trigger"
+      {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        tabTriggerStyles({ ...renderProps, className }),
+      )}
+    />
+  );
+}
+
+const tabPanelStyles = tv({
+  extend: focusRing,
+  base: "border-t-border h-[calc(100%-(--spacing(9)))] border-t outline-none",
+});
+
+function TabsContent(props: TabPanelProps) {
+  return (
+    <RACTabPanel
+      data-slot="tabs-content"
+      {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        tabPanelStyles({ ...renderProps, className }),
+      )}
+    />
+  );
+}
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

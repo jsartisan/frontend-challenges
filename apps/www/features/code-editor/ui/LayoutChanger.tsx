@@ -16,26 +16,35 @@ export const LayoutChanger = (props: LayoutChangerProps) => {
 
   return (
     <div className={cn("hidden items-center justify-center sm:flex", className)}>
-      <ToggleGroup
-        size="icon"
-        variant="outline"
-        type="single"
-        value={layout}
-        onValueChange={(value) => {
-          if (value) {
-            setLocalStorageItem("layout", value);
-
-            setLayout(value as "layout-1" | "layout-2" | "layout-3");
-          }
-        }}
-      >
-        <ToggleGroupItem value="layout-1">
+      <ToggleGroup size="icon" variant="outline">
+        <ToggleGroupItem
+          id="layout-1"
+          isSelected={layout === "layout-1"}
+          onChange={() => {
+            setLocalStorageItem("layout", "layout-1");
+            setLayout("layout-1");
+          }}
+        >
           <Icon name="layout-1" />
         </ToggleGroupItem>
-        <ToggleGroupItem value="layout-2">
+        <ToggleGroupItem
+          id="layout-2"
+          isSelected={layout === "layout-2"}
+          onChange={() => {
+            setLocalStorageItem("layout", "layout-2");
+            setLayout("layout-2");
+          }}
+        >
           <Icon name="layout-2" />
         </ToggleGroupItem>
-        <ToggleGroupItem value="layout-3">
+        <ToggleGroupItem
+          id="layout-3"
+          isSelected={layout === "layout-3"}
+          onChange={() => {
+            setLocalStorageItem("layout", "layout-3");
+            setLayout("layout-3");
+          }}
+        >
           <Icon name="layout-3" />
         </ToggleGroupItem>
       </ToggleGroup>

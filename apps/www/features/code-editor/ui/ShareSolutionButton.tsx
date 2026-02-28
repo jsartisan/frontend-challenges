@@ -15,7 +15,7 @@ export function ShareSolutionButton(props: ShareSolutionProps) {
   const { sandpack } = useSandpack();
   const { files } = sandpack;
 
-  const onClick = () => {
+  const onPress = () => {
     const URL = generateShareAnswerURL({
       challenge,
       template,
@@ -28,7 +28,7 @@ export function ShareSolutionButton(props: ShareSolutionProps) {
   };
 
   return (
-    <Button variant="secondary" onClick={onClick} className="hidden sm:flex">
+    <Button variant="secondary" onPress={onPress} className="hidden sm:flex">
       Share Solution
     </Button>
   );

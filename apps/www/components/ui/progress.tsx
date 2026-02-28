@@ -1,23 +1,41 @@
-import * as React from "react";
-import * as ProgressPrimitive from "@radix-ui/react-progress";
+"use client"
 
-import { cn } from "../../utils/helpers";
+import React from "react"
+import {
+  ProgressBar as AriaProgressBar,
+  ProgressBarProps as AriaProgressBarProps,
+  composeRenderProps,
+} from "react-aria-components"
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn("bg-primary/20 relative h-2 w-full overflow-hidden rounded-full", className)}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="bg-primary h-full w-full flex-1 transition-all"
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-));
-Progress.displayName = ProgressPrimitive.Root.displayName;
+import { cn } from "~/utils/helpers"
+import { FieldLabel } from "./field"
 
-export { Progress };
+export interface ProgressProps extends AriaProgressBarProps {
+  label?: string
+}
+
+export function Progress({ label, ...props }: ProgressProps) {
+  return (
+    <AriaProgressBar
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        cn("flex flex-col gap-1", className)
+      )}
+    >
+      {({ percentage, valueText, isIndeterminate }) => (
+        <>
+          <div className="flex justify-between gap-2">
+            <FieldLabel>{label}</FieldLabel>
+            <span className="text-muted-foreground text-sm">{valueText}</span>
+          </div>
+          <div className="bg-muted relative h-2 w-64 overflow-hidden rounded-full outline outline-1 -outline-offset-1 outline-transparent">
+            <div
+              className={`bg-primary absolute top-0 h-full rounded-full forced-colors:bg-[Highlight] ${isIndeterminate ? "animate-in slide-in-from-left-[20rem] repeat-infinite left-full duration-1000 ease-out" : "left-0"}`}
+              style={{ width: (isIndeterminate ? 40 : percentage) + "%" }}
+            />
+          </div>
+        </>
+      )}
+    </AriaProgressBar>
+  )
+}

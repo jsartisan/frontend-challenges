@@ -1,10 +1,10 @@
-import { Icon, IconButton, Tooltip } from "~/components/ui";
+import { Icon, IconButton } from "~/components/ui";
 import { type Challenge } from "~/entities/challenge/model/types";
+import { Tooltip, TooltipTrigger } from "~/components/ui/tooltip";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+  MenuTrigger,
+  Menu,
+  MenuItem,
 } from "~/components/ui/dropdown-menu";
 
 type EditDropdownProps = {
@@ -16,28 +16,25 @@ export function EditChallengeDropdown(props: EditDropdownProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <Tooltip content="Go to github">
-        <IconButton asChild variant="tertiary" size="sm">
+      <TooltipTrigger delay={0}>
+        <IconButton variant="ghost" size="sm">
           <a href={challenge.githubURL} target="_blank" rel="noopener noreferrer">
             <Icon name="github" />
           </a>
         </IconButton>
-      </Tooltip>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <IconButton variant="tertiary" size="sm" className="ms-auto">
-            <Icon name="vertical-dots" />
-          </IconButton>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild className="flex-col items-start">
-            <a href={`${challenge.editURL}/README.md`} target="_blank" rel="noopener noreferrer" className="block">
-              <div>Edit on Github</div>
-              <div className="text-muted-foreground/60 text-xs">Edit description and info</div>
-            </a>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        <Tooltip>Go to github</Tooltip>
+      </TooltipTrigger>
+      <MenuTrigger>
+        <IconButton variant="ghost" size="sm" className="ms-auto">
+          <Icon name="vertical-dots" />
+        </IconButton>
+        <Menu placement="bottom end">
+          <MenuItem href={`${challenge.editURL}/README.md`} target="_blank" className="flex-col items-start">
+            <div>Edit on Github</div>
+            <div className="text-muted-foreground/60 text-xs">Edit description and info</div>
+          </MenuItem>
+        </Menu>
+      </MenuTrigger>
     </div>
   );
 }

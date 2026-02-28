@@ -1,59 +1,53 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import * as React from "react"
+import {
+  Tooltip as AriaTooltip,
+  TooltipProps as AriaTooltipProps,
+  composeRenderProps,
+  OverlayArrow,
+  TooltipTrigger,
+} from "react-aria-components"
+import { tv } from "tailwind-variants"
 
-import { cn } from "../../utils/helpers";
+export interface TooltipProps extends Omit<AriaTooltipProps, "children"> {
+  children: React.ReactNode
+}
 
-const TooltipProvider = TooltipPrimitive.Provider;
+const tooltipStyles = tv({
+  base: "group z-50 w-fit rounded-md bg-foreground px-3 py-1.5 text-xs text-balance text-background",
+  variants: {
+    isEntering: {
+      true: "animate-in fade-in-0 zoom-in-95 placement-bottom:slide-in-from-top-2 placement-top:slide-in-from-bottom-2 placement-left:slide-in-from-right-2 placement-right:slide-out-to-left-2",
+    },
+    isExiting: {
+      true: "animate-out fade-out-0 zoom-out-95 placement-bottom:slide-out-to-top-2 placement-top:slide-out-to-bottom-2 placement-left:slide-out-to-right-2 placement-right:slide-out-to-left-2",
+    },
+  },
+})
 
-const TooltipRoot = TooltipPrimitive.Root;
-
-const TooltipTrigger = TooltipPrimitive.Trigger;
-
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 10, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={cn(
-      "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 bg-popover text-popover-foreground z-50 rounded-md px-3 py-1.5 text-xs",
-      className,
-    )}
-    {...props}
-  />
-));
-
-TooltipContent.displayName = TooltipPrimitive.Content.displayName;
-
-const TooltipArrow = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Arrow>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Arrow>
->((props, ref) => (
-  <TooltipPrimitive.Arrow
-    ref={ref}
-    className="rotate-225 bg-popover absolute z-50 h-2 w-2 -translate-x-1/2 -translate-y-1/2 transform border-l border-t border-transparent fill-transparent"
-    {...props}
-  />
-));
-
-TooltipArrow.displayName = TooltipPrimitive.Arrow.displayName;
-
-const Tooltip = (props: { content: string; children: React.ReactNode }) => {
-  const { children, content } = props;
-
+function Tooltip({ children, ...props }: TooltipProps) {
   return (
-    <TooltipRoot delayDuration={1}>
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
+    <AriaTooltip
+      {...props}
+      offset={10}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        tooltipStyles({ ...renderProps, className })
+      )}
+    >
+      <OverlayArrow>
+        <svg
+          width={8}
+          height={8}
+          viewBox="0 0 8 8"
+          className="group-placement-bottom:rotate-180 group-placement-left:-rotate-90 group-placement-right:rotate-90 fill-foreground forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]"
+        >
+          <path d="M0 0 L4 4 L8 0" />
+        </svg>
+      </OverlayArrow>
+      {children}
+    </AriaTooltip>
+  )
+}
 
-      <TooltipContent>
-        {content}
-        <TooltipArrow />
-      </TooltipContent>
-    </TooltipRoot>
-  );
-};
-
-export { TooltipRoot, Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, TooltipArrow };
+export { Tooltip, TooltipTrigger }
