@@ -2,6 +2,7 @@
 
 @import "tw-animate-css";
 @plugin "tailwindcss-logical";
+@plugin "tailwindcss-react-aria-components";
 
 @import "../shared/styles/theme.css";
 @import "../shared/styles/animations.css";
@@ -68,8 +69,8 @@
     0 0 0 1px var(--border) inset;
   --shadow-bg-hover: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
     -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px #cbcbcb inset;
-  --shadow-bg-pressed: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
-    -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px var(--border) inset;
+  --shadow-bg-pressed: 0px 2px 3px 0px rgba(0, 0, 0, 0.24) inset, 1px 0px 2px 0px rgba(0, 0, 0, 0.12) inset,
+    -1px 0px 2px 0px rgba(0, 0, 0, 0.12) inset, 0 0 0 1px var(--border) inset;
 
   --shadow-bg-accent: 0px -1px 0px 0px color-mix(in srgb, var(--color-bg-accent-strong), black 20%) inset,
     0 2px 3px #00000021, 0 0 0 1px var(--color-bd-accent-strong) inset;
@@ -98,6 +99,38 @@
   @media (width >=1400px) {
     max-width: 1400px;
   }
+}
+
+@utility shadow-bg {
+  box-shadow: var(--shadow-bg);
+}
+
+@utility shadow-bg-none {
+  box-shadow: var(--shadow-bg-none);
+}
+
+@utility shadow-bg-hover {
+  box-shadow: var(--shadow-bg-hover);
+}
+
+@utility shadow-bg-pressed {
+  box-shadow: var(--shadow-bg-pressed);
+}
+
+@utility shadow-bg-accent {
+  box-shadow: var(--shadow-bg-accent);
+}
+
+@utility shadow-bg-accent-hover {
+  box-shadow: var(--shadow-bg-accent-hover);
+}
+
+@utility shadow-bg-accent-pressed {
+  box-shadow: var(--shadow-bg-accent-pressed);
+}
+
+@utility shadow-bg-negative {
+  box-shadow: var(--shadow-bg-negative);
 }
 
 /*
@@ -147,8 +180,4 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
-}
-
-.flex > * {
-  min-height: 0;
 }

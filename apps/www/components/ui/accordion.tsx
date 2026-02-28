@@ -1,53 +1,114 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import React, { useContext } from "react"
+import { ChevronDown } from "lucide-react"
+import {
+  Disclosure as AriaDisclosure,
+  DisclosureGroup as AriaDisclosureGroup,
+  DisclosureGroupProps as AriaDisclosureGroupProps,
+  DisclosurePanel as AriaDisclosurePanel,
+  DisclosurePanelProps as AriaDisclosurePanelProps,
+  DisclosureProps as AriaDisclosureProps,
+  Button,
+  composeRenderProps,
+  DisclosureGroupStateContext,
+  DisclosureStateContext,
+  Heading,
+} from "react-aria-components"
+import { tv } from "tailwind-variants"
 
-import { cn } from "../../utils/helpers";
+import { cn } from "~/utils/helpers"
 
-const Accordion = AccordionPrimitive.Root;
+const disclosure = tv({
+  base: "group",
+  variants: {
+    isInGroup: {
+      true: "border-b last:border-b-0",
+    },
+  },
+})
 
-const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={cn("border-b", className)} {...props} />
-));
-AccordionItem.displayName = "AccordionItem";
+const disclosureButton = tv({
+  base: "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50",
+  variants: {
+    isDisabled: {
+      true: "pointer-events-none opacity-50",
+    },
+  },
+})
 
-const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ children, className, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        "flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
-        className,
-      )}
+const chevron = tv({
+  base: "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200",
+  variants: {
+    isExpanded: {
+      true: "rotate-180",
+    },
+  },
+})
+
+export interface AccordionProps extends AriaDisclosureGroupProps {
+  children: React.ReactNode
+}
+
+export function Accordion({ children, ...props }: AccordionProps) {
+  return (
+    <AriaDisclosureGroup {...props} data-slot="accordion">
+      {children}
+    </AriaDisclosureGroup>
+  )
+}
+
+export interface AccordionItemProps extends AriaDisclosureProps {
+  children: React.ReactNode
+}
+
+export function AccordionItem({ children, ...props }: AccordionItemProps) {
+  const isInGroup = useContext(DisclosureGroupStateContext) !== null
+  return (
+    <AriaDisclosure
       {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        disclosure({ ...renderProps, isInGroup, className })
+      )}
     >
       {children}
-      <ChevronDownIcon className="text-muted-foreground h-4 w-4 shrink-0 transition-transform duration-200" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+    </AriaDisclosure>
+  )
+}
 
-const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ children, className, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
-    {...props}
-  >
-    <div className={cn("pb-4 pt-0", className)}>{children}</div>
-  </AccordionPrimitive.Content>
-));
-AccordionContent.displayName = AccordionPrimitive.Content.displayName;
+export interface AccordionTriggerProps {
+  children: React.ReactNode
+  className?: string
+}
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export function AccordionTrigger({ children, className }: AccordionTriggerProps) {
+  const { isExpanded } = useContext(DisclosureStateContext)!
+  return (
+    <Heading className="flex">
+      <Button
+        slot="trigger"
+        className={(renderProps) => cn(disclosureButton({ ...renderProps }), className)}
+      >
+        {children}
+        <ChevronDown aria-hidden className={chevron({ isExpanded })} />
+      </Button>
+    </Heading>
+  )
+}
+
+export interface AccordionContentProps extends AriaDisclosurePanelProps {
+  children: React.ReactNode
+}
+
+export function AccordionContent({ children, ...props }: AccordionContentProps) {
+  return (
+    <AriaDisclosurePanel
+      {...props}
+      className={
+        "h-(--disclosure-panel-height) overflow-hidden text-sm motion-safe:transition-[height]"
+      }
+    >
+      <div className={cn("pt-0 pb-4", props.className)}>{children}</div>
+    </AriaDisclosurePanel>
+  )
+}

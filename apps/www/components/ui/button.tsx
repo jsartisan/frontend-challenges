@@ -1,24 +1,34 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { VariantProps, tv } from "tailwind-variants";
+"use client";
 
-import { cn } from "../../utils/helpers";
+import React from "react";
+import { tv } from "tailwind-variants";
+import { Button as AriaButton, composeRenderProps, ButtonProps as RACButtonProps } from "react-aria-components";
 
-const buttonVariants = tv({
-  base: cn(
-    "relative inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-1",
-    "disabled:pointer-events-none disabled:opacity-50",
-    "[&>svg]:size-[1.3em]",
-    "[&:has(+_[data-loader])_*]:opacity-0 [&:has(+_[data-loader])]:text-transparent",
-  ),
+import { focusRing } from "~/utils/helpers";
+
+export interface ButtonProps extends RACButtonProps {
+  /** @default 'primary' */
+  variant?: "primary" | "secondary" | "tertiary" | "ghost" | "destructive" | "link" | "discord" | "github";
+  /** @default 'default' */
+  size?: "default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg";
+}
+
+export const buttonVariants = tv({
+  extend: focusRing,
+  base: [
+    "relative inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded text-sm font-medium cursor-default outline-none",
+    "[&>svg]:size-[1.3em] [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0",
+  ],
   variants: {
     variant: {
       primary:
-        "shadow-bg-accent bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 active:shadow-bg-accent-pressed",
+        "shadow-bg-accent bg-primary text-primary-foreground hover:bg-primary/90 pressed:bg-primary/80 pressed:shadow-bg-accent-pressed",
       secondary:
-        "shadow-bg active:shadow-bg-pressed bg-background text-foreground hover:bg-accent active:bg-accent [&[data-state=open]]:shadow-bg-pressed [&[data-state=open]]:bg-accent",
+        "shadow-bg pressed:shadow-bg-pressed bg-background text-foreground hover:bg-accent/50 pressed:bg-accent data-[open]:shadow-bg-pressed data-[open]:bg-accent",
       tertiary:
-        "hover:bg-accent active:bg-accent active:shadow-bg-pressed [&[data-state=open]]:shadow-bg-pressed [&[data-state=open]]:bg-accent",
+        "hover:bg-accent/80 pressed:bg-accent pressed:shadow-bg-pressed data-[open]:shadow-bg-pressed data-[open]:bg-accent",
+      ghost:
+        "hover:bg-accent/80 pressed:bg-accent pressed:shadow-bg-pressed data-[open]:shadow-bg-pressed data-[open]:bg-accent",
       destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       link: "text-primary underline-offset-4 hover:underline",
       discord: "bg-social-discord text-white hover:bg-discord/90",
@@ -29,6 +39,16 @@ const buttonVariants = tv({
       sm: "h-7 rounded-md px-2 text-xs [&_svg]:size-4 gap-1",
       xs: "h-6 rounded-md px-2 text-xs gap-1",
       lg: "h-9 px-3 gap-2",
+      icon: "size-9",
+      "icon-xs": "size-6",
+      "icon-sm": "size-8",
+      "icon-lg": "size-10",
+    },
+    isDisabled: {
+      true: "pointer-events-none opacity-50",
+    },
+    isPending: {
+      true: "text-transparent",
     },
   },
   defaultVariants: {
@@ -37,29 +57,22 @@ const buttonVariants = tv({
   },
 });
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-  isLoading?: boolean;
+export function Button(props: ButtonProps) {
+  return (
+    <AriaButton
+      {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        buttonVariants({
+          ...renderProps,
+          variant: props.variant,
+          size: props.size,
+          className,
+        }),
+      )}
+    >
+      {composeRenderProps(props.children, (children) => (
+        <>{children}</>
+      ))}
+    </AriaButton>
+  );
 }
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asChild = false, children, className, isLoading = false, size, variant, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-
-    return (
-      <Comp
-        ref={ref}
-        {...props}
-        className={cn(buttonVariants({ variant, size, className }), className)}
-        data-loading={isLoading}
-      >
-        {children}
-      </Comp>
-    );
-  },
-);
-Button.displayName = "Button";
-
-export { Button, buttonVariants };

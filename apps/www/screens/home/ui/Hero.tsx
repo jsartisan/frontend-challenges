@@ -1,5 +1,5 @@
 import { REPO } from "~/shared/config/paths";
-import { Icon, Link, Separator, Button } from "~/components/ui";
+import { Icon, Separator, LinkButton } from "~/components/ui";
 
 import { HeroImage } from "./HeroImage";
 
@@ -9,10 +9,7 @@ export function Hero() {
       <a href={REPO} target="_blank" rel="noreferrer" className="rounded">
         <div className="border-ring/50 inline-flex h-8 items-center rounded-md border border-dashed bg-opacity-20 px-2 py-1 text-sm">
           <span className="text-primary font-semibold">We&apos;re Open Source</span>
-          <Separator
-            orientation="vertical"
-            className="border-ring/50 mx-2 border-l border-dashed bg-transparent"
-          />
+          <Separator orientation="vertical" className="border-ring/50 mx-2 border-l border-dashed bg-transparent" />
           Star us on GitHub
         </div>
       </a>
@@ -24,14 +21,19 @@ export function Hero() {
             prepare for frontend interviews. It&apos;s free and open source.
           </div>
           <div className="mt-2 flex justify-center gap-3 md:justify-start">
-            <Button size="lg" asChild variant="primary">
-              <Link href="/challenges">Get Started</Link>
-            </Button>
-            <Button size="lg" asChild variant="secondary" className="flex gap-2">
-              <a href={REPO} target="_blank" rel="noreferrer">
-                <Icon name="github" /> Github
-              </a>
-            </Button>
+            <LinkButton size="lg" variant="primary" href="/challenges">
+              Get Started
+            </LinkButton>
+            <LinkButton
+              size="lg"
+              variant="secondary"
+              className="flex gap-2"
+              href={REPO}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icon name="github" /> Github
+            </LinkButton>
           </div>
         </div>
         <HeroImage />

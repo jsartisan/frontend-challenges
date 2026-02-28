@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { UseFormReturn } from "react-hook-form";
 
-import { Button } from "~/components/ui";
+import { Button } from "~/components/ui/button";
 import { formSchema } from "~/features/submission-quiz/model/formSchema";
 
 type DescriptionHeaderProps = {
@@ -27,7 +27,7 @@ export function DescriptionHeader(props: DescriptionHeaderProps) {
           type="button"
           className="self-end"
           variant="secondary"
-          onClick={() => {
+          onPress={() => {
             form.trigger(["title", "readme", "difficulty", "tags"]).then(() => {
               if (form.formState.isValid) {
                 setActiveTab("code");

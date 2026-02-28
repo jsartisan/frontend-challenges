@@ -1,6 +1,6 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
-import { Button } from "~/components/ui";
+import { LinkButton } from "~/components/ui";
 import { REPO } from "~/shared/config/paths";
 
 export function Community() {
@@ -21,12 +21,10 @@ export function Community() {
           and is created by the community for the community.
         </p>
         <div className="mt-2 flex justify-center gap-3">
-          <Button asChild variant="secondary">
-            <a href={REPO} target="_blank" rel="noreferrer">
-              <GitHubLogoIcon />
-              <span>Give us a star on Github</span>
-            </a>
-          </Button>
+          <LinkButton variant="secondary" href={REPO} target="_blank" rel="noreferrer">
+            <GitHubLogoIcon />
+            <span>Give us a star on Github</span>
+          </LinkButton>
         </div>
       </div>
     </div>

@@ -1,42 +1,62 @@
-import * as React from "react";
-import * as TogglePrimitive from "@radix-ui/react-toggle";
-import { cva, type VariantProps } from "class-variance-authority";
+"use client"
 
-import { cn } from "../../utils/helpers";
+import React from "react"
+import {
+  ToggleButton as AriaToggleButton,
+  ToggleButtonProps as AriaToggleButtonProps,
+  composeRenderProps,
+} from "react-aria-components"
+import { tv } from "tailwind-variants"
 
-const toggleVariants = cva(
-  cn(
-    "inline-flex items-center justify-center rounded-[calc(var(--radius)-2px)] text-sm font-medium transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&>svg]:h-5 [&>svg]:w-5",
-    "aria-[checked=true]:text-foreground aria-checked:bg-accent aria-checked:shadow-bg-pressed",
-  ),
-  {
-    variants: {
-      variant: {
-        default: "bg-transparent",
-        ghost: "bg-transparent",
-        outline: "",
-      },
-      size: {
-        default: "bs-6 px-3",
-        sm: "bs-5 px-2 data-[variant=ghost]:bs-7",
-        lg: "bs-10 px-3",
-        icon: "size-7 px-0 data-[variant=outline]:size-[calc(1.75rem-3px)]",
-      },
+import { focusRing } from "~/utils/helpers"
+
+export interface ToggleButtonProps extends AriaToggleButtonProps {
+  /** @default 'default' */
+  variant?: "default" | "ghost" | "outline"
+  /** @default 'default' */
+  size?: "default" | "sm" | "lg" | "icon"
+}
+
+export const toggleVariants = tv({
+  extend: focusRing,
+  base: "inline-flex items-center justify-center gap-2 rounded-[calc(var(--radius)-2px)] text-sm font-medium whitespace-nowrap transition-colors cursor-default outline-none border border-transparent [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-foreground",
+  variants: {
+    variant: {
+      default:
+        "bg-transparent selected:bg-accent selected:text-foreground selected:shadow-bg-pressed",
+      ghost:
+        "bg-transparent selected:bg-accent selected:text-foreground selected:shadow-bg-pressed",
+      outline:
+        "border-input bg-transparent shadow-xs selected:bg-accent selected:text-foreground selected:shadow-bg-pressed",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    size: {
+      default: "bs-6 px-3",
+      sm: "bs-5 px-2 data-[variant=ghost]:bs-7",
+      lg: "bs-10 px-3",
+      icon: "size-7 px-0 data-[variant=outline]:size-[calc(1.75rem-3px)]",
+    },
+    isDisabled: {
+      true: "pointer-events-none opacity-50",
     },
   },
-);
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+})
 
-const Toggle = React.forwardRef<
-  React.ElementRef<typeof TogglePrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>
->(({ className, size, variant, ...props }, ref) => (
-  <TogglePrimitive.Root ref={ref} className={cn(toggleVariants({ variant, size, className }))} {...props} />
-));
-
-Toggle.displayName = TogglePrimitive.Root.displayName;
-
-export { Toggle, toggleVariants };
+export function Toggle(props: ToggleButtonProps) {
+  return (
+    <AriaToggleButton
+      {...props}
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        toggleVariants({
+          ...renderProps,
+          variant: props.variant,
+          size: props.size,
+          className,
+        })
+      )}
+    />
+  )
+}

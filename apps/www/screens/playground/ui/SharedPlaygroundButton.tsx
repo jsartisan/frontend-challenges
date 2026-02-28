@@ -27,7 +27,7 @@ function SharePlaygroundButton(props: SharePlaygroundButtonProps) {
   const { files } = sandpack;
   const [label, setLabel] = useState("Share");
 
-  const onClick = () => {
+  const onPress = () => {
     const templateFiles = TEMPLATES[template].files;
     const changedFiles = Object.entries(files).reduce(
       (acc, [path, file]) => {
@@ -61,7 +61,7 @@ function SharePlaygroundButton(props: SharePlaygroundButtonProps) {
   };
 
   return (
-    <Button variant="secondary" onClick={onClick} className="hidden sm:flex">
+    <Button variant="secondary" onPress={onPress} className="hidden sm:flex">
       {label}
     </Button>
   );

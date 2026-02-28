@@ -6,18 +6,12 @@ import { ChallengeSlim } from "~/entities/challenge/model/types";
 import { useCompletions } from "~/entities/completions/hooks/useCompletions";
 import { createCompletion } from "~/entities/completions/api/createCompletions";
 import { deleteCompletion } from "~/entities/completions/api/deleteCompletions";
-import {
-  Badge,
-  BadgeProps,
-  Card,
-  Icon,
-  IconButton,
-  IconProps,
-  Link,
-  TooltipRoot,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/components/ui";
+import { Badge, BadgeProps } from "~/components/ui/badge";
+import { Card } from "~/components/ui/card";
+import { Icon, IconProps } from "~/components/ui/icon";
+import { IconButton } from "~/components/ui/icon-button";
+import { Link } from "~/components/ui/link";
+import { Tooltip, TooltipTrigger } from "~/components/ui/tooltip";
 
 export type ChallengeListItemProps = {
   challenge: ChallengeSlim;
@@ -85,16 +79,14 @@ function ChallengeListItem(props: ChallengeListItemProps) {
         <div className="flex items-center gap-2">
           <span className="text-muted-foreground text-xs">#{challenge.no}</span>
           {showTypeIcon && (
-            <TooltipRoot delayDuration={300}>
-              <TooltipTrigger>
-                <Badge variant={challenge.type == "question" ? "question" : "quiz"} className="px-1">
-                  <Icon name={challenge.type === "question" ? "code" : "file-text"} size="sm" />
-                </Badge>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" className="capitalize">
+            <TooltipTrigger delay={300}>
+              <Badge variant={challenge.type == "question" ? "question" : "quiz"} className="px-1">
+                <Icon name={challenge.type === "question" ? "code" : "file-text"} size="sm" />
+              </Badge>
+              <Tooltip placement="bottom" className="capitalize">
                 {challenge.type}
-              </TooltipContent>
-            </TooltipRoot>
+              </Tooltip>
+            </TooltipTrigger>
           )}
           <div className="flex items-center gap-2">
             <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
@@ -108,14 +100,12 @@ function ChallengeListItem(props: ChallengeListItemProps) {
             <div className="flex items-center gap-1">
               {challenge.templatesAvailable.map((framework) => {
                 return (
-                  <TooltipRoot key={framework} delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <span>
-                        <Icon size="default" name={`${framework}-color` as IconProps["name"]} />
-                      </span>
-                    </TooltipTrigger>
-                    <TooltipContent>Available in {framework}</TooltipContent>
-                  </TooltipRoot>
+                  <TooltipTrigger key={framework} delay={300}>
+                    <span>
+                      <Icon size="default" name={`${framework}-color` as IconProps["name"]} />
+                    </span>
+                    <Tooltip>Available in {framework}</Tooltip>
+                  </TooltipTrigger>
                 );
               })}
             </div>
@@ -125,8 +115,8 @@ function ChallengeListItem(props: ChallengeListItemProps) {
       </div>
       <div className="hidden items-center sm:flex">
         <IconButton
-          onClick={onMarkComplete}
-          variant="tertiary"
+          onPress={onMarkComplete}
+          variant="ghost"
           className="text-muted-foreground/60 hover:bg-transparent active:bg-transparent [&>svg]:size-6"
           size="lg"
         >

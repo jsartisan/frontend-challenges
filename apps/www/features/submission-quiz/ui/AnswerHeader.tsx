@@ -1,4 +1,4 @@
-import { Button } from "~/components/ui";
+import { Button } from "~/components/ui/button";
 
 type AnswerStepHeaderProps = {
   setActiveTab: (tab: string) => void;
@@ -15,7 +15,7 @@ export function AnswerHeader(props: AnswerStepHeaderProps) {
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex gap-3">
-          <Button type="button" className="self-end" variant="secondary" onClick={() => setActiveTab("description")}>
+          <Button type="button" className="self-end" variant="secondary" onPress={() => setActiveTab("description")}>
             Previous Step
           </Button>
           <Button type="submit">Submit Challenge</Button>

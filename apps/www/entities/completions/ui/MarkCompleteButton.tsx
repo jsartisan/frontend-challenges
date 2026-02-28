@@ -9,7 +9,8 @@ import { useCompletions } from "~/entities/completions/hooks/useCompletions";
 import { deleteCompletion } from "~/entities/completions/api/deleteCompletions";
 import { createCompletion } from "~/entities/completions/api/createCompletions";
 import { type Challenge, type SupportedTemplates } from "~/entities/challenge/model/types";
-import { Button, Icon, TooltipRoot, TooltipArrow, TooltipContent, TooltipTrigger } from "~/components/ui";
+import { Button, Icon } from "~/components/ui";
+import { Tooltip, TooltipTrigger } from "~/components/ui/tooltip";
 
 type ShareSolutionProps = {
   challenge: Challenge;
@@ -44,32 +45,28 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
   };
 
   return (
-    <TooltipRoot delayDuration={0}>
-      <TooltipTrigger asChild>
-        <Button
-          isLoading={mutation.isPending || isCompletionsLoading}
-          variant="secondary"
-          onClick={onClick}
+    <TooltipTrigger delay={0}>
+      <Button
+        isPending={mutation.isPending || isCompletionsLoading}
+        variant="secondary"
+        onPress={onClick}
+        className={cn({
+          "hidden md:flex": true,
+          "border-(--color-bd-positive) bg-(--color-bg-positive-subtle)": isCompleted,
+          "hover:text-foreground-neutral-subtle-hover text-foreground": !isCompleted,
+        })}
+      >
+        <Icon
+          name="check-circle"
           className={cn({
-            "hidden md:flex": true,
-            "border-(--color-bd-positive) bg-(--color-bg-positive-subtle)": isCompleted,
-            "hover:text-foreground-neutral-subtle-hover text-foreground": !isCompleted,
+            "text-(--color-fg-positive)": isCompleted,
           })}
-        >
-          <Icon
-            name="check-circle"
-            className={cn({
-              "text-(--color-fg-positive)": isCompleted,
-            })}
-          />
-          {isCompleted ? "Completed" : "Mark as complete"}
-        </Button>
-      </TooltipTrigger>
-
-      <TooltipContent side="bottom" sideOffset={8}>
+        />
+        {isCompleted ? "Completed" : "Mark as complete"}
+      </Button>
+      <Tooltip placement="bottom">
         {isCompleted ? "Mark as incomplete" : "Mark as complete"}
-        <TooltipArrow />
-      </TooltipContent>
-    </TooltipRoot>
+      </Tooltip>
+    </TooltipTrigger>
   );
 }

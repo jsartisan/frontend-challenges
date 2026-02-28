@@ -6,7 +6,6 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { cn } from "~/utils/helpers";
 import { DOMAIN } from "~/shared/config/paths";
-import { TooltipProvider } from "~/components/ui";
 import { QueryProvider } from "~/shared/context/QueryProvider";
 import { ThemeProvider } from "~/shared/context/ThemeProvider";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
@@ -35,11 +34,9 @@ export default async function RootLayout(params) {
         <QueryProvider>
           <LayoutProvider>
             <ChallengesProvider challenges={challenges}>
-              <TooltipProvider>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                  <NuqsAdapter>{children}</NuqsAdapter>
-                </ThemeProvider>
-              </TooltipProvider>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                <NuqsAdapter>{children}</NuqsAdapter>
+              </ThemeProvider>
             </ChallengesProvider>
           </LayoutProvider>
         </QueryProvider>

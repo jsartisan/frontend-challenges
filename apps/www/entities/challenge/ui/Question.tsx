@@ -93,22 +93,22 @@ function QuestionInner(props: QuestionInnerProps) {
             {[
               {
                 title: "Description",
-                value: "description",
+                id: "description",
                 children: <Description challenge={challenge} />,
               },
               {
                 title: "Submissions",
-                value: "submissions",
+                id: "submissions",
                 children: <AnswerList challenge={challenge} className="p-3" />,
               },
               {
                 title: "Resources",
-                value: "resources",
+                id: "resources",
                 children: <ResourceList challenge={challenge} />,
               },
               {
                 title: "Discussion",
-                value: "discussion",
+                id: "discussion",
                 children: <CommentList challenge={challenge} className="p-3" />,
               },
             ]}
@@ -120,7 +120,7 @@ function QuestionInner(props: QuestionInnerProps) {
             {[
               {
                 title: "Preview",
-                value: "preview",
+                id: "preview",
                 children: <Preview template={template} />,
               },
             ]}
@@ -130,7 +130,7 @@ function QuestionInner(props: QuestionInnerProps) {
             {[
               {
                 title: "Console",
-                value: "console",
+                id: "console",
                 children: <Console />,
               },
             ]}

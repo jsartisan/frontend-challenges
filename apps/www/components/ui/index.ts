@@ -1,5 +1,6 @@
 export * from "./select";
 export * from "./button";
+export * from "./link-button";
 export * from "./icon";
 export * from "./breadcrumb";
 export * from "./accordion";
@@ -15,7 +16,6 @@ export * from "./checkbox";
 export * from "./radio-group";
 export * from "./dialog";
 export * from "./label";
-export * from "./scroll-area";
 export * from "./resizable";
 export * from "./command";
 export * from "./icon-button";

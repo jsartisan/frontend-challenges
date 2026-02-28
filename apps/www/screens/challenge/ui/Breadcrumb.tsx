@@ -47,13 +47,11 @@ export function Breadcrumb(props: BreadcrumbProps) {
           <BreadcrumbItem>
             <div className={cn("flex items-center justify-center gap-1", className)}>
               <Sheet>
-                <SheetTrigger asChild>
-                  <div className="group flex cursor-pointer items-center gap-1 text-sm">
-                    Challenges
-                    <IconButton variant="tertiary" size="xs" className="group-hover:bg-accent p-1">
-                      <Icon name="chevron-down" />
-                    </IconButton>
-                  </div>
+                <SheetTrigger className="group flex cursor-pointer items-center gap-1 text-sm outline-none">
+                  Challenges
+                  <IconButton variant="tertiary" size="xs" className="group-hover:bg-accent p-1">
+                    <Icon name="chevron-down" />
+                  </IconButton>
                 </SheetTrigger>
                 <SheetContent side="left" className="w-5/12 overflow-auto">
                   <h3 className="text-2xl font-bold">Challenges</h3>
@@ -135,16 +133,16 @@ export function Breadcrumb(props: BreadcrumbProps) {
           <IconButton
             variant="secondary"
             size="xs"
-            disabled={!previousChallenge}
-            onClick={() => router.push(`/challenges/${previousChallenge.path}`)}
+            isDisabled={!previousChallenge}
+            onPress={() => router.push(`/challenges/${previousChallenge.path}`)}
           >
             <Icon name="chevron-left" />
           </IconButton>
           <IconButton
             variant="secondary"
             size="xs"
-            disabled={!nextChallenge}
-            onClick={() => router.push(`/challenges/${nextChallenge.path}`)}
+            isDisabled={!nextChallenge}
+            onPress={() => router.push(`/challenges/${nextChallenge.path}`)}
           >
             <Icon name="chevron-right" />
           </IconButton>

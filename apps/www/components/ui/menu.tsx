@@ -61,12 +61,14 @@ export function MenuItem(props: MenuItemProps) {
         props.children,
         (children, { selectionMode, isSelected, hasSubmenu }) => (
           <>
-            {children}
+            <span className="group-selected:font-semibold flex flex-1 items-center gap-2 truncate font-normal">
+              {children}
+            </span>
             {selectionMode !== "none" && isSelected && (
-              <Check aria-hidden className="size-4 absolute right-2" />
+              <Check aria-hidden className="h-4 w-4" />
             )}
             {hasSubmenu && (
-              <ChevronRight aria-hidden className="size-4 absolute right-2" />
+              <ChevronRight aria-hidden className="absolute right-2 h-4 w-4" />
             )}
           </>
         )

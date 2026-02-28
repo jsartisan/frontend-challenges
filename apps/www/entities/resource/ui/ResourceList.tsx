@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 
 import { cn } from "~/utils/helpers";
-import { Button } from "~/components/ui";
+import { LinkButton } from "~/components/ui";
 import { DEFAULT_LOCALE } from "~/shared/config/locale";
 import { Challenge } from "~/entities/challenge/model/types";
 import { ResourceListItem } from "~/entities/resource/ui/ResourceListItem";
@@ -21,11 +21,9 @@ export function ResourceList(props: ResourceListProps) {
         <p className="text-3xl">📋</p>
         <p className="text-lg font-semibold">No resources yet.</p>
         <p className="text-muted-foreground/60 text-sm">To add a resource, edit the info.yml and raise a PR!</p>
-        <Button asChild size="xs" variant="secondary" className="mt-2">
-          <a target="_blank" href={`${challenge.editURL as string}/info.yml`}>
-            Add Resource
-          </a>
-        </Button>
+        <LinkButton size="xs" variant="secondary" className="mt-2" target="_blank" href={`${challenge.editURL as string}/info.yml`}>
+          Add Resource
+        </LinkButton>
       </div>
     );
   }

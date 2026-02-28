@@ -12,7 +12,7 @@ type MonacoEditorProps = {
   path?: string;
   file?: string;
   template: SupportedTemplates;
-  onChange?: (value: string) => void;
+  onChange?: (value: string, file: string) => void;
   fontSize?: number;
   tabSize?: number;
   files: Record<string, CodeFile>;
@@ -105,7 +105,7 @@ export function MonacoEditor(props: MonacoEditorProps) {
         if (!file) return;
 
         if (onChange) {
-          onChange(value ?? "");
+          onChange(value ?? "", file);
         }
       }}
     />

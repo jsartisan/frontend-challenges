@@ -5,7 +5,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Tabs, TabsContent, Form } from "~/components/ui";
+import { Form } from "~/components/ui/form";
+import { Tabs, TabsContent } from "~/components/ui/tabs";
 import { formSchema } from "~/features/submission-quiz/model/formSchema";
 import { AnswerFields } from "~/features/submission-quiz/ui/AnswerFields";
 import { AnswerHeader } from "~/features/submission-quiz/ui/AnswerHeader";
@@ -48,15 +49,15 @@ export function SubmitQuizPage() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="h-[calc(100vh-var(--nav-top-offset))] p-4 text-sm">
-        <Tabs className="h-full w-full p-0" value={activeTab || "description"} onValueChange={setActiveTab}>
-          <TabsContent value="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
+        <Tabs className="h-full w-full p-0" selectedKey={activeTab || "description"} onSelectionChange={(key) => setActiveTab(String(key))}>
+          <TabsContent id="description" className="h-full flex-col p-0 [&:not([hidden])]:flex">
             <DescriptionHeader form={form} setActiveTab={setActiveTab} />
             <div className="mt-6 grid grow grid-cols-2 grid-rows-1 gap-6">
               <DescriptionFields form={form} />
               <Description form={form} />
             </div>
           </TabsContent>
-          <TabsContent value="code" className="h-full w-full flex-col p-0 px-0 [&:not([hidden])]:flex">
+          <TabsContent id="code" className="h-full w-full flex-col p-0 px-0 [&:not([hidden])]:flex">
             <AnswerHeader setActiveTab={setActiveTab} />
             <AnswerFields form={form} />
           </TabsContent>
