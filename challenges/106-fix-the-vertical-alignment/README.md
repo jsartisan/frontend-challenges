@@ -1,0 +1,1 @@
+We have a row layout where there can be inputs with label or without label. The requirement is the if there is a input with labe, then all the inputs without label should have margin top equal to the height of label + space between label and margin.
