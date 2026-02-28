@@ -15,6 +15,7 @@ import { CATEGORIES } from "~/entities/category/model/constants";
 import { DropdownMenuContent } from "~/components/ui/dropdown-menu";
 import { DIFFICULTY_RANK } from "~/entities/challenge/model/constants";
 import { DropdownMenuItem, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
+import { useSessionSyncedQueryState } from "~/features/challenge-filter/hooks/useSessionSyncedQueryState";
 
 const difficultyOptions = DIFFICULTY_RANK.map((difficulty) => ({ label: difficulty, value: difficulty }));
 const categoryOptions = CATEGORIES.map((category) => ({ label: category, value: category }));
@@ -30,16 +31,19 @@ export function ChallengesFilters(props: ChallengesFiltersProps) {
   const { excludes = [] } = props;
 
   const [search, setSearch] = useQueryState("search", { defaultValue: "" });
-  const [difficulty, setDifficulty] = useQueryState("difficulty", difficultyParser);
-  const [category, setCategory] = useQueryState("category", categoryParser);
-  const [type, setType] = useQueryState("type", parseAsStringLiteral(["all", "question", "quiz"]).withDefault("all"));
-  const [sortBy, setSortBy] = useQueryState(
+  const [difficulty, setDifficulty] = useSessionSyncedQueryState("difficulty", difficultyParser);
+  const [category, setCategory] = useSessionSyncedQueryState("category", categoryParser);
+  const [type, setType] = useSessionSyncedQueryState(
+    "type",
+    parseAsStringLiteral(["all", "question", "quiz"]).withDefault("all"),
+  );
+  const [sortBy, setSortBy] = useSessionSyncedQueryState(
     "sort_by",
     parseAsStringLiteral(["difficulty", "published_date"]).withDefault("published_date"),
   );
-  const [sortOrder, setSortOrder] = useQueryState(
+  const [sortOrder, setSortOrder] = useSessionSyncedQueryState(
     "sort_order",
-    parseAsStringLiteral(["asc", "desc"]).withDefault("asc"),
+    parseAsStringLiteral(["asc", "desc"]).withDefault("desc"),
   );
 
   return (

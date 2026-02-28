@@ -1,18 +1,13 @@
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import type { Challenge } from "~/entities/challenge/model/types";
 
 import { cn } from "~/utils/helpers";
 import { CATEGORIES } from "~/entities/category/model/constants";
-import { getSessionStorageItem } from "~/shared/lib/sessionStorage";
 import { ChallengeList } from "~/entities/challenge/ui/ChallengeList";
 import { DIFFICULTY_RANK } from "~/entities/challenge/model/constants";
 import { useChallenges } from "~/entities/challenge/context/ChallengeProvider";
-import {
-  type ChallengeFilterState,
-  usePersistedChallengeFilters,
-} from "~/features/challenge-filter/hooks/usePersistedChallengeFilters";
+import { usePersistedChallengeFilters } from "~/features/challenge-filter/hooks/usePersistedChallengeFilters";
 import {
   CheckboxButton,
   Icon,
@@ -35,22 +30,10 @@ export function Breadcrumb(props: BreadcrumbProps) {
   const { challenge, className } = props;
   const router = useRouter();
   const { challenges } = useChallenges();
-  const scope = getSessionStorageItem(`scope`, "all");
 
-  const { dispatch, filtered, state } = usePersistedChallengeFilters(challenges, scope);
+  const { dispatch, filtered, state } = usePersistedChallengeFilters(challenges);
   const nextChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) + 1];
   const previousChallenge = filtered[filtered.findIndex((c) => c.path === challenge.path) - 1];
-
-  useEffect(() => {
-    dispatch({
-      category: getSessionStorageItem(`${scope}:category`, []),
-      difficulty: getSessionStorageItem(`${scope}:difficulty`, []),
-      type: getSessionStorageItem(`${scope}:type`, "all") as ChallengeFilterState["type"],
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scope]);
-
-  const shouldShowCategory = CATEGORIES.some((category) => category === scope) == false;
 
   return (
     <>
@@ -97,30 +80,28 @@ export function Breadcrumb(props: BreadcrumbProps) {
                         ))}
                       </div>
                     </div>
-                    {shouldShowCategory && (
-                      <div className="flex flex-col gap-2">
-                        <h4>Category</h4>
-                        <div className="flex flex-wrap gap-3">
-                          {CATEGORIES.map((category) => (
-                            <CheckboxButton
-                              key={category}
-                              isSelected={state.category.includes(category)}
-                              onChange={() => {
-                                dispatch({
-                                  category: state.category.includes(category)
-                                    ? state.category.filter((c) => c !== category)
-                                    : [...state.category, category],
-                                  difficulty: state.difficulty,
-                                  type: state.type,
-                                });
-                              }}
-                            >
-                              {category}
-                            </CheckboxButton>
-                          ))}
-                        </div>
+                    <div className="flex flex-col gap-2">
+                      <h4>Category</h4>
+                      <div className="flex flex-wrap gap-3">
+                        {CATEGORIES.map((category) => (
+                          <CheckboxButton
+                            key={category}
+                            isSelected={state.category.includes(category)}
+                            onChange={() => {
+                              dispatch({
+                                category: state.category.includes(category)
+                                  ? state.category.filter((c) => c !== category)
+                                  : [...state.category, category],
+                                difficulty: state.difficulty,
+                                type: state.type,
+                              });
+                            }}
+                          >
+                            {category}
+                          </CheckboxButton>
+                        ))}
                       </div>
-                    )}
+                    </div>
                     <div className="flex flex-col gap-2">
                       <h4>Type</h4>
                       <div className="flex gap-3">
@@ -143,7 +124,7 @@ export function Breadcrumb(props: BreadcrumbProps) {
                     </div>
                   </div>
                   <div className="mt-6">
-                    <ChallengeList variant="compact" challenges={challenges} />
+                    <ChallengeList variant="compact" challenges={filtered} />
                   </div>
                 </SheetContent>
               </Sheet>

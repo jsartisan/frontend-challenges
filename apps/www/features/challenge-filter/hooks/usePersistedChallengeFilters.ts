@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Category } from "~/entities/category/model/types";
-import { setSessionStorageItem } from "~/shared/lib/sessionStorage";
 import { sortChallengesByDate } from "~/entities/challenge/lib/sortChallengesByDate";
 import { Challenge, ChallengeList, Difficulty } from "~/entities/challenge/model/types";
 import { sortChallengesByDifficulty } from "~/entities/challenge/lib/sortChallengesByDifficulty";
+import { getSessionStorageItem, setSessionStorageItem } from "~/shared/lib/sessionStorage";
 
 export interface ChallengeFilterState {
   search: string;
@@ -26,22 +26,30 @@ const defaults: ChallengeFilterState = {
   sort_order: "desc",
 };
 
-function usePersistedChallengeFilters(
-  challenges: ChallengeList,
-  scope = "all",
-  filters: Partial<ChallengeFilterState> = defaults,
-) {
-  const [state, setState] = useState<ChallengeFilterState>({ ...defaults, ...filters });
+function usePersistedChallengeFilters(challenges: ChallengeList) {
+  const [state, setState] = useState<ChallengeFilterState>(defaults);
 
-  const dispatch = (state: Omit<Partial<ChallengeFilterState>, "challenges" | "filtered">) => {
+  // Sync from sessionStorage on mount (client-side only)
+  useEffect(() => {
+    setState({
+      search: "",
+      category: getSessionStorageItem("category", []),
+      difficulty: getSessionStorageItem("difficulty", []),
+      type: getSessionStorageItem("type", "all"),
+      sort_by: getSessionStorageItem("sort_by", "published_date"),
+      sort_order: getSessionStorageItem("sort_order", "desc"),
+    });
+  }, []);
+
+  const dispatch = (newState: Omit<Partial<ChallengeFilterState>, "challenges" | "filtered">) => {
     setState((prevState) => {
-      const finalState = { ...prevState, ...state };
+      const finalState = { ...prevState, ...newState };
 
-      setSessionStorageItem(`${scope}:difficulty`, JSON.stringify(finalState.difficulty));
-      setSessionStorageItem(`${scope}:category`, JSON.stringify(finalState.category));
-      setSessionStorageItem(`${scope}:type`, finalState.type);
-      setSessionStorageItem(`${scope}:sort_by`, finalState.sort_by || "");
-      setSessionStorageItem(`${scope}:sort_order`, finalState.sort_order || "");
+      setSessionStorageItem("difficulty", JSON.stringify(finalState.difficulty));
+      setSessionStorageItem("category", JSON.stringify(finalState.category));
+      setSessionStorageItem("type", JSON.stringify(finalState.type));
+      setSessionStorageItem("sort_by", JSON.stringify(finalState.sort_by || "published_date"));
+      setSessionStorageItem("sort_order", JSON.stringify(finalState.sort_order || "desc"));
 
       return finalState;
     });
@@ -97,10 +105,6 @@ function usePersistedChallengeFilters(
 
   if (state.sort_by === "published_date") {
     filtered = sortChallengesByDate(filtered, state.sort_order || "desc");
-  }
-
-  if (scope && scope !== "all") {
-    filtered = filtered.filter((question) => question.info?.en?.tags?.includes(scope));
   }
 
   return { state, filtered, dispatch, dispatchWithURLUpdate };

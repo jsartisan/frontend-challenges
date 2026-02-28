@@ -4,6 +4,7 @@ import { Icon } from "~/components/ui/icon";
 import { getChallengesByCategory } from "~/entities/category/api";
 import CompletionStats from "~/entities/completions/ui/CompletionStats";
 import { CATEGORY_METADATA } from "~/entities/category/config/metadata";
+import { SyncCategoryToSession } from "~/entities/challenge/ui/SyncCategoryToSession";
 import { ChallengeListWithFilters } from "~/entities/challenge/ui/ChallengeListWithFilters";
 
 async function CategoryDetailPage(props: PageProps<"/categories/[category]">) {
@@ -12,6 +13,7 @@ async function CategoryDetailPage(props: PageProps<"/categories/[category]">) {
 
   return (
     <>
+      <SyncCategoryToSession category={category} />
       <header className="flex justify-between">
         <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-2 pb-8">
           <Icon name={CATEGORY_METADATA[category].icon} size="lg" className="row-span-2 me-2" />
