@@ -1,15 +1,15 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { authClient } from "~/shared/lib/auth/client";
 
 export function useAuth() {
-  const { data: session, status } = useSession();
+  const { data: session, isPending } = authClient.useSession();
 
   return {
-    isLoading: status === "loading",
+    isLoading: isPending,
     user: session?.user
       ? {
-          id: session.user.id as string,
+          id: session.user.id,
           name: session.user.name,
           email: session.user.email,
           avatar_url: session.user.image,
