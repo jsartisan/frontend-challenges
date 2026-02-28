@@ -38,7 +38,7 @@ export function useSessionSyncedQueryState<T>(
     // Get the actual value to store
     if (typeof newValue === "function") {
       // For functional updates, we need to compute the new value
-      const computed = (newValue as (prev: T) => T)(value);
+      const computed = (newValue as (prev: T) => T)(value as T);
       setSessionStorageItem(key, JSON.stringify(computed));
     } else if (newValue === null) {
       setSessionStorageItem(key, JSON.stringify(options.defaultValue));
