@@ -28,10 +28,10 @@ export function SandpackRoot(props: Props) {
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       options={{
         classes: {
-          "sp-code-editor": "bg-(--color-bg)! h-full",
+          "sp-code-editor": "bg-background! h-full",
           "sp-wrapper": cn("h-auto! sm:h-[calc(100vh-var(--nav-top-offset))]! text-[length:inherit]!", className),
           "sp-layout": "bg-inherit! border-none! h-full",
-          "sp-navigator": "h-10! border-b-(--color-bd)!",
+          "sp-navigator": "h-10! border-b-border!",
           "sp-input": "h-6! rounded!",
         },
       }}

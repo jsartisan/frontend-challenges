@@ -50,7 +50,7 @@ export function Breadcrumb(props: BreadcrumbProps) {
                 <SheetTrigger asChild>
                   <div className="group flex cursor-pointer items-center gap-1 text-sm">
                     Challenges
-                    <IconButton variant="tertiary" size="xs" className="group-hover:bg-(--color-bg-hover) p-1">
+                    <IconButton variant="tertiary" size="xs" className="group-hover:bg-accent p-1">
                       <Icon name="chevron-down" />
                     </IconButton>
                   </div>

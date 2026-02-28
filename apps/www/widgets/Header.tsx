@@ -29,7 +29,7 @@ export function Header() {
 
   return (
     <>
-      <div className="border-(--color-bd) bg-(--color-bg) sticky top-0 z-30 w-full border-b bg-opacity-5 backdrop-blur-md transition-[background-color]">
+      <div className="border-border bg-background sticky top-0 z-30 w-full border-b bg-opacity-5 backdrop-blur-md transition-[background-color]">
         <div className="mx-auto px-4">
           <div className="h-(--navbar-height) flex items-center justify-between md:justify-start md:gap-4">
             <div className="flex flex-grow items-center justify-start gap-3">
@@ -58,7 +58,7 @@ export function Header() {
                     <DropdownMenuItem asChild className="flex-col items-start">
                       <Link href={`/submit/question`} className="block">
                         <div>Question</div>
-                        <div className="text-(--color-fg-neutral-subtle) text-xs">
+                        <div className="text-muted-foreground/60 text-xs">
                           Question are the challenges that require coding.
                         </div>
                       </Link>
@@ -66,7 +66,7 @@ export function Header() {
                     <DropdownMenuItem asChild className="flex-col items-start">
                       <Link href={`/submit/quiz`} className="block">
                         <div>Quiz</div>
-                        <div className="text-(--color-fg-neutral-subtle) text-xs">
+                        <div className="text-muted-foreground/60 text-xs">
                           Quiz tests the concepts but don't require coding.
                         </div>
                       </Link>
@@ -74,7 +74,7 @@ export function Header() {
                     <DropdownMenuItem asChild className="flex-col items-start">
                       <Link href={`/submit/theory`} className="block">
                         <div>Theory</div>
-                        <div className="text-(--color-fg-neutral-subtle) text-xs">
+                        <div className="text-muted-foreground/60 text-xs">
                           Theory challenge are just one-liner questions.
                         </div>
                       </Link>

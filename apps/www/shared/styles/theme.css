@@ -1,108 +1,168 @@
-@theme {
-  --color-bg: white;
-  --color-bg-transparent: color-mix(in srgb, var(--color-bg), transparent 10%);
-  --color-bg-hover: color-mix(in srgb, var(--color-bg), black 5%);
-  --color-bg-active: color-mix(in srgb, var(--color-bg), black 6%);
-  --color-bg-selected: color-mix(in srgb, var(--color-bg), black 8%);
-  --color-bg-secondary: color-mix(in oklch, var(--color-bg), black 2%);
-  --color-bg-accent: var(--color-blue-500);
-  --color-bg-accent-hover: color-mix(in srgb, var(--color-bg-accent), white 10%);
-  --color-bg-accent-active: color-mix(in srgb, var(--color-bg-accent), black 10%);
-  --color-bg-accent-subtle: color-mix(in srgb, var(--color-bg-accent), white 80%);
-  --color-bg-accent-strong: color-mix(in srgb, var(--color-bg-accent), black 20%);
-  --color-bg-neutral: var(--color-gray-100);
-  --color-bg-neutral-hover: color-mix(in srgb, var(--color-bg-neutral), black 5%);
-  --color-bg-neutral-subtle: color-mix(in srgb, var(--color-bg-neutral), white 5%);
-  --color-bg-neutral-subtle-hover: color-mix(in srgb, var(--color-bg-neutral-subtle), white 10%);
-  --color-bg-neutral-subtle-active: color-mix(in srgb, var(--color-bg-neutral-subtle), black 5%);
-  --color-bg-neutral-strong: color-mix(in srgb, var(--color-bg-neutral), black 5%);
-  --color-bg-neutral-strong-hover: color-mix(in srgb, var(--color-bg-neutral-strong), black 5%);
-  --color-bg-assistive: var(--color-gray-900);
-  --color-bg-assistive-transparent: color-mix(in srgb, var(--color-bg-assistive), transparent);
-  --color-bg-negative: var(--color-red-500);
-  --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
-  --color-bg-positive: var(--color-green-500);
-  --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
+@theme inline {
+  /* shadcn core colors - Light mode */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: var(--color-blue-500);
+  --primary-foreground: white;
+
+  --secondary: oklch(0.985 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(0.985 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: oklch(0.985 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(0.85 0 0);
+  --input: oklch(0.85 0 0);
+  --ring: var(--color-blue-500);
+
+  /* Chart colors */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar colors */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Domain-specific colors - Difficulty levels */
   --color-bg-easy: var(--color-green-500);
   --color-bg-easy-subtle: color-mix(in srgb, var(--color-bg-easy) 10%, white 90%);
   --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 8% black);
+  --color-fg-easy: var(--color-green-900);
+
   --color-bg-medium: var(--color-orange-500);
   --color-bg-medium-subtle: color-mix(in srgb, var(--color-bg-medium) 10%, white 90%);
   --color-bg-medium-strong: color-mix(in srgb, var(--color-bg-medium), 8% black);
+  --color-fg-medium: var(--color-orange-900);
+
   --color-bg-hard: var(--color-red-500);
   --color-bg-hard-subtle: color-mix(in srgb, var(--color-bg-hard) 10%, white 90%);
   --color-bg-hard-strong: color-mix(in srgb, var(--color-bg-hard), 8% black);
+  --color-fg-hard: var(--color-red-900);
+
   --color-bg-extreme: var(--color-purple-500);
   --color-bg-extreme-subtle: color-mix(in srgb, var(--color-bg-extreme) 10%, white 90%);
   --color-bg-extreme-strong: color-mix(in srgb, var(--color-bg-extreme), 8% black);
-  --color-bg-question: var(--color-purple-100);
-  --color-bg-quiz: var(--color-orange-100);
+  --color-fg-extreme: var(--color-purple-900);
 
-  --color-fg: var(--color-gray-900);
-  --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, white 20%);
-  --color-fg-subtle-hover: color-mix(in srgb, var(--color-fg-subtle), black 30%);
-  --color-fg-onaccent: white;
-  --color-fg-accent: var(--color-blue-500);
-  --color-fg-accent-strong: color-mix(in srgb, var(--color-fg-accent), black 20%);
-  --color-fg-neutral: var(--color-gray-900);
-  --color-fg-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 40%);
-  --color-fg-neutral-subtle-hover: color-mix(in srgb, var(--color-fg-neutral-subtle), black 30%);
-  --color-fg-invert: white;
-  --color-fg-on-assistive: white;
-  --color-fg-negative: var(--color-red-500);
-  --color-fg-positive: var(--color-green-600);
-  --color-fg-on-positive: white;
-  --color-fg-easy: var(--color-green-900);
-  --color-fg-medium: var(--color-orange-900);
-  --color-fg-hard: var(--color-red-900);
+  /* Domain-specific colors - Content types */
+  --color-bg-question: var(--color-purple-100);
   --color-fg-question: var(--color-purple-900);
+
+  --color-bg-quiz: var(--color-orange-100);
   --color-fg-quiz: var(--color-orange-900);
 
-  --color-ic-neutral-subtle: color-mix(in srgb, var(--color-fg-neutral), transparent 60%);
+  /* Domain-specific colors - Status */
+  --color-bg-positive: var(--color-green-500);
+  --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
+  --color-fg-positive: var(--color-green-600);
 
-  --color-bd: var(--color-gray-300);
-  --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, transparent 60%);
-  --color-bd-hover: color-mix(in srgb, var(--color-bd) 80%, black 20%);
-  --color-bd-strong: color-mix(in srgb, var(--color-bd), black 20%);
-  --color-bd-accent: var(--color-blue-500);
-  --color-bd-accent-strong: color-mix(in srgb, var(--color-bd-accent), black 20%);
-  --color-bd-accent-subtle: color-mix(in srgb, var(--color-bd-accent) 50%, transparent 20%);
+  --color-bg-negative: var(--color-red-500);
+  --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
+
   --color-bd-positive: var(--color-green-500);
   --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive), transparent 50%);
-  --color-bd-assistive: var(--color-gray-900);
+
+  /* Shadow-related color variables (needed for custom shadows) */
+  --color-bd-strong: color-mix(in srgb, var(--border), black 20%);
+  --color-bd-accent-strong: color-mix(in srgb, var(--primary), black 20%);
+  --color-bg-accent-strong: color-mix(in srgb, var(--primary), black 20%);
 }
 
 .dark {
-  --color-bg: color-mix(in srgb, var(--color-gray-950), 5% white);
-  --color-bg-hover: color-mix(in srgb, var(--color-bg) 100%, white 8%);
-  --color-bg-active: color-mix(in srgb, var(--color-bg) 100%, white 10%);
-  --color-bg-selected: color-mix(in srgb, var(--color-bg) 100%, white 12%);
-  --color-bg-secondary: var(--color-gray-950);
-  --color-bg-accent: var(--color-blue-500);
-  --color-bg-neutral: color-mix(in srgb, var(--color-gray-100), 80% black);
-  --color-bg-neutral-subtle: var(--color-gray-700);
-  --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive), transparent 80%);
+  /* shadcn dark mode colors */
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: var(--color-blue-500);
+  --primary-foreground: white;
+
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--color-blue-400);
+
+  /* Chart colors */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Sidebar colors */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  /* Domain-specific colors - Difficulty levels (dark mode) */
   --color-bg-easy-subtle: color-mix(in srgb, var(--color-green-100), 80% black);
   --color-bg-easy-strong: color-mix(in srgb, var(--color-bg-easy), 10% black);
-  --color-bg-medium-subtle: color-mix(in srgb, var(--color-orange-100), 80% black);
-  --color-bg-hard-subtle: color-mix(in srgb, var(--color-red-100), 80% black);
-  --color-bg-extreme-subtle: color-mix(in srgb, var(--color-purple-100), 80% black);
-  --color-bg-question: color-mix(in srgb, var(--color-purple-100), 80% black);
-  --color-bg-quiz: color-mix(in srgb, var(--color-orange-100), 80% black);
-
-  --color-fg: white;
-  --color-fg-subtle: color-mix(in srgb, var(--color-fg) 70%, black 30%);
-  --color-fg-onaccent: white;
-  --color-fg-neutral: color-mix(in srgb, var(--color-gray-900), white 80%);
   --color-fg-easy: color-mix(in srgb, var(--color-green-900), 50% white);
+
+  --color-bg-medium-subtle: color-mix(in srgb, var(--color-orange-100), 80% black);
   --color-fg-medium: color-mix(in srgb, var(--color-orange-900), 50% white);
+
+  --color-bg-hard-subtle: color-mix(in srgb, var(--color-red-100), 80% black);
   --color-fg-hard: color-mix(in srgb, var(--color-red-900), 50% white);
+
+  --color-bg-extreme-subtle: color-mix(in srgb, var(--color-purple-100), 80% black);
+  --color-fg-extreme: color-mix(in srgb, var(--color-purple-900), 50% white);
+
+  /* Domain-specific colors - Content types (dark mode) */
+  --color-bg-question: color-mix(in srgb, var(--color-purple-100), 80% black);
   --color-fg-question: color-mix(in srgb, var(--color-purple-900), 50% white);
+
+  --color-bg-quiz: color-mix(in srgb, var(--color-orange-100), 80% black);
   --color-fg-quiz: color-mix(in srgb, var(--color-orange-900), 50% white);
 
-  --color-bd: color-mix(in oklch, var(--color-gray-600), 50% transparent);
-  --color-bd-subtle: color-mix(in srgb, var(--color-bd) 90%, white 2%);
-  --color-bd-strong: color-mix(in srgb, var(--color-bd), white 5%);
+  /* Domain-specific colors - Status (dark mode) */
+  --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive), transparent 80%);
 
-  --sp-colors-surface1: var(--color-bg) !important;
+  /* Shadow-related color variables (dark mode) */
+  --color-bd-strong: color-mix(in srgb, var(--border), white 5%);
+
+  --sp-colors-surface1: var(--background) !important;
 }

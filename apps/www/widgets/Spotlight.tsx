@@ -49,11 +49,11 @@ export function Spotlight(props: SpotlightProps) {
       <Button
         variant="secondary"
         size="sm"
-        className="shadow-input ring-(--color-bd) active:shadow-input active:bg-(--color-bg-selected) hidden w-full border-none ring-1 md:flex"
+        className="shadow-input ring-border active:shadow-input active:bg-accent hidden w-full border-none ring-1 md:flex"
         onClick={() => setOpen(true)}
       >
-        <span className="text-(--color-fg) hidden text-sm lg:inline-flex">Search...</span>
-        <kbd className="border-(--color-bd) bg-(--color-bg-neutral) pointer-events-none ml-8 h-4 select-none items-center gap-1 rounded-sm px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <span className="text-foreground hidden text-sm lg:inline-flex">Search...</span>
+        <kbd className="border-border bg-muted pointer-events-none ml-8 h-4 select-none items-center gap-1 rounded-sm px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>

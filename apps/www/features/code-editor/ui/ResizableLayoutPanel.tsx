@@ -134,10 +134,10 @@ export const ResizableLayoutPanel = (props: ResizableLayoutTabPanel) => {
           >
             {/* gradient shadows */}
             {showLeftShadow && (
-              <div className="from-(--color-bd) pointer-events-none absolute left-0 top-0 z-10 h-full w-4 bg-gradient-to-r to-transparent" />
+              <div className="from-border pointer-events-none absolute left-0 top-0 z-10 h-full w-4 bg-gradient-to-r to-transparent" />
             )}
             {showRightShadow && (
-              <div className="from-(--color-bd) pointer-events-none absolute right-0 top-0 z-10 h-full w-4 bg-gradient-to-l to-transparent" />
+              <div className="from-border pointer-events-none absolute right-0 top-0 z-10 h-full w-4 bg-gradient-to-l to-transparent" />
             )}
             <TabsList
               className={cn(

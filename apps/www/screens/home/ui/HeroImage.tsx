@@ -25,7 +25,7 @@ export function HeroImage() {
                 r={levels[level]}
                 fill="none"
                 strokeDasharray="4 4"
-                className="stroke-(--color-bd) desktop:stroke-(--color-bd) desktop:stroke-[1px] stroke-[3px]"
+                className="stroke-border desktop:stroke-border desktop:stroke-[1px] stroke-[3px]"
                 opacity={1}
               />
             ))}
@@ -72,7 +72,7 @@ export const OrbitingItem = (props: OrbitingItemProps) => {
           } as React.CSSProperties
         }
       >
-        <div className="translate-z-0 overflow-hiddened ring-(--color-bd) desktop:ring-1 bg-(--color-bg) flex size-full scale-[calc(80%+var(--level)*8%)] items-center justify-center rounded-full p-2 ring-2 transition-all duration-500">
+        <div className="translate-z-0 overflow-hiddened ring-border desktop:ring-1 bg-background flex size-full scale-[calc(80%+var(--level)*8%)] items-center justify-center rounded-full p-2 ring-2 transition-all duration-500">
           <div className="relative grid size-full grid-cols-1 place-items-center" style={{ opacity: 1 }}>
             <div className="flex size-full items-center justify-center text-2xl [grid-column:1/2] [grid-row:1/2]">
               {icon || "📦"}

@@ -53,7 +53,7 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
           className={cn({
             "hidden md:flex": true,
             "border-(--color-bd-positive) bg-(--color-bg-positive-subtle)": isCompleted,
-            "hover:text-foreground-neutral-subtle-hover text-(--color-fg)": !isCompleted,
+            "hover:text-foreground-neutral-subtle-hover text-foreground": !isCompleted,
           })}
         >
           <Icon

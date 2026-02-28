@@ -17,11 +17,11 @@ export function CategoryList(props: CategoryListProps) {
           className="rounded"
           key={`category-${category.name}`}
         >
-          <Card className="hover:bg-(--color-bg-hover) flex items-center gap-3 p-3">
+          <Card className="hover:bg-accent flex items-center gap-3 p-3">
             <Icon name={`${category.name}-color`} size="lg" />
             <div>
               <h3 className="text-lg font-bold capitalize">{category.name === "css" ? "CSS" : category.name}</h3>
-              <p className="text-(--color-fg-subtle)">{category.challengesCount} Challenges</p>
+              <p className="text-muted-foreground">{category.challengesCount} Challenges</p>
             </div>
           </Card>
         </Link>

@@ -24,14 +24,14 @@ function RoadmapListItem(props: RoadmapListItemProps) {
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Link
-              className="text-(--color-fg-accent) text-base font-medium hover:underline"
+              className="text-primary text-base font-medium hover:underline"
               href={`/roadmaps/${roadmap.path}`}
             >
               {roadmap.info.en?.title}
             </Link>
           </div>
         </div>
-        <p className="text-(--color-fg-neutral-subtle) text-sm">{roadmap.info.en?.description}</p>
+        <p className="text-muted-foreground/60 text-sm">{roadmap.info.en?.description}</p>
       </div>
     </Card>
   );

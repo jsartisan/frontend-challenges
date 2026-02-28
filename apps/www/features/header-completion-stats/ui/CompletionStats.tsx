@@ -21,20 +21,20 @@ export default function CompletionStats(props: CompletionStatsProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <IconButton variant="tertiary" className="bg-(--color-bg-neutral) text-(--color-fg-positive) rounded-full">
+        <IconButton variant="tertiary" className="bg-muted text-(--color-fg-positive) rounded-full">
           <Icon name="check-circle" size="sm" />
         </IconButton>
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0" align="center">
         <div className="flex flex-col gap-4 p-3">
-          <div className="text-(--color-fg-neutral) box-trim flex items-center text-lg font-bold">Completions</div>
+          <div className="text-muted-foreground box-trim flex items-center text-lg font-bold">Completions</div>
           <div className="flex flex-col gap-3">
             <div className="flex items-end gap-1">
               <div className="box-trim flex items-center text-3xl font-bold">{completions.length}</div>
-              <div className="text-(--color-fg-neutral-subtle) box-trim flex items-center">/</div>
-              <div className="text-(--color-fg-neutral-subtle) box-trim flex items-center">{challenges.length}</div>
+              <div className="text-muted-foreground/60 box-trim flex items-center">/</div>
+              <div className="text-muted-foreground/60 box-trim flex items-center">{challenges.length}</div>
             </div>
-            <div className="text-(--color-fg-subtle) box-trim flex items-center">Challenges Solved</div>
+            <div className="text-muted-foreground box-trim flex items-center">Challenges Solved</div>
           </div>
 
           <div className="flex gap-2">

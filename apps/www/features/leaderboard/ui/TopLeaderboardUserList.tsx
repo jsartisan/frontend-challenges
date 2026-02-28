@@ -39,14 +39,14 @@ export function TopLeaderboardUserList() {
                 <a
                   href={aggregatedUser.html_url}
                   target="_blank"
-                  className="text-(--color-fg-accent) text-base font-medium hover:underline"
+                  className="text-primary text-base font-medium hover:underline"
                 >
                   {aggregatedUser.user.login}
                 </a>
               </div>
-              <div className="text-(--color-fg-neutral-subtle) text-sm">Solved {aggregatedUser.count} answers</div>
+              <div className="text-muted-foreground/60 text-sm">Solved {aggregatedUser.count} answers</div>
             </div>
-            <div className="text-(--color-fg-neutral-subtle) ms-auto text-2xl font-bold opacity-50">
+            <div className="text-muted-foreground/60 ms-auto text-2xl font-bold opacity-50">
               #{aggregatedUser.rank}
             </div>
           </div>

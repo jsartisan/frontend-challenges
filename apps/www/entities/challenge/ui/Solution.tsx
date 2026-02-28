@@ -30,7 +30,7 @@ function Solution(props: SolutionProps) {
       {!showSolution && !showExplanation && (
         <div
           className={cn(
-            "bg-(--color-bg) absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center",
+            "bg-background absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center",
             !isMCQ && "hover:bg-bg-hover cursor-pointer",
           )}
           onClick={() => {
@@ -74,7 +74,7 @@ function Solution(props: SolutionProps) {
 
       {/* MCQ feedback overlay after answer picked, before explanation */}
       {isMCQ && showSolution && !showExplanation && (
-        <div className="bg-(--color-bg) absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center">
+        <div className="bg-background absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center">
           <p className="text-lg font-semibold">{selectedAnswer === right_answer ? "✅ Correct!" : "❌ Incorrect."}</p>
           <p>
             Correct answer: <span className="font-medium">{right_answer}</span>

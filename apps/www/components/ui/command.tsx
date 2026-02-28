@@ -14,7 +14,7 @@ const Command = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive
     ref={ref}
-    className={cn("bg-(--color-bg) text-(--color-fg) flex h-full w-full flex-col rounded", className)}
+    className={cn("bg-background text-foreground flex h-full w-full flex-col rounded", className)}
     {...props}
   />
 ));
@@ -40,7 +40,7 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   // eslint-disable-next-line
-  <div className="border-(--color-bd) flex items-center border-b px-3" cmdk-input-wrapper="">
+  <div className="border-border flex items-center border-b px-3" cmdk-input-wrapper="">
     <MagnifyingGlassIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}
@@ -95,7 +95,7 @@ const CommandSeparator = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive.Separator ref={ref} className={cn("bg-(--color-bd) -mx-1 h-px", className)} {...props} />
+  <CommandPrimitive.Separator ref={ref} className={cn("bg-border -mx-1 h-px", className)} {...props} />
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
@@ -106,7 +106,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "outline-hidden aria-selected:bg-(--color-bg-hover) aria-selected:hover:bg-(--color-bg-selected) data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-default select-none items-center gap-2 rounded-sm bg-transparent px-2 py-1.5 text-sm",
+      "outline-hidden aria-selected:bg-accent aria-selected:hover:bg-accent data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-default select-none items-center gap-2 rounded-sm bg-transparent px-2 py-1.5 text-sm",
       className,
     )}
     {...props}

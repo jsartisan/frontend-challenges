@@ -87,8 +87,8 @@ export function MultiSelect(props: MultiSelectProps) {
                   >
                     <div
                       className={cn(
-                        "border-(--color-bd-strong) mr-2 flex h-4 w-4 items-center justify-center rounded-sm border",
-                        isSelected ? "text-primary-foreground bg-(--color-bg)" : "[&_svg]:invisible",
+                        "border-border mr-2 flex h-4 w-4 items-center justify-center rounded-sm border",
+                        isSelected ? "text-primary-foreground bg-background" : "[&_svg]:invisible",
                       )}
                     >
                       <CheckIcon className={cn("h-4 w-4")} />

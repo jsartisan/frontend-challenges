@@ -17,7 +17,7 @@ const PopoverContent = React.forwardRef<
       align={align}
       sideOffset={sideOffset}
       className={cn(
-        "text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 border-(--color-bd) bg-(--color-bg) outline-hidden shadow-popover z-50 w-72 rounded-md border p-3",
+        "text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 border-border bg-background outline-hidden shadow-popover z-50 w-72 rounded-md border p-3",
         className,
       )}
       {...props}
@@ -31,7 +31,7 @@ const PopoverArrow = React.forwardRef<
 >((props, ref) => (
   <PopoverPrimitive.Arrow
     ref={ref}
-    className="rotate-225 border-(--color-bd) bg-(--color-bg) absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 transform border-l border-t fill-transparent"
+    className="rotate-225 border-border bg-background absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 transform border-l border-t fill-transparent"
     {...props}
   />
 ));

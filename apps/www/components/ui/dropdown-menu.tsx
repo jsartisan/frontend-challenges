@@ -63,7 +63,7 @@ const DropdownMenuContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 border-(--color-bd) bg-(--color-bg) outline-hidden shadow-popover z-50 w-72 rounded-md border p-1",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 border-border bg-background outline-hidden shadow-popover z-50 w-72 rounded-md border p-1",
         className,
       )}
       {...props}
@@ -81,7 +81,7 @@ const DropdownMenuItem = React.forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      "focus:text-accent-foreground outline-hidden focus:bg-(--color-bg-active) data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors",
+      "focus:text-accent-foreground outline-hidden focus:bg-accent data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors",
       inset && "pl-8",
       className,
     )}
@@ -168,7 +168,7 @@ const DropdownMenuArrow = React.forwardRef<
 >((props, ref) => (
   <DropdownMenuPrimitive.Arrow
     ref={ref}
-    className="rotate-225 border-(--color-bd) bg-(--color-bg) absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 transform border-l border-t fill-transparent"
+    className="rotate-225 border-border bg-background absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 transform border-l border-t fill-transparent"
     {...props}
   />
 ));
