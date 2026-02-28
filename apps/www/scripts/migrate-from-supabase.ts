@@ -5,7 +5,7 @@ const NEW_DB_URL = process.env.DATABASE_URL!;
 async function migrate() {
   // Use session mode (port 6543) instead of transaction mode
   const supabasePool = new Pool({
-    connectionString: "postgresql://postgres.orwkfnofcngdjxzsddrj:tekkenLORD0987@aws-0-us-west-1.pooler.supabase.com:6543/postgres",
+    connectionString: "",
   });
   const newPool = new Pool({ connectionString: NEW_DB_URL });
 

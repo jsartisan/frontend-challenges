@@ -1,7 +1,6 @@
 import { Pool } from "pg";
 
-const SUPABASE_URL =
-  "postgresql://postgres.tatqdmexdszkwmdwnwbo:R6F3%25JTqV6%24WSf-@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres";
+const SUPABASE_URL = ""
 
 async function check() {
   const pool = new Pool({ connectionString: SUPABASE_URL });
