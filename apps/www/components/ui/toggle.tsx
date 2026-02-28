@@ -6,8 +6,8 @@ import { cn } from "../../utils/helpers";
 
 const toggleVariants = cva(
   cn(
-    "inline-flex items-center justify-center rounded-[calc(var(--radius)-2px)] text-sm font-medium transition-colors hover:bg-muted hover:text-(--color-fg) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--color-bd-accent) disabled:pointer-events-none disabled:opacity-50 hover:bg-(--color-bg-hover) [&>svg]:h-5 [&>svg]:w-5",
-    "area-[checked=true]:text-[var(--color-fg)] aria-checked:bg-(--color-bg-selected) aria-checked:shadow-bg-pressed",
+    "inline-flex items-center justify-center rounded-[calc(var(--radius)-2px)] text-sm font-medium transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&>svg]:h-5 [&>svg]:w-5",
+    "aria-[checked=true]:text-foreground aria-checked:bg-accent aria-checked:shadow-bg-pressed",
   ),
   {
     variants: {

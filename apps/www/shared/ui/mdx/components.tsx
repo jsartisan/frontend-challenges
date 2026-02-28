@@ -18,8 +18,8 @@ export const components = {
   ol: (props: any) => <ol className="flex flex-col gap-2" {...props} />,
   li: (props: any) => <li className="ml-4 list-disc [&_ul]:mt-2" {...props} />,
   ul: (props: any) => <ul className="flex flex-col gap-1" {...props} />,
-  a: (props: any) => <a className="text-(--color-fg-accent-strong) font-semibold underline" {...props} />,
+  a: (props: any) => <a className="text-primary font-semibold underline" {...props} />,
   code: (props: any) => (
-    <code className="bg-(--color-bg-neutral-subtle) text-(--color-fg-neutral) rounded px-1 py-0.5" {...props} />
+    <code className="bg-muted text-muted-foreground rounded px-1 py-0.5" {...props} />
   ),
 };

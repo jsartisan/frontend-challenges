@@ -56,7 +56,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
   if (variant === "compact") {
     return (
       <Link href={`/challenges/${challenge.path}`} key={challenge.path}>
-        <Card className="hover:bg-(--color-bg-hover) flex items-center justify-between gap-2 p-2">
+        <Card className="hover:bg-accent flex items-center justify-between gap-2 p-2">
           <span className="font-semibold">{challenge.info.en?.title}</span>
           <Badge variant={challenge.difficulty as BadgeProps["variant"]}>{challenge.difficulty}</Badge>
         </Card>
@@ -75,7 +75,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
           <div className="flex items-center space-x-2">
             <Link
               prefetch={false}
-              className="text-(--color-fg-accent) text-base font-medium hover:underline"
+              className="text-primary text-base font-medium hover:underline"
               href={`/challenges/${challenge.path}`}
             >
               {challenge.info.en?.title}
@@ -83,7 +83,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-(--color-fg-subtle) text-xs">#{challenge.no}</span>
+          <span className="text-muted-foreground text-xs">#{challenge.no}</span>
           {showTypeIcon && (
             <TooltipRoot delayDuration={300}>
               <TooltipTrigger>
@@ -127,7 +127,7 @@ function ChallengeListItem(props: ChallengeListItemProps) {
         <IconButton
           onClick={onMarkComplete}
           variant="tertiary"
-          className="text-(--color-fg-neutral-subtle) hover:bg-transparent active:bg-transparent [&>svg]:size-6"
+          className="text-muted-foreground/60 hover:bg-transparent active:bg-transparent [&>svg]:size-6"
           size="lg"
         >
           <Icon

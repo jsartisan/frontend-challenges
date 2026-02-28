@@ -93,7 +93,7 @@ export function File(props: FileProps) {
   return (
     <>
       <div className="h-full w-full grow flex-col overflow-hidden">
-        <div className="min-h-auto border-(--color-bd) flex items-center gap-2 border-b p-1">
+        <div className="min-h-auto border-border flex items-center gap-2 border-b p-1">
           <Button variant="tertiary" size="sm" onClick={() => onPrettify({ tabSize: editorTabSize })} type="button">
             <Icon name="tidy" />
             Tidy
@@ -164,7 +164,7 @@ export function File(props: FileProps) {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => resetFile(activeFile)} className="flex-col items-start">
                   <div>Reset Current File</div>
-                  <div className="text-(--color-fg-neutral-subtle) text-xs">
+                  <div className="text-muted-foreground/60 text-xs">
                     Reset the current file to the initial state
                   </div>
                 </DropdownMenuItem>
@@ -173,7 +173,7 @@ export function File(props: FileProps) {
                   className="flex-col items-start"
                 >
                   <div>Reset Files</div>
-                  <div className="text-(--color-fg-neutral-subtle) text-xs">Reset all files to the initial state</div>
+                  <div className="text-muted-foreground/60 text-xs">Reset all files to the initial state</div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

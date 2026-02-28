@@ -12,19 +12,19 @@ export const ResourceListItem = (props: ResourceListItemProps) => {
     <a
       href={resource}
       target="_blank"
-      className="hover:bg-(--color-bg-neutral-subtle) group flex items-start gap-2 rounded p-1"
+      className="hover:bg-muted group flex items-start gap-2 rounded p-1"
     >
       <img
         src={getFaviconUrl(resource)}
         alt={resource}
-        className="bg-(--color-bg-neutral-subtle) h-6 w-6 rounded p-1"
+        className="bg-muted h-6 w-6 rounded p-1"
       />
       <div className="flex flex-col">
-        <span className="text-(--color-fg-neutral) text-sm">{resource}</span>
+        <span className="text-muted-foreground text-sm">{resource}</span>
       </div>
       <Icon
         name="external-link"
-        className="text-(--color-fg-neutral-subtle) me-1 ms-auto hidden self-center group-hover:block"
+        className="text-muted-foreground/60 me-1 ms-auto hidden self-center group-hover:block"
       />
     </a>
   );

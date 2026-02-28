@@ -20,7 +20,7 @@ export function ResourceList(props: ResourceListProps) {
       <div className={cn("flex h-full flex-col items-center justify-center gap-2 text-center", className)} {...rest}>
         <p className="text-3xl">📋</p>
         <p className="text-lg font-semibold">No resources yet.</p>
-        <p className="text-(--color-fg-neutral-subtle) text-sm">To add a resource, edit the info.yml and raise a PR!</p>
+        <p className="text-muted-foreground/60 text-sm">To add a resource, edit the info.yml and raise a PR!</p>
         <Button asChild size="xs" variant="secondary" className="mt-2">
           <a target="_blank" href={`${challenge.editURL as string}/info.yml`}>
             Add Resource

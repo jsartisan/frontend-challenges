@@ -17,7 +17,7 @@ export const CodeBlock = ({ children }: CodeBlockProps) => {
       <SandpackProvider
         options={{
           classes: {
-            "sp-code-editor": "border! border-(--color-bd)! rounded!",
+            "sp-code-editor": "border! border-border! rounded!",
             "sp-editor-viewer": "rounded!",
           },
         }}

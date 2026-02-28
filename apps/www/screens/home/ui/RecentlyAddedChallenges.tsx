@@ -14,7 +14,7 @@ export function RecentlyAddedChallenges(props: RecentlyAddedChallengesProps) {
     <div className={cn("flex flex-col gap-3", className)}>
       <div className="flex flex-col gap-1">
         <h3 className="text-xl font-bold">Recently Added</h3>
-        <p className="text-(--color-fg-subtle)">The newest challenges added by the community</p>
+        <p className="text-muted-foreground">The newest challenges added by the community</p>
       </div>
       <ChallengeList showTypeIcon challenges={challenges} />
     </div>

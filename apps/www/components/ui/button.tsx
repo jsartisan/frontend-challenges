@@ -6,7 +6,7 @@ import { cn } from "../../utils/helpers";
 
 const buttonVariants = tv({
   base: cn(
-    "relative inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-(--color-bd-accent) focus-visible:ring-2 focus-visible:ring-offset-1",
+    "relative inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded text-sm font-medium focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-1",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&>svg]:size-[1.3em]",
     "[&:has(+_[data-loader])_*]:opacity-0 [&:has(+_[data-loader])]:text-transparent",
@@ -14,11 +14,11 @@ const buttonVariants = tv({
   variants: {
     variant: {
       primary:
-        "shadow-bg-accent bg-(--color-bg-accent) text-(--color-fg-onaccent) hover:bg-(--color-bg-accent-hover) active:bg-(--color-bg-accent-active) active:shadow-bg-accent-pressed",
+        "shadow-bg-accent bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 active:shadow-bg-accent-pressed",
       secondary:
-        "shadow-bg active:shadow-bg-pressed bg-(--color-bg) text-(--color-fg) hover:bg-(--color-bg-hover) active:bg-(--color-bg-active) [&[data-state=open]]:shadow-bg-pressed [&[data-state=open]]:bg-(--color-bg-active)",
+        "shadow-bg active:shadow-bg-pressed bg-background text-foreground hover:bg-accent active:bg-accent [&[data-state=open]]:shadow-bg-pressed [&[data-state=open]]:bg-accent",
       tertiary:
-        "hover:bg-(--color-bg-hover) active:bg-(--color-bg-active) active:shadow-bg-pressed [&[data-state=open]]:shadow-bg-pressed  [&[data-state=open]]:bg-(--color-bg-active)",
+        "hover:bg-accent active:bg-accent active:shadow-bg-pressed [&[data-state=open]]:shadow-bg-pressed [&[data-state=open]]:bg-accent",
       destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       link: "text-primary underline-offset-4 hover:underline",
       discord: "bg-social-discord text-white hover:bg-discord/90",

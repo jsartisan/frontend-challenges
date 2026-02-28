@@ -20,14 +20,14 @@ const ThemeChanger = dynamic(() => import("~/widgets/ThemeChanger"), {
 
 export function Footer() {
   return (
-    <div className="border-(--color-bd) bg-(--color-bg) border-t py-6">
+    <div className="border-border bg-background border-t py-6">
       <div className="max-w-(--breakpoint-xl) mx-auto flex flex-col justify-between gap-4 px-4 sm:flex-row sm:px-6">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-center gap-2 sm:justify-start">
             <Logo isTextVisible />
-            <span className="text-(--color-fg-subtle) text-xs">by</span>
+            <span className="text-muted-foreground text-xs">by</span>
             <a
-              className="bg-(--color-bg-neutral) text-(--color-fg) flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium"
+              className="bg-muted text-foreground flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium"
               href="https://x.com/pawankumar2901"
               target="_blank"
               rel="noopener noreferrer"
@@ -41,25 +41,25 @@ export function Footer() {
             </a>
           </div>
           <p className="flex flex-wrap justify-center gap-3 font-medium sm:justify-start sm:gap-4">
-            <Link className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)" href="/challenges">
+            <Link className="text-muted-foreground hover:text-muted-foreground/80" href="/challenges">
               Challenges
             </Link>
-            <Link className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)" href="/play">
+            <Link className="text-muted-foreground hover:text-muted-foreground/80" href="/play">
               Playground
             </Link>
             <a
-              className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)"
+              className="text-muted-foreground hover:text-muted-foreground/80"
               target="_blank"
               rel="noopener noreferrer"
               href="https://github.com/jsartisan/frontend-challenges/issues/new?assignees=jsartisan&labels=feedback&template=feedback.md&title=%5BFeedback%5D%3A+..."
             >
               Feedback
             </a>
-            <Link className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)" href="/blog">
+            <Link className="text-muted-foreground hover:text-muted-foreground/80" href="/blog">
               Blog
             </Link>
             <Link
-              className="text-(--color-fg-subtle) hover:text-(--color-fg-subtle-hover)"
+              className="text-muted-foreground hover:text-muted-foreground/80"
               href="/blog/how-to-contribute"
             >
               Contribute
@@ -70,7 +70,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <ThemeChanger />
           </div>
-          <p className="text-(--color-fg-neutral-subtle)">&copy; 2025 FrontendChallenges. All rights reserved </p>
+          <p className="text-muted-foreground/60">&copy; 2025 FrontendChallenges. All rights reserved </p>
         </div>
       </div>
     </div>

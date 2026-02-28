@@ -30,7 +30,7 @@ export const CommentListItem = (props: CommentListItemProps) => {
   return (
     <div
       className={cn(
-        "bg-(--color-bg-neutral-subtle) border-(--color-border) hover:bg-(--color-bg-neutral-hover) relative flex gap-3 rounded border p-3",
+        "bg-muted border-border hover:bg-muted relative flex gap-3 rounded border p-3",
         className,
       )}
     >
@@ -43,14 +43,14 @@ export const CommentListItem = (props: CommentListItemProps) => {
       <div className="flex flex-1 flex-col gap-2">
         {/* Header */}
         <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="text-(--color-fg-primary) font-semibold">{comment.user.login}</span>
-          <span className="text-(--color-fg-neutral-subtle)">
+          <span className="text-foreground font-semibold">{comment.user.login}</span>
+          <span className="text-muted-foreground/60">
             commented {formatDistanceToNow(new Date(comment.created_at), { addSuffix: true })}
           </span>
         </div>
 
         {/* Body */}
-        <Markdown className="prose prose-sm text-(--color-fg-neutral) max-w-none">{comment.body}</Markdown>
+        <Markdown className="prose prose-sm text-muted-foreground max-w-none">{comment.body}</Markdown>
 
         {/* Reactions */}
         {hasCommentsReactions && (
@@ -65,7 +65,7 @@ export const CommentListItem = (props: CommentListItemProps) => {
                 return (
                   <span
                     key={key}
-                    className="border-(--color-border) bg-(--color-bg-neutral) text-(--color-fg-neutral) flex items-center gap-1 rounded border px-2 py-0.5 text-xs"
+                    className="border-border bg-muted text-muted-foreground flex items-center gap-1 rounded border px-2 py-0.5 text-xs"
                   >
                     {emoji} {count}
                   </span>

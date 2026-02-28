@@ -13,7 +13,7 @@ export function Leaderboard(props: LeaderboardProps) {
     <div className={cn("flex flex-col gap-3", className)}>
       <div className="flex flex-col gap-1">
         <h3 className="text-xl font-bold">🏆 Leaderboard</h3>
-        <p className="text-(--color-fg-subtle)">The top contributors 🌟</p>
+        <p className="text-muted-foreground">The top contributors 🌟</p>
       </div>
       <TopLeaderboardUserList />
     </div>

@@ -19,7 +19,7 @@ export function FileExplorer() {
   return (
     <div className="">
       <div className="flex items-center justify-between">
-        <p className="text-(--color-fg-neutral-subtle)">Files</p>
+        <p className="text-muted-foreground/60">Files</p>
         <IconButton
           size="sm"
           variant="tertiary"
@@ -50,7 +50,7 @@ export function FileExplorer() {
               onClick={() => {
                 setActiveFile(filename);
               }}
-              className="text-(--color-fg-subtle) hover:text-(--color-fg) data-selected:font-semibold data-selected:text-(--color-fg-active) group flex h-6 items-center justify-between rounded-sm text-left"
+              className="text-muted-foreground hover:text-foreground data-selected:font-semibold data-selected:text-primary group flex h-6 items-center justify-between rounded-sm text-left"
             >
               {filename}
 
