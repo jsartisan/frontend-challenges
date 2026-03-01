@@ -15,7 +15,7 @@ export default function Loading() {
             <Skeleton className="h-9 w-20" />
           </div>
         </div>
-        <div className="flex w-full grow gap-4">
+        <div className="flex min-h-0 w-full grow gap-4">
           <Skeleton className="h-full w-6/12" />
           <Skeleton className="h-full w-6/12" />
         </div>
