@@ -87,7 +87,7 @@ function QuestionInner(props: QuestionInnerProps) {
           <ShareSolutionButton template={template} challenge={challenge} />
         </div>
       </div>
-      <div className="w-full grow">
+      <div className="min-h-0 w-full grow">
         <ResizableLayout>
           <ResizableLayoutPanel defaultValue="description">
             {[

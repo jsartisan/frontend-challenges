@@ -74,7 +74,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
             <SharePlaygroundButton template={template} />
           </div>
         </div>
-        <div className="w-full grow">
+        <div className="min-h-0 w-full grow">
           <ResizablePanelGroup direction="horizontal" className="sm:flex! !grid gap-4 sm:gap-1">
             <ResizablePanel defaultSize={20}>
               <ResizableLayoutPanel defaultValue="fileExplorer" tabless>
