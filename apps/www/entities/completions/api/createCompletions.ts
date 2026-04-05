@@ -1,19 +1,19 @@
-"use server";
-
-import { db } from "~/shared/lib/db";
-import { completions } from "~/shared/lib/db/schema";
+const STORAGE_KEY = "fc-completions";
 
 export async function createCompletion({
   challenge_id,
-  user_id,
 }: {
   challenge_id: number;
-  user_id: string;
+  user_id?: string;
 }) {
-  await db.insert(completions).values({
-    challengeId: challenge_id,
-    userId: user_id,
-  });
-
+  if (typeof window === "undefined") return { success: false };
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const ids: number[] = raw ? JSON.parse(raw) : [];
+    if (!ids.includes(challenge_id)) {
+      ids.push(challenge_id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+    }
+  } catch {}
   return { success: true };
 }

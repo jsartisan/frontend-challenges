@@ -4,7 +4,6 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 import { Logo } from "~/shared/ui/Logo";
 import { REPO } from "~/shared/config/paths";
-import UserNav from "~/features/auth/ui/UserNav";
 import { Skeleton } from "~/components/ui/skeleton";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
 import { Button, Icon, Link, LinkButton, Separator } from "~/components/ui";
@@ -74,7 +73,6 @@ export function Header() {
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
               <CompletionStats challenges={challenges} />
-              <UserNav />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <LinkButton variant="ghost" size="icon" href={REPO} target="_blank" rel="noreferrer">
                 <GitHubLogoIcon />

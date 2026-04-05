@@ -1,5 +1,3 @@
-"use server";
-
 import type { Metadata } from "next";
 
 import { DOMAIN } from "~/shared/config/paths";

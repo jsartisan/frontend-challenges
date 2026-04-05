@@ -4,6 +4,8 @@ import { DOMAIN } from "~/shared/config/paths";
 import { getAllBlogs } from "~/entities/blog/api/getAllBlogs";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const challenges = await getChallenges();
   const blogs = getAllBlogs();
