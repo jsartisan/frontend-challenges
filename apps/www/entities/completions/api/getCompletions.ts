@@ -1,15 +1,15 @@
-"use server";
+const STORAGE_KEY = "fc-completions";
 
-import { eq } from "drizzle-orm";
+function readCompletions(): number[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
 
-import { db } from "~/shared/lib/db";
-import { completions } from "~/shared/lib/db/schema";
-
-export async function getCompletions({ user_id }: { user_id: string }) {
-  const data = await db
-    .select()
-    .from(completions)
-    .where(eq(completions.userId, user_id));
-
-  return { data };
+export async function getCompletions() {
+  return { data: readCompletions().map((id) => ({ challengeId: id })) };
 }

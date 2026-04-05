@@ -1,4 +1,8 @@
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 module.exports = {
   reactStrictMode: false,
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
 };

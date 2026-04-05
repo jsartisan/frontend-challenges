@@ -1,11 +1,5 @@
-"use server";
-
-import { headers } from "next/headers";
-
-import { auth } from "~/shared/lib/auth";
+import { authClient } from "~/shared/lib/auth/client";
 
 export async function signOut() {
-  await auth.api.signOut({
-    headers: await headers(),
-  });
+  await authClient.signOut();
 }
