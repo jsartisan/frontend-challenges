@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
+import { JsonLd } from "~/shared/ui/JsonLd";
 import { createPageMetadata } from "~/shared/lib/seo";
 import { DEFAULT_LOCALE } from "~/shared/config/locale";
+import { challengeJsonLd } from "~/shared/lib/structuredData";
 import { describeChallenge } from "~/shared/lib/describeChallenge";
 import { Quiz } from "~/entities/challenge/ui/Quiz";
 import { Theory } from "~/entities/challenge/ui/Theory";
@@ -34,10 +36,13 @@ export async function ChallengePage(props: PageProps<"/challenges/[slug]">) {
   const challenge = await getChallengeByPath((await props.params).slug);
 
   return (
-    <LayoutProvider defaultValue={challenge.info?.en?.tags?.includes("ui-coding") ? "layout-2" : undefined}>
-      {challenge.type === "quiz" && <Quiz challenge={challenge} />}
-      {challenge.type === "question" && <Question challenge={challenge} />}
-      {challenge.type === "theory" && <Theory challenge={challenge} />}
-    </LayoutProvider>
+    <>
+      <JsonLd data={challengeJsonLd(challenge)} />
+      <LayoutProvider defaultValue={challenge.info?.en?.tags?.includes("ui-coding") ? "layout-2" : undefined}>
+        {challenge.type === "quiz" && <Quiz challenge={challenge} />}
+        {challenge.type === "question" && <Question challenge={challenge} />}
+        {challenge.type === "theory" && <Theory challenge={challenge} />}
+      </LayoutProvider>
+    </>
   );
 }
