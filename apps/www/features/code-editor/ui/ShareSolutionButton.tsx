@@ -3,7 +3,9 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import type { Challenge, SupportedTemplates } from "~/entities/challenge/model/types";
 
 import { Button } from "~/components/ui";
+import { track } from "~/shared/lib/analytics";
 import { generateShareAnswerURL } from "~/entities/challenge/lib/generateShareAnswerURL";
+import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
 type ShareSolutionProps = {
   challenge: Challenge;
@@ -23,6 +25,7 @@ export function ShareSolutionButton(props: ShareSolutionProps) {
     });
 
     if (URL !== "") {
+      track("Solution Shared", { ...getChallengeAnalyticsProperties(challenge), template });
       window.open(URL, "_blank")?.focus();
     }
   };

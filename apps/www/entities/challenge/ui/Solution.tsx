@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 
 import { cn } from "~/utils/helpers";
+import { track } from "~/shared/lib/analytics";
 import { Button, Card } from "~/components/ui";
 import { MDXComponent } from "~/shared/ui/mdx/MDXComponent";
 
 type SolutionProps = {
+  analyticsProperties?: Record<string, unknown>;
   options?: string[];
   right_answer?: string;
   solution: string;
 };
 
 function Solution(props: SolutionProps) {
-  const { options, right_answer, solution } = props;
+  const { analyticsProperties, options, right_answer, solution } = props;
   const [showSolution, setShowSolution] = useState(false); // answer revealed
   const [showExplanation, setShowExplanation] = useState(false); // explanation visible
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   const isMCQ = options && right_answer;
+
+  const onViewSolution = () => {
+    track("Solution Viewed", { ...analyticsProperties, after_answering: selectedAnswer !== null });
+    setShowExplanation(true);
+  };
 
   return (
     <Card
@@ -35,7 +42,7 @@ function Solution(props: SolutionProps) {
           )}
           onClick={() => {
             if (!isMCQ) {
-              setShowExplanation(true);
+              onViewSolution();
             }
           }}
         >
@@ -58,6 +65,7 @@ function Solution(props: SolutionProps) {
                     key={option}
                     className="h-auto whitespace-normal break-words"
                     onPress={() => {
+                      track("Quiz Answered", { ...analyticsProperties, is_correct: option === right_answer });
                       setSelectedAnswer(option);
                       setShowSolution(true);
                     }}
@@ -78,7 +86,7 @@ function Solution(props: SolutionProps) {
           <p>
             Correct answer: <span className="font-medium">{right_answer}</span>
           </p>
-          <Button variant="secondary" onPress={() => setShowExplanation(true)}>
+          <Button variant="secondary" onPress={onViewSolution}>
             View Explanation
           </Button>
         </div>

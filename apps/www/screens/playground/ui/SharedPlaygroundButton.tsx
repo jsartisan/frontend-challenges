@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
 import { Button } from "~/components/ui";
+import { track } from "~/shared/lib/analytics";
 import { DOMAIN } from "~/shared/config/paths";
 import { TEMPLATES } from "~/entities/challenge/model/templates";
 import { type SupportedTemplates } from "~/entities/challenge/model/types";
@@ -48,6 +49,8 @@ function SharePlaygroundButton(props: SharePlaygroundButtonProps) {
 
     const code = JSON.stringify(changedFiles, null, 2);
     const url = `${DOMAIN}/play?code=${encodeURIComponent(code)}&template=${props.template}`;
+
+    track("Playground Shared", { template, files_changed: Object.keys(changedFiles).length });
 
     // copy to clipboard
     navigator.clipboard.writeText(url);

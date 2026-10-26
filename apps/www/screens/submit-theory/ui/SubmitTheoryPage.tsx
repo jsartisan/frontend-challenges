@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Form } from "~/components/ui";
+import { track } from "~/shared/lib/analytics";
 import { FormHeader } from "~/features/submission-theory/ui/FormHeader";
 import { FormFields } from "~/features/submission-theory/ui/FormFields";
 import { formSchema } from "~/features/submission-theory/model/formSchema";
@@ -23,6 +24,7 @@ export function SubmitTheoryPage() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    track("Challenge Submitted", { challenge_type: values.type, difficulty: values.difficulty });
     window.open(generateSubmitChallengeURL(values))?.focus();
   }
 
