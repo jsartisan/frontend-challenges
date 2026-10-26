@@ -10,6 +10,7 @@ import { Solution } from "~/entities/challenge/ui/Solution";
 import { Description } from "~/entities/challenge/ui/Description";
 import { ResourceList } from "~/entities/resource/ui/ResourceList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui";
+import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
 const MarkCompleteButton = dynamic(
   () => import("~/entities/completions/ui/MarkCompleteButton").then((mod) => mod.MarkCompleteButton),
@@ -57,6 +58,7 @@ export function Quiz(props: QuizChallengeProps) {
               </Tabs>
             </Card>
             <Solution
+              analyticsProperties={getChallengeAnalyticsProperties(challenge)}
               solution={challenge.solution["en"]}
               right_answer={challenge.info["en"]?.right_answer}
               options={challenge.info["en"]?.options as string[]}

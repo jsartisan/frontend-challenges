@@ -4,6 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 
 import { REPO } from "~/shared/config/paths";
+import { track } from "~/shared/lib/analytics";
 import { Badge, Button, Icon } from "~/components/ui";
 import { DEFAULT_LOCALE } from "~/shared/config/locale";
 import { ChallengeList } from "~/entities/challenge/model/types";
@@ -122,6 +123,11 @@ export function Spotlight(props: SpotlightProps) {
                   key={item.path}
                   textValue={item.info[DEFAULT_LOCALE]?.title}
                   onAction={() => {
+                    track("Search Result Selected", {
+                      challenge_id: item.no,
+                      challenge_path: item.path,
+                      challenge_title: item.info[DEFAULT_LOCALE]?.title,
+                    });
                     router.push(`/challenges/${item.path}`);
                     setOpen(false);
                   }}

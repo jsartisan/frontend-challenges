@@ -3,12 +3,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { cn } from "~/utils/helpers";
+import { track } from "~/shared/lib/analytics";
+import { Button, Icon } from "~/components/ui";
+import { Tooltip, TooltipTrigger } from "~/components/ui/tooltip";
 import { useCompletions } from "~/entities/completions/hooks/useCompletions";
 import { deleteCompletion } from "~/entities/completions/api/deleteCompletions";
 import { createCompletion } from "~/entities/completions/api/createCompletions";
 import { type Challenge, type SupportedTemplates } from "~/entities/challenge/model/types";
-import { Button, Icon } from "~/components/ui";
-import { Tooltip, TooltipTrigger } from "~/components/ui/tooltip";
+import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
 type ShareSolutionProps = {
   challenge: Challenge;
@@ -24,6 +26,7 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
   const mutation = useMutation({
     mutationFn: isCompleted ? deleteCompletion : createCompletion,
     onSuccess: () => {
+      track(isCompleted ? "Challenge Uncompleted" : "Challenge Completed", getChallengeAnalyticsProperties(challenge));
       queryClient.invalidateQueries({ queryKey: ["completions"] });
     },
   });
@@ -53,9 +56,7 @@ export function MarkCompleteButton(props: ShareSolutionProps) {
         />
         {isCompleted ? "Completed" : "Mark as complete"}
       </Button>
-      <Tooltip placement="bottom">
-        {isCompleted ? "Mark as incomplete" : "Mark as complete"}
-      </Tooltip>
+      <Tooltip placement="bottom">{isCompleted ? "Mark as incomplete" : "Mark as complete"}</Tooltip>
     </TooltipTrigger>
   );
 }

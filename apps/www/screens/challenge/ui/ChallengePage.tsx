@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 
 import { JsonLd } from "~/shared/ui/JsonLd";
+import { Quiz } from "~/entities/challenge/ui/Quiz";
 import { createPageMetadata } from "~/shared/lib/seo";
 import { DEFAULT_LOCALE } from "~/shared/config/locale";
-import { challengeJsonLd } from "~/shared/lib/structuredData";
-import { describeChallenge } from "~/shared/lib/describeChallenge";
-import { Quiz } from "~/entities/challenge/ui/Quiz";
 import { Theory } from "~/entities/challenge/ui/Theory";
 import { Question } from "~/entities/challenge/ui/Question";
+import { challengeJsonLd } from "~/shared/lib/structuredData";
+import { describeChallenge } from "~/shared/lib/describeChallenge";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
 import { LayoutProvider } from "~/features/code-editor/context/LayoutProvider";
+import { TrackChallengeView } from "~/entities/challenge/ui/TrackChallengeView";
 import { getChallengeByPath } from "~/entities/challenge/api/getChallengeByPath";
+import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
 export async function generateMetadata(props: PageProps<"/challenges/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -38,6 +40,7 @@ export async function ChallengePage(props: PageProps<"/challenges/[slug]">) {
   return (
     <>
       <JsonLd data={challengeJsonLd(challenge)} />
+      <TrackChallengeView properties={getChallengeAnalyticsProperties(challenge)} />
       <LayoutProvider defaultValue={challenge.info?.en?.tags?.includes("ui-coding") ? "layout-2" : undefined}>
         {challenge.type === "quiz" && <Quiz challenge={challenge} />}
         {challenge.type === "question" && <Question challenge={challenge} />}

@@ -1,6 +1,8 @@
 import type { Challenge, Question, SupportedTemplates } from "~/entities/challenge/model/types";
 
+import { track } from "~/shared/lib/analytics";
 import { ToggleGroup, Icon, IconProps, ToggleGroupItem } from "~/components/ui";
+import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
 type TemplateChangerProps = {
   challenge: Challenge;
@@ -21,7 +23,17 @@ export function TemplateChanger(props: TemplateChangerProps) {
               key={templateKey}
               id={templateKey}
               isSelected={template === templateKey}
-              onChange={() => setTemplate(templateKey as SupportedTemplates)}
+              onChange={() => {
+                if (templateKey !== template) {
+                  track("Template Changed", {
+                    ...getChallengeAnalyticsProperties(challenge),
+                    from_template: template,
+                    to_template: templateKey,
+                  });
+                }
+
+                setTemplate(templateKey as SupportedTemplates);
+              }}
             >
               <Icon name={`${templateKey}-color` as IconProps["name"]} />
             </ToggleGroupItem>

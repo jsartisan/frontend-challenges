@@ -9,6 +9,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 import { Badge, BadgeProps } from "~/components/ui";
 import { Solution } from "~/entities/challenge/ui/Solution";
 import { EditChallengeDropdown } from "~/entities/challenge/ui/EditChallengeDropdown";
+import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
 const MarkCompleteButton = dynamic(
   () => import("~/entities/completions/ui/MarkCompleteButton").then((mod) => mod.MarkCompleteButton),
@@ -78,7 +79,10 @@ export function Theory(props: TheoryChallengeProps) {
                 </Badge>
               ))}
             </div>
-            <Solution solution={challenge.readme["en"]} />
+            <Solution
+              solution={challenge.readme["en"]}
+              analyticsProperties={getChallengeAnalyticsProperties(challenge)}
+            />
           </div>
         </div>
       </main>

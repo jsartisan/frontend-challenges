@@ -20,6 +20,7 @@ import { ResizableLayoutPanel } from "~/features/code-editor/ui/ResizableLayoutP
 import { Question as QuestionType, SupportedTemplates } from "~/entities/challenge/model/types";
 
 import { TEMPLATES } from "../model/templates";
+import { getChallengeAnalyticsProperties } from "../lib/getChallengeAnalyticsProperties";
 
 const Breadcrumb = dynamic(() => import("~/screens/challenge/ui/Breadcrumb").then((mod) => mod.Breadcrumb), {
   ssr: false,
@@ -121,7 +122,12 @@ function QuestionInner(props: QuestionInnerProps) {
               {
                 title: "Preview",
                 id: "preview",
-                children: <Preview template={template} />,
+                children: (
+                  <Preview
+                    template={template}
+                    analyticsProperties={{ ...getChallengeAnalyticsProperties(challenge), template }}
+                  />
+                ),
               },
             ]}
           </ResizableLayoutPanel>
