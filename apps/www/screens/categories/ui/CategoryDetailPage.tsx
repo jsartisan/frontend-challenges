@@ -1,6 +1,8 @@
 import type { Category } from "~/entities/category/model/types";
 
 import { Icon } from "~/components/ui/icon";
+import { JsonLd } from "~/shared/ui/JsonLd";
+import { categoryJsonLd } from "~/shared/lib/structuredData";
 import { getChallengesByCategory } from "~/entities/category/api";
 import CompletionStats from "~/entities/completions/ui/CompletionStats";
 import { CATEGORY_METADATA } from "~/entities/category/config/metadata";
@@ -13,6 +15,14 @@ async function CategoryDetailPage(props: PageProps<"/categories/[category]">) {
 
   return (
     <>
+      <JsonLd
+        data={categoryJsonLd({
+          category,
+          title: CATEGORY_METADATA[category].title,
+          description: CATEGORY_METADATA[category].description,
+          challenges: challengesByCategory,
+        })}
+      />
       <SyncCategoryToSession category={category} />
       <header className="flex justify-between">
         <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-2 pb-8">
