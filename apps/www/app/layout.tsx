@@ -6,7 +6,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { cn } from "~/utils/helpers";
 import { DOMAIN } from "~/shared/config/paths";
-import { GoogleAnalytics } from "~/shared/ui/GoogleAnalytics";
+import { Mixpanel } from "~/shared/ui/Mixpanel";
 import { QueryProvider } from "~/shared/context/QueryProvider";
 import { ThemeProvider } from "~/shared/context/ThemeProvider";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
@@ -41,7 +41,7 @@ export default async function RootLayout(params) {
             </ChallengesProvider>
           </LayoutProvider>
         </QueryProvider>
-        <GoogleAnalytics />
+        <Mixpanel />
       </body>
     </html>
   );
