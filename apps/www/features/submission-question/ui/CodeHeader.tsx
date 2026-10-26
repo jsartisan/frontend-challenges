@@ -2,6 +2,7 @@ import { z } from "zod";
 import { UseFormReturn } from "react-hook-form";
 import { useSandpack } from "@codesandbox/sandpack-react";
 
+import { track } from "~/shared/lib/analytics";
 import { Button } from "~/components/ui/button";
 import { formSchema } from "~/features/submission-question/model/formSchema";
 import { generateSubmitChallengeURL } from "~/features/submission-question/lib/generateSubmitChallengeURL";
@@ -18,6 +19,7 @@ export function CodeHeader(props: Step2HeaderProps) {
 
   const onSubmit = () => {
     form.handleSubmit((values) => {
+      track("Challenge Submitted", { challenge_type: values.type, difficulty: values.difficulty });
       window.open(
         generateSubmitChallengeURL({
           ...values,
