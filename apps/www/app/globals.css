@@ -63,26 +63,20 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  /* Custom shadows - preserved from original design */
-  --shadow-bg-none: 0 0 0 0px var(--border), 0 0px 0 0px var(--border);
-  --shadow-bg: 0px -1px 0px 0px var(--color-bd-strong) inset, 0px 1px 1px 0px var(--border),
-    0 0 0 1px var(--border) inset;
-  --shadow-bg-hover: 0px 2px 2px 0px rgba(0, 0, 0, 0.16) inset, 1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
-    -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset, 0 0 0 1px #cbcbcb inset;
-  --shadow-bg-pressed: 0px 2px 3px 0px rgba(0, 0, 0, 0.24) inset, 1px 0px 2px 0px rgba(0, 0, 0, 0.12) inset,
-    -1px 0px 2px 0px rgba(0, 0, 0, 0.12) inset, 0 0 0 1px var(--border) inset;
+  /* Flat, shadcn-style surfaces: a 1px input border plus shadow-xs, no bevels */
+  --shadow-bg-none: 0 0 #0000;
+  --shadow-bg: 0 0 0 1px var(--input) inset, 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-bg-hover: 0 0 0 1px var(--input) inset;
+  --shadow-bg-pressed: 0 0 0 1px var(--input) inset;
 
-  --shadow-bg-accent: 0px -1px 0px 0px color-mix(in srgb, var(--color-bg-accent-strong), black 20%) inset,
-    0 2px 3px #00000021, 0 0 0 1px var(--color-bd-accent-strong) inset;
-  --shadow-bg-accent-hover: 0 0 0 1px var(--color-bd-accent-strong), 0 4px 0 0px var(--color-bd-accent-strong);
-  --shadow-bg-accent-pressed: 0px 2px 4px 0px color-mix(in srgb, var(--color-bd-accent-strong), black 30%) inset,
-    1px 0px 1px 0px var(--color-bd-accent-strong) inset, -1px 0px 1px 0px rgba(0, 0, 0, 0.08) inset,
-    0 0 0 1px var(--color-bd-accent-strong) inset;
-  --shadow-bg-negative: 0 0 0 1px var(--destructive), 0 3px 0 0px var(--destructive);
+  --shadow-bg-accent: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-bg-accent-hover: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-bg-accent-pressed: 0 0 #0000;
+  --shadow-bg-negative: 0 0 0 1px var(--destructive);
 
-  --shadow-card: 0px 3px 2px -1px rgba(0, 0, 0, 0.12);
-  --shadow-input: 0px 1px 1px 0px rgba(0, 0, 0, 0.08) inset;
-  --shadow-popover: rgba(0, 0, 0, 0.16) 0px 4px 16px;
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-input: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-popover: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   --breakpoint-desktop: 1024px;
   --breakpoint-mobile: 768px;

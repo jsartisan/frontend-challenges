@@ -16,7 +16,7 @@ export function BlogList({ blogs }: BlogListProps) {
             <div className="space-y-1">
               <div className="flex flex-col space-y-2">
                 <div className="text-2xl">{blog.emoji}</div>
-                <div className="text-xs font-medium text-gray-500">{blog.published_at}</div>
+                <div className="text-xs font-medium text-muted-foreground">{blog.published_at}</div>
                 <Link className="text-base font-medium hover:underline" href={`${blog.path}`}>
                   {blog.title}
                 </Link>
