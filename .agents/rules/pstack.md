@@ -34,7 +34,7 @@ Where a playbook disagrees with this repo's own instructions (`AGENTS.md`), the 
 | Start the app | `pnpm dev` (the `www` app on port 8080). |
 | Type check | `pnpm typecheck` |
 | Lint and format | `pnpm lint:fix`; staged files run through `lint-staged` on commit. |
-| Proving a UI change | No repo `verify` skill yet, so poteto-mode falls back to the built-in `run` skill. Run `/create-verification-skill` to add one. |
+| Proving a UI change | Use the repo `verify` skill (`.claude/skills/verify/`): `launch.sh`, `doctor.sh`, a journey per feature, `stop.sh`. Evidence lands in `.verify-artifacts/`. |
 
 ## Unrelated findings
 
