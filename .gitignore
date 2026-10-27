@@ -43,3 +43,5 @@ next-env.d.ts
 # apps/interview
 
 .turbo
+# verify skill evidence
+.verify-artifacts/
