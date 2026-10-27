@@ -9,6 +9,7 @@ import { Preview } from "~/features/code-editor/ui/Preview";
 import { Console } from "~/features/code-editor/ui/Console";
 import { setLocalStorageItem } from "~/shared/lib/localStorage";
 import { TEMPLATES } from "~/entities/challenge/model/templates";
+import { PANEL_SIZES } from "~/screens/playground/lib/panelSizes";
 import { FileExplorer } from "~/features/code-editor/ui/FileExplorer";
 import { SandpackRoot } from "~/features/code-editor/ui/SandpackRoot";
 import { TemplateChanger } from "~/screens/playground/ui/TempalteChanger";
@@ -76,7 +77,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
         </div>
         <div className="min-h-0 w-full grow">
           <ResizablePanelGroup direction="horizontal" className="sm:flex! !grid gap-4 sm:gap-1">
-            <ResizablePanel defaultSize={20}>
+            <ResizablePanel defaultSize={PANEL_SIZES.fileExplorer}>
               <ResizableLayoutPanel defaultValue="fileExplorer" tabless>
                 {[
                   {
@@ -93,7 +94,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
               </ResizableLayoutPanel>
             </ResizablePanel>
             <ResizableHandle className="hidden w-2 sm:block" />
-            <ResizablePanel>
+            <ResizablePanel defaultSize={PANEL_SIZES.editor}>
               <ResizableLayoutPanel
                 value={activeFile}
                 onSelectionChange={(key) => {
@@ -108,7 +109,7 @@ export function PlaygroundInner({ onChangeTemplate, template }: PlaygroundInnerP
               </ResizableLayoutPanel>
             </ResizablePanel>
             <ResizableHandle className="hidden w-2 sm:block" />
-            <ResizablePanel>
+            <ResizablePanel defaultSize={PANEL_SIZES.preview}>
               <ResizablePanelGroup direction="vertical" className="sm:flex! !grid gap-4 sm:gap-1">
                 <ResizablePanel>
                   <ResizableLayoutPanel defaultValue="preview">
