@@ -15,10 +15,10 @@ export function Hero() {
       </a>
       <div className="flex">
         <div className="z-10 flex w-full flex-col gap-4 md:w-7/12">
-          <div className="text-2xl font-bold md:text-4xl">Your Playground for Frontend Mastery.</div>
+          <h1 className="text-2xl font-bold md:text-4xl">Frontend Interview Questions & Coding Challenges</h1>
           <div className="text-muted-foreground leading-relaxed">
-            FrontendChallenges is a collection of frontend interview questions and answers. It is designed to help you
-            prepare for frontend interviews. It&apos;s free and open source.
+            Your playground for frontend mastery. Practice JavaScript, React and CSS interview questions as coding
+            challenges you solve in the browser, with tests to check your answer. It&apos;s free and open source.
           </div>
           <div className="mt-2 flex justify-center gap-3 md:justify-start">
             <LinkButton size="lg" variant="primary" href="/challenges">

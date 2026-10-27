@@ -10,8 +10,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const challenges = await getChallenges();
 
   return createPageMetadata({
-    title: "Challenges | Frontend Challenges",
-    description: `Browse ${challenges.length} free, open source frontend challenges: coding questions and quizzes you can filter by category, difficulty and type.`,
+    title: "Frontend Coding Challenges & Interview Questions | Frontend Challenges",
+    description: `Browse ${challenges.length} free frontend coding challenges and interview questions in JavaScript, React and CSS. Filter by category, difficulty and type.`,
     path: "/challenges",
   });
 }
