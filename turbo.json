@@ -11,6 +11,7 @@
       "outputs": [
         ".next/**",
         "!.next/cache/**",
+        "out/**",
         "dist/**"
       ]
     },
