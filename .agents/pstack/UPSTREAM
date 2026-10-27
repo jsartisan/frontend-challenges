@@ -1,0 +1,4 @@
+source: https://github.com/michael-denyer/pstack-claude
+version: v0.9.103
+commit: 36885ea631d2afd9482cf9333cc4bbc829b3b02d 2026-10-26
+not imported: plugin hooks (the project instruction loads poteto-mode instead), pi/, assets/

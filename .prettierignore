@@ -1,0 +1,3 @@
+# Vendored pstack keeps upstream formatting so upgrades merge cleanly
+.claude/skills/
+.agents/
