@@ -7,7 +7,7 @@ export function Description(props: TextProps) {
     <RACText
       {...props}
       slot="description"
-      className={cn("text-sm text-gray-600", props.className)}
+      className={cn("text-sm text-muted-foreground", props.className)}
     />
   )
 }

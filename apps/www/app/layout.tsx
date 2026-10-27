@@ -31,7 +31,7 @@ export default async function RootLayout(params) {
   return (
     <html lang="en" suppressHydrationWarning className="overscroll-none">
       <link rel="icon" href="/favicon.ico" type="image/png" sizes="32x32" />
-      <body className={cn("bg-secondary flex min-h-screen flex-col overflow-x-clip font-sans text-sm antialiased")}>
+      <body className={cn("bg-muted dark:bg-background flex min-h-screen flex-col overflow-x-clip font-sans text-sm antialiased")}>
         <QueryProvider>
           <LayoutProvider>
             <ChallengesProvider challenges={challenges}>

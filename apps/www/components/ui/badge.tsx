@@ -20,7 +20,7 @@ const badgeVariants = cva(
         question: "border-transparent bg-(--color-bg-question) text-(--color-fg-question)",
         quiz: "border-transparent bg-(--color-bg-quiz) text-(--color-fg-quiz)",
         extreme: "border-transparent bg-(--color-bg-extreme-subtle) text-(--color-fg-extreme)",
-        pending: "border-transparent bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300",
+        pending: "border-transparent bg-secondary text-secondary-foreground",
       },
     },
     defaultVariants: {

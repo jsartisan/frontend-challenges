@@ -38,7 +38,7 @@ function Solution(props: SolutionProps) {
         <div
           className={cn(
             "bg-background absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 p-4 text-center",
-            !isMCQ && "hover:bg-bg-hover cursor-pointer",
+            !isMCQ && "hover:bg-accent cursor-pointer",
           )}
           onClick={() => {
             if (!isMCQ) {

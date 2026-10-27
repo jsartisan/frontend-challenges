@@ -1,5 +1,8 @@
-@theme inline {
-  /* shadcn core colors - Light mode */
+/*
+  shadcn/ui "neutral" base color (https://ui.shadcn.com/themes), with the
+  brand blue kept as primary and ring.
+*/
+:root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
@@ -10,22 +13,22 @@
   --popover-foreground: oklch(0.145 0 0);
 
   --primary: var(--color-blue-500);
-  --primary-foreground: white;
+  --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
 
-  --muted: oklch(0.985 0 0);
+  --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
 
-  --accent: oklch(0.93 0 0);
+  --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.85 0 0);
-  --input: oklch(0.85 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
   --ring: var(--color-blue-500);
 
   /* Chart colors */
@@ -38,13 +41,15 @@
   /* Sidebar colors */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--color-blue-500);
+  --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: var(--color-blue-500);
+}
 
+@theme inline {
   /* Domain-specific colors - Difficulty levels */
   --color-bg-easy: var(--color-green-500);
   --color-bg-easy-subtle: color-mix(in srgb, var(--color-bg-easy) 10%, white 90%);
@@ -77,21 +82,16 @@
   --color-bg-positive: var(--color-green-500);
   --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive) 10%, white 90%);
   --color-fg-positive: var(--color-green-600);
+  --color-fg-on-positive: white;
 
   --color-bg-negative: var(--color-red-500);
   --color-bg-negative-subtle: color-mix(in srgb, var(--color-bg-negative) 10%, white 90%);
 
   --color-bd-positive: var(--color-green-500);
   --color-bd-positive-subtle: color-mix(in srgb, var(--color-bd-positive), transparent 50%);
-
-  /* Shadow-related color variables (needed for custom shadows) */
-  --color-bd-strong: color-mix(in srgb, var(--border), black 20%);
-  --color-bd-accent-strong: color-mix(in srgb, var(--primary), black 20%);
-  --color-bg-accent-strong: color-mix(in srgb, var(--primary), black 20%);
 }
 
 .dark {
-  /* shadcn dark mode colors */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
 
@@ -102,7 +102,7 @@
   --popover-foreground: oklch(0.985 0 0);
 
   --primary: var(--color-blue-500);
-  --primary-foreground: white;
+  --primary-foreground: oklch(1 0 0);
 
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -130,12 +130,12 @@
   /* Sidebar colors */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--color-blue-500);
+  --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: var(--color-blue-400);
 
   /* Domain-specific colors - Difficulty levels (dark mode) */
   --color-bg-easy-subtle: color-mix(in srgb, var(--color-green-100), 80% black);
@@ -160,9 +160,6 @@
 
   /* Domain-specific colors - Status (dark mode) */
   --color-bg-positive-subtle: color-mix(in srgb, var(--color-bg-positive), transparent 80%);
-
-  /* Shadow-related color variables (dark mode) */
-  --color-bd-strong: color-mix(in srgb, var(--border), white 5%);
 
   --sp-colors-surface1: var(--background) !important;
 }
