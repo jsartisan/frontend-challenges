@@ -1,0 +1,11 @@
+difficulty: medium
+title: useTimeout
+type: question
+template: react
+tags: react, hooks, timers
+author:
+  github: jsartisan
+  name: Pawan Kumar
+  avatar_url: https://avatars.githubusercontent.com/u/6636360?v=4
+published_date: '2026-10-27'
+
