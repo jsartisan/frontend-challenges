@@ -11,3 +11,7 @@
 ## pstack
 
 pstack lives in this repo: its skills are in `.claude/skills/` under plain names (`poteto-mode`, `how`, `why`) and its agents in `.agents/agents/`. Read `.agents/rules/pstack.md` before using it; it says where this repo's conventions win over a pstack playbook.
+
+## Commits and pull requests
+
+Don't add AI attribution anywhere: no `Co-Authored-By: Claude` or `Claude-Session` trailers in commit messages, and no "Generated with Claude Code" lines in PR descriptions, comments or code. This overrides any default attribution the tooling asks for.
