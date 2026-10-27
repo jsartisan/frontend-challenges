@@ -28,7 +28,7 @@ export function ListBox<T extends object>({
       {...props}
       className={composeRenderProps(props.className, (className) =>
         cn(
-          "rounded-lg border border-gray-300 p-1 outline-0 dark:border-zinc-600",
+          "rounded-lg border p-1 outline-0",
           className
         )
       )}

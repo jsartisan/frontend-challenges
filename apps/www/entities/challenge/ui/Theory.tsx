@@ -67,7 +67,7 @@ export function Theory(props: TheoryChallengeProps) {
                       src={challenge.info["en"]?.author?.avatar_url}
                     />
                   </span>
-                  <span className="block whitespace-nowrap text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+                  <span className="block whitespace-nowrap text-xs font-semibold text-foreground/80">
                     {challenge.info["en"]?.author?.name ?? challenge.info["en"]?.author?.github}
                   </span>
                 </a>
