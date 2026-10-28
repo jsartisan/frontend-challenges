@@ -18,7 +18,6 @@ export async function getChallengeByPathSlim(dir: string): Promise<ChallengeSlim
       }) ?? undefined
     );
   })();
-  const readme = await getLocaleVariations(path.join(CHALLENGES_ROOT, dir, "README.md"), []);
 
   return {
     no,
@@ -27,7 +26,6 @@ export async function getChallengeByPathSlim(dir: string): Promise<ChallengeSlim
     category,
     info,
     type: info?.[DEFAULT_LOCALE]?.type ?? "question",
-    readme,
     templatesAvailable: await getTemplatesAvailable(path.join(CHALLENGES_ROOT, dir, "template.md")),
   };
 }

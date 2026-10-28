@@ -5,20 +5,16 @@ import { DialogTrigger } from "react-aria-components";
 
 import { cn } from "~/utils/helpers";
 import { Icon } from "~/components/ui/icon";
-import { IconButton } from "~/components/ui/icon-button";
-import { ChallengeSlim } from "~/entities/challenge/model/types";
-import { useCompletions } from "~/entities/completions/hooks/useCompletions";
-import { Popover } from "~/components/ui/popover";
 import { Dialog } from "~/components/ui/dialog";
+import { Popover } from "~/components/ui/popover";
+import { IconButton } from "~/components/ui/icon-button";
+import { useCompletions } from "~/entities/completions/hooks/useCompletions";
+import { useChallenges } from "~/entities/challenge/context/ChallengeProvider";
 import { useCompletionStats } from "~/features/header-completion-stats/hooks/useCompletionStats";
 
-type CompletionStatsProps = {
-  challenges: ChallengeSlim[];
-};
-
-export default function CompletionStats(props: CompletionStatsProps) {
+export default function CompletionStats() {
   const { completions } = useCompletions();
-  const { challenges } = props;
+  const { challenges } = useChallenges();
   const { stats } = useCompletionStats({ challenges });
 
   return (

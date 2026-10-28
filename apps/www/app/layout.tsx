@@ -12,6 +12,7 @@ import { ThemeProvider } from "~/shared/context/ThemeProvider";
 import { getChallenges } from "~/entities/challenge/api/getChallenges";
 import { LayoutProvider } from "~/features/code-editor/context/LayoutProvider";
 import { ChallengesProvider } from "~/entities/challenge/context/ChallengeProvider";
+import { toClientChallengeList } from "~/entities/challenge/lib/toClientChallengeList";
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN),
@@ -26,12 +27,16 @@ export const metadata: Metadata = {
 
 export default async function RootLayout(params) {
   const { children }: { children: React.ReactNode } = params;
-  const challenges = await getChallenges();
+  const challenges = toClientChallengeList(await getChallenges());
 
   return (
     <html lang="en" suppressHydrationWarning className="overscroll-none">
       <link rel="icon" href="/favicon.ico" type="image/png" sizes="32x32" />
-      <body className={cn("bg-muted dark:bg-background flex min-h-screen flex-col overflow-x-clip font-sans text-sm antialiased")}>
+      <body
+        className={cn(
+          "bg-muted dark:bg-background flex min-h-screen flex-col overflow-x-clip font-sans text-sm antialiased",
+        )}
+      >
         <QueryProvider>
           <LayoutProvider>
             <ChallengesProvider challenges={challenges}>

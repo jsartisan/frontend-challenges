@@ -7,7 +7,7 @@ import { REPO } from "~/shared/config/paths";
 import { track } from "~/shared/lib/analytics";
 import { Badge, Button, Icon } from "~/components/ui";
 import { DEFAULT_LOCALE } from "~/shared/config/locale";
-import { ChallengeList } from "~/entities/challenge/model/types";
+import { useChallenges } from "~/entities/challenge/context/ChallengeProvider";
 import {
   Command,
   CommandDialog,
@@ -18,13 +18,9 @@ import {
   CommandSeparator,
 } from "~/components/ui/command";
 
-interface SpotlightProps {
-  items: ChallengeList;
-}
-
-export function Spotlight(props: SpotlightProps) {
+export function Spotlight() {
   const router = useRouter();
-  const { items } = props;
+  const { challenges: items } = useChallenges();
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -40,7 +36,7 @@ export function Spotlight(props: SpotlightProps) {
   }, []);
 
   const sortedItems = React.useMemo(() => {
-    return items.sort((a, b) => {
+    return [...items].sort((a, b) => {
       if (a.info[DEFAULT_LOCALE]?.tags?.includes("blind75")) {
         return 1;
       }

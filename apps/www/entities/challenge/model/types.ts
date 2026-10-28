@@ -9,7 +9,7 @@ export type Level = "junior" | "mid-level" | "senior";
 
 export type Challenge = Question | Quiz | Theory;
 export type ChallengeList = ChallengeSlim[];
-export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path" | "category" | "info" | "type" | "readme"> & {
+export type ChallengeSlim = Pick<Challenge, "no" | "difficulty" | "path" | "category" | "info" | "type"> & {
   templatesAvailable: SupportedTemplates[];
 };
 
