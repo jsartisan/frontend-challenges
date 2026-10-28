@@ -1,17 +1,11 @@
-import { use } from "react";
 import dynamic from "next/dynamic";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 import { Logo } from "~/shared/ui/Logo";
 import { REPO } from "~/shared/config/paths";
 import { Skeleton } from "~/components/ui/skeleton";
-import { getChallenges } from "~/entities/challenge/api/getChallenges";
 import { Button, Icon, Link, LinkButton, Separator } from "~/components/ui";
-import {
-  MenuTrigger,
-  Menu,
-  MenuItem,
-} from "~/components/ui/dropdown-menu";
+import { MenuTrigger, Menu, MenuItem } from "~/components/ui/dropdown-menu";
 
 const SpotLight = dynamic(() => import("~/widgets/Spotlight").then((mod) => mod.Spotlight), {
   loading: () => <Skeleton className="hidden h-8 w-20 md:flex" />,
@@ -22,8 +16,6 @@ const CompletionStats = dynamic(() => import("~/features/header-completion-stats
 });
 
 export function Header() {
-  const challenges = use(getChallenges());
-
   return (
     <>
       <div className="border-border bg-background sticky top-0 z-30 w-full border-b bg-opacity-5 backdrop-blur-md transition-[background-color]">
@@ -31,7 +23,7 @@ export function Header() {
           <div className="h-(--navbar-height) flex items-center justify-between md:justify-start md:gap-4">
             <div className="flex items-center justify-start gap-3">
               <Logo />
-              <SpotLight items={challenges} />
+              <SpotLight />
               <div className="hidden items-center gap-4 md:flex">
                 <Link href="/challenges" className="font-medium">
                   Challenges
@@ -72,7 +64,7 @@ export function Header() {
               </div>
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
-              <CompletionStats challenges={challenges} />
+              <CompletionStats />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <LinkButton variant="ghost" size="icon" href={REPO} target="_blank" rel="noreferrer">
                 <GitHubLogoIcon />

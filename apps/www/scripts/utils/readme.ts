@@ -1,3 +1,4 @@
+import path from "path";
 import fs from "fs-extra";
 
 import { DOMAIN, REPO } from "~/shared/config/paths";
@@ -8,7 +9,7 @@ import { getChallengeInfoByLocale } from "~/entities/challenge/api";
 import { getFileNameByLocale } from "~/shared/lib/i18n/getFileNameByLocale";
 import { SUPPORTED_LOCALES, type SupportedLocales } from "~/shared/config/locale";
 import { generateShareAnswerURL } from "~/entities/challenge/lib/generateShareAnswerURL";
-import { DIFFICULTY_COLORS, DEFAULT_TEMPLATE } from "~/entities/challenge/model/constants";
+import { DIFFICULTY_COLORS, DEFAULT_TEMPLATE, CHALLENGES_ROOT } from "~/entities/challenge/model/constants";
 import { Challenge, ChallengeSlim, Difficulty, QuestionMetaInfo } from "~/entities/challenge/model/types";
 
 /**------------------------------------------------------------------------------
@@ -78,16 +79,22 @@ export function quizNoToBadges(
  *  URL related functions
  * ------------------------------------------------------------------------------ */
 
+function hasLocalizedReadme(quiz: ChallengeSlim, locale?: string) {
+  return (
+    !!locale && locale !== DEFAULT_LOCALE && fs.existsSync(path.join(CHALLENGES_ROOT, quiz.path, `README.${locale}.md`))
+  );
+}
+
 export function getChallengeReadmeURL(quiz: ChallengeSlim, locale?: string, absolute = false) {
   const prefix = absolute ? `${REPO}/blob/main` : ".";
 
-  return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale]
+  return hasLocalizedReadme(quiz, locale)
     ? `${prefix}/challenges/${quiz.path}/README.${locale}.md`
     : `${prefix}/challenges/${quiz.path}/README.md`;
 }
 
 export function getNearbyReadmeURL(quiz: ChallengeSlim, locale?: string) {
-  return locale && locale !== DEFAULT_LOCALE && quiz.readme[locale] ? `./README.${locale}.md` : "./README.md";
+  return hasLocalizedReadme(quiz, locale) ? `./README.${locale}.md` : "./README.md";
 }
 
 export function getReadmeShortURL(no: number, locale?: string) {
@@ -130,7 +137,9 @@ export async function insertInfoReadme(
 
   const info = getChallengeInfoByLocale(quiz, locale);
 
-  const availableLocales = SUPPORTED_LOCALES.filter((l) => l !== locale).filter((l) => !!quiz.readme[l]);
+  const availableLocales = SUPPORTED_LOCALES.filter((l) => l !== locale).filter(
+    (l) => l === DEFAULT_LOCALE || hasLocalizedReadme(quiz, l),
+  );
 
   text = text
     .replace(
