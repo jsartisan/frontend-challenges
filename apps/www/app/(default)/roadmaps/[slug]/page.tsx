@@ -11,7 +11,9 @@ export async function generateMetadata(props: PageProps<"/roadmaps/[slug]">): Pr
   const summary = `${title} roadmap: ${challengeCount} challenges across ${roadmap.topics.length} topics on Frontend Challenges.`;
 
   return createPageMetadata({
-    title: `${title} Roadmap | Frontend Challenges`,
+    title: roadmap.info?.en?.heading
+      ? `${roadmap.info.en.heading} | Frontend Challenges`
+      : `${title} Roadmap | Frontend Challenges`,
     description: toDescription(roadmap.info?.en?.description ?? summary),
     path: `/roadmaps/${roadmap.path}`,
   });

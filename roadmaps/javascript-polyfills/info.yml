@@ -1,0 +1,49 @@
+title: JavaScript Polyfills
+heading: JavaScript Polyfills Interview Questions
+description: "Practice the JavaScript polyfill questions interviews ask most: Promise.all, Array.prototype.map, debounce, deep clone, JSON.stringify and more, with tests."
+intro:
+  - A polyfill is your own implementation of a built-in feature, such as Promise.all or Array.prototype.reduce, written so code still works where the native version is missing. Interviewers ask you to write one because it shows, in a few lines, whether you understand how the language actually behaves rather than only how to call an API.
+  - A good answer matches the native behaviour, including the edge cases. Promise.all has to keep results in input order and reject on the first failure. Array.prototype.reduce has to throw on an empty array with no initial value. Debounce has to keep the latest arguments and the right this. Most candidates who fail these questions do so on the edge cases, not the happy path.
+  - Work through the topics below roughly in order. Start with the Array methods to get comfortable with this and callbacks, move on to the Promise combinators, then the timing utilities and the object and JSON helpers. Every challenge runs in the browser with tests, so you can check your implementation against the real behaviour before an interview does.
+topics:
+  - title: "Array methods"
+    description: Rebuild the array methods you use every day. Watch for sparse arrays, the index and array arguments passed to the callback, and the thisArg.
+    challenges:
+      - 78-array-prototype-map
+      - 74-array-prototype-filter
+      - 82-array-prototype-reduce
+      - 18-flatten
+      - 86-chunk
+
+  - title: "Promise combinators"
+    description: The most common polyfill questions. Keep results in input order, handle non-promise values, and settle exactly once.
+    challenges:
+      - 35-promise-all
+      - 424-promise-allsettled
+      - 37-promise-race
+      - 43-promise-any
+      - 420-promise-finally
+      - 608-promise-timeout
+      - 430-custom-promise
+
+  - title: "Timing and function utilities"
+    description: Closures, this and timers. These show up in almost every frontend interview loop, often with a leading or trailing option as the follow-up.
+    challenges:
+      - 6-debounce
+      - 459-debounce-with-leading-and-trailing
+      - 20-throttle
+      - 432-throttle-with-leading-and-trailing
+      - 449-curry
+      - 455-curry-with-placeholder
+      - 471-pipe
+      - 55-memo
+
+  - title: "Objects, prototypes and JSON"
+    description: Re-implement the object and JSON built-ins. Expect questions on own versus inherited properties, circular references and how each value type is serialised.
+    challenges:
+      - 506-object-assign
+      - 32-instanceofclass
+      - 442-deep-clone
+      - 446-get
+      - 491-json-stringify
+      - 496-json-parse

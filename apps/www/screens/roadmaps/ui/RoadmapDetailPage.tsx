@@ -1,8 +1,8 @@
 import { JsonLd } from "~/shared/ui/JsonLd";
 import { toDescription } from "~/shared/lib/seo";
-import { roadmapJsonLd } from "~/shared/lib/structuredData";
 import { RoadmapDetail } from "~/entities/roadmap/ui";
 import { getRoadmapByPath } from "~/entities/roadmap/api";
+import { roadmapJsonLd } from "~/shared/lib/structuredData";
 
 async function RoadmapDetailPage(props: PageProps<"/challenges/[slug]">) {
   const slug = (await props.params).slug;
@@ -15,6 +15,7 @@ async function RoadmapDetailPage(props: PageProps<"/challenges/[slug]">) {
       <JsonLd
         data={roadmapJsonLd({
           title: roadmap.title,
+          name: roadmap.info.en?.heading,
           description: toDescription(
             roadmap.info.en?.description ?? `${roadmap.title} roadmap on Frontend Challenges.`,
           ),

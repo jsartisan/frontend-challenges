@@ -2,8 +2,8 @@ import type { Category } from "~/entities/category/model/types";
 import type { ChallengeSlim } from "~/entities/challenge/model/types";
 
 import { DEFAULT_LOCALE } from "~/shared/config/locale";
-import { describeChallenge } from "~/shared/lib/describeChallenge";
 import { SITE_URL, absoluteUrl } from "~/shared/lib/seo";
+import { describeChallenge } from "~/shared/lib/describeChallenge";
 
 export const SITE_NAME = "Frontend Challenges";
 
@@ -128,7 +128,7 @@ type CollectionInput = {
 };
 
 function collectionJsonLd(input: CollectionInput) {
-  const { name, description, path, challenges, breadcrumbs } = input;
+  const { breadcrumbs, challenges, description, name, path } = input;
 
   return {
     "@context": CONTEXT,
@@ -149,14 +149,16 @@ function collectionJsonLd(input: CollectionInput) {
 
 export function roadmapJsonLd(input: {
   title: string;
+  /** Page name when it differs from `${title} Roadmap`. */
+  name?: string;
   description: string;
   path: string;
   challenges: ChallengeSlim[];
 }) {
-  const { title, description, path, challenges } = input;
+  const { challenges, description, name, path, title } = input;
 
   return collectionJsonLd({
-    name: `${title} Roadmap`,
+    name: name ?? `${title} Roadmap`,
     description,
     path,
     challenges,
@@ -174,7 +176,7 @@ export function categoryJsonLd(input: {
   description: string;
   challenges: ChallengeSlim[];
 }) {
-  const { category, title, description, challenges } = input;
+  const { category, challenges, description, title } = input;
   const path = `/categories/${category}`;
 
   return collectionJsonLd({
@@ -190,7 +192,7 @@ export function categoryJsonLd(input: {
 }
 
 export function blogPostJsonLd(input: { title: string; description: string; path: string; publishedAt?: string }) {
-  const { title, description, path, publishedAt } = input;
+  const { description, path, publishedAt, title } = input;
   const url = absoluteUrl(path);
   const datePublished = toIsoDate(publishedAt);
 
