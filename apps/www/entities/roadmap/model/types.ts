@@ -7,6 +7,7 @@ export type Roadmap = {
   path?: string;
   topics: {
     title: string;
+    description?: string;
     challenges: ChallengeList;
   }[];
   info: Record<string, DeepPartial<RoadmapInfo> | undefined>;
@@ -14,9 +15,14 @@ export type Roadmap = {
 
 export type RoadmapInfo = {
   title: string;
+  /** Optional page heading (H1 and SEO title) when it should differ from the short `title` used in lists. */
+  heading?: string;
   description: string;
+  /** Optional intro paragraphs shown under the heading. */
+  intro?: string[];
   topics: {
     title: string;
+    description?: string;
     challenges: string[];
   }[];
 };
