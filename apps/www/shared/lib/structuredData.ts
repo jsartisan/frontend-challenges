@@ -26,7 +26,7 @@ function websiteRef() {
 }
 
 /** Accepts the Date objects js-yaml produces for unquoted `2024-01-03` values, or any date string. */
-function toIsoDate(value: unknown): string | undefined {
+export function toIsoDate(value: unknown): string | undefined {
   if (!value) return undefined;
 
   // Blog frontmatter uses MM/DD/YYYY; read it as a calendar date so the build machine's timezone cannot shift the day.
