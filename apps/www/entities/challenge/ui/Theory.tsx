@@ -2,12 +2,14 @@
 
 import dynamic from "next/dynamic";
 
+import type { RelatedHub } from "~/entities/challenge/lib/getRelatedHubs";
 import type { Theory as TheoryType } from "~/entities/challenge/model/types";
 
 import { Footer } from "~/widgets/Footer";
 import { Skeleton } from "~/components/ui/skeleton";
 import { Badge, BadgeProps } from "~/components/ui";
 import { Solution } from "~/entities/challenge/ui/Solution";
+import { RelatedHubs } from "~/entities/challenge/ui/RelatedHubs";
 import { EditChallengeDropdown } from "~/entities/challenge/ui/EditChallengeDropdown";
 import { getChallengeAnalyticsProperties } from "~/entities/challenge/lib/getChallengeAnalyticsProperties";
 
@@ -26,10 +28,11 @@ const Breadcrumb = dynamic(() => import("~/screens/challenge/ui/Breadcrumb").the
 
 type TheoryChallengeProps = {
   challenge: TheoryType;
+  relatedHubs?: RelatedHub[];
 };
 
 export function Theory(props: TheoryChallengeProps) {
-  const { challenge } = props;
+  const { challenge, relatedHubs = [] } = props;
 
   return (
     <>
@@ -67,7 +70,7 @@ export function Theory(props: TheoryChallengeProps) {
                       src={challenge.info["en"]?.author?.avatar_url}
                     />
                   </span>
-                  <span className="block whitespace-nowrap text-xs font-semibold text-foreground/80">
+                  <span className="text-foreground/80 block whitespace-nowrap text-xs font-semibold">
                     {challenge.info["en"]?.author?.name ?? challenge.info["en"]?.author?.github}
                   </span>
                 </a>
@@ -83,6 +86,7 @@ export function Theory(props: TheoryChallengeProps) {
               solution={challenge.readme["en"]}
               analyticsProperties={getChallengeAnalyticsProperties(challenge)}
             />
+            <RelatedHubs hubs={relatedHubs} />
           </div>
         </div>
       </main>

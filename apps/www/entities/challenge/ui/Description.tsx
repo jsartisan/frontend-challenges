@@ -1,11 +1,14 @@
 import dynamic from "next/dynamic";
 import { ComponentPropsWithoutRef } from "react";
 
+import type { RelatedHub } from "~/entities/challenge/lib/getRelatedHubs";
+
 import { cn } from "~/utils/helpers";
 import { Skeleton } from "~/components/ui";
 import { Badge, BadgeProps } from "~/components/ui/badge";
 import { MDXComponent } from "~/shared/ui/mdx/MDXComponent";
 import { Challenge } from "~/entities/challenge/model/types";
+import { RelatedHubs } from "~/entities/challenge/ui/RelatedHubs";
 
 const EditChallengeDropdown = dynamic(
   () => import("~/entities/challenge/ui/EditChallengeDropdown").then((mod) => mod.EditChallengeDropdown),
@@ -18,10 +21,11 @@ const EditChallengeDropdown = dynamic(
 type DescriptionProps = ComponentPropsWithoutRef<"div"> & {
   challenge: Challenge;
   className?: string;
+  relatedHubs?: RelatedHub[];
 };
 
 export function Description(props: DescriptionProps) {
-  const { challenge, className, ...rest } = props;
+  const { challenge, className, relatedHubs = [], ...rest } = props;
   const { readme } = challenge;
 
   return (
@@ -51,7 +55,7 @@ export function Description(props: DescriptionProps) {
                   src={challenge.info["en"]?.author?.avatar_url}
                 />
               </span>
-              <span className="block whitespace-nowrap text-xs font-semibold text-foreground/80">
+              <span className="text-foreground/80 block whitespace-nowrap text-xs font-semibold">
                 {challenge.info["en"]?.author?.name ?? challenge.info["en"]?.author?.github}
               </span>
             </a>
@@ -66,6 +70,7 @@ export function Description(props: DescriptionProps) {
         <div className="mt-1 flex flex-col gap-2">
           <MDXComponent code={readme["en"]} />
         </div>
+        <RelatedHubs hubs={relatedHubs} />
       </div>
     </div>
   );
