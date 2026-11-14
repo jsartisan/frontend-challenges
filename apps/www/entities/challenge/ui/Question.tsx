@@ -3,6 +3,8 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
+import type { RelatedHub } from "~/entities/challenge/lib/getRelatedHubs";
+
 import { Separator, Skeleton } from "~/components/ui";
 import { AnswerList } from "~/entities/answer/ui/AnswerList";
 import { CommentList } from "~/entities/comment/ui/CommentList";
@@ -44,10 +46,11 @@ const Editor = dynamic(() => import("./Editor").then((mod) => mod.Editor), {
 
 type QuestionProps = {
   challenge: QuestionType;
+  relatedHubs?: RelatedHub[];
 };
 
 export function Question(props: QuestionProps) {
-  const { challenge } = props;
+  const { challenge, relatedHubs } = props;
   const [template, setTemplate] = useState(Object.keys(props.challenge.templateFiles)[0] as SupportedTemplates);
   const { allFiles } = useChallengeFiles(challenge, template);
 
@@ -61,7 +64,7 @@ export function Question(props: QuestionProps) {
         ...challenge.templateFiles[template],
       }}
     >
-      <QuestionInner challenge={challenge} template={template} setTemplate={setTemplate} />
+      <QuestionInner challenge={challenge} template={template} setTemplate={setTemplate} relatedHubs={relatedHubs} />
     </SandpackRoot>
   );
 }
@@ -70,10 +73,11 @@ type QuestionInnerProps = {
   challenge: QuestionType;
   template: SupportedTemplates;
   setTemplate: (template: SupportedTemplates) => void;
+  relatedHubs?: RelatedHub[];
 };
 
 function QuestionInner(props: QuestionInnerProps) {
-  const { challenge, setTemplate, template } = props;
+  const { challenge, relatedHubs, setTemplate, template } = props;
   const { layout, setLayout } = useLayout();
 
   return (
@@ -95,7 +99,7 @@ function QuestionInner(props: QuestionInnerProps) {
               {
                 title: "Description",
                 id: "description",
-                children: <Description challenge={challenge} />,
+                children: <Description challenge={challenge} relatedHubs={relatedHubs} />,
               },
               {
                 title: "Submissions",

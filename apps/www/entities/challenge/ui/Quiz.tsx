@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 import type { Quiz } from "~/entities/challenge/model/types";
+import type { RelatedHub } from "~/entities/challenge/lib/getRelatedHubs";
 
 import { Card } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -27,10 +28,11 @@ const Breadcrumb = dynamic(() => import("~/screens/challenge/ui/Breadcrumb").the
 
 type QuizChallengeProps = {
   challenge: Quiz;
+  relatedHubs?: RelatedHub[];
 };
 
 export function Quiz(props: QuizChallengeProps) {
-  const { challenge } = props;
+  const { challenge, relatedHubs } = props;
 
   return (
     <>
@@ -50,7 +52,7 @@ export function Quiz(props: QuizChallengeProps) {
                   <TabsTrigger id="resources">Resources</TabsTrigger>
                 </TabsList>
                 <TabsContent id="description" className="overflow-y-auto">
-                  <Description challenge={challenge} />
+                  <Description challenge={challenge} relatedHubs={relatedHubs} />
                 </TabsContent>
                 <TabsContent id="resources" className="overflow-y-auto">
                   <ResourceList challenge={challenge} />
