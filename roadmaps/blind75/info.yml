@@ -1,7 +1,13 @@
 title: Blind 75
-description: The Blind 75 is a curated list of the most important coding interview questions, created by a Facebook tech lead. This roadmap covers these essential questions across key data structure and algorithm topics like arrays, strings, trees, graphs and dynamic programming. Working through these problems will help build strong fundamentals for technical interviews.
+heading: Blind 75 in JavaScript
+description: "Solve the Blind 75 LeetCode interview problems in JavaScript: arrays, two pointers, trees, graphs, dynamic programming and more, with tests in the browser."
+intro:
+  - The Blind 75 is a list of 75 LeetCode problems that a Meta engineer shared on the Blind forum as the shortest path through the patterns coding interviews keep reusing. It is still the most common starting point for data structures and algorithms prep, including for frontend roles where the interview is in JavaScript.
+  - This roadmap has 73 of the 75 problems, grouped by pattern. Each one runs in the browser with a TypeScript starter and tests, so you can write plain JavaScript or add types, and check your answer against edge cases before you look at a solution.
+  - "Go through the topics in order. Arrays & Hashing and Two Pointers teach the habits the rest depend on: reach for a Map or Set to trade memory for speed, and walk an array from both ends instead of nesting loops. Trees, graphs and dynamic programming come later because they build on recursion and on those same lookups. In JavaScript, watch for the details interviewers probe: Map keeps insertion order, sort() compares strings unless you pass a comparator, and numbers lose precision past 2^53."
 topics:
   - title: "Arrays & Hashing"
+    description: Use a Map or Set to turn nested loops into one pass. Most problems here have an O(n²) brute force and an O(n) answer with a lookup table.
     challenges:
       - 179-contains-duplicate
       - 183-anagrams
@@ -13,6 +19,7 @@ topics:
       - 201-longest-consecutive-sequence
 
   - title: "Two Pointers"
+    description: Walk a sorted array or string from both ends, or with a slow and fast index, to avoid a second loop.
     challenges:
       - 203-is-palindrome
       - 205-three-integer-sum
@@ -20,21 +27,25 @@ topics:
       - 209-best-time-to-buy-and-sell-stock
 
   - title: "Sliding Window"
+    description: Grow and shrink a window over a string while a Map tracks what is inside it.
     challenges:
       - 211-longest-substring-without-repeating-characters
       - 213-longest-repeating-substring-with-replacement
       - 215-minimum-window-with-characters
 
   - title: "Stack"
+    description: Push openers, pop on closers. A plain JavaScript array is your stack.
     challenges:
       - 217-validate-parentheses
 
   - title: "Binary Search"
+    description: Halve the search space each step. The rotated-array variants test whether you can tell which half is still sorted.
     challenges:
       - 219-find-minimum-in-rotated-sorted-array
       - 221-find-target-in-rotated-sorted-array
 
   - title: "Linked List"
+    description: Build the nodes yourself and move pointers carefully. Fast and slow pointers find cycles and the middle of the list.
     challenges:
       - 223-reverse-a-linked-list
       - 225-merge-two-sorted-linked-lists
@@ -44,6 +55,7 @@ topics:
       - 233-merge-k-sorted-linked-lists
 
   - title: "Trees"
+    description: Recursion and level-order traversal with a queue. Most answers are a short depth-first function that returns a value up the tree.
     challenges:
       - 235-invert-a-binary-tree
       - 237-depth-of-binary-tree
@@ -59,16 +71,19 @@ topics:
       - 263-implement-prefix-tree-trie
 
   - title: "Heap / Priority Queue"
+    description: JavaScript has no built-in heap, so you write one, or keep two of them balanced to track a running median.
     challenges:
       - 257-find-median-in-a-data-stream
 
   - title: "Backtracking"
+    description: Try a choice, recurse, undo it. Prune early so the search stays small.
     challenges:
       - 259-combination-target-sum
       - 261-search-for-word
       - 267-search-for-word-ii
 
   - title: "Graphs"
+    description: Depth-first and breadth-first search over grids and adjacency lists, plus topological sort for dependency problems like course schedules.
     challenges:
       - 269-count-number-of-islands
       - 271-clone-graph
@@ -79,6 +94,7 @@ topics:
       - 281-foreign-dictionary
 
   - title: "Dynamic Programming"
+    description: Find the recurrence, then store answers to subproblems in an array instead of recomputing them.
     challenges:
       - 283-climbing-stairs
       - 285-house-robber
@@ -95,6 +111,7 @@ topics:
       - 309-jump-game
 
   - title: "Intervals"
+    description: Sort by start time with a numeric comparator, then merge or count overlaps in one pass.
     challenges:
       - 311-insert-new-interval
       - 313-merge-intervals
@@ -103,12 +120,14 @@ topics:
       - 319-meeting-schedule-ii
 
   - title: "Matrix"
+    description: In-place updates on 2D arrays. Track rows, columns or layers so you do not overwrite values you still need.
     challenges:
       - 321-rotate-matrix
       - 323-spiral-matrix
       - 325-set-zeroes-in-matrix
 
   - title: "Bit Manipulation"
+    description: JavaScript bitwise operators work on 32-bit signed integers, so use >>> 0 when you need an unsigned result.
     challenges:
       - 327-number-of-one-bits
       - 329-counting-bits
