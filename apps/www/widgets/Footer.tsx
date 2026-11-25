@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 import { Logo } from "~/shared/ui/Logo";
+import { FEEDBACK_URL } from "~/shared/config/paths";
 import { Icon, Link } from "~/components/ui";
 import { Skeleton } from "~/components/ui/skeleton";
 
@@ -51,17 +52,14 @@ export function Footer() {
               className="text-muted-foreground hover:text-muted-foreground/80"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/jsartisan/frontend-challenges/issues/new?assignees=jsartisan&labels=feedback&template=feedback.md&title=%5BFeedback%5D%3A+..."
+              href={FEEDBACK_URL}
             >
               Feedback
             </a>
             <Link className="text-muted-foreground hover:text-muted-foreground/80" href="/blog">
               Blog
             </Link>
-            <Link
-              className="text-muted-foreground hover:text-muted-foreground/80"
-              href="/blog/how-to-contribute"
-            >
+            <Link className="text-muted-foreground hover:text-muted-foreground/80" href="/blog/how-to-contribute">
               Contribute
             </Link>
           </p>
