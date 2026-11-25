@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { ChatBubbleIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 import { Logo } from "~/shared/ui/Logo";
-import { REPO } from "~/shared/config/paths";
+import { FEEDBACK_URL, REPO } from "~/shared/config/paths";
 import { Skeleton } from "~/components/ui/skeleton";
 import { Button, Icon, Link, LinkButton, Separator } from "~/components/ui";
 import { MenuTrigger, Menu, MenuItem } from "~/components/ui/dropdown-menu";
@@ -64,6 +64,16 @@ export function Header() {
               </div>
             </div>
             <div className="ms-auto flex h-full items-center gap-3">
+              <LinkButton
+                variant="secondary"
+                href={FEEDBACK_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Send feedback"
+              >
+                <ChatBubbleIcon />
+                <span className="hidden sm:inline">Feedback</span>
+              </LinkButton>
               <CompletionStats />
               <Separator orientation="vertical" className="mx-1 hidden md:flex" />
               <LinkButton variant="ghost" size="icon" href={REPO} target="_blank" rel="noreferrer">
