@@ -15,7 +15,7 @@ export const CATEGORY_METADATA = {
   },
   react: {
     title: "React",
-    heading: "React Interview Questions & Machine Coding Challenges",
+    heading: "React Challenges: Interview Questions & Machine Coding",
     description: "Explore React's core principles through challenges that cover the essential concepts of the library.",
     icon: "react-color",
   },
